@@ -11,10 +11,10 @@ namespace ChessApp
     class ChessGame
     {
 
-        public ChessGame(piece.color player1Color)
+        public ChessGame(Piece.Colors player1Color)
         {
-            Player player1 = new Player(player1Color, piece.playerNumber.PLAYER1);
-            Player player2 = new Player(OtherColor(player1Color), piece.playerNumber.PLAYER2);
+            Player player1 = new Player(player1Color, Piece.Players.PLAYER1);
+            Player player2 = new Player(OtherColor(player1Color), Piece.Players.PLAYER2);
 
             chessBoard = new square[8, 8];
 
@@ -51,8 +51,8 @@ namespace ChessApp
 
         public ChessGame()
         {
-            Player player1 = new Player(piece.color.WHITE, piece.playerNumber.PLAYER1);
-            Player player2 = new Player(piece.color.BLACK, piece.playerNumber.PLAYER2);
+            Player player1 = new Player(Piece.Colors.WHITE, Piece.Players.PLAYER1);
+            Player player2 = new Player(Piece.Colors.BLACK, Piece.Players.PLAYER2);
 
             chessBoard = new square[8, 8];
 
@@ -91,7 +91,7 @@ namespace ChessApp
 
 
 
-        public void MovePiece(piece pPiece, Coordinates pCoor)
+        public void MovePiece(Piece pPiece, Coordinates pCoor)
         {
             int CoorX = 0;
             int CoorY = 0;
@@ -113,13 +113,13 @@ namespace ChessApp
             {
                 ((Pawn)pPiece).moved();
             }
-            piece removedPiece = chessBoard[CoorX, CoorY].removePiece();
+            Piece removedPiece = chessBoard[CoorX, CoorY].removePiece();
             chessBoard[pCoor.GetX(), pCoor.GetY()].putPiece(pPiece);
         }
 
 
 
-        public List<Coordinates> MoveSetPiece(piece pPiece)
+        public List<Coordinates> MoveSetPiece(Piece pPiece)
         {
             List<Coordinates> list = new List<Coordinates>();
             int CoorX = 0;
@@ -139,7 +139,7 @@ namespace ChessApp
                 }
             }
 
-            if (pPiece.GetPlayer().Equals(piece.playerNumber.PLAYER1))
+            if (pPiece.GetPlayer().Equals(Piece.Players.PLAYER1))
             {
 
                 if( pPiece.GetType().Equals(typeof(Pawn)))
@@ -174,7 +174,7 @@ namespace ChessApp
                
                         if(chessBoard[tempX+1,tempY].hasPiece() )
                         {
-                            if(!chessBoard[tempX + 1, tempY].getPiece().GetPlayer().Equals(piece.playerNumber.PLAYER1))
+                            if(!chessBoard[tempX + 1, tempY].getPiece().GetPlayer().Equals(Piece.Players.PLAYER1))
                             {
                                 list.Add(new Coordinates(tempX + 1, tempY));
                                 
@@ -191,7 +191,7 @@ namespace ChessApp
 
                         if (chessBoard[tempX - 1, tempY].hasPiece())
                         {
-                            if (!chessBoard[tempX - 1, tempY].getPiece().GetPlayer().Equals(piece.playerNumber.PLAYER1))
+                            if (!chessBoard[tempX - 1, tempY].getPiece().GetPlayer().Equals(Piece.Players.PLAYER1))
                             {
                                 list.Add(new Coordinates(tempX - 1, tempY));
 
@@ -208,7 +208,7 @@ namespace ChessApp
 
                         if (chessBoard[tempX , tempY+ 1].hasPiece())
                         {
-                            if (!chessBoard[tempX, tempY + 1].getPiece().GetPlayer().Equals(piece.playerNumber.PLAYER1))
+                            if (!chessBoard[tempX, tempY + 1].getPiece().GetPlayer().Equals(Piece.Players.PLAYER1))
                             {
                                 list.Add(new Coordinates(tempX, tempY + 1));
 
@@ -225,7 +225,7 @@ namespace ChessApp
 
                         if (chessBoard[tempX, tempY - 1].hasPiece())
                         {
-                            if (!chessBoard[tempX, tempY - 1].getPiece().GetPlayer().Equals(piece.playerNumber.PLAYER1))
+                            if (!chessBoard[tempX, tempY - 1].getPiece().GetPlayer().Equals(Piece.Players.PLAYER1))
                             {
                                 list.Add(new Coordinates(tempX, tempY - 1));
 
@@ -255,7 +255,7 @@ namespace ChessApp
                     {
                         if (chessBoard[CoorX -2, CoorY + 1].hasPiece())
                         {
-                            if (!chessBoard[CoorX - 2, CoorY + 1].getPiece().GetPlayer().Equals(piece.playerNumber.PLAYER1))
+                            if (!chessBoard[CoorX - 2, CoorY + 1].getPiece().GetPlayer().Equals(Piece.Players.PLAYER1))
                             {
                                 list.Add(new Coordinates(CoorX - 2, CoorY + 1));
                             }
@@ -270,7 +270,7 @@ namespace ChessApp
                     {
                         if (chessBoard[CoorX - 1, CoorY + 2].hasPiece())
                         {
-                            if (!chessBoard[CoorX - 1, CoorY + 2].getPiece().GetPlayer().Equals(piece.playerNumber.PLAYER1))
+                            if (!chessBoard[CoorX - 1, CoorY + 2].getPiece().GetPlayer().Equals(Piece.Players.PLAYER1))
                             {
                                 list.Add(new Coordinates(CoorX - 1, CoorY + 2));
                             }
@@ -285,7 +285,7 @@ namespace ChessApp
                     {
                         if (chessBoard[CoorX + 1, CoorY + 2].hasPiece())
                         {
-                            if (!chessBoard[CoorX + 1, CoorY + 2].getPiece().GetPlayer().Equals(piece.playerNumber.PLAYER1))
+                            if (!chessBoard[CoorX + 1, CoorY + 2].getPiece().GetPlayer().Equals(Piece.Players.PLAYER1))
                             {
                                 list.Add(new Coordinates(CoorX + 1, CoorY + 2));
                             }
@@ -300,7 +300,7 @@ namespace ChessApp
                     {
                         if (chessBoard[CoorX + 2, CoorY + 1].hasPiece())
                         {
-                            if (!chessBoard[CoorX + 2, CoorY + 1].getPiece().GetPlayer().Equals(piece.playerNumber.PLAYER1))
+                            if (!chessBoard[CoorX + 2, CoorY + 1].getPiece().GetPlayer().Equals(Piece.Players.PLAYER1))
                             {
                                 list.Add(new Coordinates(CoorX + 2, CoorY + 1));
                             }
@@ -315,7 +315,7 @@ namespace ChessApp
                     {
                         if (chessBoard[CoorX + 2, CoorY - 1].hasPiece())
                         {
-                            if (!chessBoard[CoorX + 2, CoorY - 1].getPiece().GetPlayer().Equals(piece.playerNumber.PLAYER1))
+                            if (!chessBoard[CoorX + 2, CoorY - 1].getPiece().GetPlayer().Equals(Piece.Players.PLAYER1))
                             {
                                 list.Add(new Coordinates(CoorX + 2, CoorY - 1));
                             }
@@ -330,7 +330,7 @@ namespace ChessApp
                     {
                         if (chessBoard[CoorX + 1, CoorY - 2].hasPiece())
                         {
-                            if (!chessBoard[CoorX + 1, CoorY - 2].getPiece().GetPlayer().Equals(piece.playerNumber.PLAYER1))
+                            if (!chessBoard[CoorX + 1, CoorY - 2].getPiece().GetPlayer().Equals(Piece.Players.PLAYER1))
                             {
                                 list.Add(new Coordinates(CoorX + 1, CoorY - 2));
                             }
@@ -345,7 +345,7 @@ namespace ChessApp
                     {
                         if (chessBoard[CoorX - 1, CoorY - 2].hasPiece())
                         {
-                            if (!chessBoard[CoorX - 1, CoorY - 2].getPiece().GetPlayer().Equals(piece.playerNumber.PLAYER1))
+                            if (!chessBoard[CoorX - 1, CoorY - 2].getPiece().GetPlayer().Equals(Piece.Players.PLAYER1))
                             {
                                 list.Add(new Coordinates(CoorX - 1, CoorY - 2));
                             }
@@ -360,7 +360,7 @@ namespace ChessApp
                     {
                         if (chessBoard[CoorX + 2, CoorY + 1].hasPiece())
                         {
-                            if (!chessBoard[CoorX + 2, CoorY + 1].getPiece().GetPlayer().Equals(piece.playerNumber.PLAYER1))
+                            if (!chessBoard[CoorX + 2, CoorY + 1].getPiece().GetPlayer().Equals(Piece.Players.PLAYER1))
                             {
                                 list.Add(new Coordinates(CoorX + 2, CoorY + 1));
                             }
@@ -380,7 +380,7 @@ namespace ChessApp
                     {
                         if (chessBoard[tempX - 1, tempY - 1].hasPiece())
                         {
-                            if (!chessBoard[tempX - 1, tempY - 1].getPiece().GetPlayer().Equals(piece.playerNumber.PLAYER1))
+                            if (!chessBoard[tempX - 1, tempY - 1].getPiece().GetPlayer().Equals(Piece.Players.PLAYER1))
                             {
                                 list.Add(new Coordinates(tempX - 1, tempY - 1));
                             }
@@ -396,7 +396,7 @@ namespace ChessApp
                     {
                         if (chessBoard[tempX - 1, tempY + 1].hasPiece())
                         {
-                            if (!chessBoard[tempX - 1, tempY + 1].getPiece().GetPlayer().Equals(piece.playerNumber.PLAYER1))
+                            if (!chessBoard[tempX - 1, tempY + 1].getPiece().GetPlayer().Equals(Piece.Players.PLAYER1))
                             {
                                 list.Add(new Coordinates(tempX - 1, tempY + 1));
                             }
@@ -412,7 +412,7 @@ namespace ChessApp
                     {
                         if (chessBoard[tempX + 1, tempY + 1].hasPiece())
                         {
-                            if (!chessBoard[tempX + 1, tempY + 1].getPiece().GetPlayer().Equals(piece.playerNumber.PLAYER1))
+                            if (!chessBoard[tempX + 1, tempY + 1].getPiece().GetPlayer().Equals(Piece.Players.PLAYER1))
                             {
                                 list.Add(new Coordinates(tempX + 1, tempY + 1));
                             }
@@ -428,7 +428,7 @@ namespace ChessApp
                     {
                         if (chessBoard[tempX + 1, tempY - 1].hasPiece())
                         {
-                            if (!chessBoard[tempX + 1, tempY - 1].getPiece().GetPlayer().Equals(piece.playerNumber.PLAYER1))
+                            if (!chessBoard[tempX + 1, tempY - 1].getPiece().GetPlayer().Equals(Piece.Players.PLAYER1))
                             {
                                 list.Add(new Coordinates(tempX + 1, tempY - 1));
                             }
@@ -452,18 +452,18 @@ namespace ChessApp
                     {
                         if(CoorY >= 1)
                         {
-                            if (!chessBoard[CoorX - 1, CoorY - 1].getPiece().GetPlayer().Equals(piece.playerNumber.PLAYER1))
+                            if (!chessBoard[CoorX - 1, CoorY - 1].getPiece().GetPlayer().Equals(Piece.Players.PLAYER1))
                             {
                                 list.Add(new Coordinates(CoorX - 1, CoorY - 1));
                             }
                         }
-                        if (!chessBoard[CoorX - 1, CoorY].getPiece().GetPlayer().Equals(piece.playerNumber.PLAYER1))
+                        if (!chessBoard[CoorX - 1, CoorY].getPiece().GetPlayer().Equals(Piece.Players.PLAYER1))
                         {
                             list.Add(new Coordinates(CoorX - 1, CoorY));
                         }
                         if (CoorY <= 6)
                         {
-                            if (!chessBoard[CoorX - 1, CoorY + 1].getPiece().GetPlayer().Equals(piece.playerNumber.PLAYER1))
+                            if (!chessBoard[CoorX - 1, CoorY + 1].getPiece().GetPlayer().Equals(Piece.Players.PLAYER1))
                             {
                                 list.Add(new Coordinates(CoorX - 1, CoorY + 1));
                             }
@@ -472,14 +472,14 @@ namespace ChessApp
 
                     if (CoorY >= 1)
                     {
-                        if (!chessBoard[CoorX, CoorY - 1].getPiece().GetPlayer().Equals(piece.playerNumber.PLAYER1))
+                        if (!chessBoard[CoorX, CoorY - 1].getPiece().GetPlayer().Equals(Piece.Players.PLAYER1))
                         {
                             list.Add(new Coordinates(CoorX, CoorY - 1));
                         }
                     }
                     if (CoorY <= 6)
                     {
-                        if (!chessBoard[CoorX, CoorY + 1].getPiece().GetPlayer().Equals(piece.playerNumber.PLAYER1))
+                        if (!chessBoard[CoorX, CoorY + 1].getPiece().GetPlayer().Equals(Piece.Players.PLAYER1))
                         {
                             list.Add(new Coordinates(CoorX, CoorY + 1));
                         }
@@ -489,18 +489,18 @@ namespace ChessApp
                     {
                         if (CoorY >= 1)
                         {
-                            if (!chessBoard[CoorX + 1, CoorY - 1].getPiece().GetPlayer().Equals(piece.playerNumber.PLAYER1))
+                            if (!chessBoard[CoorX + 1, CoorY - 1].getPiece().GetPlayer().Equals(Piece.Players.PLAYER1))
                             {
                                 list.Add(new Coordinates(CoorX + 1, CoorY - 1));
                             }
                         }
-                        if (!chessBoard[CoorX + 1, CoorY].getPiece().GetPlayer().Equals(piece.playerNumber.PLAYER1))
+                        if (!chessBoard[CoorX + 1, CoorY].getPiece().GetPlayer().Equals(Piece.Players.PLAYER1))
                         {
                             list.Add(new Coordinates(CoorX + 1, CoorY));
                         }
                         if (CoorY <= 6)
                         {
-                            if (!chessBoard[CoorX + 1, CoorY + 1].getPiece().GetPlayer().Equals(piece.playerNumber.PLAYER1))
+                            if (!chessBoard[CoorX + 1, CoorY + 1].getPiece().GetPlayer().Equals(Piece.Players.PLAYER1))
                             {
                                 list.Add(new Coordinates(CoorX + 1, CoorY + 1));
                             }
@@ -545,7 +545,7 @@ namespace ChessApp
 
                         if (chessBoard[tempX + 1, tempY].hasPiece())
                         {
-                            if (!chessBoard[tempX + 1, tempY].getPiece().GetPlayer().Equals(piece.playerNumber.PLAYER1))
+                            if (!chessBoard[tempX + 1, tempY].getPiece().GetPlayer().Equals(Piece.Players.PLAYER1))
                             {
                                 list.Add(new Coordinates(tempX + 1, tempY));
 
@@ -562,7 +562,7 @@ namespace ChessApp
 
                         if (chessBoard[tempX - 1, tempY].hasPiece())
                         {
-                            if (!chessBoard[tempX - 1, tempY].getPiece().GetPlayer().Equals(piece.playerNumber.PLAYER1))
+                            if (!chessBoard[tempX - 1, tempY].getPiece().GetPlayer().Equals(Piece.Players.PLAYER1))
                             {
                                 list.Add(new Coordinates(tempX - 1, tempY));
 
@@ -579,7 +579,7 @@ namespace ChessApp
 
                         if (chessBoard[tempX, tempY + 1].hasPiece())
                         {
-                            if (!chessBoard[tempX, tempY + 1].getPiece().GetPlayer().Equals(piece.playerNumber.PLAYER1))
+                            if (!chessBoard[tempX, tempY + 1].getPiece().GetPlayer().Equals(Piece.Players.PLAYER1))
                             {
                                 list.Add(new Coordinates(tempX, tempY + 1));
 
@@ -596,7 +596,7 @@ namespace ChessApp
 
                         if (chessBoard[tempX, tempY - 1].hasPiece())
                         {
-                            if (!chessBoard[tempX, tempY - 1].getPiece().GetPlayer().Equals(piece.playerNumber.PLAYER1))
+                            if (!chessBoard[tempX, tempY - 1].getPiece().GetPlayer().Equals(Piece.Players.PLAYER1))
                             {
                                 list.Add(new Coordinates(tempX, tempY - 1));
 
@@ -626,7 +626,7 @@ namespace ChessApp
                     {
                         if (chessBoard[CoorX - 2, CoorY + 1].hasPiece())
                         {
-                            if (!chessBoard[CoorX - 2, CoorY + 1].getPiece().GetPlayer().Equals(piece.playerNumber.PLAYER1))
+                            if (!chessBoard[CoorX - 2, CoorY + 1].getPiece().GetPlayer().Equals(Piece.Players.PLAYER1))
                             {
                                 list.Add(new Coordinates(CoorX - 2, CoorY + 1));
                             }
@@ -641,7 +641,7 @@ namespace ChessApp
                     {
                         if (chessBoard[CoorX - 1, CoorY + 2].hasPiece())
                         {
-                            if (!chessBoard[CoorX - 1, CoorY + 2].getPiece().GetPlayer().Equals(piece.playerNumber.PLAYER1))
+                            if (!chessBoard[CoorX - 1, CoorY + 2].getPiece().GetPlayer().Equals(Piece.Players.PLAYER1))
                             {
                                 list.Add(new Coordinates(CoorX - 1, CoorY + 2));
                             }
@@ -656,7 +656,7 @@ namespace ChessApp
                     {
                         if (chessBoard[CoorX + 1, CoorY + 2].hasPiece())
                         {
-                            if (!chessBoard[CoorX + 1, CoorY + 2].getPiece().GetPlayer().Equals(piece.playerNumber.PLAYER1))
+                            if (!chessBoard[CoorX + 1, CoorY + 2].getPiece().GetPlayer().Equals(Piece.Players.PLAYER1))
                             {
                                 list.Add(new Coordinates(CoorX + 1, CoorY + 2));
                             }
@@ -671,7 +671,7 @@ namespace ChessApp
                     {
                         if (chessBoard[CoorX + 2, CoorY + 1].hasPiece())
                         {
-                            if (!chessBoard[CoorX + 2, CoorY + 1].getPiece().GetPlayer().Equals(piece.playerNumber.PLAYER1))
+                            if (!chessBoard[CoorX + 2, CoorY + 1].getPiece().GetPlayer().Equals(Piece.Players.PLAYER1))
                             {
                                 list.Add(new Coordinates(CoorX + 2, CoorY + 1));
                             }
@@ -686,7 +686,7 @@ namespace ChessApp
                     {
                         if (chessBoard[CoorX + 2, CoorY - 1].hasPiece())
                         {
-                            if (!chessBoard[CoorX + 2, CoorY - 1].getPiece().GetPlayer().Equals(piece.playerNumber.PLAYER1))
+                            if (!chessBoard[CoorX + 2, CoorY - 1].getPiece().GetPlayer().Equals(Piece.Players.PLAYER1))
                             {
                                 list.Add(new Coordinates(CoorX + 2, CoorY - 1));
                             }
@@ -701,7 +701,7 @@ namespace ChessApp
                     {
                         if (chessBoard[CoorX + 1, CoorY - 2].hasPiece())
                         {
-                            if (!chessBoard[CoorX + 1, CoorY - 2].getPiece().GetPlayer().Equals(piece.playerNumber.PLAYER1))
+                            if (!chessBoard[CoorX + 1, CoorY - 2].getPiece().GetPlayer().Equals(Piece.Players.PLAYER1))
                             {
                                 list.Add(new Coordinates(CoorX + 1, CoorY - 2));
                             }
@@ -716,7 +716,7 @@ namespace ChessApp
                     {
                         if (chessBoard[CoorX - 1, CoorY - 2].hasPiece())
                         {
-                            if (!chessBoard[CoorX - 1, CoorY - 2].getPiece().GetPlayer().Equals(piece.playerNumber.PLAYER1))
+                            if (!chessBoard[CoorX - 1, CoorY - 2].getPiece().GetPlayer().Equals(Piece.Players.PLAYER1))
                             {
                                 list.Add(new Coordinates(CoorX - 1, CoorY - 2));
                             }
@@ -731,7 +731,7 @@ namespace ChessApp
                     {
                         if (chessBoard[CoorX + 2, CoorY + 1].hasPiece())
                         {
-                            if (!chessBoard[CoorX + 2, CoorY + 1].getPiece().GetPlayer().Equals(piece.playerNumber.PLAYER1))
+                            if (!chessBoard[CoorX + 2, CoorY + 1].getPiece().GetPlayer().Equals(Piece.Players.PLAYER1))
                             {
                                 list.Add(new Coordinates(CoorX + 2, CoorY + 1));
                             }
@@ -751,7 +751,7 @@ namespace ChessApp
                     {
                         if (chessBoard[tempX - 1, tempY - 1].hasPiece())
                         {
-                            if (!chessBoard[tempX - 1, tempY - 1].getPiece().GetPlayer().Equals(piece.playerNumber.PLAYER1))
+                            if (!chessBoard[tempX - 1, tempY - 1].getPiece().GetPlayer().Equals(Piece.Players.PLAYER1))
                             {
                                 list.Add(new Coordinates(tempX - 1, tempY - 1));
                             }
@@ -767,7 +767,7 @@ namespace ChessApp
                     {
                         if (chessBoard[tempX - 1, tempY + 1].hasPiece())
                         {
-                            if (!chessBoard[tempX - 1, tempY + 1].getPiece().GetPlayer().Equals(piece.playerNumber.PLAYER1))
+                            if (!chessBoard[tempX - 1, tempY + 1].getPiece().GetPlayer().Equals(Piece.Players.PLAYER1))
                             {
                                 list.Add(new Coordinates(tempX - 1, tempY + 1));
                             }
@@ -783,7 +783,7 @@ namespace ChessApp
                     {
                         if (chessBoard[tempX + 1, tempY + 1].hasPiece())
                         {
-                            if (!chessBoard[tempX + 1, tempY + 1].getPiece().GetPlayer().Equals(piece.playerNumber.PLAYER1))
+                            if (!chessBoard[tempX + 1, tempY + 1].getPiece().GetPlayer().Equals(Piece.Players.PLAYER1))
                             {
                                 list.Add(new Coordinates(tempX + 1, tempY + 1));
                             }
@@ -799,7 +799,7 @@ namespace ChessApp
                     {
                         if (chessBoard[tempX + 1, tempY - 1].hasPiece())
                         {
-                            if (!chessBoard[tempX + 1, tempY - 1].getPiece().GetPlayer().Equals(piece.playerNumber.PLAYER1))
+                            if (!chessBoard[tempX + 1, tempY - 1].getPiece().GetPlayer().Equals(Piece.Players.PLAYER1))
                             {
                                 list.Add(new Coordinates(tempX + 1, tempY - 1));
                             }
@@ -823,18 +823,18 @@ namespace ChessApp
                     {
                         if (CoorY >= 1)
                         {
-                            if (!chessBoard[CoorX - 1, CoorY - 1].getPiece().GetPlayer().Equals(piece.playerNumber.PLAYER2))
+                            if (!chessBoard[CoorX - 1, CoorY - 1].getPiece().GetPlayer().Equals(Piece.Players.PLAYER2))
                             {
                                 list.Add(new Coordinates(CoorX - 1, CoorY - 1));
                             }
                         }
-                        if (!chessBoard[CoorX - 1, CoorY].getPiece().GetPlayer().Equals(piece.playerNumber.PLAYER2))
+                        if (!chessBoard[CoorX - 1, CoorY].getPiece().GetPlayer().Equals(Piece.Players.PLAYER2))
                         {
                             list.Add(new Coordinates(CoorX - 1, CoorY));
                         }
                         if (CoorY <= 6)
                         {
-                            if (!chessBoard[CoorX - 1, CoorY + 1].getPiece().GetPlayer().Equals(piece.playerNumber.PLAYER2))
+                            if (!chessBoard[CoorX - 1, CoorY + 1].getPiece().GetPlayer().Equals(Piece.Players.PLAYER2))
                             {
                                 list.Add(new Coordinates(CoorX - 1, CoorY + 1));
                             }
@@ -843,14 +843,14 @@ namespace ChessApp
 
                     if (CoorY >= 1)
                     {
-                        if (!chessBoard[CoorX, CoorY - 1].getPiece().GetPlayer().Equals(piece.playerNumber.PLAYER2))
+                        if (!chessBoard[CoorX, CoorY - 1].getPiece().GetPlayer().Equals(Piece.Players.PLAYER2))
                         {
                             list.Add(new Coordinates(CoorX, CoorY - 1));
                         }
                     }
                     if (CoorY <= 6)
                     {
-                        if (!chessBoard[CoorX, CoorY + 1].getPiece().GetPlayer().Equals(piece.playerNumber.PLAYER2))
+                        if (!chessBoard[CoorX, CoorY + 1].getPiece().GetPlayer().Equals(Piece.Players.PLAYER2))
                         {
                             list.Add(new Coordinates(CoorX, CoorY + 1));
                         }
@@ -860,18 +860,18 @@ namespace ChessApp
                     {
                         if (CoorY >= 1)
                         {
-                            if (!chessBoard[CoorX + 1, CoorY - 1].getPiece().GetPlayer().Equals(piece.playerNumber.PLAYER2))
+                            if (!chessBoard[CoorX + 1, CoorY - 1].getPiece().GetPlayer().Equals(Piece.Players.PLAYER2))
                             {
                                 list.Add(new Coordinates(CoorX + 1, CoorY - 1));
                             }
                         }
-                        if (!chessBoard[CoorX + 1, CoorY].getPiece().GetPlayer().Equals(piece.playerNumber.PLAYER2))
+                        if (!chessBoard[CoorX + 1, CoorY].getPiece().GetPlayer().Equals(Piece.Players.PLAYER2))
                         {
                             list.Add(new Coordinates(CoorX + 1, CoorY));
                         }
                         if (CoorY <= 6)
                         {
-                            if (!chessBoard[CoorX + 1, CoorY + 1].getPiece().GetPlayer().Equals(piece.playerNumber.PLAYER2))
+                            if (!chessBoard[CoorX + 1, CoorY + 1].getPiece().GetPlayer().Equals(Piece.Players.PLAYER2))
                             {
                                 list.Add(new Coordinates(CoorX + 1, CoorY + 1));
                             }
@@ -886,19 +886,19 @@ namespace ChessApp
         }
         
 
-        private static piece.color OtherColor(piece.color pColor)
+        private static Piece.Colors OtherColor(Piece.Colors pColor)
         {
-            if (pColor.Equals(piece.color.WHITE))
+            if (pColor.Equals(Piece.Colors.WHITE))
             {
-                return piece.color.BLACK;
+                return Piece.Colors.BLACK;
             }
             else
             {
-                return piece.color.WHITE;
+                return Piece.Colors.WHITE;
             }
         }
 
-        private static void discardImage(piece pPiece)
+        private static void discardImage(Piece pPiece)
         {
             pPiece.SetCoor(new Coordinates(525, 531));
         }

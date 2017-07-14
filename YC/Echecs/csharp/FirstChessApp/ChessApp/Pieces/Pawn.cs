@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace ChessApp.Pieces
 {
-    public class Pawn : piece
+    public class Pawn : Piece
     {
 
-        private playerNumber Player;
-        private color Color;
+        private Players Player;
+        private Colors Color;
         private Boolean hasMoved;
         
 
-        public Pawn(playerNumber p, color c)
+        public Pawn(Players p, Colors c)
         {
 
             Player = p;

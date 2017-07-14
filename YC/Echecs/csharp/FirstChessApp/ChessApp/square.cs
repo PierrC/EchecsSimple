@@ -9,7 +9,7 @@ namespace ChessApp
 {
     public class square
     {
-        private piece aPiece;
+        private Piece aPiece;
         private Boolean hasAPiece;
 
         public square()
@@ -21,19 +21,19 @@ namespace ChessApp
         {
             return hasAPiece;
         }
-        public piece getPiece()
+        public Piece getPiece()
         {
             return aPiece;
         }
-        public void putPiece(piece pPiece)
+        public void putPiece(Piece pPiece)
         {
             aPiece = pPiece;
             hasAPiece = true;
         }
-        public piece removePiece()
+        public Piece removePiece()
         {
             hasAPiece = false;
-            piece P = aPiece;
+            Piece P = aPiece;
             aPiece = null;
             return P;
         }

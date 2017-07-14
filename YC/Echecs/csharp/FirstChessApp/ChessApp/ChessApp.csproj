@@ -57,7 +57,7 @@
     <Compile Include="Pieces\King.cs" />
     <Compile Include="Pieces\Knight.cs" />
     <Compile Include="Pieces\Pawn.cs" />
-    <Compile Include="Pieces\piece.cs" />
+    <Compile Include="Pieces\Piece.cs" />
     <Compile Include="Pieces\Queen.cs" />
     <Compile Include="Pieces\Rook.cs" />
     <Compile Include="Player.cs" />

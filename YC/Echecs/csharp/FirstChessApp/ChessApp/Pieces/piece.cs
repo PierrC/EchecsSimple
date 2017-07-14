@@ -7,42 +7,46 @@ using System.Threading.Tasks;
 
 namespace ChessApp.Pieces
 {
-    public class piece
+    public class Piece
     {
-        public enum color
+        public enum Colors
         {
             WHITE,
             BLACK
         }
-        public enum playerNumber
+        public enum Players
         {
             PLAYER1,
             PLAYER2
         }
 
 
-        private playerNumber Player;
-        private color Color;
-        private Coordinates Coor;
+        //private Players Player;
+        //private Colors Color;
+        //private Coordinates Position;
 
-        public color returnColor()
+        public Players Player { get => Player; }
+        public Colors Color { get => Color; }
+        public Coordinates Position { get => Position; set => Position = value; }
+
+        public Colors returnColor()
         {
             return Color;
         }
 
-        public playerNumber GetPlayer()
+        public Players GetPlayer()
         {
             return Player;
         }
 
         public Coordinates GetCoor()
         {
-            return Coor;
+            return Position;
         }
 
         public void SetCoor(Coordinates pCoor)
         {
-            Coor = pCoor;
+            Position = pCoor;
         }
 
 

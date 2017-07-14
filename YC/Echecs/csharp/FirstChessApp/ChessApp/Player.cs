@@ -9,21 +9,21 @@ namespace ChessApp
 {
     public class Player
     {
-        piece.color aColor;
-        piece.playerNumber aNumber;
+        Piece.Colors aColor;
+        Piece.Players aNumber;
 
-        public Player(piece.color pColor, piece.playerNumber pNumber)
+        public Player(Piece.Colors pColor, Piece.Players pNumber)
         {
             this.aColor = pColor;
             this.aNumber = pNumber;
 
         }
 
-        public piece.color getColor()
+        public Piece.Colors getColor()
         {
             return aColor;
         }
-        public piece.playerNumber getPlayer()
+        public Piece.Players getPlayer()
         {
             return aNumber;
         }
