@@ -10,7 +10,11 @@ namespace ChessApp
 {
     class ChessGame
     {
-
+        /*
+         * This is a comment to show that
+         * github works.
+         * 
+         */
         public ChessGame(piece.color player1Color)
         {
             Player player1 = new Player(player1Color, piece.playerNumber.PLAYER1);

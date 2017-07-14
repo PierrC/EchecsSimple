@@ -1,0 +1,9 @@
+C:\Users\pierr\Documents\GitHub\EchecsSimple\PC\Echecs\csharp\FirstChessApp\tiesObjects\bin\Debug\tiesObjects.exe.config
+C:\Users\pierr\Documents\GitHub\EchecsSimple\PC\Echecs\csharp\FirstChessApp\tiesObjects\bin\Debug\tiesObjects.exe
+C:\Users\pierr\Documents\GitHub\EchecsSimple\PC\Echecs\csharp\FirstChessApp\tiesObjects\bin\Debug\tiesObjects.pdb
+C:\Users\pierr\Documents\GitHub\EchecsSimple\PC\Echecs\csharp\FirstChessApp\tiesObjects\obj\Debug\tiesObjects.csprojResolveAssemblyReference.cache
+C:\Users\pierr\Documents\GitHub\EchecsSimple\PC\Echecs\csharp\FirstChessApp\tiesObjects\obj\Debug\tiesObjects.Form1.resources
+C:\Users\pierr\Documents\GitHub\EchecsSimple\PC\Echecs\csharp\FirstChessApp\tiesObjects\obj\Debug\tiesObjects.Properties.Resources.resources
+C:\Users\pierr\Documents\GitHub\EchecsSimple\PC\Echecs\csharp\FirstChessApp\tiesObjects\obj\Debug\tiesObjects.csproj.GenerateResource.Cache
+C:\Users\pierr\Documents\GitHub\EchecsSimple\PC\Echecs\csharp\FirstChessApp\tiesObjects\obj\Debug\tiesObjects.exe
+C:\Users\pierr\Documents\GitHub\EchecsSimple\PC\Echecs\csharp\FirstChessApp\tiesObjects\obj\Debug\tiesObjects.pdb

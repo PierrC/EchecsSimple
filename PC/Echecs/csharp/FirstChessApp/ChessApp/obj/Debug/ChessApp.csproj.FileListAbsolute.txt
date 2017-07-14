@@ -1,0 +1,9 @@
+C:\Users\pierr\Documents\GitHub\EchecsSimple\PC\Echecs\csharp\FirstChessApp\ChessApp\bin\Debug\ChessApp.exe.config
+C:\Users\pierr\Documents\GitHub\EchecsSimple\PC\Echecs\csharp\FirstChessApp\ChessApp\bin\Debug\ChessApp.exe
+C:\Users\pierr\Documents\GitHub\EchecsSimple\PC\Echecs\csharp\FirstChessApp\ChessApp\bin\Debug\ChessApp.pdb
+C:\Users\pierr\Documents\GitHub\EchecsSimple\PC\Echecs\csharp\FirstChessApp\ChessApp\obj\Debug\ChessApp.csprojResolveAssemblyReference.cache
+C:\Users\pierr\Documents\GitHub\EchecsSimple\PC\Echecs\csharp\FirstChessApp\ChessApp\obj\Debug\ChessApp.Form1.resources
+C:\Users\pierr\Documents\GitHub\EchecsSimple\PC\Echecs\csharp\FirstChessApp\ChessApp\obj\Debug\ChessApp.Properties.Resources.resources
+C:\Users\pierr\Documents\GitHub\EchecsSimple\PC\Echecs\csharp\FirstChessApp\ChessApp\obj\Debug\ChessApp.csproj.GenerateResource.Cache
+C:\Users\pierr\Documents\GitHub\EchecsSimple\PC\Echecs\csharp\FirstChessApp\ChessApp\obj\Debug\ChessApp.exe
+C:\Users\pierr\Documents\GitHub\EchecsSimple\PC\Echecs\csharp\FirstChessApp\ChessApp\obj\Debug\ChessApp.pdb
