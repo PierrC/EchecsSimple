@@ -1,0 +1,9 @@
+C:\Users\pierr\Documents\GitHub\EchecsSimple\PC\Echecs\csharp\FirstChessApp\ChessAppGDI\bin\Debug\ChessAppGDI.exe.config
+C:\Users\pierr\Documents\GitHub\EchecsSimple\PC\Echecs\csharp\FirstChessApp\ChessAppGDI\bin\Debug\ChessAppGDI.exe
+C:\Users\pierr\Documents\GitHub\EchecsSimple\PC\Echecs\csharp\FirstChessApp\ChessAppGDI\bin\Debug\ChessAppGDI.pdb
+C:\Users\pierr\Documents\GitHub\EchecsSimple\PC\Echecs\csharp\FirstChessApp\ChessAppGDI\obj\Debug\ChessAppGDI.ChessApp.resources
+C:\Users\pierr\Documents\GitHub\EchecsSimple\PC\Echecs\csharp\FirstChessApp\ChessAppGDI\obj\Debug\ChessAppGDI.Properties.Resources.resources
+C:\Users\pierr\Documents\GitHub\EchecsSimple\PC\Echecs\csharp\FirstChessApp\ChessAppGDI\obj\Debug\ChessAppGDI.csproj.GenerateResource.Cache
+C:\Users\pierr\Documents\GitHub\EchecsSimple\PC\Echecs\csharp\FirstChessApp\ChessAppGDI\obj\Debug\ChessAppGDI.exe
+C:\Users\pierr\Documents\GitHub\EchecsSimple\PC\Echecs\csharp\FirstChessApp\ChessAppGDI\obj\Debug\ChessAppGDI.pdb
+C:\Users\pierr\Documents\GitHub\EchecsSimple\PC\Echecs\csharp\FirstChessApp\ChessAppGDI\obj\Debug\ChessAppGDI.csprojResolveAssemblyReference.cache
