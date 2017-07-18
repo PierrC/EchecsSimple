@@ -191,7 +191,7 @@
             // 
             // boardPanel
             // 
-            this.boardPanel.BackgroundImage = global::ChessApp.Properties.Resources.chessBoard2;
+            this.boardPanel.BackgroundImage = global::ChessApp.Properties.Resources.whiteBishop;
             this.boardPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.boardPanel.Controls.Add(this.blackRook2);
             this.boardPanel.Controls.Add(this.blackKnight2);

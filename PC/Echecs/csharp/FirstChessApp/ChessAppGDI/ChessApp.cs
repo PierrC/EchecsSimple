@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -21,49 +23,92 @@ namespace ChessAppGDI
         Font myFont = new Font("Times New Roman", 16);
 
         Boolean showBoardAnnotation = true;
+        ArrayList listPiece = new ArrayList();
 
         
         public ChessApp()
         {
             InitializeComponent();
             this.MinimumSize = new System.Drawing.Size(700, 600);
+
+            SetDoubleBuffered(tableLayoutPanel1);
+            SetDoubleBuffered(boardPanel);
+
+            typeof(Panel).InvokeMember("DoubleBuffered", BindingFlags.SetProperty | BindingFlags.Instance | BindingFlags.NonPublic, null, boardPanel, new object[] { true });
+            SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
+            g = boardPanel.CreateGraphics();
+            Piece p1 = new Piece(Piece.PieceType.PAWN, Piece.Player.PLAYER1, Piece.Color.BLACK, new Point(100, 100));
+            Piece p2 = new Piece(Piece.PieceType.PAWN, Piece.Player.PLAYER1, Piece.Color.WHITE, new Point(130, 130));
+            listPiece.Add(p1);
+            listPiece.Add(p2);
+            
         }
 
         
         private void boardPanel_Paint(object sender, PaintEventArgs e)
         {
+
             boardPanel_x = boardPanel.Width;
             boardPanel_y = boardPanel.Height;
-            g = boardPanel.CreateGraphics();
-            g.Clear(Color.White);
+            
+            // g.Clear(Color.White);
             // The Board must be the first draw method called
-            drawBoard();
-
-            drawPieces();
+            UpdateBoard();
+            
         }
 
-        
-        private void drawPieces()
+        // Not final version of method
+        private void DrawPieces()
         {
-        //    Image.FromFile("..\\..\\Resources\\Icons\\key-icon.png");
-
-            Image image = Image.FromFile("C:\\Users\\pierr\\Documents\\GitHub\\EchecsSimple\\PC\\Echecs\\csharp\\FirstChessApp\\ChessAppGDI\\Resources\\whitePawn.gif");
-            Image image2 = new Bitmap(Properties.Resources.whitePawn);
-            Rectangle srcRect = new Rectangle(30, 80, 60, 60);
-            g.DrawImage(image, new Point(100, 100));
-            g.DrawImage(image2, srcRect);
-           // g.DrawImage(image, 100, 100, srcRect, units);
+            foreach(Piece p in listPiece)
+            {
+                g.DrawImage(p.GetImage(), p.GetPoint().X, p.GetPoint().Y, 60, 60);
+            }
         }
 
-        
+        int x = 0,y = 0;
+
+        private void boardPanel_MouseMove(object sender, MouseEventArgs e)
+        {
+            Piece p = (Piece)listPiece[1];
+            p.SetPoint(new Point( e.X, e.Y));
+            listPiece[1] = p;
+        }
+
+        // testing 
+        private void boardPanel_DoubleClick(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void testDragMethod()
+        {
+
+        }
 
 
 
-        private void drawBoard()
+
+
+
+
+
+
+
+        private void UpdateBoard()
+        {
+            g.Clear(Color.White);
+            DrawBoard();
+            DrawPieces();
+
+        }
+
+        private void DrawBoard()
         {
             square_x = boardPanel_x / 9;
             square_y = boardPanel_y / 9;
             square = Math.Min(square_x, square_y);
+            
             for (int i = 0; i < 9; i++)
             {
                 // Vertical lines
@@ -105,12 +150,50 @@ namespace ChessAppGDI
                     g.DrawString( Char.ConvertFromUtf32(65 + i - 1) , myFont, Brushes.Black, square * i - (square / 4), square / 16);
                 }
             }
+            
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            this.Refresh();
+             this.Refresh();
+            //  UpdateBoard();
+
+            // this.Invalidate();
         }
+
+        // Point[] arrayPoint = new Point[]();
+        private void updateBoardSize()
+        {
+
+
+        }
+
+
+
+
+        public static void SetDoubleBuffered(System.Windows.Forms.Control c)
+        {
+            if (System.Windows.Forms.SystemInformation.TerminalServerSession)
+                return;
+            System.Reflection.PropertyInfo aProp = typeof(System.Windows.Forms.Control).GetProperty("DoubleBuffered", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+            aProp.SetValue(c, true, null);
+        }
+
+
+
+
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams cp = base.CreateParams;
+                cp.ExStyle |= 0x02000000;
+                return cp;
+            }
+        }
+
+
+
     }
 
 

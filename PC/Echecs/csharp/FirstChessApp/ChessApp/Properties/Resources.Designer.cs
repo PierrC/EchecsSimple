@@ -123,26 +123,6 @@ namespace ChessApp.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap chessBoard {
-            get {
-                object obj = ResourceManager.GetObject("chessBoard", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap chessBoard2 {
-            get {
-                object obj = ResourceManager.GetObject("chessBoard2", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap whiteBishop {
             get {
                 object obj = ResourceManager.GetObject("whiteBishop", resourceCulture);
@@ -196,6 +176,16 @@ namespace ChessApp.Properties {
         internal static System.Drawing.Bitmap whiteRook {
             get {
                 object obj = ResourceManager.GetObject("whiteRook", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap whiteRook1 {
+            get {
+                object obj = ResourceManager.GetObject("whiteRook1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -91,21 +91,43 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\blackRook.png" />
-    <None Include="Resources\blackQueen.png" />
-    <None Include="Resources\blackPawn.png" />
-    <None Include="Resources\blackKinght.png" />
-    <None Include="Resources\blackKing.png" />
-    <None Include="Resources\blackBishop.png" />
-    <None Include="Resources\whiteRook.gif" />
-    <None Include="Resources\whiteQueen.gif" />
-    <None Include="Resources\whitePawn.gif" />
-    <None Include="Resources\whiteKnight.gif" />
-    <None Include="Resources\whiteKing.gif" />
-    <None Include="Resources\whiteBishop.gif" />
-    <None Include="Resources\chessBoard2.gif" />
-    <None Include="Resources\chessBoard.gif" />
+    <None Include="Resources\blackBishop.gif" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\blackKing.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blackKinght.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blackPawn.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blackQueen.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blackRook.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\whiteBishop.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\whiteKing.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\whiteKnight.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\whitePawn.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\whiteQueen.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\whiteRook.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\whiteRook.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
