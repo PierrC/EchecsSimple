@@ -45,11 +45,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BufferingExample.cs">
+    <Compile Include="DoubleBufferedForm.cs">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DoubleBufferedForm.Designer.cs">
+      <DependentUpon>DoubleBufferedForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="DoubleBufferedForm.resx">
+      <DependentUpon>DoubleBufferedForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

@@ -16,7 +16,7 @@ namespace DoubleBuff
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new BufferingExample());
+            Application.Run(new DoubleBufferedForm());
         }
     }
 }

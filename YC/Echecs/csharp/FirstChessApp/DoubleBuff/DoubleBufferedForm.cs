@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.ComponentModel;
+using System.Data;
 using System.Drawing;
+using System.Text;
 using System.Windows.Forms;
 
 namespace DoubleBuff
 {
-    public class BufferingExample : Form
+    public partial class DoubleBufferedForm : Form
     {
         private BufferedGraphicsContext context;
         private BufferedGraphics grafx;
@@ -23,9 +22,13 @@ namespace DoubleBuff
         private System.Windows.Forms.Timer timer1;
         private byte count;
 
-        public BufferingExample() : base()
+        public DoubleBufferedForm()
         {
-            // Configure the Form for this example.
+            InitializeComponent();
+
+            // 
+            // DoubleBufferedForm
+            // 
             this.Text = "User double buffering";
             this.MouseDown += new MouseEventHandler(this.MouseDownHandler);
             this.Resize += new EventHandler(this.OnResize);
