@@ -1,0 +1,13 @@
+/PC/Echecs/csharp/FirstChessApp/.vs
+/PC/Echecs/csharp/FirstChessApp/ChessApp/bin
+/PC/Echecs/csharp/FirstChessApp/ChessApp/obj
+/PC/Echecs/csharp/FirstChessApp/ChessAppGDI/bin
+/PC/Echecs/csharp/FirstChessApp/ChessAppGDI/obj
+/PC/Echecs/csharp/FirstChessApp/ChessApp/obj/Debug/*.exe
+/PC/Echecs/csharp/FirstChessApp/ChessApp/obj/Debug/*.resources
+/PC/Echecs/csharp/FirstChessApp/ChessApp/obj/Debug/*.pdb
+/PC/Echecs/csharp/FirstChessApp/ChessApp/obj/Debug/*.cache
+/PC/Echecs/csharp/FirstChessApp/ChessApp/obj/Debug/*.cs
+/PC/Echecs/csharp/FirstChessApp/ChessApp/obj/Debug/*
+/PC/Echecs/csharp/FirstChessApp/ChessApp/obj/Debug/*.txt
+/PC/Echecs/csharp/FirstChessApp/ChessApp/obj/Debug/*.Cache
