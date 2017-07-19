@@ -26,6 +26,11 @@ namespace DoubleBuff
         {
             InitializeComponent();
 
+            InitializeDoubleBuffering();
+        }
+
+        void InitializeDoubleBuffering()
+        {
             // 
             // DoubleBufferedForm
             // 
