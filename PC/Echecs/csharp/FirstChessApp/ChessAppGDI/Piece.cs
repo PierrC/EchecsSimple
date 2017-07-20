@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ChessAppGDI
 {
-    class Piece
+    public class Piece
     {
         public enum PieceType
         {
@@ -27,6 +27,7 @@ namespace ChessAppGDI
         {
             BLACK,
             WHITE
+
         }
 
         PieceType aType { get; set; }
@@ -51,6 +52,11 @@ namespace ChessAppGDI
             return aImage;
         }
 
+        public Color getColor()
+        {
+            return aColor;
+        }
+
         public Piece(PieceType pType, Player pPlayer, Color pColor, Point pCoor)
         {
             aType = pType;
@@ -59,6 +65,7 @@ namespace ChessAppGDI
             aCoor = pCoor;
             aImage = SetImage();
         }
+
         public Piece(PieceType pType, Player pPlayer, Color pColor, int x, int y)
         {
             aType = pType;
