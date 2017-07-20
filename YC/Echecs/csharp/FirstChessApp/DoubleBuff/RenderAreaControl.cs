@@ -115,25 +115,16 @@ namespace DoubleBuff
             // Clear the graphics buffer every five updates.
             if (drawBackground)
             {
-                //count = 0;
                 grafx.Graphics.FillRectangle(Brushes.White, 0, 0, this.Width, this.Height);
             }
 
             DrawBoard(g);
-            //// Draw randomly positioned and colored ellipses.
-            //Random rnd = new Random();
-            //for (int i = 0; i < 20; i++)
-            //{
-            //    int px = rnd.Next(20, this.Width - 40);
-            //    int py = rnd.Next(20, this.Height - 40);
-            //    g.DrawEllipse(new Pen(Color.FromArgb(rnd.Next(0, 255), rnd.Next(0, 255), rnd.Next(0, 255)), 1),
-            //        px, py, px + rnd.Next(0, this.Width - px - 20), py + rnd.Next(0, this.Height - py - 20));
-            //}
+
 
             // Draw information strings.
-            g.DrawString("Buffering Mode: " + bufferingModeStrings[bufferingMode], new Font("Arial", 8), Brushes.Red, 10, 10);
-            g.DrawString("Right-click to cycle buffering mode", new Font("Arial", 8), Brushes.Red, 10, 22);
-            g.DrawString("Left-click to toggle timed display refresh", new Font("Arial", 8), Brushes.Red, 10, 34);
+            //g.DrawString("Buffering Mode: " + bufferingModeStrings[bufferingMode], new Font("Arial", 8), Brushes.Red, 10, 10);
+            //g.DrawString("Right-click to cycle buffering mode", new Font("Arial", 8), Brushes.Red, 10, 22);
+            //g.DrawString("Left-click to toggle timed display refresh", new Font("Arial", 8), Brushes.Red, 10, 34);
         }
 
         protected override void OnPaint(PaintEventArgs e)

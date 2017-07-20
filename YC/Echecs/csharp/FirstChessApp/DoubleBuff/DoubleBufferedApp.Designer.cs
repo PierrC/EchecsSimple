@@ -47,7 +47,7 @@
             this.viewToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(447, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(684, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -65,9 +65,9 @@
             // 
             // statusStrip1
             // 
-            this.statusStrip1.Location = new System.Drawing.Point(0, 417);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 539);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(447, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(684, 22);
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -78,7 +78,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.renderAreaControl1.Location = new System.Drawing.Point(0, 0);
             this.renderAreaControl1.Name = "renderAreaControl1";
-            this.renderAreaControl1.Size = new System.Drawing.Size(306, 365);
+            this.renderAreaControl1.Size = new System.Drawing.Size(469, 487);
             this.renderAreaControl1.TabIndex = 2;
             // 
             // splitContainer1
@@ -92,18 +92,19 @@
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.Controls.Add(this.renderAreaControl1);
-            this.splitContainer1.Size = new System.Drawing.Size(447, 365);
-            this.splitContainer1.SplitterDistance = 309;
+            this.splitContainer1.Size = new System.Drawing.Size(684, 487);
+            this.splitContainer1.SplitterDistance = 472;
             this.splitContainer1.TabIndex = 3;
             // 
-            // DoubleBufferedForm
+            // DoubleBufferedApp
             // 
-            this.ClientSize = new System.Drawing.Size(447, 439);
+            this.ClientSize = new System.Drawing.Size(684, 561);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "DoubleBufferedForm";
+            this.Name = "DoubleBufferedApp";
+            this.Text = "ChessApp with Double Buffer and Resize";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.splitContainer1.Panel1.ResumeLayout(false);

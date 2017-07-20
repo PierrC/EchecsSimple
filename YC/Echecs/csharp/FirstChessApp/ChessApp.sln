@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChessAppGDI", "ChessAppGDI\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoubleBuff", "DoubleBuff\DoubleBuff.csproj", "{94CA491E-D410-4DA1-856B-4BAF498B39FD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChessApp3", "ChessApp3\ChessApp3.csproj", "{E4538F74-B28A-4FBC-BAAA-2FD556F3C3C6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{94CA491E-D410-4DA1-856B-4BAF498B39FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{94CA491E-D410-4DA1-856B-4BAF498B39FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{94CA491E-D410-4DA1-856B-4BAF498B39FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4538F74-B28A-4FBC-BAAA-2FD556F3C3C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4538F74-B28A-4FBC-BAAA-2FD556F3C3C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4538F74-B28A-4FBC-BAAA-2FD556F3C3C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4538F74-B28A-4FBC-BAAA-2FD556F3C3C6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
