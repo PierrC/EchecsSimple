@@ -54,6 +54,7 @@
     <Compile Include="ChessApp.Designer.cs">
       <DependentUpon>ChessApp.cs</DependentUpon>
     </Compile>
+    <Compile Include="ChessGame.cs" />
     <Compile Include="Piece.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

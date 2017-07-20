@@ -36,10 +36,13 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.selectedPieceTextBox = new System.Windows.Forms.TextBox();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.menuStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.boardPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -64,6 +67,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 77.75768F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 22.24232F));
             this.tableLayoutPanel1.Controls.Add(this.boardPanel, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.panel2, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 24);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -81,6 +85,7 @@
             this.boardPanel.Name = "boardPanel";
             this.boardPanel.Size = new System.Drawing.Size(423, 432);
             this.boardPanel.TabIndex = 0;
+            this.boardPanel.Click += new System.EventHandler(this.boardPanel_Click_1);
             this.boardPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.boardPanel_Paint);
             this.boardPanel.DoubleClick += new System.EventHandler(this.boardPanel_DoubleClick);
             this.boardPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.boardPanel_MouseMove);
@@ -113,6 +118,22 @@
             this.timer1.Interval = 40;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // selectedPieceTextBox
+            // 
+            this.selectedPieceTextBox.Location = new System.Drawing.Point(3, 3);
+            this.selectedPieceTextBox.Name = "selectedPieceTextBox";
+            this.selectedPieceTextBox.Size = new System.Drawing.Size(112, 20);
+            this.selectedPieceTextBox.TabIndex = 1;
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.selectedPieceTextBox);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(432, 3);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(118, 432);
+            this.panel2.TabIndex = 1;
+            // 
             // ChessApp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -130,6 +151,8 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.boardPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -144,6 +167,8 @@
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.TextBox selectedPieceTextBox;
     }
 }
 
