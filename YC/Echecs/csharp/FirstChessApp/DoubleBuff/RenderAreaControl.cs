@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
+using System.Data;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace DoubleBuff
 {
-    public partial class DoubleBufferedForm : Form
+    public partial class RenderAreaControl : UserControl
     {
         private BufferedGraphicsContext context;
         private BufferedGraphics grafx;
@@ -19,10 +21,7 @@ namespace DoubleBuff
           "Draw to Form using OptimizedDoubleBuffering control style",
           "Draw to HDC for form" };
 
-        private System.Windows.Forms.Timer timer1;
-        private byte count;
-
-        public DoubleBufferedForm()
+        public RenderAreaControl()
         {
             InitializeComponent();
 
@@ -40,12 +39,11 @@ namespace DoubleBuff
             this.SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint, true);
 
             // Configure a timer to draw graphics updates.
-            timer1 = new System.Windows.Forms.Timer();
-            timer1.Interval = 200;
-            timer1.Tick += new EventHandler(this.OnTimer);
+            //timer1 = new System.Windows.Forms.Timer();
+            //timer1.Interval = 200;
+            //timer1.Tick += new EventHandler(this.OnTimer);
 
             bufferingMode = 2;
-            count = 0;
 
             // Retrieves the BufferedGraphicsContext for the 
             // current application domain.
@@ -66,7 +64,7 @@ namespace DoubleBuff
                  new Rectangle(0, 0, this.Width, this.Height));
 
             // Draw the first frame to the buffer.
-            DrawToBuffer(grafx.Graphics);
+            DrawToBuffer(grafx.Graphics, true);
         }
 
         private void MouseDownHandler(object sender, MouseEventArgs e)
@@ -90,32 +88,9 @@ namespace DoubleBuff
                     this.SetStyle(ControlStyles.OptimizedDoubleBuffer, false);
 
                 // Cause the background to be cleared and redraw.
-                count = 6;
-                DrawToBuffer(grafx.Graphics);
+                DrawToBuffer(grafx.Graphics, true);
                 this.Refresh();
             }
-            else
-            {
-                // Toggle whether the redraw timer is active.
-                if (timer1.Enabled)
-                    timer1.Stop();
-                else
-                    timer1.Start();
-            }
-        }
-
-        private void OnTimer(object sender, EventArgs e)
-        {
-            // Draw randomly positioned ellipses to the buffer.
-            DrawToBuffer(grafx.Graphics);
-
-            // If in bufferingMode 2, draw to the form's HDC.
-            if (bufferingMode == 2)
-                // Render the graphics buffer to the form's HDC.
-                grafx.Render(Graphics.FromHwnd(this.Handle));
-            // If in bufferingMode 0 or 1, draw in the paint method.
-            else
-                this.Refresh();
         }
 
         private void OnResize(object sender, EventArgs e)
@@ -131,39 +106,96 @@ namespace DoubleBuff
                 new Rectangle(0, 0, this.Width, this.Height));
 
             // Cause the background to be cleared and redraw.
-            count = 6;
-            DrawToBuffer(grafx.Graphics);
+            DrawToBuffer(grafx.Graphics, true);
             this.Refresh();
         }
 
-        private void DrawToBuffer(Graphics g)
+        private void DrawToBuffer(Graphics g, bool drawBackground)
         {
             // Clear the graphics buffer every five updates.
-            if (++count > 5)
+            if (drawBackground)
             {
-                count = 0;
-                grafx.Graphics.FillRectangle(Brushes.Black, 0, 0, this.Width, this.Height);
+                //count = 0;
+                grafx.Graphics.FillRectangle(Brushes.White, 0, 0, this.Width, this.Height);
             }
 
-            // Draw randomly positioned and colored ellipses.
-            Random rnd = new Random();
-            for (int i = 0; i < 20; i++)
-            {
-                int px = rnd.Next(20, this.Width - 40);
-                int py = rnd.Next(20, this.Height - 40);
-                g.DrawEllipse(new Pen(Color.FromArgb(rnd.Next(0, 255), rnd.Next(0, 255), rnd.Next(0, 255)), 1),
-                    px, py, px + rnd.Next(0, this.Width - px - 20), py + rnd.Next(0, this.Height - py - 20));
-            }
+            DrawBoard(g);
+            //// Draw randomly positioned and colored ellipses.
+            //Random rnd = new Random();
+            //for (int i = 0; i < 20; i++)
+            //{
+            //    int px = rnd.Next(20, this.Width - 40);
+            //    int py = rnd.Next(20, this.Height - 40);
+            //    g.DrawEllipse(new Pen(Color.FromArgb(rnd.Next(0, 255), rnd.Next(0, 255), rnd.Next(0, 255)), 1),
+            //        px, py, px + rnd.Next(0, this.Width - px - 20), py + rnd.Next(0, this.Height - py - 20));
+            //}
 
             // Draw information strings.
-            g.DrawString("Buffering Mode: " + bufferingModeStrings[bufferingMode], new Font("Arial", 8), Brushes.White, 10, 10);
-            g.DrawString("Right-click to cycle buffering mode", new Font("Arial", 8), Brushes.White, 10, 22);
-            g.DrawString("Left-click to toggle timed display refresh", new Font("Arial", 8), Brushes.White, 10, 34);
+            g.DrawString("Buffering Mode: " + bufferingModeStrings[bufferingMode], new Font("Arial", 8), Brushes.Red, 10, 10);
+            g.DrawString("Right-click to cycle buffering mode", new Font("Arial", 8), Brushes.Red, 10, 22);
+            g.DrawString("Left-click to toggle timed display refresh", new Font("Arial", 8), Brushes.Red, 10, 34);
         }
 
         protected override void OnPaint(PaintEventArgs e)
         {
             grafx.Render(e.Graphics);
         }
+
+        private void DrawBoard(Graphics g)
+        {
+            int boardPanel_x = this.Width;
+            int boardPanel_y = this.Height;
+
+            int square_x = boardPanel_x / 9;
+            int square_y = boardPanel_y / 9;
+            int square = Math.Min(square_x, square_y);
+            Pen mainPen = new Pen(Color.Black, 1);
+
+            for (int i = 0; i < 9; i++)
+            {
+                // Vertical lines
+                Point p1 = new Point(square / 2, square / 2 + square * i);
+                Point p2 = new Point(square / 2 + square * 8, square / 2 + square * i);
+                g.DrawLine(mainPen, p1, p2);
+
+                // Horizontal lines
+                Point p3 = new Point(square / 2 + square * i, square / 2);
+                Point p4 = new Point(square / 2 + square * i, square / 2 + square * 8);
+                g.DrawLine(mainPen, p3, p4);
+
+            }
+
+            for (int i = 0; i < 4; i++)
+            {
+                for (int j = 0; j < 4; j++)
+                {
+                    int p1 = square / 2 + (2 * i * square);
+                    int p2 = square / 2 + (2 * j * square);
+                    g.FillRectangle(Brushes.Black, p1, p2, square, square);
+                }
+            }
+            for (int i = 0; i < 4; i++)
+            {
+                for (int j = 0; j < 4; j++)
+                {
+                    int p1 = square / 2 + square + (2 * i * square);
+                    int p2 = square / 2 + square + (2 * j * square);
+                    g.FillRectangle(Brushes.Black, p1, p2, square, square);
+                }
+            }
+            bool showBoardAnnotation = true;
+            Font myFont = new Font("Arial", 16);
+
+            if (showBoardAnnotation)
+            {
+                for (int i = 1; i < 9; i++)
+                {
+                    g.DrawString((9 - i).ToString(), myFont, Brushes.Black, square / 16, square * i - (square / 4));
+                    g.DrawString(Char.ConvertFromUtf32(65 + i - 1), myFont, Brushes.Black, square * i - (square / 4), square / 16);
+                }
+            }
+
+        }
+
     }
 }
