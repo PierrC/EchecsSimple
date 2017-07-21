@@ -84,16 +84,6 @@ namespace ChessApp3
         Position Position { get; set; }
 
 
-        //public Point GetPoint()
-        //{
-        //    return aCoor;
-        //}
-
-        //public void SetPoint(Point pt)
-        //{
-        //    aCoor = pt;
-        //}
-
         public Image GetImage()
         {
             return aImage;
