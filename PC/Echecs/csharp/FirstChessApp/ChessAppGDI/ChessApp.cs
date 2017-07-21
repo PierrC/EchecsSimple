@@ -59,7 +59,6 @@ namespace ChessAppGDI
 
         }
 
-
         private void player1WhiteToolStripMenuItem_Click(object sender, EventArgs e)
         {
             game = new ChessGame(Piece.Color.WHITE);
@@ -82,19 +81,34 @@ namespace ChessAppGDI
                     selected_x = pt.X;
                     selected_y = pt.Y;
                     isSelecting = true;
-                    selectedPieceTextBox.Text = game.getBoardPiece()[pt.X, pt.Y].ToString() + " " + game.getBoardPiece()[pt.X, pt.Y].getColor();
-                    
+                    //  selectedPieceTextBox.Text = game.getBoardPiece()[pt.X, pt.Y].ToString() + " " + game.getBoardPiece()[pt.X, pt.Y].getColor();
+                    selectedPieceTextBox.Text = game.getBoardPiece()[pt.X, pt.Y].ToString();
                 }
-                
-                else if (!game.getBoardHasPiece()[pt.X, pt.Y] && isSelecting)
+                else if (isSelecting && (pt.X == selected_x) && (pt.Y == selected_y))
                 {
-                    game.movePiece(game.getBoardPiece()[selected_x, selected_y], pt);
-                    selected_x = 0;
-                    selected_y = 0;
+                    selected_x = -1;
+                    selected_y = -1;
                     isSelecting = false;
                     selectedPieceTextBox.Text = " ";
                 }
-                
+                else if (game.getBoardHasPiece()[pt.X, pt.Y] && 
+                    game.getBoardPiece()[pt.X, pt.Y].getColor().Equals( ChessGame.OtherColor( game.getBoardPiece()[selected_x, selected_y].getColor()) ) 
+                    && isSelecting)
+                {
+                    game.movePiece(game.getBoardPiece()[selected_x, selected_y], pt);
+                    selected_x = -1;
+                    selected_y = -1;
+                    isSelecting = false;
+                    selectedPieceTextBox.Text = " ";
+                }
+                else if (!game.getBoardHasPiece()[pt.X, pt.Y] && isSelecting)
+                {
+                    game.movePiece(game.getBoardPiece()[selected_x, selected_y], pt);
+                    selected_x = -1;
+                    selected_y = -1;
+                    isSelecting = false;
+                    selectedPieceTextBox.Text = " ";
+                }
             }
             UpdateBoard();
             Console.WriteLine("Mouse Point x: " + pt.X + " y: " + pt.Y);

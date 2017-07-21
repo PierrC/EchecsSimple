@@ -13,6 +13,9 @@ namespace ChessAppGDI
         Boolean[,] BoardHasPiece = new Boolean[8,8];
         Piece[,] BoardPiece = new Piece[8,8];
         ArrayList listPiece = new ArrayList();
+
+        Point discardPoint = new Point(-2, -1);
+
         public ChessGame(Piece.Color pColor)
         {
             // Player 1 is at the bottom
@@ -54,6 +57,7 @@ namespace ChessAppGDI
                 BoardHasPiece[i, 1] = true;
                 listPiece.Add(BoardPiece[i, 1]);
             }
+
             BoardPiece[0, 0] = new Piece(Piece.PieceType.ROOK, Piece.Player.PLAYER2, OtherColor(pColor), new Point(0, 0));
             BoardPiece[7, 0] = new Piece(Piece.PieceType.ROOK, Piece.Player.PLAYER2, OtherColor(pColor), new Point(7, 0));
             BoardPiece[1, 0] = new Piece(Piece.PieceType.KNIGHT, Piece.Player.PLAYER2, OtherColor(pColor), new Point(1, 0));
@@ -96,7 +100,7 @@ namespace ChessAppGDI
             return BoardPiece;
         }
 
-        private static Piece.Color OtherColor(Piece.Color pColor)
+        public static Piece.Color OtherColor(Piece.Color pColor)
         {
             if (pColor.Equals(Piece.Color.WHITE))
             {
@@ -119,7 +123,7 @@ namespace ChessAppGDI
             if( BoardHasPiece[pt.X, pt.Y])
             {
                 Piece p = BoardPiece[pt.X, pt.Y];
-                p.SetPoint(new Point(0, 4));
+                p.SetPoint(discardPoint);
                 BoardPiece[pt.X, pt.Y] = null;
                 BoardHasPiece[pt.X, pt.Y] = false;
                 return p;
@@ -132,11 +136,17 @@ namespace ChessAppGDI
 
         public void setPiece( Piece p, Point pt)
         {
-            if( !BoardHasPiece[pt.X, pt.Y])
+            if (!BoardHasPiece[pt.X, pt.Y])
             {
                 BoardPiece[pt.X, pt.Y] = p;
                 p.SetPoint(pt);
                 BoardHasPiece[pt.X, pt.Y] = true;
+            }
+            else if (BoardHasPiece[pt.X, pt.Y] && BoardPiece[pt.X, pt.Y].getColor().Equals(OtherColor(p.getColor()))) 
+            {
+                BoardPiece[pt.X, pt.Y].SetPoint(discardPoint);
+                BoardPiece[pt.X, pt.Y] = p;
+                p.SetPoint(pt);
             }
         }
 
