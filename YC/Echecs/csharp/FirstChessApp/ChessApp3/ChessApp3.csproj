@@ -52,6 +52,7 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Piece.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -62,6 +63,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -75,6 +77,20 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\whiteQueen.gif" />
+    <None Include="Resources\whitePawn.gif" />
+    <None Include="Resources\whiteKnight.gif" />
+    <None Include="Resources\whiteKing.gif" />
+    <None Include="Resources\whiteBishop.gif" />
+    <None Include="Resources\whiteRook.gif" />
+    <None Include="Resources\blackBishop.gif" />
+    <None Include="Resources\blackRook.gif" />
+    <None Include="Resources\blackQueen.gif" />
+    <None Include="Resources\blackPawn.gif" />
+    <None Include="Resources\blackKinght.gif" />
+    <None Include="Resources\blackKing.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
