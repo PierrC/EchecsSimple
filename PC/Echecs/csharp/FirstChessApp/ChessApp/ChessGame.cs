@@ -52,7 +52,7 @@ namespace ChessApp
 
 
         }
-
+        
         public ChessGame()
         {
             Player player1 = new Player(piece.color.WHITE, piece.playerNumber.PLAYER1);
@@ -89,11 +89,10 @@ namespace ChessApp
             chessBoard[0, 4].putPiece(new King(player2.getPlayer(), player2.getColor()));
 
         }
-
+        
 
         square[,] chessBoard = new square[8,8];
-
-
+        
 
         public void MovePiece(piece pPiece, Coordinates pCoor)
         {
@@ -120,8 +119,7 @@ namespace ChessApp
             piece removedPiece = chessBoard[CoorX, CoorY].removePiece();
             chessBoard[pCoor.GetX(), pCoor.GetY()].putPiece(pPiece);
         }
-
-
+        
 
         public List<Coordinates> MoveSetPiece(piece pPiece)
         {
@@ -251,7 +249,6 @@ namespace ChessApp
                     //           o o x o o
                     //           6   o   3   
                     //             5 o 4 
-                    //
                     //
                     //
                     ///////////////////// 1 /////////////////////////
@@ -901,6 +898,7 @@ namespace ChessApp
                 return piece.color.WHITE;
             }
         }
+
 
         private static void discardImage(piece pPiece)
         {

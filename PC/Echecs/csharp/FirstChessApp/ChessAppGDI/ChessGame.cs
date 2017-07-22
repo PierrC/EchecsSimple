@@ -10,9 +10,12 @@ namespace ChessAppGDI
 {
     public class ChessGame
     {
-        Boolean[,] BoardHasPiece = new Boolean[8, 8];
-        Piece[,] BoardPiece = new Piece[8, 8];
+        Boolean[,] BoardHasPiece = new Boolean[8,8];
+        Piece[,] BoardPiece = new Piece[8,8];
         ArrayList listPiece = new ArrayList();
+
+        Point discardPoint = new Point(-2, -1);
+
         public ChessGame(Piece.Color pColor)
         {
             // Player 1 is at the bottom
@@ -46,7 +49,7 @@ namespace ChessAppGDI
             BoardHasPiece[5, 7] = true;
             BoardHasPiece[6, 7] = true;
             BoardHasPiece[7, 7] = true;
-
+            
             // Player 2 is at the top
             for (int i = 0; i < 8; i++)
             {
@@ -79,9 +82,9 @@ namespace ChessAppGDI
             BoardHasPiece[5, 0] = true;
             BoardHasPiece[6, 0] = true;
             BoardHasPiece[7, 0] = true;
-
+            
         }
-
+        
         public ArrayList getListPiece()
         {
             return listPiece;
@@ -97,7 +100,7 @@ namespace ChessAppGDI
             return BoardPiece;
         }
 
-        private static Piece.Color OtherColor(Piece.Color pColor)
+        public static Piece.Color OtherColor(Piece.Color pColor)
         {
             if (pColor.Equals(Piece.Color.WHITE))
             {
@@ -108,19 +111,19 @@ namespace ChessAppGDI
                 return Piece.Color.WHITE;
             }
         }
-
+        
         public void movePiece(Piece p, Point pt)
         {
-            Piece aPiece = removePiece(p.GetPoint());
+            Piece aPiece = removePiece( p.GetPoint() );
             setPiece(aPiece, pt);
         }
 
         public Piece removePiece(Point pt)
         {
-            if (BoardHasPiece[pt.X, pt.Y])
+            if( BoardHasPiece[pt.X, pt.Y])
             {
                 Piece p = BoardPiece[pt.X, pt.Y];
-                p.SetPoint(new Point(0, 4));
+                p.SetPoint(discardPoint);
                 BoardPiece[pt.X, pt.Y] = null;
                 BoardHasPiece[pt.X, pt.Y] = false;
                 return p;
@@ -131,13 +134,19 @@ namespace ChessAppGDI
             }
         }
 
-        public void setPiece(Piece p, Point pt)
+        public void setPiece( Piece p, Point pt)
         {
             if (!BoardHasPiece[pt.X, pt.Y])
             {
                 BoardPiece[pt.X, pt.Y] = p;
                 p.SetPoint(pt);
                 BoardHasPiece[pt.X, pt.Y] = true;
+            }
+            else if (BoardHasPiece[pt.X, pt.Y] && BoardPiece[pt.X, pt.Y].getColor().Equals(OtherColor(p.getColor()))) 
+            {
+                BoardPiece[pt.X, pt.Y].SetPoint(discardPoint);
+                BoardPiece[pt.X, pt.Y] = p;
+                p.SetPoint(pt);
             }
         }
 
@@ -151,3 +160,5 @@ namespace ChessAppGDI
 
     }
 }
+
+

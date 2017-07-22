@@ -16,7 +16,7 @@ namespace ChessAppGDI
             KNIGHT,
             BISHOP,
             QUEEN,
-            KING
+            KING 
         }
         public enum Player
         {
@@ -26,17 +26,34 @@ namespace ChessAppGDI
         public enum Color
         {
             BLACK,
-            WHITE
-
+            WHITE,
         }
 
         PieceType aType { get; set; }
-        Player aPlayer { get; set; }
+        Player aPlayer { get; set; } 
         Color aColor { get; set; }
         Image aImage { get; set; }
         Point aCoor { get; set; }
 
-
+        public override String ToString()
+        {
+            return aColor.ToString() + " " + ToStringCoor();
+        }
+        private String ToStringCoor()
+        {
+            switch (aCoor.X)
+            {
+                case 0: return "[A," + (8 - aCoor.Y) + "]";
+                case 1: return "[B," + (8 - aCoor.Y) + "]";
+                case 2: return "[C," + (8 - aCoor.Y) + "]";
+                case 3: return "[D," + (8 - aCoor.Y) + "]";
+                case 4: return "[E," + (8 - aCoor.Y) + "]";
+                case 5: return "[F," + (8 - aCoor.Y) + "]";
+                case 6: return "[G," + (8 - aCoor.Y) + "]";
+                case 7: return "[H," + (8 - aCoor.Y) + "]";
+                default: return "0";
+            }
+        }
         public Point GetPoint()
         {
             return aCoor;
@@ -71,7 +88,7 @@ namespace ChessAppGDI
             aType = pType;
             aPlayer = pPlayer;
             aColor = pColor;
-            aCoor = new Point(x, y);
+            aCoor = new Point(x , y);
             aImage = SetImage();
         }
 
