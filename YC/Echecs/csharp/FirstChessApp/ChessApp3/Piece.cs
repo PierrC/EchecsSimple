@@ -7,60 +7,9 @@ using System.Threading.Tasks;
 
 namespace ChessApp3
 {
-    public class Position
-    {
-        private int i;
-        private int j;
-
-        public Position()
-        {
-            Invalid();
-        }
-
-        public Position(int ii, int ij)
-        {
-            this.I = ii;
-            this.J = ij;
-        }
-
-        public int I
-        {
-            get => i;
-            set
-            {
-                if ((value >= 0) && (value < 8))
-                    Invalid();
-                i = value;
-            }
-   
-        }
-        public int J
-        {
-            get => j;
-            set
-            {
-                if ((value >= 0) && (value < 8))
-                    Invalid();
-                j = value;
-            }
-        }
-
-        public Boolean IsValid()
-        {
-            if ((this.I >= 0) && (this.I < 8) && (this.I >= 0) && (this.I < 8))
-                return true;
-            return false;
-        }
-
-        public void Invalid()
-        {
-            this.I = -1;
-            this.J = -1;
-        }
-    }
-
     public class Piece
     {
+        private Boolean IsBlack_;
 
         public enum Types
         {
@@ -79,41 +28,29 @@ namespace ChessApp3
         }
 
         Types Type { get; set; }
-        PlayerColors PlayerColor { get; set; }
         Image aImage { get; set; }
         Position Position { get; set; }
 
+        public bool IsBlack { get => IsBlack_; }
 
         public Image GetImage()
         {
             return aImage;
         }
 
-        public PlayerColors getColor()
+
+        public Piece(Types iType, PlayerColors iColor, Position iPosition)
         {
-            return PlayerColor;
+            Type = iType;
+            IsBlack_ = iColor == PlayerColors.BLACK ? true : false;
+            Position.Row = iPosition.Row;
+            Position.Column = iPosition.Column;
         }
 
-        //public Piece(Types pType, PlayerColors pColor, Point pCoor)
-        //{
-        //    Type = pType;
-        //    PlayerColor = pColor;
-        //    aCoor = pCoor;
-        //    aImage = SetImage();
-        //}
-
-        //public Piece(Types pType, PlayerColors pColor, int x, int y)
-        //{
-        //    Type = pType;
-        //    aPlayer = pPlayer;
-        //    PlayerColor = pColor;
-        //    aCoor = new Point(x, y);
-        //    aImage = SetImage();
-        //}
 
         private Image SetImage()
         {
-            if (PlayerColor.Equals(PlayerColors.BLACK))
+            if (this.IsBlack)/// PlayerColor.Equals(PlayerColors.BLACK))
             {
                 if (Type.Equals(Types.PAWN))
                 {
