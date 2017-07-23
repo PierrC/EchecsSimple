@@ -65,9 +65,6 @@ namespace DoubleBuff
                     g.DrawString(Char.ConvertFromUtf32(65 + i - 1), myFont, Brushes.Black, square * i - (square / 4), square / 16);
                 }
             }
-
         }
     }
-
-
 }
