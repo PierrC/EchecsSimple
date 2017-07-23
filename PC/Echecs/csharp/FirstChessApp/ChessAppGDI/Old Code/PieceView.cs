@@ -96,10 +96,6 @@ namespace ChessAppGDI
         }
 
 
-
-
-
-
         public Piece GetPiece()
         {
             return aPiece;
@@ -116,10 +112,7 @@ namespace ChessAppGDI
         {
             g.DrawImage(aImage, new Point(aPosi.X, aPosi.Y));
         }
-
         
-
-
 
         public void setPiece(Piece pPiece)
         {

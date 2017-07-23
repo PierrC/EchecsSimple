@@ -15,36 +15,6 @@ namespace ChessAppGDI
     public partial class ChessApp : Form
     {
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        /*
-        /// All variable
-        /// 
         static int boardPanel_x, boardPanel_y;
         static int square_x, square_y, square;
         Pen mainPen = new Pen(Color.Black, 1);
@@ -65,13 +35,17 @@ namespace ChessAppGDI
 
             SetDoubleBuffered(tableLayoutPanel1);
             SetDoubleBuffered(boardPanel);
-
-            typeof(Panel).InvokeMember("DoubleBuffered", BindingFlags.SetProperty | BindingFlags.Instance | BindingFlags.NonPublic, null, boardPanel, new object[] { true });
-            SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
+            
             g = boardPanel.CreateGraphics();
             
         }
-        
+
+        private void boardPanel_MouseMove(object sender, MouseEventArgs e)
+        {
+            mouse_x = e.X;
+            mouse_y = e.Y;
+        }
+
         private void boardPanel_Paint(object sender, PaintEventArgs e)
         {
 
@@ -81,6 +55,59 @@ namespace ChessAppGDI
             UpdateBoard();
             
         }
+
+        private void UpdateBoard()
+        {
+            g.Clear(Color.White);
+            DrawBoard();
+            DrawPieces();
+
+        }
+
+
+        private void boardPanel_Click(object sender, EventArgs e)
+        {
+
+
+        }
+
+       
+
+
+
+
+
+
+
+        public static void SetDoubleBuffered(System.Windows.Forms.Control c)
+        {
+            if (System.Windows.Forms.SystemInformation.TerminalServerSession)
+                return;
+            System.Reflection.PropertyInfo aProp = typeof(System.Windows.Forms.Control).GetProperty("DoubleBuffered", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+            aProp.SetValue(c, true, null);
+        }
+
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams cp = base.CreateParams;
+                cp.ExStyle |= 0x02000000;
+                return cp;
+            }
+        }
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        
+        /// All variable
+        /// 
+
+        
+        
         
         // testing 
         private void boardPanel_DoubleClick(object sender, EventArgs e)
@@ -144,11 +171,7 @@ namespace ChessAppGDI
 
         }
 
-        private void boardPanel_MouseMove(object sender, MouseEventArgs e)
-        {
-            mouse_x = e.X;
-            mouse_y = e.Y;
-        }
+        
         
 
 
@@ -181,13 +204,10 @@ namespace ChessAppGDI
             return new Point(x, y);
         }
 
-        private void UpdateBoard()
-        {
-            g.Clear(Color.White);
-            DrawBoard();
-            DrawPieces();
 
-        }
+
+
+
 
         private void DrawBoard()
         {
@@ -256,23 +276,7 @@ namespace ChessAppGDI
             // this.Refresh();
         }
 
-        public static void SetDoubleBuffered(System.Windows.Forms.Control c)
-        {
-            if (System.Windows.Forms.SystemInformation.TerminalServerSession)
-                return;
-            System.Reflection.PropertyInfo aProp = typeof(System.Windows.Forms.Control).GetProperty("DoubleBuffered", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
-            aProp.SetValue(c, true, null);
-        }
-
-        protected override CreateParams CreateParams
-        {
-            get
-            {
-                CreateParams cp = base.CreateParams;
-                cp.ExStyle |= 0x02000000;
-                return cp;
-            }
-        }
+        
 
     */
 
