@@ -14,6 +14,35 @@ namespace ChessAppGDI
 {
     public partial class ChessApp : Form
     {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        /*
         /// All variable
         /// 
         static int boardPanel_x, boardPanel_y;
@@ -245,7 +274,7 @@ namespace ChessAppGDI
             }
         }
 
-
+    */
 
     }
 

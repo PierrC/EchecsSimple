@@ -48,15 +48,22 @@
     <Compile Include="BoardPanel.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="New Code\ChessBoard.cs" />
+    <Compile Include="New Code\BoardPosition.cs" />
+    <Compile Include="New Code\ChessBoardView.cs" />
+    <Compile Include="New Code\Piece.cs" />
+    <Compile Include="New Code\PieceView.cs" />
     <Compile Include="ChessApp.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ChessApp.Designer.cs">
       <DependentUpon>ChessApp.cs</DependentUpon>
     </Compile>
-    <Compile Include="ChessGame.cs" />
-    <Compile Include="Piece.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="Old Code\ChessGame.cs" />
+    <Compile Include="Old Code\ChessGameView.cs" />
+    <Compile Include="Old Code\Piece.cs" />
+    <Compile Include="Old Code\PieceView.cs" />
+    <Compile Include="Old Code\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="ChessApp.resx">
       <DependentUpon>ChessApp.cs</DependentUpon>
