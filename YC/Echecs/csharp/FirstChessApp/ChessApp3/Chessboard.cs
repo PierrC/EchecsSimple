@@ -13,13 +13,14 @@ namespace ChessApp3
     /// </summary>
     public class Chessboard
     {
-        Square[,] Board = new Square[8, 8];
+        public Square[,] Squares = new Square[8, 8];
 
         /// <summary>
         /// 
         /// </summary>
         public Chessboard()
         {
+            bool Dark = false;
             for (int i = 0; i < 8; i++)
             {
                 for (int j = 0; j < 8; j++)
@@ -27,8 +28,10 @@ namespace ChessApp3
                     Position iPos = new Position();
                     iPos.Row = i;
                     iPos.Column = j;
-                    Board[i, j] = new Square(Square.Colors.DARK, iPos);
+                    Squares[i, j] = new Square(Dark? Square.Colors.DARK: Square.Colors.LIGHT, iPos);
+                    Dark = !Dark;
                 }
+                Dark = !Dark;
             }
         }
     }

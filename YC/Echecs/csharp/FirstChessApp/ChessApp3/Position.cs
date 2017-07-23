@@ -27,7 +27,7 @@ namespace ChessApp3
             get => Row_;
             set
             {
-                if ((value >= 0) && (value < 8))
+                if ((value < 0) && (value >= 8))
                     Invalid();
                 Row_ = value;
             }
@@ -38,7 +38,7 @@ namespace ChessApp3
             get => Column_;
             set
             {
-                if ((value >= 0) && (value < 8))
+                if ((value < 0) && (value >= 8))
                     Invalid();
                 Column_ = value;
             }

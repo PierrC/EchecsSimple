@@ -43,8 +43,7 @@ namespace ChessApp3
         {
             Type = iType;
             IsBlack_ = iColor == PlayerColors.BLACK ? true : false;
-            Position.Row = iPosition.Row;
-            Position.Column = iPosition.Column;
+            Position = new Position(iPosition.Row, iPosition.Column);
         }
 
 

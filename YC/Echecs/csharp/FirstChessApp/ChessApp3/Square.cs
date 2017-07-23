@@ -16,22 +16,20 @@ namespace ChessApp3
         public enum Colors
         {
             DARK,
-            WHITE
+            LIGHT
         }
 
         /// <summary>
         /// Only a getter here since it's a imutable property
         /// </summary>
-        Position Position { get; }
+        public Position Position { get; }
 
         public bool IsBlack { get => IsDark_; }
 
         public Square(Colors iColor, Position iPosition)
         {
             IsDark_ = iColor == Colors.DARK ? true : false;
-            Position.Row = iPosition.Row;
-            Position.Column = iPosition.Column;
-
+            Position = new Position(iPosition.Row, iPosition.Column);
             Piece_ = null;
         }
 

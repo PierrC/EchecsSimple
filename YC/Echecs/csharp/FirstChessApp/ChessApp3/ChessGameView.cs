@@ -10,6 +10,8 @@ namespace ChessApp3
     public class ChessGameView
     {
         private ChessGame Game_;
+        public Color DarkColor = Color.DarkBlue;
+        public Color LightColor = Color.LightGoldenrodYellow;
 
         public ChessGame Game { get => Game_;}
 
@@ -39,7 +41,21 @@ namespace ChessApp3
 
         private void DrawChessboard(Chessboard Board, Graphics g, PositionPixel PP)
         {
-
+            SolidBrush DarkBrush = new SolidBrush(this.DarkColor);
+            SolidBrush LightBrush = new SolidBrush(this.LightColor);
+            bool Dark = false;
+            for (int i = 0; i < 8; i++)
+            {
+                for (int j = 0; j < 8; j++)
+                {
+                    Square Cell = Board.Squares[i, j];
+                    Dark = Cell.IsBlack;
+                    int SquareWidth = PP.PixelSquare;
+                    Point UpperCorner = PP.GetPositionUpperCorner(Cell.Position);
+                    g.FillRectangle(Dark ? DarkBrush : LightBrush, UpperCorner.X, UpperCorner.Y, SquareWidth, SquareWidth);
+                    Dark = !Dark;
+                }
+            }
         }
 
         private void DrawPieceSet(PieceSet Set, Graphics g, PositionPixel PP)

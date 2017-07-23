@@ -13,23 +13,43 @@ namespace ChessApp3
     public partial class RenderAreaControl : UserControl
     {
         private BufferedGraphicsContext context;
-        private BufferedGraphics grafx;
+        private BufferedGraphics grafx = null;
 
-        private byte bufferingMode;
-        private string[] bufferingModeStrings =
-            { "Draw to Form without OptimizedDoubleBufferring control style",
-          "Draw to Form using OptimizedDoubleBuffering control style",
-          "Draw to HDC for form" };
+        //private byte bufferingMode;
+        //private string[] bufferingModeStrings =
+        //    { "Draw to Form without OptimizedDoubleBufferring control style",
+        //  "Draw to Form using OptimizedDoubleBuffering control style",
+        //  "Draw to HDC for form" };
+
+        private ChessGameView GameView_;
+        private PositionPixel PosPix_;
+
+        public ChessGameView GameView
+        {
+            get => GameView_;
+            set
+            {
+                GameView_ = value;
+                if (grafx != null)
+                DrawToBuffer(grafx.Graphics, true);
+            }
+        }
+
+        public PositionPixel PosPix { get => PosPix_; set => PosPix_ = value; }
 
         public RenderAreaControl()
         {
             InitializeComponent();
 
-            InitializeDoubleBuffering();
+            InitializeRendering();
         }
 
-        void InitializeDoubleBuffering()
+        void InitializeRendering()
         {
+            GameView = null;
+            PosPix_ = new PositionPixel();
+            PosPix.PixelDimension = Math.Min(this.Width, this.Height);
+
             // 
             // DoubleBufferedForm
             // 
@@ -37,13 +57,16 @@ namespace ChessApp3
             this.MouseDown += new MouseEventHandler(this.MouseDownHandler);
             this.Resize += new EventHandler(this.OnResize);
             this.SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint, true);
+            this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
 
-            // Configure a timer to draw graphics updates.
-            //timer1 = new System.Windows.Forms.Timer();
-            //timer1.Interval = 200;
-            //timer1.Tick += new EventHandler(this.OnTimer);
 
-            bufferingMode = 2;
+
+            //// Configure a timer to draw graphics updates.
+            ////timer1 = new System.Windows.Forms.Timer();
+            ////timer1.Interval = 200;
+            ////timer1.Tick += new EventHandler(this.OnTimer);
+
+            //bufferingMode = 2;
 
             // Retrieves the BufferedGraphicsContext for the 
             // current application domain.
@@ -69,28 +92,10 @@ namespace ChessApp3
 
         private void MouseDownHandler(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Right)
-            {
-                // Cycle the buffering mode.
-                if (++bufferingMode > 2)
-                    bufferingMode = 0;
+            //if (e.Button == MouseButtons.Right)
+            //{
 
-                // If the previous buffering mode used 
-                // the OptimizedDoubleBuffering ControlStyle,
-                // disable the control style.
-                if (bufferingMode == 1)
-                    this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
-
-                // If the current buffering mode uses
-                // the OptimizedDoubleBuffering ControlStyle,
-                // enabke the control style.
-                if (bufferingMode == 2)
-                    this.SetStyle(ControlStyles.OptimizedDoubleBuffer, false);
-
-                // Cause the background to be cleared and redraw.
-                DrawToBuffer(grafx.Graphics, true);
-                this.Refresh();
-            }
+            //}
         }
 
         private void OnResize(object sender, EventArgs e)
@@ -105,6 +110,8 @@ namespace ChessApp3
             grafx = context.Allocate(this.CreateGraphics(),
                 new Rectangle(0, 0, this.Width, this.Height));
 
+            PosPix.PixelDimension = Math.Min(this.Width, this.Height);
+
             // Cause the background to be cleared and redraw.
             DrawToBuffer(grafx.Graphics, true);
             this.Refresh();
@@ -115,16 +122,13 @@ namespace ChessApp3
             // Clear the graphics buffer every five updates.
             if (drawBackground)
             {
-                grafx.Graphics.FillRectangle(Brushes.White, 0, 0, this.Width, this.Height);
+                grafx.Graphics.FillRectangle(Brushes.Black, 0, 0, this.Width, this.Height);
             }
 
-            DrawBoard(g);
-
-
-            // Draw information strings.
-            //g.DrawString("Buffering Mode: " + bufferingModeStrings[bufferingMode], new Font("Arial", 8), Brushes.Red, 10, 10);
-            //g.DrawString("Right-click to cycle buffering mode", new Font("Arial", 8), Brushes.Red, 10, 22);
-            //g.DrawString("Left-click to toggle timed display refresh", new Font("Arial", 8), Brushes.Red, 10, 34);
+            if (GameView != null)
+                GameView.DrawGame(g, PosPix);
+            else
+                DrawBoard(g);
         }
 
         protected override void OnPaint(PaintEventArgs e)
