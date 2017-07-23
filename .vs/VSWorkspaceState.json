@@ -1,11 +1,8 @@
 {
   "ExpandedNodes": [
     "",
-    "\\PC",
-    "\\PC\\Echecs",
-    "\\PC\\Echecs\\csharp",
-    "\\PC\\Echecs\\csharp\\FirstChessApp"
+    "\\YC",
+    "\\YC\\Echecs"
   ],
-  "SelectedNode": "\\PC\\Echecs\\csharp\\FirstChessApp\\ChessApp.sln",
   "PreviewInSolutionExplorer": false
 }
