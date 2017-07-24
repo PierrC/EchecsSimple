@@ -60,12 +60,6 @@ namespace ChessApp3
             this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
 
 
-
-            //// Configure a timer to draw graphics updates.
-            ////timer1 = new System.Windows.Forms.Timer();
-            ////timer1.Interval = 200;
-            ////timer1.Tick += new EventHandler(this.OnTimer);
-
             //bufferingMode = 2;
 
             // Retrieves the BufferedGraphicsContext for the 
@@ -122,7 +116,7 @@ namespace ChessApp3
             // Clear the graphics buffer every five updates.
             if (drawBackground)
             {
-                grafx.Graphics.FillRectangle(Brushes.Black, 0, 0, this.Width, this.Height);
+                grafx.Graphics.FillRectangle(Brushes.White, 0, 0, this.Width, this.Height);
             }
 
             if (GameView != null)

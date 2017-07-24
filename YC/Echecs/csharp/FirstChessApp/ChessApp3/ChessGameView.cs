@@ -25,22 +25,18 @@ namespace ChessApp3
             if (Game == null)
                 return;
 
-            if (Game.Board != null)
-            {
-                DrawChessboard(Game.Board, g, PP);
-            }
-            if (Game.BlackPieces != null)
-            {
-                DrawPieceSet(Game.BlackPieces, g, PP);
-            }
-            if (Game.WhitePieces != null)
-            {
-                DrawPieceSet(Game.WhitePieces, g, PP);
-            }
+            DrawChessboard(Game.Board, g, PP);
+
+            DrawPieceSet(Game.BlackPieces, g, PP);
+            DrawPieceSet(Game.WhitePieces, g, PP);
+
         }
 
         private void DrawChessboard(Chessboard Board, Graphics g, PositionPixel PP)
         {
+            if (Board == null)
+                return;
+
             SolidBrush DarkBrush = new SolidBrush(this.DarkColor);
             SolidBrush LightBrush = new SolidBrush(this.LightColor);
             bool Dark = false;
@@ -50,17 +46,27 @@ namespace ChessApp3
                 {
                     Square Cell = Board.Squares[i, j];
                     Dark = Cell.IsBlack;
-                    int SquareWidth = PP.PixelSquare;
                     Point UpperCorner = PP.GetPositionUpperCorner(Cell.Position);
-                    g.FillRectangle(Dark ? DarkBrush : LightBrush, UpperCorner.X, UpperCorner.Y, SquareWidth, SquareWidth);
-                    Dark = !Dark;
+                    g.FillRectangle(Dark ? DarkBrush : LightBrush, UpperCorner.X, UpperCorner.Y, PP.PixelSquare, PP.PixelSquare);
                 }
             }
         }
 
         private void DrawPieceSet(PieceSet Set, Graphics g, PositionPixel PP)
         {
+            if (Set == null)
+                return;
 
+            foreach(Piece P in Set.Pieces)
+            {
+                if (P.Position.IsValid && P.Image != null)
+                {
+                    Point UpperCorner = PP.GetPositionUpperCorner(P.Position);
+                    int PieceMargin = 2;
+                    int PieceDim = PP.PixelSquare - 2 * PieceMargin;
+                    g.DrawImage(P.Image, UpperCorner.X + PieceMargin, UpperCorner.Y + PieceMargin, PieceDim, PieceDim);
+                }
+            }
         }
     }
 }

@@ -8,7 +8,7 @@ namespace ChessApp3
 {
     public class PieceSet
     {
-        List<Piece> Pieces;
+        public List<Piece> Pieces;
 
         public PieceSet(Piece.PlayerColors color)
         {
@@ -17,33 +17,33 @@ namespace ChessApp3
             Pieces = new List<Piece>();
             Position iPos;
 
-            int Row0 = IsWhite ? 0 : 7;
+            int Column0 = IsWhite ? 0 : 7;
 
-            iPos = IsWhite ? new Position(Row0, 4) : new Position(Row0, 4);
+            iPos = IsWhite ? new Position(4, Column0) : new Position(Column0, 4);
             Pieces.Add(new Piece(Piece.Types.KING, color, iPos));
 
-            iPos = IsWhite ? new Position(Row0, 3) : new Position(Row0, 3);
+            iPos = IsWhite ? new Position(3, Column0) : new Position(3, Column0);
             Pieces.Add(new Piece(Piece.Types.QUEEN, color, iPos));
 
-            iPos = IsWhite ? new Position(Row0, 2) : new Position(Row0, 2);
+            iPos = IsWhite ? new Position(2, Column0) : new Position(2, Column0);
             Pieces.Add(new Piece(Piece.Types.BISHOP, color, iPos));
-            iPos = IsWhite ? new Position(Row0, 5) : new Position(Row0, 5);
+            iPos = IsWhite ? new Position(5, Column0) : new Position(5, Column0);
             Pieces.Add(new Piece(Piece.Types.BISHOP, color, iPos));
 
-            iPos = IsWhite ? new Position(Row0, 1) : new Position(Row0, 1);
+            iPos = IsWhite ? new Position(1, Column0) : new Position(1, Column0);
             Pieces.Add(new Piece(Piece.Types.KNIGHT, color, iPos));
-            iPos = IsWhite ? new Position(Row0, 6) : new Position(Row0, 6);
+            iPos = IsWhite ? new Position(6, Column0) : new Position(6, Column0);
             Pieces.Add(new Piece(Piece.Types.KNIGHT, color, iPos));
 
-            iPos = IsWhite ? new Position(Row0, 0) : new Position(Row0, 0);
+            iPos = IsWhite ? new Position(0, Column0) : new Position(0, Column0);
             Pieces.Add(new Piece(Piece.Types.ROOK, color, iPos));
-            iPos = IsWhite ? new Position(Row0, 7) : new Position(Row0, 7);
+            iPos = IsWhite ? new Position(7, Column0) : new Position(7, Column0);
             Pieces.Add(new Piece(Piece.Types.ROOK, color, iPos));
 
-            int Row1 = IsWhite ? 1 : 6;
+            int Column1 = IsWhite ? 1 : 6;
             for (int i=0; i<8; i++)
             {
-                iPos = IsWhite ? new Position(Row1, i) : new Position(Row1, i);
+                iPos = IsWhite ? new Position(i, Column1) : new Position(i, Column1);
                 Pieces.Add(new Piece(Piece.Types.PAWN, color, iPos));
             }
         }

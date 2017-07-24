@@ -16,7 +16,7 @@ namespace ChessApp3
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ChessApp3Form());
+            Application.Run(new ChessAppMainForm());
         }
     }
 }

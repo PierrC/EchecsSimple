@@ -27,15 +27,15 @@ namespace ChessApp3
             WHITE
         }
 
-        Types Type { get; set; }
-        Image aImage { get; set; }
-        Position Position { get; set; }
+        public Types Type { get; }
+        public Image Image { get; }
+        public Position Position { get; set; }
 
         public bool IsBlack { get => IsBlack_; }
 
         public Image GetImage()
         {
-            return aImage;
+            return Image;
         }
 
 
@@ -44,6 +44,7 @@ namespace ChessApp3
             Type = iType;
             IsBlack_ = iColor == PlayerColors.BLACK ? true : false;
             Position = new Position(iPosition.Row, iPosition.Column);
+            this.Image = SetImage();
         }
 
 
@@ -51,7 +52,7 @@ namespace ChessApp3
         {
             if (this.IsBlack)/// PlayerColor.Equals(PlayerColors.BLACK))
             {
-                if (Type.Equals(Types.PAWN))
+                if (this.Type == Piece.Types.PAWN)
                 {
                     return new Bitmap(Properties.Resources.blackPawn);
                 }

@@ -44,11 +44,14 @@ namespace ChessApp3
             }
         }
 
-        public Boolean IsValid()
+        public Boolean IsValid
         {
-            if ((this.Row >= 0) && (this.Row < 8) && (this.Row >= 0) && (this.Row < 8))
-                return true;
-            return false;
+            get
+            {
+                if ((this.Row >= 0) && (this.Row < 8) && (this.Row >= 0) && (this.Row < 8))
+                    return true;
+                return false;
+            }
         }
 
         public void Invalid()
