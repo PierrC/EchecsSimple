@@ -19,7 +19,7 @@ namespace ChessApp3
 
             int Column0 = IsWhite ? 0 : 7;
 
-            iPos = IsWhite ? new Position(4, Column0) : new Position(Column0, 4);
+            iPos = IsWhite ? new Position(4, Column0) : new Position(4, Column0);
             Pieces.Add(new Piece(Piece.Types.KING, color, iPos));
 
             iPos = IsWhite ? new Position(3, Column0) : new Position(3, Column0);

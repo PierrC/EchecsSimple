@@ -46,13 +46,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Chessboard.cs" />
-    <Compile Include="ChessboardView.cs" />
-    <Compile Include="ChessApp3Form.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ChessApp3Form.Designer.cs">
-      <DependentUpon>ChessApp3Form.cs</DependentUpon>
-    </Compile>
     <Compile Include="ChessGame.cs" />
     <Compile Include="ChessGameView.cs" />
     <Compile Include="ChessAppMainForm.cs">
@@ -74,9 +67,6 @@
     <Compile Include="Position.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="ChessApp3Form.resx">
-      <DependentUpon>ChessApp3Form.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="ChessAppMainForm.resx">
       <DependentUpon>ChessAppMainForm.cs</DependentUpon>
     </EmbeddedResource>
