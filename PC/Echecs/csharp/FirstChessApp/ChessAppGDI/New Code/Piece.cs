@@ -24,8 +24,8 @@ namespace ChessAppGDI.New_Code
             WHITE,
         }
 
-        PieceType aType;
-        Color aColor;
+        PieceType aType { get; set; }
+        Color aColor { get; set; }
 
         public Piece(PieceType pType, Color pColor)
         {

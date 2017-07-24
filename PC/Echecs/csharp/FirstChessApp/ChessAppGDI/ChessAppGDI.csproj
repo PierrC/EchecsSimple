@@ -59,11 +59,8 @@
     <Compile Include="ChessApp.Designer.cs">
       <DependentUpon>ChessApp.cs</DependentUpon>
     </Compile>
-    <Compile Include="Old Code\ChessGame.cs" />
-    <Compile Include="Old Code\ChessGameView.cs" />
-    <Compile Include="Old Code\Piece.cs" />
-    <Compile Include="Old Code\PieceView.cs" />
-    <Compile Include="Old Code\Program.cs" />
+    <Compile Include="New Code\PositionAndPixels.cs" />
+    <Compile Include="New Code\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="ChessApp.resx">
       <DependentUpon>ChessApp.cs</DependentUpon>
@@ -129,6 +126,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\whiteRook.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Old Code\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

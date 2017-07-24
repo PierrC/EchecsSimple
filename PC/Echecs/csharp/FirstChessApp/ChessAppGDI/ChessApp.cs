@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ChessAppGDI.New_Code;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,20 +15,20 @@ namespace ChessAppGDI
 {
     public partial class ChessApp : Form
     {
-
-        static int boardPanel_x, boardPanel_y;
-        static int square_x, square_y, square;
+        int i = PositionAndPixels.boardPanel_x ;
         Pen mainPen = new Pen(Color.Black, 1);
         Graphics g = null;
         Font myFont = new Font("Times New Roman", 16);
 
+        ChessBoardView chessGame;
+
         int mouse_x = 0, mouse_y = 0;
-        static int selected_x, selected_y;
-        Boolean isSelecting = false;
-        Boolean showBoardAnnotation = true;
         ArrayList listPiece = new ArrayList();
-        ChessGame game = new ChessGame(Piece.Color.WHITE);
+
+        Boolean isSelecting = false;
+        BoardPosition selectedPosition;
         
+
         public ChessApp()
         {
             InitializeComponent();
@@ -35,47 +36,54 @@ namespace ChessAppGDI
 
             SetDoubleBuffered(tableLayoutPanel1);
             SetDoubleBuffered(boardPanel);
-            
-            g = boardPanel.CreateGraphics();
+            chessGame =  new ChessBoardView();
             
         }
 
         private void boardPanel_MouseMove(object sender, MouseEventArgs e)
         {
-            mouse_x = e.X;
-            mouse_y = e.Y;
         }
 
         private void boardPanel_Paint(object sender, PaintEventArgs e)
         {
+            PositionAndPixels.boardPanel_x = boardPanel.Width;
+            PositionAndPixels.boardPanel_y = boardPanel.Height;
+            PositionAndPixels.Update();
 
-            boardPanel_x = boardPanel.Width;
-            boardPanel_y = boardPanel.Height;
-            
+            g = e.Graphics;
             UpdateBoard();
-            
         }
 
         private void UpdateBoard()
         {
             g.Clear(Color.White);
-            DrawBoard();
-            DrawPieces();
-
+            chessGame.DrawGame(g);
         }
 
 
         private void boardPanel_Click(object sender, EventArgs e)
         {
+            Point mousePoint = new Point(mouse_x, mouse_y);
+            BoardPosition bp = PositionAndPixels.PixelsToBoardPosition(mousePoint);
+
+            if ((bp.X >= 0) & (bp.X < 8) & (bp.Y >= 0) & (bp.Y < 8))
+            {
+                if (chessGame.GetChessBoard().GetHasPiece()[bp.X, bp.Y] && !isSelecting)
+                {
+                    selectedPosition = new BoardPosition(bp.X, bp.Y);
+                    isSelecting = true;
+                    //  selectedPieceTextBox.Text = game.getBoardPiece()[pt.X, pt.Y].ToString() + " " + game.getBoardPiece()[pt.X, pt.Y].getColor();
+                    selectedPieceTextBox.Text = chessGame.GetChessBoard().GetBoard()[bp.X, bp.Y].ToString();
+                }
 
 
+
+            }
+
+
+
+            Refresh();
         }
-
-       
-
-
-
-
 
 
 
@@ -85,6 +93,59 @@ namespace ChessAppGDI
                 return;
             System.Reflection.PropertyInfo aProp = typeof(System.Windows.Forms.Control).GetProperty("DoubleBuffered", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
             aProp.SetValue(c, true, null);
+        }
+
+        private void boardPanel_Click_1(object sender, EventArgs e)
+        {
+            Point mousePoint = new Point(mouse_x, mouse_y);
+            BoardPosition bp = PositionAndPixels.PixelsToBoardPosition(mousePoint);
+
+            if ((bp.X >= 0) & (bp.X < 8) & (bp.Y >= 0) & (bp.Y < 8))
+            {
+                Console.WriteLine("bp: " + bp.X + " " + bp.Y);
+                if (chessGame.GetChessBoard().GetHasPiece()[bp.X, bp.Y] && !isSelecting)
+                {
+                    Console.WriteLine("Option 1");
+                    selectedPosition = new BoardPosition(bp.X, bp.Y);
+                    isSelecting = true;
+                    selectedPieceTextBox.Text = chessGame.GetChessBoard().GetBoard()[bp.X, bp.Y].ToString() + " " + bp.ToString();
+                }
+                else if (isSelecting && (bp.X == selectedPosition.X) && (bp.Y == selectedPosition.Y))
+                {
+                    Console.WriteLine("Option 2");
+                    selectedPosition = new BoardPosition(-2, -1);
+                    isSelecting = false;
+                    selectedPieceTextBox.Text = " ";
+                }
+                else if (isSelecting &&
+                    chessGame.GetChessBoard().GetHasPiece()[bp.X, bp.Y] &&
+                    chessGame.GetChessBoard().GetBoard()[bp.X, bp.Y].getColor().Equals(ChessBoard.OtherColor(chessGame.GetChessBoard().GetBoard()[selectedPosition.X, selectedPosition.Y].getColor())))
+                {
+                    Console.WriteLine("Option 3");
+                    chessGame.movePiece(selectedPosition, bp);
+                    selectedPosition = new BoardPosition(-2, -1);
+                    isSelecting = false;
+                    selectedPieceTextBox.Text = " ";
+                }
+                else if(isSelecting && !chessGame.GetChessBoard().GetHasPiece()[bp.X, bp.Y])
+                {
+                    Console.WriteLine("Option 4");
+                    chessGame.movePiece(selectedPosition, bp);
+                    selectedPosition = new BoardPosition(-2, -1);
+                    isSelecting = false;
+                    selectedPieceTextBox.Text = " ";
+                }
+
+            }
+
+            Refresh();
+        }
+
+        private void boardPanel_MouseMove_1(object sender, MouseEventArgs e)
+        {
+
+            mouse_x = e.X;
+            mouse_y = e.Y;
         }
 
         protected override CreateParams CreateParams
@@ -101,8 +162,9 @@ namespace ChessAppGDI
 
 
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                
+        /*
         /// All variable
         /// 
 
@@ -204,80 +266,7 @@ namespace ChessAppGDI
             return new Point(x, y);
         }
 
-
-
-
-
-
-        private void DrawBoard()
-        {
-            square_x = boardPanel_x / 9;
-            square_y = boardPanel_y / 9;
-            square = Math.Min(square_x, square_y);
-            
-            for (int i = 0; i < 9; i++)
-            {
-                // Vertical lines
-                Point p1 = new Point(square / 2, square / 2 + square * i);
-                Point p2 = new Point(square / 2 + square * 8, square / 2 + square * i);
-                g.DrawLine(mainPen, p1, p2);
-
-                // Horizontal lines
-                Point p3 = new Point(square / 2 + square * i, square / 2);
-                Point p4 = new Point(square / 2 + square * i, square / 2 + square * 8);
-                g.DrawLine(mainPen, p3, p4);
-                
-            }
-
-            for(int i = 0; i < 4; i++)
-            {
-                for(int j = 0; j < 4; j++)
-                {
-                    int p1 = square / 2 + (2 * i * square);
-                    int p2 = square / 2 + (2 * j * square);
-                    g.FillRectangle(Brushes.Black, p1 , p2, square, square);
-                }
-            }
-            for (int i = 0; i < 4; i++)
-            {
-                for (int j = 0; j < 4; j++)
-                {
-                    int p1 = square / 2 + square + (2 * i * square);
-                    int p2 = square / 2 + square + (2 * j * square);
-                    g.FillRectangle(Brushes.Black, p1, p2, square, square);
-                }
-            }
-
-            if (showBoardAnnotation)
-            {
-                for(int i = 1; i < 9; i++)
-                {
-                    g.DrawString((9 - i).ToString(), myFont, Brushes.Black, square / 16, square * i - (square / 4));
-                    g.DrawString( Char.ConvertFromUtf32(65 + i - 1) , myFont, Brushes.Black, square * i - (square / 4), square / 16);
-                }
-            }
-            
-        }
-
-        private void DrawPieces()
-        {
-
-            Point pt = new Point(0,0);
-            foreach(Piece p in game.getListPiece())
-            {
-                //PlacePieceOnBoard(p);
-                pt = PlacePieceOnBoard(p);
-                g.DrawImage(p.GetImage(), pt.X, pt.Y, square, square);
-            }
-        }
-        
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            // this.Refresh();
-        }
-
-        
-
+       
     */
 
     }

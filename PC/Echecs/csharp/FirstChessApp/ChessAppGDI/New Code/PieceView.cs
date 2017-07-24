@@ -22,54 +22,54 @@ namespace ChessAppGDI.New_Code
         {
             if (aPiece.getColor().Equals(Piece.Color.BLACK))
             {
-                if (aPiece.GetType().Equals(Piece.PieceType.PAWN))
+                if (aPiece.getPieceType().Equals(Piece.PieceType.PAWN))
                 {
                     return new Bitmap(Properties.Resources.blackPawn);
                 }
-                else if (aPiece.GetType().Equals(Piece.PieceType.ROOK))
+                else if (aPiece.getPieceType().Equals(Piece.PieceType.ROOK))
                 {
                     return new Bitmap(Properties.Resources.blackRook);
                 }
-                else if (aPiece.GetType().Equals(Piece.PieceType.KNIGHT))
+                else if (aPiece.getPieceType().Equals(Piece.PieceType.KNIGHT))
                 {
                     return new Bitmap(Properties.Resources.blackKinght);
                 }
-                else if (aPiece.GetType().Equals(Piece.PieceType.BISHOP))
+                else if (aPiece.getPieceType().Equals(Piece.PieceType.BISHOP))
                 {
                     return new Bitmap(Properties.Resources.blackBishop);
                 }
-                else if (aPiece.GetType().Equals(Piece.PieceType.QUEEN))
+                else if (aPiece.getPieceType().Equals(Piece.PieceType.QUEEN))
                 {
                     return new Bitmap(Properties.Resources.blackQueen);
                 }
-                else if (aPiece.GetType().Equals(Piece.PieceType.KING))
+                else if (aPiece.getPieceType().Equals(Piece.PieceType.KING))
                 {
                     return new Bitmap(Properties.Resources.blackKing);
                 }
             }
             else
             {
-                if (aPiece.GetType().Equals(Piece.PieceType.PAWN))
+                if (aPiece.getPieceType().Equals(Piece.PieceType.PAWN))
                 {
                     return new Bitmap(Properties.Resources.whitePawn);
                 }
-                else if (aPiece.GetType().Equals(Piece.PieceType.ROOK))
+                else if (aPiece.getPieceType().Equals(Piece.PieceType.ROOK))
                 {
                     return new Bitmap(Properties.Resources.whiteRook);
                 }
-                else if (aPiece.GetType().Equals(Piece.PieceType.KNIGHT))
+                else if (aPiece.getPieceType().Equals(Piece.PieceType.KNIGHT))
                 {
                     return new Bitmap(Properties.Resources.whiteKnight);
                 }
-                else if (aPiece.GetType().Equals(Piece.PieceType.BISHOP))
+                else if (aPiece.getPieceType().Equals(Piece.PieceType.BISHOP))
                 {
                     return new Bitmap(Properties.Resources.whiteBishop);
                 }
-                else if (aPiece.GetType().Equals(Piece.PieceType.QUEEN))
+                else if (aPiece.getPieceType().Equals(Piece.PieceType.QUEEN))
                 {
                     return new Bitmap(Properties.Resources.whiteQueen);
                 }
-                else if (aPiece.GetType().Equals(Piece.PieceType.KING))
+                else if (aPiece.getPieceType().Equals(Piece.PieceType.KING))
                 {
                     return new Bitmap(Properties.Resources.whiteKing);
                 }
@@ -87,10 +87,10 @@ namespace ChessAppGDI.New_Code
             return aImage;
         }
 
-        // Remenber to add variables for size of image
+
         public void drawImage(Graphics g, Point position)
         {
-            g.DrawImage(aImage, position);
+            g.DrawImage(aImage, position.X, position.Y, PositionAndPixels.square, PositionAndPixels.square);
         }
 
     }

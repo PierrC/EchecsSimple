@@ -103,13 +103,11 @@ namespace ChessAppGDI.New_Code
 
         public void movePiece(BoardPosition pStart, BoardPosition pEnd)
         {
-            if (hasPiece[pEnd.X, pEnd.Y] && board[pEnd.X, pEnd.Y].getColor().Equals(board[pStart.X, pStart.Y].getColor()) )
+            
+            if (hasPiece[pStart.X, pStart.Y])
             {
-
-            }
-            else if (hasPiece[pStart.X, pStart.Y])
-            {
-                board[pEnd.X, pEnd.Y] = board[pStart.X, pStart.Y];
+                Piece transferPiece = board[pStart.X, pStart.Y];
+                board[pEnd.X, pEnd.Y] = transferPiece;
                 board[pStart.X, pStart.Y] = null;
 
                 hasPiece[pStart.X, pStart.Y] = false;

@@ -7,17 +7,34 @@ using System.Threading.Tasks;
 
 namespace ChessAppGDI.New_Code
 {
-    class ChessBoardView
+    public class ChessBoardView
     {
         ChessBoard board;
         PieceView[,] viewBoard;
 
-        ChessBoardView()
+        public ChessBoardView()
         {
             board = new ChessBoard();
             viewBoard = new PieceView[8, 8];
             board.Restart();
             SetViewList();
+        }
+
+        public ChessBoard GetChessBoard()
+        {
+            return board;
+        }
+
+        public PieceView[,] GetViewBoard()
+        {
+            return viewBoard;
+        }
+
+        public void movePiece(BoardPosition pStart, BoardPosition pEnd)
+        {
+            board.movePiece(pStart, pEnd);
+            viewBoard[pEnd.X, pEnd.Y] = viewBoard[pStart.X, pStart.Y];
+            viewBoard[pStart.X, pStart.Y] = null;
         }
 
         private void SetViewList()
@@ -41,21 +58,17 @@ namespace ChessAppGDI.New_Code
             DrawBoard(g);
             DrawPieces(g);
         }
+
+
         /*   Temporary Variables
          */
-        int boardPanel_x = 1000;
-        int boardPanel_y = 1000;
         Font font = new Font("Times New Roman", 16);
-        int square_x = 0;
-        int square_y = 0;
         int square = 0; 
         /*
          */
         private void DrawBoard(Graphics g)
         {
-            square_x = boardPanel_x / 9;
-            square_y = boardPanel_y / 9;
-            square = Math.Min(square_x, square_y);
+            square = PositionAndPixels.square;
             for (int i = 0; i < 9; i++)
             {
                 // Vertical lines
@@ -79,6 +92,7 @@ namespace ChessAppGDI.New_Code
                     g.FillRectangle(Brushes.Black, p1, p2, square, square);
                 }
             }
+
             for (int i = 0; i < 4; i++)
             {
                 for (int j = 0; j < 4; j++)
@@ -88,7 +102,6 @@ namespace ChessAppGDI.New_Code
                     g.FillRectangle(Brushes.Black, p1, p2, square, square);
                 }
             }
-
             
             for (int i = 1; i < 9; i++)
             {
@@ -106,7 +119,10 @@ namespace ChessAppGDI.New_Code
                 {
                     if(board.GetHasPiece()[i, j])
                     {
-                        g.DrawImage(viewBoard[i, j].GetImage(), square * i, square * j);
+                        Point point = PositionAndPixels.BoardPositionToPixels(new BoardPosition(i, j));
+                        Image image = viewBoard[i, j].GetImage();
+
+                        g.DrawImage(image , point.X, point.Y, PositionAndPixels.square, PositionAndPixels.square);
                     }
                 }
             }

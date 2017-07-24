@@ -22,27 +22,9 @@ namespace ChessAppGDI
             this.Y = ay;
         }
 
-        public int X
-        {
-            get => x;
-            set
-            {
-                if ((value >= 0) && (value < 8))
-                    Invalid();
-                x = value;
-            }
-
-        }
-        public int Y
-        {
-            get => y;
-            set
-            {
-                if ((value >= 0) && (value < 8))
-                    Invalid();
-                y = value;
-            }
-        }
+        public int X;
+        public int Y;
+        
 
         public Boolean IsValid()
         {
@@ -56,6 +38,24 @@ namespace ChessAppGDI
             this.X = -2;
             this.Y = -1;
         }
+        
+
+        public override String ToString()
+        {
+            switch (X)
+            {
+                case 0: return "[A," + (8 - Y) + "]";
+                case 1: return "[B," + (8 - Y) + "]";
+                case 2: return "[C," + (8 - Y) + "]";
+                case 3: return "[D," + (8 - Y) + "]";
+                case 4: return "[E," + (8 - Y) + "]";
+                case 5: return "[F," + (8 - Y) + "]";
+                case 6: return "[G," + (8 - Y) + "]";
+                case 7: return "[H," + (8 - Y) + "]";
+                default: return "0";
+            }
+        }
+
 
     }
 }
