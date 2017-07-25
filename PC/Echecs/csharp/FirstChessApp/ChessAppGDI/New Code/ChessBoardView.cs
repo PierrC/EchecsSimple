@@ -38,8 +38,8 @@ namespace ChessAppGDI.New_Code
         public void movePiece(BoardPosition pStart, BoardPosition pEnd)
         {
             Board.movePiece(pStart, pEnd);
-            viewBoard[pEnd.X, pEnd.Y] = viewBoard[pStart.X, pStart.Y];
-            viewBoard[pStart.X, pStart.Y] = null;
+            viewBoard[pEnd.Row, pEnd.Column] = viewBoard[pStart.Row, pStart.Column];
+            viewBoard[pStart.Row, pStart.Column] = null;
         }
 
         private void SetViewList()

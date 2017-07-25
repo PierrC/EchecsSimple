@@ -26,9 +26,12 @@ namespace ChessAppGDI.New_Code
 
         private Types type;
         private Colors color;
+        private Boolean IsBlack_;
 
         public Types Type { get => type; }
         public Colors Color { get => color; }
+        public bool IsBlack { get => IsBlack_; }
+        public BoardPosition Position { get; set; }
 
         public Piece(Types iType, Colors iColor)
         {
@@ -36,25 +39,12 @@ namespace ChessAppGDI.New_Code
             color = iColor;
         }
 
-        //public Colors getColor()
-        //{
-        //    return Color;
-        //}
-
-        //public void setColor(Colors pColor)
-        //{
-        //    Color = pColor;
-        //}
-
-        //public Types getPieceType()
-        //{
-        //    return Type1;
-        //}
-
-        //public void setPieceType(Types pPieceType)
-        //{
-        //    Type1 = pPieceType;
-        //}
+        public Piece(Types iType, Colors iColor, BoardPosition iPosition)
+        {
+            type = iType;
+            IsBlack_ = iColor == Colors.BLACK ? true : false;
+            Position = new BoardPosition(iPosition.Row, iPosition.Column);
+        }
 
         public override String ToString()
         {

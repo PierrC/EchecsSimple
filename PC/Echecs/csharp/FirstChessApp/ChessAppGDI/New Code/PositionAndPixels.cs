@@ -38,8 +38,8 @@ namespace ChessAppGDI.New_Code
 
         public static Point BoardPositionToPixels(BoardPosition m)
         {
-            int x = square * m.X + (square / 2);
-            int y = square * m.Y + (square / 2);
+            int x = square * m.Row + (square / 2);
+            int y = square * m.Column + (square / 2);
 
             return new Point(x, y);
         }

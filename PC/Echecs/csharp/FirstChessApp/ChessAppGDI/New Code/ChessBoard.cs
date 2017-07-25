@@ -98,27 +98,27 @@ namespace ChessAppGDI.New_Code
 
         private void removePiece(BoardPosition pPosition)
         {
-            Squares[pPosition.X, pPosition.Y] = null;
-            HasPiece[pPosition.X, pPosition.Y] = false;
+            Squares[pPosition.Row, pPosition.Column] = null;
+            HasPiece[pPosition.Row, pPosition.Column] = false;
         }
 
         private void setPiece(BoardPosition pPosition, Piece pPiece)
         {
-            Squares[pPosition.X, pPosition.Y] = pPiece;
-            HasPiece[pPosition.X, pPosition.Y] = true;
+            Squares[pPosition.Row, pPosition.Column] = pPiece;
+            HasPiece[pPosition.Row, pPosition.Column] = true;
         }
 
         public void movePiece(BoardPosition pStart, BoardPosition pEnd)
         {
             
-            if (HasPiece[pStart.X, pStart.Y])
+            if (HasPiece[pStart.Row, pStart.Column])
             {
-                Piece transferPiece = Squares[pStart.X, pStart.Y];
-                Squares[pEnd.X, pEnd.Y] = transferPiece;
-                Squares[pStart.X, pStart.Y] = null;
+                Piece transferPiece = Squares[pStart.Row, pStart.Column];
+                Squares[pEnd.Row, pEnd.Column] = transferPiece;
+                Squares[pStart.Row, pStart.Column] = null;
 
-                HasPiece[pStart.X, pStart.Y] = false;
-                HasPiece[pEnd.X, pEnd.Y] = true;
+                HasPiece[pStart.Row, pStart.Column] = false;
+                HasPiece[pEnd.Row, pEnd.Column] = true;
             }
         }
 

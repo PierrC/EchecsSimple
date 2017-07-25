@@ -66,14 +66,14 @@ namespace ChessAppGDI
             Point mousePoint = new Point(mouse_x, mouse_y);
             BoardPosition bp = PositionAndPixels.PixelsToBoardPosition(mousePoint);
 
-            if ((bp.X >= 0) & (bp.X < 8) & (bp.Y >= 0) & (bp.Y < 8))
+            if ((bp.Row >= 0) & (bp.Row < 8) & (bp.Column >= 0) & (bp.Column < 8))
             {
-                if (chessGame.Board.HasPiece[bp.X, bp.Y] && !isSelecting)
+                if (chessGame.Board.HasPiece[bp.Row, bp.Column] && !isSelecting)
                 {
-                    selectedPosition = new BoardPosition(bp.X, bp.Y);
+                    selectedPosition = new BoardPosition(bp.Row, bp.Column);
                     isSelecting = true;
-                    //  selectedPieceTextBox.Text = game.getBoardPiece()[pt.X, pt.Y].ToString() + " " + game.getBoardPiece()[pt.X, pt.Y].getColor();
-                    selectedPieceTextBox.Text = chessGame.Board.Squares[bp.X, bp.Y].ToString();
+                    //  selectedPieceTextBox.Text = game.getBoardPiece()[pt.Row, pt.Column].ToString() + " " + game.getBoardPiece()[pt.Row, pt.Column].getColor();
+                    selectedPieceTextBox.Text = chessGame.Board.Squares[bp.Row, bp.Column].ToString();
                 }
 
 
@@ -100,17 +100,17 @@ namespace ChessAppGDI
             Point mousePoint = new Point(mouse_x, mouse_y);
             BoardPosition bp = PositionAndPixels.PixelsToBoardPosition(mousePoint);
 
-            if ((bp.X >= 0) & (bp.X < 8) & (bp.Y >= 0) & (bp.Y < 8))
+            if ((bp.Row >= 0) & (bp.Row < 8) & (bp.Column >= 0) & (bp.Column < 8))
             {
-                Console.WriteLine("bp: " + bp.X + " " + bp.Y);
-                if (chessGame.Board.HasPiece[bp.X, bp.Y] && !isSelecting)
+                Console.WriteLine("bp: " + bp.Row + " " + bp.Column);
+                if (chessGame.Board.HasPiece[bp.Row, bp.Column] && !isSelecting)
                 {
                     Console.WriteLine("Option 1");
-                    selectedPosition = new BoardPosition(bp.X, bp.Y);
+                    selectedPosition = new BoardPosition(bp.Row, bp.Column);
                     isSelecting = true;
-                    selectedPieceTextBox.Text = chessGame.Board.Squares[bp.X, bp.Y].ToString() + " " + bp.ToString();
+                    selectedPieceTextBox.Text = chessGame.Board.Squares[bp.Row, bp.Column].ToString() + " " + bp.ToString();
                 }
-                else if (isSelecting && (bp.X == selectedPosition.X) && (bp.Y == selectedPosition.Y))
+                else if (isSelecting && (bp.Row == selectedPosition.Row) && (bp.Column == selectedPosition.Column))
                 {
                     Console.WriteLine("Option 2");
                     selectedPosition = new BoardPosition(-2, -1);
@@ -118,8 +118,8 @@ namespace ChessAppGDI
                     selectedPieceTextBox.Text = " ";
                 }
                 else if (isSelecting &&
-                    chessGame.Board.HasPiece[bp.X, bp.Y] &&
-                    chessGame.Board.Squares[bp.X, bp.Y].Color.Equals(ChessBoard.OtherColor(chessGame.Board.Squares[selectedPosition.X, selectedPosition.Y].Color)))
+                    chessGame.Board.HasPiece[bp.Row, bp.Column] &&
+                    chessGame.Board.Squares[bp.Row, bp.Column].Color.Equals(ChessBoard.OtherColor(chessGame.Board.Squares[selectedPosition.Row, selectedPosition.Column].Color)))
                 {
                     Console.WriteLine("Option 3");
                     chessGame.movePiece(selectedPosition, bp);
@@ -127,7 +127,7 @@ namespace ChessAppGDI
                     isSelecting = false;
                     selectedPieceTextBox.Text = " ";
                 }
-                else if(isSelecting && !chessGame.Board.HasPiece[bp.X, bp.Y])
+                else if(isSelecting && !chessGame.Board.HasPiece[bp.Row, bp.Column])
                 {
                     Console.WriteLine("Option 4");
                     chessGame.movePiece(selectedPosition, bp);
@@ -192,25 +192,25 @@ namespace ChessAppGDI
         private void boardPanel_Click(object sender, EventArgs e)
         {
             Point pt = selectSquare(mouse_x, mouse_y);
-            if ((pt.X >= 0) & (pt.X < 8) & (pt.Y >= 0) & (pt.Y < 8))
+            if ((pt.Row >= 0) & (pt.Row < 8) & (pt.Column >= 0) & (pt.Column < 8))
             {
-                if (game.getBoardHasPiece()[pt.X, pt.Y] && !isSelecting)
+                if (game.getBoardHasPiece()[pt.Row, pt.Column] && !isSelecting)
                 {
-                    selected_x = pt.X;
-                    selected_y = pt.Y;
+                    selected_x = pt.Row;
+                    selected_y = pt.Column;
                     isSelecting = true;
-                    //  selectedPieceTextBox.Text = game.getBoardPiece()[pt.X, pt.Y].ToString() + " " + game.getBoardPiece()[pt.X, pt.Y].getColor();
-                    selectedPieceTextBox.Text = game.getBoardPiece()[pt.X, pt.Y].ToString();
+                    //  selectedPieceTextBox.Text = game.getBoardPiece()[pt.Row, pt.Column].ToString() + " " + game.getBoardPiece()[pt.Row, pt.Column].getColor();
+                    selectedPieceTextBox.Text = game.getBoardPiece()[pt.Row, pt.Column].ToString();
                 }
-                else if (isSelecting && (pt.X == selected_x) && (pt.Y == selected_y))
+                else if (isSelecting && (pt.Row == selected_x) && (pt.Column == selected_y))
                 {
                     selected_x = -1;
                     selected_y = -1;
                     isSelecting = false;
                     selectedPieceTextBox.Text = " ";
                 }
-                else if (game.getBoardHasPiece()[pt.X, pt.Y] && 
-                    game.getBoardPiece()[pt.X, pt.Y].getColor().Equals( ChessGame.OtherColor( game.getBoardPiece()[selected_x, selected_y].getColor()) ) 
+                else if (game.getBoardHasPiece()[pt.Row, pt.Column] && 
+                    game.getBoardPiece()[pt.Row, pt.Column].getColor().Equals( ChessGame.OtherColor( game.getBoardPiece()[selected_x, selected_y].getColor()) ) 
                     && isSelecting)
                 {
                     game.movePiece(game.getBoardPiece()[selected_x, selected_y], pt);
@@ -219,7 +219,7 @@ namespace ChessAppGDI
                     isSelecting = false;
                     selectedPieceTextBox.Text = " ";
                 }
-                else if (!game.getBoardHasPiece()[pt.X, pt.Y] && isSelecting)
+                else if (!game.getBoardHasPiece()[pt.Row, pt.Column] && isSelecting)
                 {
                     game.movePiece(game.getBoardPiece()[selected_x, selected_y], pt);
                     selected_x = -1;
@@ -229,7 +229,7 @@ namespace ChessAppGDI
                 }
             }
             UpdateBoard();
-            Console.WriteLine("Mouse Point x: " + pt.X + " y: " + pt.Y);
+            Console.WriteLine("Mouse Point x: " + pt.Row + " y: " + pt.Column);
 
         }
 
@@ -242,11 +242,11 @@ namespace ChessAppGDI
             
             Point pt = p.GetPoint();
 
-            int x = (pt.X - (square / 2)) / square;
+            int x = (pt.Row - (square / 2)) / square;
             x = Math.Min(x * square, square * 8);
             x += square / 2;
 
-            int y = (pt.Y - (square / 2)) / square;
+            int y = (pt.Column - (square / 2)) / square;
             y = Math.Min(y * square, square * 8);
             y += square / 2;
 
@@ -256,7 +256,7 @@ namespace ChessAppGDI
         private static Point PlacePieceOnBoard(Piece p)
         {
             Point pt = p.GetPoint();
-            return new Point((square / 2) + pt.X * square, (square / 2) + pt.Y * square);
+            return new Point((square / 2) + pt.Row * square, (square / 2) + pt.Column * square);
         }
         private Point selectSquare(int x, int y)
         {

@@ -15,40 +15,40 @@ namespace ChessAppGDI
 
         public BoardPosition(int ax, int ay)
         {
-            this.X = ax;
-            this.Y = ay;
+            this.Row = ax;
+            this.Column = ay;
         }
 
-        public int X;
-        public int Y;
+        public int Row;
+        public int Column;
         
 
         public Boolean IsValid()
         {
-            if ((this.X >= 0) && (this.X < 8) && (this.Y >= 0) && (this.Y < 8))
+            if ((this.Row >= 0) && (this.Row < 8) && (this.Column >= 0) && (this.Column < 8))
                 return true;
             return false;
         }
 
         public void Invalid()
         {
-            this.X = -2;
-            this.Y = -1;
+            this.Row = -2;
+            this.Column = -1;
         }
         
 
         public override String ToString()
         {
-            switch (X)
+            switch (Row)
             {
-                case 0: return "[A," + (8 - Y) + "]";
-                case 1: return "[B," + (8 - Y) + "]";
-                case 2: return "[C," + (8 - Y) + "]";
-                case 3: return "[D," + (8 - Y) + "]";
-                case 4: return "[E," + (8 - Y) + "]";
-                case 5: return "[F," + (8 - Y) + "]";
-                case 6: return "[G," + (8 - Y) + "]";
-                case 7: return "[H," + (8 - Y) + "]";
+                case 0: return "[A," + (8 - Column) + "]";
+                case 1: return "[B," + (8 - Column) + "]";
+                case 2: return "[C," + (8 - Column) + "]";
+                case 3: return "[D," + (8 - Column) + "]";
+                case 4: return "[E," + (8 - Column) + "]";
+                case 5: return "[F," + (8 - Column) + "]";
+                case 6: return "[G," + (8 - Column) + "]";
+                case 7: return "[H," + (8 - Column) + "]";
                 default: return "0";
             }
         }

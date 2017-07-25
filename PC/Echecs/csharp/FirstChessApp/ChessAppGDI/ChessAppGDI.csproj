@@ -52,6 +52,7 @@
     <Compile Include="New Code\BoardPosition.cs" />
     <Compile Include="New Code\ChessBoardView.cs" />
     <Compile Include="New Code\Piece.cs" />
+    <Compile Include="New Code\PieceSet.cs" />
     <Compile Include="New Code\PieceView.cs" />
     <Compile Include="ChessApp.cs">
       <SubType>Form</SubType>
@@ -61,6 +62,7 @@
     </Compile>
     <Compile Include="New Code\PositionAndPixels.cs" />
     <Compile Include="New Code\Program.cs" />
+    <Compile Include="New Code\Square.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="ChessApp.resx">
       <DependentUpon>ChessApp.cs</DependentUpon>
