@@ -7,23 +7,28 @@ using System.Threading.Tasks;
 
 namespace ChessAppGDI.New_Code
 {
+    /// <summary>
+    /// TODO: clarify the scope of this class. Is a ChessboardView or a ChessGameView?
+    /// </summary>
     public class ChessBoardView
     {
         ChessBoard board;
         PieceView[,] viewBoard;
 
+        public ChessBoard Board { get => board; set => board = value; }
+
         public ChessBoardView()
         {
-            board = new ChessBoard();
+            Board = new ChessBoard();
             viewBoard = new PieceView[8, 8];
-            board.Restart();
+            Board.Restart();
             SetViewList();
         }
 
-        public ChessBoard GetChessBoard()
-        {
-            return board;
-        }
+        //public ChessBoard GetChessBoard()
+        //{
+        //    return Board;
+        //}
 
         public PieceView[,] GetViewBoard()
         {
@@ -32,22 +37,22 @@ namespace ChessAppGDI.New_Code
 
         public void movePiece(BoardPosition pStart, BoardPosition pEnd)
         {
-            board.movePiece(pStart, pEnd);
+            Board.movePiece(pStart, pEnd);
             viewBoard[pEnd.X, pEnd.Y] = viewBoard[pStart.X, pStart.Y];
             viewBoard[pStart.X, pStart.Y] = null;
         }
 
         private void SetViewList()
         {
-            Boolean[,] boardBoolean = board.GetHasPiece();
-            Piece[,] boardPiece = board.GetBoard();
+            Boolean[,] boardBoolean = Board.HasPiece;
+            Piece[,] boardPiece = Board.Squares;
             for (int i = 0; i < 8; i++)
             {
                 for (int j = 0; j < 8; j++)
                 {
-                    if (board.GetHasPiece()[i, j])
+                    if (Board.HasPiece[i, j])
                     {
-                        viewBoard[i, j] = new PieceView(board.GetBoard()[i, j]);
+                        viewBoard[i, j] = new PieceView(Board.Squares[i, j]);
                     }
                 }
             }
@@ -60,12 +65,12 @@ namespace ChessAppGDI.New_Code
         }
 
 
-        /*   Temporary Variables
-         */
+        //  Temporary Variables
+        // They are temporary they just private to the class. Without any setter they are also immutable.
         Font font = new Font("Times New Roman", 16);
-        int square = 0; 
-        /*
-         */
+        int square = 0;
+
+        // TODO: you should use the PositionAndPixel helper class
         private void DrawBoard(Graphics g)
         {
             square = PositionAndPixels.square;
@@ -117,7 +122,7 @@ namespace ChessAppGDI.New_Code
             {
                 for(int j = 0; j < 8; j++)
                 {
-                    if(board.GetHasPiece()[i, j])
+                    if(Board.HasPiece[i, j])
                     {
                         Point point = PositionAndPixels.BoardPositionToPixels(new BoardPosition(i, j));
                         Image image = viewBoard[i, j].GetImage();

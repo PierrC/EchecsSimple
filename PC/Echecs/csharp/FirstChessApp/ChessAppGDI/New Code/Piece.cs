@@ -8,7 +8,7 @@ namespace ChessAppGDI.New_Code
 {
     public class Piece
     {
-        public enum PieceType
+        public enum Types
         {
             PAWN,
             ROOK,
@@ -18,44 +18,47 @@ namespace ChessAppGDI.New_Code
             KING
         }
 
-        public enum Color
+        public enum Colors
         {
             BLACK,
             WHITE,
         }
 
-        PieceType aType { get; set; }
-        Color aColor { get; set; }
+        private Types type;
+        private Colors color;
 
-        public Piece(PieceType pType, Color pColor)
+        public Types Type { get => type; }
+        public Colors Color { get => color; }
+
+        public Piece(Types iType, Colors iColor)
         {
-            aType = pType;
-            aColor = pColor;
+            type = iType;
+            color = iColor;
         }
 
-        public Color getColor()
-        {
-            return aColor;
-        }
+        //public Colors getColor()
+        //{
+        //    return Color;
+        //}
 
-        public void setColor(Color pColor)
-        {
-            aColor = pColor;
-        }
+        //public void setColor(Colors pColor)
+        //{
+        //    Color = pColor;
+        //}
 
-        public PieceType getPieceType()
-        {
-            return aType;
-        }
+        //public Types getPieceType()
+        //{
+        //    return Type1;
+        //}
 
-        public void setPieceType(PieceType pPieceType)
-        {
-            aType = pPieceType;
-        }
+        //public void setPieceType(Types pPieceType)
+        //{
+        //    Type1 = pPieceType;
+        //}
 
         public override String ToString()
         {
-            return aType.ToString();
+            return Type.ToString();
         }
 
     }

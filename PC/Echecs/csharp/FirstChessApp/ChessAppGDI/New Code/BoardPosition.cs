@@ -8,9 +8,6 @@ namespace ChessAppGDI
 {
     public class BoardPosition
     {
-        private int x;
-        private int y;
-
         public BoardPosition()
         {
             Invalid();

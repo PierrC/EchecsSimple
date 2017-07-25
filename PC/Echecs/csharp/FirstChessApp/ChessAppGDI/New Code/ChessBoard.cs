@@ -6,14 +6,21 @@ using System.Threading.Tasks;
 
 namespace ChessAppGDI.New_Code
 {
+    /// <summary>
+    /// TODO: clarify the scope of this class. Is a Chessboard or a ChessGame?
+    /// </summary>
     public class ChessBoard
     {
-        Piece[,] board;
-        Boolean[,] hasPiece;
+        //TODO: A chessboard is not composed of 8x8 Piece. You need to create a specific class (Square?) that will also contain the hasPiece flag
+        private Piece[,] squares;
+        private Boolean[,] hasPiece;
+
+        public Piece[,] Squares { get => squares; }
+        public bool[,] HasPiece { get => hasPiece; }
 
         public ChessBoard()
         {
-            board = new Piece[8, 8];
+            squares = new Piece[8, 8];
             hasPiece = new Boolean[8, 8];
         }
 
@@ -22,96 +29,96 @@ namespace ChessAppGDI.New_Code
             // Player 1 is at the bottom
             for (int i = 0; i < 8; i++)
             {
-                board[i, 6] = new Piece(Piece.PieceType.PAWN, Piece.Color.WHITE);
-                hasPiece[i, 6] = true;
+                Squares[i, 6] = new Piece(Piece.Types.PAWN, Piece.Colors.WHITE);
+                HasPiece[i, 6] = true;
             }
-            board[0, 7] = new Piece(Piece.PieceType.ROOK, Piece.Color.WHITE);
-            board[7, 7] = new Piece(Piece.PieceType.ROOK, Piece.Color.WHITE);
-            board[1, 7] = new Piece(Piece.PieceType.KNIGHT, Piece.Color.WHITE);
-            board[6, 7] = new Piece(Piece.PieceType.KNIGHT, Piece.Color.WHITE);
-            board[2, 7] = new Piece(Piece.PieceType.BISHOP, Piece.Color.WHITE);
-            board[5, 7] = new Piece(Piece.PieceType.BISHOP, Piece.Color.WHITE);
-            board[3, 7] = new Piece(Piece.PieceType.QUEEN, Piece.Color.WHITE);
-            board[4, 7] = new Piece(Piece.PieceType.KING, Piece.Color.WHITE);
-            hasPiece[0, 7] = true;
-            hasPiece[1, 7] = true;
-            hasPiece[2, 7] = true;
-            hasPiece[3, 7] = true;
-            hasPiece[4, 7] = true;
-            hasPiece[5, 7] = true;
-            hasPiece[6, 7] = true;
-            hasPiece[7, 7] = true;
+            Squares[0, 7] = new Piece(Piece.Types.ROOK, Piece.Colors.WHITE);
+            Squares[7, 7] = new Piece(Piece.Types.ROOK, Piece.Colors.WHITE);
+            Squares[1, 7] = new Piece(Piece.Types.KNIGHT, Piece.Colors.WHITE);
+            Squares[6, 7] = new Piece(Piece.Types.KNIGHT, Piece.Colors.WHITE);
+            Squares[2, 7] = new Piece(Piece.Types.BISHOP, Piece.Colors.WHITE);
+            Squares[5, 7] = new Piece(Piece.Types.BISHOP, Piece.Colors.WHITE);
+            Squares[3, 7] = new Piece(Piece.Types.QUEEN, Piece.Colors.WHITE);
+            Squares[4, 7] = new Piece(Piece.Types.KING, Piece.Colors.WHITE);
+            HasPiece[0, 7] = true;
+            HasPiece[1, 7] = true;
+            HasPiece[2, 7] = true;
+            HasPiece[3, 7] = true;
+            HasPiece[4, 7] = true;
+            HasPiece[5, 7] = true;
+            HasPiece[6, 7] = true;
+            HasPiece[7, 7] = true;
             
             // Player 2 is at the top
             for (int i = 0; i < 8; i++)
             {
-                board[i, 1] = new Piece(Piece.PieceType.PAWN, Piece.Color.BLACK);
-                hasPiece[i, 1] = true;
+                Squares[i, 1] = new Piece(Piece.Types.PAWN, Piece.Colors.BLACK);
+                HasPiece[i, 1] = true;
             }
-            board[0, 0] = new Piece(Piece.PieceType.ROOK, Piece.Color.BLACK);
-            board[7, 0] = new Piece(Piece.PieceType.ROOK, Piece.Color.BLACK);
-            board[1, 0] = new Piece(Piece.PieceType.KNIGHT, Piece.Color.BLACK);
-            board[6, 0] = new Piece(Piece.PieceType.KNIGHT, Piece.Color.BLACK);
-            board[2, 0] = new Piece(Piece.PieceType.BISHOP, Piece.Color.BLACK);
-            board[5, 0] = new Piece(Piece.PieceType.BISHOP, Piece.Color.BLACK);
-            board[3, 0] = new Piece(Piece.PieceType.QUEEN, Piece.Color.BLACK);
-            board[4, 0] = new Piece(Piece.PieceType.KING, Piece.Color.BLACK);
-            hasPiece[0, 0] = true;
-            hasPiece[1, 0] = true;
-            hasPiece[2, 0] = true;
-            hasPiece[3, 0] = true;
-            hasPiece[4, 0] = true;
-            hasPiece[5, 0] = true;
-            hasPiece[6, 0] = true;
-            hasPiece[7, 0] = true;
+            Squares[0, 0] = new Piece(Piece.Types.ROOK, Piece.Colors.BLACK);
+            Squares[7, 0] = new Piece(Piece.Types.ROOK, Piece.Colors.BLACK);
+            Squares[1, 0] = new Piece(Piece.Types.KNIGHT, Piece.Colors.BLACK);
+            Squares[6, 0] = new Piece(Piece.Types.KNIGHT, Piece.Colors.BLACK);
+            Squares[2, 0] = new Piece(Piece.Types.BISHOP, Piece.Colors.BLACK);
+            Squares[5, 0] = new Piece(Piece.Types.BISHOP, Piece.Colors.BLACK);
+            Squares[3, 0] = new Piece(Piece.Types.QUEEN, Piece.Colors.BLACK);
+            Squares[4, 0] = new Piece(Piece.Types.KING, Piece.Colors.BLACK);
+            HasPiece[0, 0] = true;
+            HasPiece[1, 0] = true;
+            HasPiece[2, 0] = true;
+            HasPiece[3, 0] = true;
+            HasPiece[4, 0] = true;
+            HasPiece[5, 0] = true;
+            HasPiece[6, 0] = true;
+            HasPiece[7, 0] = true;
             
         }
 
-        public Piece[,] GetBoard()
-        {
-            return board;
-        }
+        //public Piece[,] GetBoard()
+        //{
+        //    return Squares;
+        //}
 
-        public Boolean[,] GetHasPiece()
-        {
-            return hasPiece;
-        }
+        //public Boolean[,] GetHasPiece()
+        //{
+        //    return HasPiece;
+        //}
 
-        public static Piece.Color OtherColor(Piece.Color pColor)
+        public static Piece.Colors OtherColor(Piece.Colors pColor)
         {
-            if (pColor.Equals(Piece.Color.WHITE))
+            if (pColor.Equals(Piece.Colors.WHITE))
             {
-                return Piece.Color.BLACK;
+                return Piece.Colors.BLACK;
             }
             else
             {
-                return Piece.Color.WHITE;
+                return Piece.Colors.WHITE;
             }
         }
 
         private void removePiece(BoardPosition pPosition)
         {
-            board[pPosition.X, pPosition.Y] = null;
-            hasPiece[pPosition.X, pPosition.Y] = false;
+            Squares[pPosition.X, pPosition.Y] = null;
+            HasPiece[pPosition.X, pPosition.Y] = false;
         }
 
         private void setPiece(BoardPosition pPosition, Piece pPiece)
         {
-            board[pPosition.X, pPosition.Y] = pPiece;
-            hasPiece[pPosition.X, pPosition.Y] = true;
+            Squares[pPosition.X, pPosition.Y] = pPiece;
+            HasPiece[pPosition.X, pPosition.Y] = true;
         }
 
         public void movePiece(BoardPosition pStart, BoardPosition pEnd)
         {
             
-            if (hasPiece[pStart.X, pStart.Y])
+            if (HasPiece[pStart.X, pStart.Y])
             {
-                Piece transferPiece = board[pStart.X, pStart.Y];
-                board[pEnd.X, pEnd.Y] = transferPiece;
-                board[pStart.X, pStart.Y] = null;
+                Piece transferPiece = Squares[pStart.X, pStart.Y];
+                Squares[pEnd.X, pEnd.Y] = transferPiece;
+                Squares[pStart.X, pStart.Y] = null;
 
-                hasPiece[pStart.X, pStart.Y] = false;
-                hasPiece[pEnd.X, pEnd.Y] = true;
+                HasPiece[pStart.X, pStart.Y] = false;
+                HasPiece[pEnd.X, pEnd.Y] = true;
             }
         }
 

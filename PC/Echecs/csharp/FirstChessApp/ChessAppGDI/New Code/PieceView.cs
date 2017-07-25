@@ -20,56 +20,56 @@ namespace ChessAppGDI.New_Code
 
         private Image SetImage()
         {
-            if (aPiece.getColor().Equals(Piece.Color.BLACK))
+            if (aPiece.Color == Piece.Colors.BLACK)
             {
-                if (aPiece.getPieceType().Equals(Piece.PieceType.PAWN))
+                if (aPiece.Type == Piece.Types.PAWN)
                 {
                     return new Bitmap(Properties.Resources.blackPawn);
                 }
-                else if (aPiece.getPieceType().Equals(Piece.PieceType.ROOK))
+                else if (aPiece.Type.Equals(Piece.Types.ROOK))
                 {
                     return new Bitmap(Properties.Resources.blackRook);
                 }
-                else if (aPiece.getPieceType().Equals(Piece.PieceType.KNIGHT))
+                else if (aPiece.Type.Equals(Piece.Types.KNIGHT))
                 {
                     return new Bitmap(Properties.Resources.blackKinght);
                 }
-                else if (aPiece.getPieceType().Equals(Piece.PieceType.BISHOP))
+                else if (aPiece.Type.Equals(Piece.Types.BISHOP))
                 {
                     return new Bitmap(Properties.Resources.blackBishop);
                 }
-                else if (aPiece.getPieceType().Equals(Piece.PieceType.QUEEN))
+                else if (aPiece.Type.Equals(Piece.Types.QUEEN))
                 {
                     return new Bitmap(Properties.Resources.blackQueen);
                 }
-                else if (aPiece.getPieceType().Equals(Piece.PieceType.KING))
+                else if (aPiece.Type.Equals(Piece.Types.KING))
                 {
                     return new Bitmap(Properties.Resources.blackKing);
                 }
             }
             else
             {
-                if (aPiece.getPieceType().Equals(Piece.PieceType.PAWN))
+                if (aPiece.Type.Equals(Piece.Types.PAWN))
                 {
                     return new Bitmap(Properties.Resources.whitePawn);
                 }
-                else if (aPiece.getPieceType().Equals(Piece.PieceType.ROOK))
+                else if (aPiece.Type.Equals(Piece.Types.ROOK))
                 {
                     return new Bitmap(Properties.Resources.whiteRook);
                 }
-                else if (aPiece.getPieceType().Equals(Piece.PieceType.KNIGHT))
+                else if (aPiece.Type.Equals(Piece.Types.KNIGHT))
                 {
                     return new Bitmap(Properties.Resources.whiteKnight);
                 }
-                else if (aPiece.getPieceType().Equals(Piece.PieceType.BISHOP))
+                else if (aPiece.Type.Equals(Piece.Types.BISHOP))
                 {
                     return new Bitmap(Properties.Resources.whiteBishop);
                 }
-                else if (aPiece.getPieceType().Equals(Piece.PieceType.QUEEN))
+                else if (aPiece.Type.Equals(Piece.Types.QUEEN))
                 {
                     return new Bitmap(Properties.Resources.whiteQueen);
                 }
-                else if (aPiece.getPieceType().Equals(Piece.PieceType.KING))
+                else if (aPiece.Type.Equals(Piece.Types.KING))
                 {
                     return new Bitmap(Properties.Resources.whiteKing);
                 }
