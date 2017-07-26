@@ -39,15 +39,15 @@ namespace ChessAppGDI.New_Code
 
         private void SetViewList()
         {
-            // Boolean[,] boardBoolean = board.GetHasPiece();
-            Square[,] boardPiece = board.GetBoard();
+            Boolean[,] boardBoolean = board.GetHasPiece();
+            Piece[,] boardPiece = board.GetBoard();
             for (int i = 0; i < 8; i++)
             {
                 for (int j = 0; j < 8; j++)
                 {
-                    if (board.GetBoard()[i, j].HasPiece())
+                    if (board.GetHasPiece()[i, j])
                     {
-                        viewBoard[i, j] = new PieceView(board.GetBoard()[i, j].GetPiece());
+                        viewBoard[i, j] = new PieceView(board.GetBoard()[i, j]);
                     }
                 }
             }
@@ -117,7 +117,7 @@ namespace ChessAppGDI.New_Code
             {
                 for(int j = 0; j < 8; j++)
                 {
-                    if(board.GetBoard()[i, j].HasPiece())
+                    if(board.GetHasPiece()[i, j])
                     {
                         Point point = PositionAndPixels.BoardPositionToPixels(new BoardPosition(i, j));
                         Image image = viewBoard[i, j].GetImage();
@@ -130,7 +130,11 @@ namespace ChessAppGDI.New_Code
 
 
 
-        
+
+
+
+
+
 
 
     }

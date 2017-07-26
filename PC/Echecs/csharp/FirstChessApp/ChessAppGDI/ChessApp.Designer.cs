@@ -124,6 +124,7 @@
             this.boardPanel.TabIndex = 2;
             this.boardPanel.Click += new System.EventHandler(this.boardPanel_Click_1);
             this.boardPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.boardPanel_Paint);
+            this.boardPanel.MouseClick += new System.Windows.Forms.MouseEventHandler(this.boardPanel_MouseClick);
             this.boardPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.boardPanel_MouseMove_1);
             // 
             // timer1

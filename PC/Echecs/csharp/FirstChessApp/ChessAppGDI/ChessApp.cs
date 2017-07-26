@@ -20,13 +20,11 @@ namespace ChessAppGDI
         Graphics g = null;
         Font myFont = new Font("Times New Roman", 16);
 
-        ChessBoardView chessGame;
+        ChessGame chessGame;
 
         int mouse_x = 0, mouse_y = 0;
         ArrayList listPiece = new ArrayList();
-
-        Boolean isSelecting = false;
-        BoardPosition selectedPosition;
+        
         
 
         public ChessApp()
@@ -36,7 +34,7 @@ namespace ChessAppGDI
 
             SetDoubleBuffered(tableLayoutPanel1);
             SetDoubleBuffered(boardPanel);
-            chessGame =  new ChessBoardView();
+            chessGame =  new ChessGame();
             
         }
 
@@ -57,32 +55,13 @@ namespace ChessAppGDI
         private void UpdateBoard()
         {
             g.Clear(Color.White);
-            chessGame.DrawGame(g);
+            chessGame.DrawBoard(g);
         }
 
 
         private void boardPanel_Click(object sender, EventArgs e)
         {
-            Point mousePoint = new Point(mouse_x, mouse_y);
-            BoardPosition bp = PositionAndPixels.PixelsToBoardPosition(mousePoint);
-
-            if ((bp.X >= 0) & (bp.X < 8) & (bp.Y >= 0) & (bp.Y < 8))
-            {
-                if (chessGame.GetChessBoard().GetHasPiece()[bp.X, bp.Y] && !isSelecting)
-                {
-                    selectedPosition = new BoardPosition(bp.X, bp.Y);
-                    isSelecting = true;
-                    //  selectedPieceTextBox.Text = game.getBoardPiece()[pt.X, pt.Y].ToString() + " " + game.getBoardPiece()[pt.X, pt.Y].getColor();
-                    selectedPieceTextBox.Text = chessGame.GetChessBoard().GetBoard()[bp.X, bp.Y].ToString();
-                }
-
-
-
-            }
-
-
-
-            Refresh();
+            Console.WriteLine("Click");
         }
 
 
@@ -97,48 +76,7 @@ namespace ChessAppGDI
 
         private void boardPanel_Click_1(object sender, EventArgs e)
         {
-            Point mousePoint = new Point(mouse_x, mouse_y);
-            BoardPosition bp = PositionAndPixels.PixelsToBoardPosition(mousePoint);
-
-            if ((bp.X >= 0) & (bp.X < 8) & (bp.Y >= 0) & (bp.Y < 8))
-            {
-                Console.WriteLine("bp: " + bp.X + " " + bp.Y);
-                if (chessGame.GetChessBoard().GetHasPiece()[bp.X, bp.Y] && !isSelecting)
-                {
-                    Console.WriteLine("Option 1");
-                    selectedPosition = new BoardPosition(bp.X, bp.Y);
-                    isSelecting = true;
-                    selectedPieceTextBox.Text = chessGame.GetChessBoard().GetBoard()[bp.X, bp.Y].ToString() + " " + bp.ToString();
-                }
-                else if (isSelecting && (bp.X == selectedPosition.X) && (bp.Y == selectedPosition.Y))
-                {
-                    Console.WriteLine("Option 2");
-                    selectedPosition = new BoardPosition(-2, -1);
-                    isSelecting = false;
-                    selectedPieceTextBox.Text = " ";
-                }
-                else if (isSelecting &&
-                    chessGame.GetChessBoard().GetHasPiece()[bp.X, bp.Y] &&
-                    chessGame.GetChessBoard().GetBoard()[bp.X, bp.Y].getColor().Equals(ChessBoard.OtherColor(chessGame.GetChessBoard().GetBoard()[selectedPosition.X, selectedPosition.Y].getColor())))
-                {
-                    Console.WriteLine("Option 3");
-                    chessGame.movePiece(selectedPosition, bp);
-                    selectedPosition = new BoardPosition(-2, -1);
-                    isSelecting = false;
-                    selectedPieceTextBox.Text = " ";
-                }
-                else if(isSelecting && !chessGame.GetChessBoard().GetHasPiece()[bp.X, bp.Y])
-                {
-                    Console.WriteLine("Option 4");
-                    chessGame.movePiece(selectedPosition, bp);
-                    selectedPosition = new BoardPosition(-2, -1);
-                    isSelecting = false;
-                    selectedPieceTextBox.Text = " ";
-                }
-
-            }
-
-            Refresh();
+            
         }
 
         private void boardPanel_MouseMove_1(object sender, MouseEventArgs e)
@@ -146,6 +84,25 @@ namespace ChessAppGDI
 
             mouse_x = e.X;
             mouse_y = e.Y;
+        }
+
+        private void boardPanel_MouseClick(object sender, MouseEventArgs e)
+        {
+            Point mousePoint = new Point(mouse_x, mouse_y);
+            BoardPosition bp = PositionAndPixels.PixelsToBoardPosition(mousePoint);
+            if(e.Button == MouseButtons.Right)
+            {
+                chessGame.DiscardPiece();
+            }
+            else
+            {
+                chessGame.MovePiece(bp);
+            }
+
+            selectedPieceTextBox.Text = chessGame.PrintPiece();
+
+
+            Refresh();
         }
 
         protected override CreateParams CreateParams
