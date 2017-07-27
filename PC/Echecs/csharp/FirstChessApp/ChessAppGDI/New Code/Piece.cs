@@ -58,5 +58,15 @@ namespace ChessAppGDI.New_Code
             return aType.ToString();
         }
 
+        public bool IsSameColor(Piece pPiece)
+        {
+            if (this.aColor.Equals(pPiece.aColor))
+            {
+                return true;
+            }
+            return false;
+        }
+
+
     }
 }

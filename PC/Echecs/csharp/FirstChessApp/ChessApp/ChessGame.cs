@@ -239,7 +239,7 @@ namespace ChessApp
                     }
                 }
                 
-                else if (pPiece.GetType().Equals(typeof(Knight)) || pPiece.GetType().Equals(typeof(Queen)))
+                else if (pPiece.GetType().Equals(typeof(Knight)) )
                 {
                     /////////////////////////////////////////////////
                     //

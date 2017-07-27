@@ -10,7 +10,7 @@ namespace ChessAppGDI.New_Code
     public class ChessGame
     {
         ChessBoardView boardView;
-        ChessMecanics chessMecanics;
+        List<BoardPosition> boardList;
 
         Boolean isSelecting = false;
         BoardPosition selectedPosition;
@@ -18,14 +18,7 @@ namespace ChessAppGDI.New_Code
         public ChessGame()
         {
             boardView = new ChessBoardView();
-            chessMecanics = new ChessMecanics();
         }
-
-        public 
-
-
-
-
 
         public void DrawBoard(Graphics g)
         {
@@ -34,36 +27,54 @@ namespace ChessAppGDI.New_Code
 
         public void MovePiece(BoardPosition bp)
         {
+            /*
+            for(int i = 0; i < boardList.Count; i++)
+            {
+                Console.WriteLine(boardList[i].ToString());
+            }
+            */
             if ((bp.X >= 0) & (bp.X < 8) & (bp.Y >= 0) & (bp.Y < 8))
             {
-
                 if (boardView.GetChessBoard().GetBoard()[bp.X, bp.Y].HasPiece() && !isSelecting)
                 {
                     selectedPosition = new BoardPosition(bp.X, bp.Y);
                     isSelecting = true;
+                    boardList = ChessMechanics.AvaiableMoves(bp, boardView);
 
                 }
-                else if (isSelecting && (bp.X == selectedPosition.X) && (bp.Y == selectedPosition.Y))
+                else if (isSelecting)
                 {
-                    selectedPosition = new BoardPosition(-2, -1);
-                    isSelecting = false;
-                    
-                }
-                else if (isSelecting &&
-                    boardView.GetChessBoard().GetBoard()[bp.X, bp.Y].HasPiece() &&
-                    boardView.GetChessBoard().GetBoard()[bp.X, bp.Y].GetPiece().getColor().Equals(ChessBoard.OtherColor(boardView.GetChessBoard().GetBoard()[selectedPosition.X, selectedPosition.Y].GetPiece().getColor())))
-                {
-                    boardView.movePiece(selectedPosition, bp);
-                    selectedPosition = new BoardPosition(-2, -1);
-                    isSelecting = false;
-                    
-                }
-                else if (isSelecting && !boardView.GetChessBoard().GetBoard()[bp.X, bp.Y].HasPiece())
-                {
-                    boardView.movePiece(selectedPosition, bp);
-                    selectedPosition = new BoardPosition(-2, -1);
-                    isSelecting = false;
+                    for (int i = 0; i < boardList.Count; i++)
+                    {
+                        Console.WriteLine(boardList[i].ToString());
+                    }
+                    Console.WriteLine("bp: " + bp);
+                    Console.WriteLine("bp is in the list: " + IsInList(bp, boardList));
+                    if (IsInList(bp, boardList))
+                    {
+                        if ((bp.X == selectedPosition.X) && (bp.Y == selectedPosition.Y))
+                        {
+                            selectedPosition = new BoardPosition(-2, -1);
+                            isSelecting = false;
 
+                        }
+                        else if (boardView.GetChessBoard().GetBoard()[bp.X, bp.Y].HasPiece() &&
+                            boardView.GetChessBoard().GetBoard()[bp.X, bp.Y].GetPiece().getColor().Equals(ChessBoard.OtherColor(boardView.GetChessBoard().GetBoard()[selectedPosition.X, selectedPosition.Y].GetPiece().getColor())))
+                        {
+                            boardView.movePiece(selectedPosition, bp);
+                            selectedPosition = new BoardPosition(-2, -1);
+                            isSelecting = false;
+
+                        }
+                        else if (!boardView.GetChessBoard().GetBoard()[bp.X, bp.Y].HasPiece())
+                        {
+                            boardView.movePiece(selectedPosition, bp);
+                            selectedPosition = new BoardPosition(-2, -1);
+                            isSelecting = false;
+
+                        }
+                    }
+                    
                 }
             }
         }
@@ -85,6 +96,19 @@ namespace ChessAppGDI.New_Code
             return " ";
         }
         
+        public bool IsInList(BoardPosition bp, List<BoardPosition> list)
+        {
+            for(int i = 0; i < list.Count(); i++)
+            {
+                if(bp.IsSamePosition(list[i]))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
     }
 
 }

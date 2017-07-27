@@ -88,9 +88,11 @@ namespace ChessAppGDI
 
         private void boardPanel_MouseClick(object sender, MouseEventArgs e)
         {
+            
             Point mousePoint = new Point(mouse_x, mouse_y);
             BoardPosition bp = PositionAndPixels.PixelsToBoardPosition(mousePoint);
-            if(e.Button == MouseButtons.Right)
+            
+            if (e.Button == MouseButtons.Right)
             {
                 chessGame.DiscardPiece();
             }
@@ -100,7 +102,7 @@ namespace ChessAppGDI
             }
 
             selectedPieceTextBox.Text = chessGame.PrintPiece();
-
+            
 
             Refresh();
         }

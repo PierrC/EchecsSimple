@@ -8,9 +8,6 @@ namespace ChessAppGDI
 {
     public class BoardPosition
     {
-        private int x;
-        private int y;
-
         public BoardPosition()
         {
             Invalid();
@@ -39,7 +36,15 @@ namespace ChessAppGDI
             this.Y = -1;
         }
         
-
+        public bool IsSamePosition(BoardPosition pBp)
+        {
+            if(pBp.X == this.X && pBp.Y == this.Y)
+            {
+                return true;
+            }
+            return false;
+        }
+        
         public override String ToString()
         {
             switch (X)
