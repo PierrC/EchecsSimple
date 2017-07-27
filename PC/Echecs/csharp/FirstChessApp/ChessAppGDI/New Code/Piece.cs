@@ -8,7 +8,7 @@ namespace ChessAppGDI.New_Code
 {
     public class Piece
     {
-        public enum PieceType
+        public enum Types
         {
             PAWN,
             ROOK,
@@ -18,49 +18,51 @@ namespace ChessAppGDI.New_Code
             KING
         }
 
-        public enum Color
+        public enum Colors
         {
             BLACK,
             WHITE,
         }
 
-        PieceType aType { get; set; }
-        Color aColor { get; set; }
+        private Types type;
+        Colors color;
+        public Types Type { get => type; }
+        public Colors Color { get => color; }
 
-        public Piece(PieceType pType, Color pColor)
+        public Piece(Types pType, Colors pColor)
         {
-            aType = pType;
-            aColor = pColor;
+            type = pType;
+            color = pColor;
         }
 
-        public Color getColor()
-        {
-            return aColor;
-        }
+        //public Colors getColor()
+        //{
+        //    return Color;
+        //}
 
-        public void setColor(Color pColor)
-        {
-            aColor = pColor;
-        }
+        //public void setColor(Colors pColor)
+        //{
+        //    Color = pColor;
+        //}
 
-        public PieceType getPieceType()
-        {
-            return aType;
-        }
+        //public Types getPieceType()
+        //{
+        //    return Type;
+        //}
 
-        public void setPieceType(PieceType pPieceType)
-        {
-            aType = pPieceType;
-        }
+        //public void setPieceType(Types pPieceType)
+        //{
+        //    Type = pPieceType;
+        //}
 
-        public override String ToString()
-        {
-            return aType.ToString();
-        }
+        //public override String ToString()
+        //{
+        //    return Type.ToString();
+        //}
 
         public bool IsSameColor(Piece pPiece)
         {
-            if (this.aColor.Equals(pPiece.aColor))
+            if (this.Color == pPiece.Color)
             {
                 return true;
             }

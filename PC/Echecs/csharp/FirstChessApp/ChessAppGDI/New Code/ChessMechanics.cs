@@ -22,27 +22,27 @@ namespace ChessAppGDI.New_Code
                 return boardPositionList;
             }
 
-            if( aPiece.getPieceType() == (Piece.PieceType.ROOK))
+            if( aPiece.Type == Piece.Types.ROOK)
             {
                 boardPositionList.AddRange(GetRookMoves(bp, pChessBoard));
             }
-            else if(aPiece.getPieceType() == Piece.PieceType.KNIGHT)
+            else if(aPiece.Type == Piece.Types.KNIGHT)
             {
                 boardPositionList.AddRange(GetKnightMoves(bp, pChessBoard));
             }
-            else if (aPiece.getPieceType() == Piece.PieceType.BISHOP)
+            else if (aPiece.Type == Piece.Types.BISHOP)
             {
                 boardPositionList.AddRange(GetBishopMoves(bp, pChessBoard));
             }
-            else if (aPiece.getPieceType() == Piece.PieceType.KING)
+            else if (aPiece.Type == Piece.Types.KING)
             {
                 boardPositionList.AddRange(GetKingMoves(bp, pChessBoard));
             }
-            else if (aPiece.getPieceType() == Piece.PieceType.QUEEN)
+            else if (aPiece.Type == Piece.Types.QUEEN)
             {
                 boardPositionList.AddRange(GetQueenMoves(bp, pChessBoard));
             }
-            else if (aPiece.getPieceType() == Piece.PieceType.PAWN)
+            else if (aPiece.Type == Piece.Types.PAWN)
             {
                 boardPositionList.AddRange(GetPawnMoves(bp, pChessBoard));
             }
@@ -63,7 +63,7 @@ namespace ChessAppGDI.New_Code
             // TODO: find a way to make sure the color is not the factor
             // TODO: add the ability to double jump at the begining and the ability 
             // to change pawn into other piece when it reaches the other side of the board
-            if ( p.getColor() == Piece.Color.WHITE)
+            if ( p.Color == Piece.Colors.WHITE)
             {
                 if(j > 0)
                 {

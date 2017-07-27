@@ -13,13 +13,15 @@ namespace ChessAppGDI.New_Code
         public ChessBoard()
         {
             board = new Square[8, 8];
-
-            for(int i = 0; i < 8; i++)
+            bool Dark = false;
+            for (int i = 0; i < 8; i++)
             {
                 for(int j = 0; j < 8; j++)
                 {
-                    board[i,j] = new Square();
+                    board[i,j] = new Square(Dark);
+                    Dark = !Dark;
                 }
+                Dark = !Dark;
             }
         }
 
@@ -28,29 +30,29 @@ namespace ChessAppGDI.New_Code
             // Player 1 is at the bottom
             for (int i = 0; i < 8; i++)
             {
-                board[i, 6].SetPiece( new Piece(Piece.PieceType.PAWN, Piece.Color.WHITE));
+                board[i, 6].SetPiece( new Piece(Piece.Types.PAWN, Piece.Colors.WHITE));
             }
-            board[0, 7].SetPiece(new Piece(Piece.PieceType.ROOK, Piece.Color.WHITE));
-            board[7, 7].SetPiece(new Piece(Piece.PieceType.ROOK, Piece.Color.WHITE));
-            board[1, 7].SetPiece(new Piece(Piece.PieceType.KNIGHT, Piece.Color.WHITE));
-            board[6, 7].SetPiece(new Piece(Piece.PieceType.KNIGHT, Piece.Color.WHITE));
-            board[2, 7].SetPiece(new Piece(Piece.PieceType.BISHOP, Piece.Color.WHITE));
-            board[5, 7].SetPiece(new Piece(Piece.PieceType.BISHOP, Piece.Color.WHITE));
-            board[3, 7].SetPiece(new Piece(Piece.PieceType.QUEEN, Piece.Color.WHITE));
-            board[4, 7].SetPiece(new Piece(Piece.PieceType.KING, Piece.Color.WHITE));
+            board[0, 7].SetPiece(new Piece(Piece.Types.ROOK, Piece.Colors.WHITE));
+            board[7, 7].SetPiece(new Piece(Piece.Types.ROOK, Piece.Colors.WHITE));
+            board[1, 7].SetPiece(new Piece(Piece.Types.KNIGHT, Piece.Colors.WHITE));
+            board[6, 7].SetPiece(new Piece(Piece.Types.KNIGHT, Piece.Colors.WHITE));
+            board[2, 7].SetPiece(new Piece(Piece.Types.BISHOP, Piece.Colors.WHITE));
+            board[5, 7].SetPiece(new Piece(Piece.Types.BISHOP, Piece.Colors.WHITE));
+            board[3, 7].SetPiece(new Piece(Piece.Types.QUEEN, Piece.Colors.WHITE));
+            board[4, 7].SetPiece(new Piece(Piece.Types.KING, Piece.Colors.WHITE));
             // Player 2 is at the top
             for (int i = 0; i < 8; i++)
             {
-                board[i, 1].SetPiece(new Piece(Piece.PieceType.PAWN, Piece.Color.BLACK));
+                board[i, 1].SetPiece(new Piece(Piece.Types.PAWN, Piece.Colors.BLACK));
             }
-            board[0, 0].SetPiece(new Piece(Piece.PieceType.ROOK, Piece.Color.BLACK));
-            board[7, 0].SetPiece(new Piece(Piece.PieceType.ROOK, Piece.Color.BLACK));
-            board[1, 0].SetPiece(new Piece(Piece.PieceType.KNIGHT, Piece.Color.BLACK));
-            board[6, 0].SetPiece(new Piece(Piece.PieceType.KNIGHT, Piece.Color.BLACK));
-            board[2, 0].SetPiece(new Piece(Piece.PieceType.BISHOP, Piece.Color.BLACK));
-            board[5, 0].SetPiece(new Piece(Piece.PieceType.BISHOP, Piece.Color.BLACK));
-            board[3, 0].SetPiece(new Piece(Piece.PieceType.QUEEN, Piece.Color.BLACK));
-            board[4, 0].SetPiece(new Piece(Piece.PieceType.KING, Piece.Color.BLACK));
+            board[0, 0].SetPiece(new Piece(Piece.Types.ROOK, Piece.Colors.BLACK));
+            board[7, 0].SetPiece(new Piece(Piece.Types.ROOK, Piece.Colors.BLACK));
+            board[1, 0].SetPiece(new Piece(Piece.Types.KNIGHT, Piece.Colors.BLACK));
+            board[6, 0].SetPiece(new Piece(Piece.Types.KNIGHT, Piece.Colors.BLACK));
+            board[2, 0].SetPiece(new Piece(Piece.Types.BISHOP, Piece.Colors.BLACK));
+            board[5, 0].SetPiece(new Piece(Piece.Types.BISHOP, Piece.Colors.BLACK));
+            board[3, 0].SetPiece(new Piece(Piece.Types.QUEEN, Piece.Colors.BLACK));
+            board[4, 0].SetPiece(new Piece(Piece.Types.KING, Piece.Colors.BLACK));
         }
 
         public Square[,] GetBoard()
@@ -58,15 +60,15 @@ namespace ChessAppGDI.New_Code
             return board;
         }
         
-        public static Piece.Color OtherColor(Piece.Color pColor)
+        public static Piece.Colors OtherColor(Piece.Colors pColor)
         {
-            if (pColor.Equals(Piece.Color.WHITE))
+            if (pColor.Equals(Piece.Colors.WHITE))
             {
-                return Piece.Color.BLACK;
+                return Piece.Colors.BLACK;
             }
             else
             {
-                return Piece.Color.WHITE;
+                return Piece.Colors.WHITE;
             }
         }
 

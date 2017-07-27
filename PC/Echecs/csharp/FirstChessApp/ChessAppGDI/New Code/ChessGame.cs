@@ -59,7 +59,7 @@ namespace ChessAppGDI.New_Code
 
                         }
                         else if (boardView.GetChessBoard().GetBoard()[bp.X, bp.Y].HasPiece() &&
-                            boardView.GetChessBoard().GetBoard()[bp.X, bp.Y].GetPiece().getColor().Equals(ChessBoard.OtherColor(boardView.GetChessBoard().GetBoard()[selectedPosition.X, selectedPosition.Y].GetPiece().getColor())))
+                            boardView.GetChessBoard().GetBoard()[bp.X, bp.Y].GetPiece().Color.Equals(ChessBoard.OtherColor(boardView.GetChessBoard().GetBoard()[selectedPosition.X, selectedPosition.Y].GetPiece().Color)))
                         {
                             boardView.movePiece(selectedPosition, bp);
                             selectedPosition = new BoardPosition(-2, -1);

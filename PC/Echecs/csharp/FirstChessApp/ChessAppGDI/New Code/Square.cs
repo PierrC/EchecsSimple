@@ -9,13 +9,16 @@ namespace ChessAppGDI.New_Code
 {
     public class Square
     {
-        Piece piece;
-        bool hasPiece;
+        private Boolean isDark;
 
-        public Square()
+        Piece piece;
+
+        public bool IsDark { get => isDark; }
+
+        public Square(bool isdark)
         {
             piece = null;
-            hasPiece = false;
+            isDark = isdark;
         }
 
         public Piece GetPiece()
@@ -25,27 +28,24 @@ namespace ChessAppGDI.New_Code
 
         public bool HasPiece()
         {
-            return hasPiece;
+            return piece == null;
         }
 
         public void SetPiece(Piece pPiece)
         {
             piece = pPiece;
-            if (!pPiece.Equals(null))
-            {
-                hasPiece = true;
-            }
         }
 
         public void RemovePiece()
         {
-            piece = null;
-            hasPiece = false;
+            SetPiece(null);
         }
 
         public override string ToString()
         {
-            return piece.ToString();
+            if (piece == null)
+                return piece.ToString();
+            return "";
         }
 
 
