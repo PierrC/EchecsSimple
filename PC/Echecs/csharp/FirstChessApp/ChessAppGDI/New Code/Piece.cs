@@ -35,31 +35,6 @@ namespace ChessAppGDI.New_Code
             color = pColor;
         }
 
-        //public Colors getColor()
-        //{
-        //    return Color;
-        //}
-
-        //public void setColor(Colors pColor)
-        //{
-        //    Color = pColor;
-        //}
-
-        //public Types getPieceType()
-        //{
-        //    return Type;
-        //}
-
-        //public void setPieceType(Types pPieceType)
-        //{
-        //    Type = pPieceType;
-        //}
-
-        //public override String ToString()
-        //{
-        //    return Type.ToString();
-        //}
-
         public bool IsSameColor(Piece pPiece)
         {
             if (this.Color == pPiece.Color)

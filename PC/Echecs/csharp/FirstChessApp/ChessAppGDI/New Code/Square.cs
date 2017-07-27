@@ -28,7 +28,7 @@ namespace ChessAppGDI.New_Code
 
         public bool HasPiece()
         {
-            return piece == null;
+            return piece != null;
         }
 
         public void SetPiece(Piece pPiece)
