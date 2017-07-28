@@ -11,11 +11,13 @@ namespace ChessAppGDI.New_Code
     {
         Piece aPiece;
         Image aImage;
+        bool hasMoved;
 
         public PieceView(Piece pPiece)
         {
             aPiece = pPiece;
             aImage = SetImage();
+            hasMoved = false;
         }
 
         private Image SetImage()
@@ -87,6 +89,15 @@ namespace ChessAppGDI.New_Code
             return aImage;
         }
 
+        public bool GetHasMoved()
+        {
+            return hasMoved;
+        }
+
+        public void HasMoved()
+        {
+            hasMoved = true;
+        }
 
         public void drawImage(Graphics g, Point position)
         {

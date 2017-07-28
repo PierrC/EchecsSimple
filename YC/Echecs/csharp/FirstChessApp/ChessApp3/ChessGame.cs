@@ -16,6 +16,7 @@ namespace ChessApp3
         private Piece SelectedPiece_;
 
 
+
         public Chessboard Board { get => Board_; }
         public PieceSet BlackPieces { get => BlackPieces_; }
         public PieceSet WhitePieces { get => WhitePieces_; }

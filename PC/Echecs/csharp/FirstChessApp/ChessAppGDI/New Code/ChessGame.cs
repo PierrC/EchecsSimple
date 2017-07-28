@@ -15,6 +15,8 @@ namespace ChessAppGDI.New_Code
         Boolean isSelecting = false;
         BoardPosition selectedPosition;
 
+        Piece convertPiece;
+
         public ChessGame()
         {
             boardView = new ChessBoardView();
@@ -27,12 +29,6 @@ namespace ChessAppGDI.New_Code
 
         public void MovePiece(BoardPosition bp)
         {
-            /*
-            for(int i = 0; i < boardList.Count; i++)
-            {
-                Console.WriteLine(boardList[i].ToString());
-            }
-            */
             if ((bp.X >= 0) & (bp.X < 8) & (bp.Y >= 0) & (bp.Y < 8))
             {
                 if (boardView.GetChessBoard().GetBoard()[bp.X, bp.Y].HasPiece() && !isSelecting)
@@ -44,19 +40,12 @@ namespace ChessAppGDI.New_Code
                 }
                 else if (isSelecting)
                 {
-                    for (int i = 0; i < boardList.Count; i++)
-                    {
-                        Console.WriteLine(boardList[i].ToString());
-                    }
-                    Console.WriteLine("bp: " + bp);
-                    Console.WriteLine("bp is in the list: " + IsInList(bp, boardList));
                     if (IsInList(bp, boardList))
                     {
                         if ((bp.X == selectedPosition.X) && (bp.Y == selectedPosition.Y))
                         {
                             selectedPosition = new BoardPosition(-2, -1);
                             isSelecting = false;
-
                         }
                         else if (boardView.GetChessBoard().GetBoard()[bp.X, bp.Y].HasPiece() &&
                             boardView.GetChessBoard().GetBoard()[bp.X, bp.Y].GetPiece().Color.Equals(ChessBoard.OtherColor(boardView.GetChessBoard().GetBoard()[selectedPosition.X, selectedPosition.Y].GetPiece().Color)))
@@ -64,17 +53,14 @@ namespace ChessAppGDI.New_Code
                             boardView.movePiece(selectedPosition, bp);
                             selectedPosition = new BoardPosition(-2, -1);
                             isSelecting = false;
-
                         }
                         else if (!boardView.GetChessBoard().GetBoard()[bp.X, bp.Y].HasPiece())
                         {
                             boardView.movePiece(selectedPosition, bp);
                             selectedPosition = new BoardPosition(-2, -1);
                             isSelecting = false;
-
                         }
                     }
-                    
                 }
             }
         }
@@ -83,7 +69,6 @@ namespace ChessAppGDI.New_Code
         {
             isSelecting = false;
             selectedPosition = new BoardPosition(-2, -1);
-
         }
 
         public String PrintPiece()
@@ -108,6 +93,18 @@ namespace ChessAppGDI.New_Code
 
             return false;
         }
+        
+        public void SetConvertPiece(Piece pPiece)
+        {
+            convertPiece = pPiece;
+
+        }
+
+        public void ReplacePawn(BoardPosition bp)
+        {
+            boardView.GetViewBoard()[bp.X, bp.Y] = new PieceView(convertPiece);
+        }
+
 
     }
 

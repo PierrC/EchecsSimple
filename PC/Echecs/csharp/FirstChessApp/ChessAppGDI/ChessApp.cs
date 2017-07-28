@@ -20,7 +20,10 @@ namespace ChessAppGDI
         Graphics g = null;
         Font myFont = new Font("Times New Roman", 16);
 
+
         ChessGame chessGame;
+        Piece ConvertPiece = new Piece(Piece.Types.PAWN, Piece.Colors.WHITE);
+
 
         int mouse_x = 0, mouse_y = 0;
         ArrayList listPiece = new ArrayList();
@@ -37,10 +40,7 @@ namespace ChessAppGDI
             chessGame =  new ChessGame();
             
         }
-
-        private void boardPanel_MouseMove(object sender, MouseEventArgs e)
-        {
-        }
+        
 
         private void boardPanel_Paint(object sender, PaintEventArgs e)
         {
@@ -58,12 +58,7 @@ namespace ChessAppGDI
             chessGame.DrawBoard(g);
         }
 
-
-        private void boardPanel_Click(object sender, EventArgs e)
-        {
-            Console.WriteLine("Click");
-        }
-
+       
 
 
         public static void SetDoubleBuffered(System.Windows.Forms.Control c)
@@ -73,11 +68,7 @@ namespace ChessAppGDI
             System.Reflection.PropertyInfo aProp = typeof(System.Windows.Forms.Control).GetProperty("DoubleBuffered", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
             aProp.SetValue(c, true, null);
         }
-
-        private void boardPanel_Click_1(object sender, EventArgs e)
-        {
-            
-        }
+        
 
         private void boardPanel_MouseMove_1(object sender, MouseEventArgs e)
         {
@@ -88,7 +79,8 @@ namespace ChessAppGDI
 
         private void boardPanel_MouseClick(object sender, MouseEventArgs e)
         {
-            
+
+            /*
             Point mousePoint = new Point(mouse_x, mouse_y);
             BoardPosition bp = PositionAndPixels.PixelsToBoardPosition(mousePoint);
             
@@ -102,9 +94,42 @@ namespace ChessAppGDI
             }
 
             selectedPieceTextBox.Text = chessGame.PrintPiece();
-            
-
+            */
             Refresh();
+        }
+
+        private void choseButton_Click(object sender, EventArgs e)
+        {
+
+            foreach (object itemChecked in checkedListBox1.CheckedItems)
+            {
+
+                if (checkedListBox1.GetItemChecked(checkedListBox1.Items.IndexOf(itemChecked)))
+                {
+                    checkedListBox1.GetItemChecked(checkedListBox1.Items.IndexOf(itemChecked));
+                    int i = checkedListBox1.Items.IndexOf(itemChecked);
+                    switch (i)
+                    {
+                        case 0:
+                            chessGame.SetConvertPiece(new Piece(Piece.Types.BISHOP, Piece.Colors.WHITE));
+                            break;
+                        case 1:
+                            chessGame.SetConvertPiece(new Piece(Piece.Types.KNIGHT, Piece.Colors.WHITE));
+                            break;
+                        case 2:
+                            chessGame.SetConvertPiece(new Piece(Piece.Types.QUEEN, Piece.Colors.WHITE));
+                            break;
+                        case 3:
+                            chessGame.SetConvertPiece(new Piece(Piece.Types.QUEEN, Piece.Colors.WHITE));
+                            break;
+                        default:
+                            chessGame.SetConvertPiece(new Piece(Piece.Types.BISHOP, Piece.Colors.WHITE));
+                            break;
+                    }
+                }
+
+            }
+            
         }
 
         protected override CreateParams CreateParams
@@ -116,117 +141,7 @@ namespace ChessAppGDI
                 return cp;
             }
         }
-
-
-
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                
-        /*
-        /// All variable
-        /// 
-
         
-        
-        
-        // testing 
-        private void boardPanel_DoubleClick(object sender, EventArgs e)
-        {
-
-        }
-
-        private void player1WhiteToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            game = new ChessGame(Piece.Color.WHITE);
-            UpdateBoard();
-        }
-
-        private void player1BlackToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            game = new ChessGame(Piece.Color.BLACK);
-            UpdateBoard();
-        }
-
-        private void boardPanel_Click(object sender, EventArgs e)
-        {
-            Point pt = selectSquare(mouse_x, mouse_y);
-            if ((pt.X >= 0) & (pt.X < 8) & (pt.Y >= 0) & (pt.Y < 8))
-            {
-                if (game.getBoardHasPiece()[pt.X, pt.Y] && !isSelecting)
-                {
-                    selected_x = pt.X;
-                    selected_y = pt.Y;
-                    isSelecting = true;
-                    //  selectedPieceTextBox.Text = game.getBoardPiece()[pt.X, pt.Y].ToString() + " " + game.getBoardPiece()[pt.X, pt.Y].getColor();
-                    selectedPieceTextBox.Text = game.getBoardPiece()[pt.X, pt.Y].ToString();
-                }
-                else if (isSelecting && (pt.X == selected_x) && (pt.Y == selected_y))
-                {
-                    selected_x = -1;
-                    selected_y = -1;
-                    isSelecting = false;
-                    selectedPieceTextBox.Text = " ";
-                }
-                else if (game.getBoardHasPiece()[pt.X, pt.Y] && 
-                    game.getBoardPiece()[pt.X, pt.Y].getColor().Equals( ChessGame.OtherColor( game.getBoardPiece()[selected_x, selected_y].getColor()) ) 
-                    && isSelecting)
-                {
-                    game.movePiece(game.getBoardPiece()[selected_x, selected_y], pt);
-                    selected_x = -1;
-                    selected_y = -1;
-                    isSelecting = false;
-                    selectedPieceTextBox.Text = " ";
-                }
-                else if (!game.getBoardHasPiece()[pt.X, pt.Y] && isSelecting)
-                {
-                    game.movePiece(game.getBoardPiece()[selected_x, selected_y], pt);
-                    selected_x = -1;
-                    selected_y = -1;
-                    isSelecting = false;
-                    selectedPieceTextBox.Text = " ";
-                }
-            }
-            UpdateBoard();
-            Console.WriteLine("Mouse Point x: " + pt.X + " y: " + pt.Y);
-
-        }
-
-        
-        
-
-
-        private static void PiecePlacement(Piece p)
-        {
-            
-            Point pt = p.GetPoint();
-
-            int x = (pt.X - (square / 2)) / square;
-            x = Math.Min(x * square, square * 8);
-            x += square / 2;
-
-            int y = (pt.Y - (square / 2)) / square;
-            y = Math.Min(y * square, square * 8);
-            y += square / 2;
-
-            p.SetPoint(new Point (x, y));
-        }
-
-        private static Point PlacePieceOnBoard(Piece p)
-        {
-            Point pt = p.GetPoint();
-            return new Point((square / 2) + pt.X * square, (square / 2) + pt.Y * square);
-        }
-        private Point selectSquare(int x, int y)
-        {
-            x = (x - (square / 2)) / square;
-            y = (y - (square / 2)) / square;
-
-            return new Point(x, y);
-        }
-
-       
-    */
 
     }
 

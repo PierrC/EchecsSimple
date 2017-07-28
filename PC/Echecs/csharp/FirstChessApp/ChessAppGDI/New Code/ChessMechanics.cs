@@ -57,6 +57,7 @@ namespace ChessAppGDI.New_Code
             boardPositionList.Add(bp);
             Piece p = pChessBoard.GetChessBoard().GetBoard()[bp.X, bp.Y].GetPiece();
 
+            
             int i = bp.X;
             int j = bp.Y;
             // Right now white is assumed to be at the bottom of the board 
@@ -67,6 +68,14 @@ namespace ChessAppGDI.New_Code
             {
                 if(j > 0)
                 {
+                    if (j > 1)
+                    {
+                        if (!(pChessBoard.GetViewBoard()[i, j]).GetHasMoved()
+                            && !pChessBoard.GetChessBoard().GetBoard()[i, j - 2].HasPiece())
+                        {
+                            boardPositionList.Add(new BoardPosition(i, j - 2));
+                        }
+                    }
                     j--;
                     if (!pChessBoard.GetChessBoard().GetBoard()[i, j].HasPiece())
                     {
@@ -86,9 +95,9 @@ namespace ChessAppGDI.New_Code
                     i = bp.X;
 
                     
-                    i++;
                     if (i < 7)
                     {
+                        i++;
                         if (pChessBoard.GetChessBoard().GetBoard()[i, j].HasPiece())
                         {
                             if (!p.IsSameColor(pChessBoard.GetChessBoard().GetBoard()[i, j].GetPiece()))
@@ -106,6 +115,15 @@ namespace ChessAppGDI.New_Code
             {
                 if (j < 7)
                 {
+                    if (j < 6)
+                    {
+                        if (!(pChessBoard.GetViewBoard()[i, j]).GetHasMoved()
+                            && !pChessBoard.GetChessBoard().GetBoard()[i, j + 2].HasPiece())
+                        {
+                            boardPositionList.Add(new BoardPosition(i, j + 2));
+                        }
+                    }
+
                     j++;
                     if (!pChessBoard.GetChessBoard().GetBoard()[i, j].HasPiece())
                     {
@@ -137,13 +155,144 @@ namespace ChessAppGDI.New_Code
                 }
             }
 
+
             return boardPositionList;
         }
 
         private static List<BoardPosition> GetKingMoves(BoardPosition bp, ChessBoardView pChessBoard)
         {
+            List<BoardPosition> boardPositionList = new List<BoardPosition>();
+            boardPositionList.Add(bp);
+            Piece p = pChessBoard.GetChessBoard().GetBoard()[bp.X, bp.Y].GetPiece();
 
-            return null;
+            int i = bp.X;
+            int j = bp.Y;
+            ///////////////
+            if (i >= 1)
+            {
+                if (j >= 1)
+                {
+                    if (!pChessBoard.GetChessBoard().GetBoard()[i - 1, j - 1].HasPiece())
+                    {
+                        boardPositionList.Add(new BoardPosition(i - 1, j - 1));
+                    }
+                    else
+                    {
+                        if (!p.IsSameColor(pChessBoard.GetChessBoard().GetBoard()[i - 1, j - 1].GetPiece()))
+                        {
+                            boardPositionList.Add(new BoardPosition(i - 1, j - 1));
+                        }
+
+                    }
+                }
+
+                if (!pChessBoard.GetChessBoard().GetBoard()[i - 1 , j].HasPiece())
+                {
+                    boardPositionList.Add(new BoardPosition(i - 1, j));
+                }
+                else
+                {
+                    if (!p.IsSameColor(pChessBoard.GetChessBoard().GetBoard()[i - 1, j + 1].GetPiece()))
+                    {
+                        boardPositionList.Add(new BoardPosition(i - 1, j + 1));
+                    }
+
+                }
+
+                if (j <= 6)
+                {
+                    if (!pChessBoard.GetChessBoard().GetBoard()[i - 1, j + 1].HasPiece())
+                    {
+                        boardPositionList.Add(new BoardPosition(i - 1, j + 1));
+                    }
+                    else
+                    {
+                        if (!p.IsSameColor(pChessBoard.GetChessBoard().GetBoard()[i - 1, j + 1].GetPiece()))
+                        {
+                            boardPositionList.Add(new BoardPosition(i - 1, j + 1));
+                        }
+
+                    }
+                }
+            }
+            if (j >= 1)
+            {
+                if (!pChessBoard.GetChessBoard().GetBoard()[i, j - 1].HasPiece())
+                {
+                    boardPositionList.Add(new BoardPosition(i, j - 1));
+                }
+                else
+                {
+                    if (!p.IsSameColor(pChessBoard.GetChessBoard().GetBoard()[i, j - 1].GetPiece()))
+                    {
+                        boardPositionList.Add(new BoardPosition(i, j - 1));
+                    }
+
+                }
+            }
+            if (j <= 6)
+            {
+                if (!pChessBoard.GetChessBoard().GetBoard()[i, j + 1].HasPiece())
+                {
+                    boardPositionList.Add(new BoardPosition(i, j + 1));
+                }
+                else
+                {
+                    if (!p.IsSameColor(pChessBoard.GetChessBoard().GetBoard()[i, j + 1].GetPiece()))
+                    {
+                        boardPositionList.Add(new BoardPosition(i, j + 1));
+                    }
+
+                }
+            }
+            if (i <= 6)
+            {
+                if (j >= 1)
+                {
+                    if (!pChessBoard.GetChessBoard().GetBoard()[i + 1, j - 1].HasPiece())
+                    {
+                        boardPositionList.Add(new BoardPosition(i + 1, j - 1));
+                    }
+                    else
+                    {
+                        if (!p.IsSameColor(pChessBoard.GetChessBoard().GetBoard()[i + 1, j - 1].GetPiece()))
+                        {
+                            boardPositionList.Add(new BoardPosition(i + 1, j - 1));
+                        }
+
+                    }
+                }
+
+                if (!pChessBoard.GetChessBoard().GetBoard()[i + 1, j].HasPiece())
+                {
+                    boardPositionList.Add(new BoardPosition(i + 1, j));
+                }
+                else
+                {
+                    if (!p.IsSameColor(pChessBoard.GetChessBoard().GetBoard()[i + 1, j + 1].GetPiece()))
+                    {
+                        boardPositionList.Add(new BoardPosition(i + 1, j + 1));
+                    }
+
+                }
+
+                if (j <= 6)
+                {
+                    if (!pChessBoard.GetChessBoard().GetBoard()[i + 1, j + 1].HasPiece())
+                    {
+                        boardPositionList.Add(new BoardPosition(i + 1, j + 1));
+                    }
+                    else
+                    {
+                        if (!p.IsSameColor(pChessBoard.GetChessBoard().GetBoard()[i + 1, j + 1].GetPiece()))
+                        {
+                            boardPositionList.Add(new BoardPosition(i + 1, j + 1));
+                        }
+
+                    }
+                }
+            }
+            return boardPositionList;
         }
 
         private static List<BoardPosition> GetQueenMoves(BoardPosition bp, ChessBoardView pChessBoard)
@@ -322,8 +471,7 @@ namespace ChessAppGDI.New_Code
                     boardPositionList.Add(new BoardPosition(i, j));
                 }
             }
-            j = bp.X;
-            i = bp.Y;
+            
             return boardPositionList;
         }
 
@@ -463,9 +611,7 @@ namespace ChessAppGDI.New_Code
                     boardPositionList.Add(new BoardPosition(i - 2, j - 1));
                 }
             }
-
             return boardPositionList;
-        
         }
 
         

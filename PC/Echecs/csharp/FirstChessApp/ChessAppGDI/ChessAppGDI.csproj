@@ -61,6 +61,7 @@
     <Compile Include="ChessApp.Designer.cs">
       <DependentUpon>ChessApp.cs</DependentUpon>
     </Compile>
+    <Compile Include="New Code\PieceViewMoved.cs" />
     <Compile Include="New Code\PositionAndPixels.cs" />
     <Compile Include="New Code\Program.cs" />
     <Compile Include="New Code\Square.cs" />

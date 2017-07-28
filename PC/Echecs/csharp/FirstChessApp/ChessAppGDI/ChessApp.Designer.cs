@@ -39,6 +39,9 @@
             this.selectedPieceTextBox = new System.Windows.Forms.TextBox();
             this.boardPanel = new System.Windows.Forms.Panel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
+            this.choseButton = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -100,6 +103,8 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.choseButton);
+            this.panel2.Controls.Add(this.checkedListBox1);
             this.panel2.Controls.Add(this.selectedPieceTextBox);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(432, 3);
@@ -122,7 +127,6 @@
             this.boardPanel.Name = "boardPanel";
             this.boardPanel.Size = new System.Drawing.Size(423, 432);
             this.boardPanel.TabIndex = 2;
-            this.boardPanel.Click += new System.EventHandler(this.boardPanel_Click_1);
             this.boardPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.boardPanel_Paint);
             this.boardPanel.MouseClick += new System.Windows.Forms.MouseEventHandler(this.boardPanel_MouseClick);
             this.boardPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.boardPanel_MouseMove_1);
@@ -131,6 +135,35 @@
             // 
             this.timer1.Enabled = true;
             this.timer1.Interval = 80;
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
+            // 
+            // checkedListBox1
+            // 
+            this.checkedListBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkedListBox1.FormattingEnabled = true;
+            this.checkedListBox1.Items.AddRange(new object[] {
+            "Bishop",
+            "Knight",
+            "Queen",
+            "Rook"});
+            this.checkedListBox1.Location = new System.Drawing.Point(3, 299);
+            this.checkedListBox1.Name = "checkedListBox1";
+            this.checkedListBox1.Size = new System.Drawing.Size(115, 124);
+            this.checkedListBox1.TabIndex = 1;
+            // 
+            // choseButton
+            // 
+            this.choseButton.Location = new System.Drawing.Point(18, 270);
+            this.choseButton.Name = "choseButton";
+            this.choseButton.Size = new System.Drawing.Size(75, 23);
+            this.choseButton.TabIndex = 2;
+            this.choseButton.Text = "Chose Piece";
+            this.choseButton.UseVisualStyleBackColor = true;
+            this.choseButton.Click += new System.EventHandler(this.choseButton_Click);
             // 
             // ChessApp
             // 
@@ -167,6 +200,9 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.TextBox selectedPieceTextBox;
         private System.Windows.Forms.Panel boardPanel;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.CheckedListBox checkedListBox1;
+        private System.Windows.Forms.Button choseButton;
     }
 }
 
