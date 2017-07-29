@@ -15,12 +15,7 @@ namespace ChessApp3
         private BufferedGraphicsContext context;
         private BufferedGraphics grafx = null;
 
-        //private byte bufferingMode;
-        //private string[] bufferingModeStrings =
-        //    { "Draw to Form without OptimizedDoubleBufferring control style",
-        //  "Draw to Form using OptimizedDoubleBuffering control style",
-        //  "Draw to HDC for form" };
-
+        private ChessGame Game_;
         private ChessGameView GameView_;
         private PositionPixel PosPix_;
 
@@ -30,12 +25,15 @@ namespace ChessApp3
             set
             {
                 GameView_ = value;
+                if (GameView_ != null) 
+                GameView_.Pixel2Position = PosPix;
                 if (grafx != null)
                 DrawToBuffer(grafx.Graphics, true);
             }
         }
 
         public PositionPixel PosPix { get => PosPix_; set => PosPix_ = value; }
+        public ChessGame Game { get => Game_; set => Game_ = value; }
 
         public RenderAreaControl()
         {
@@ -46,10 +44,10 @@ namespace ChessApp3
 
         void InitializeRendering()
         {
+            Game = null;
             GameView = null;
             PosPix_ = new PositionPixel();
             PosPix.PixelDimension = Math.Min(this.Width, this.Height);
-
             // 
             // DoubleBufferedForm
             // 
@@ -105,7 +103,8 @@ namespace ChessApp3
                 new Rectangle(0, 0, this.Width, this.Height));
 
             PosPix.PixelDimension = Math.Min(this.Width, this.Height);
-
+            if (GameView != null)
+                GameView.Graphix = grafx.Graphics;
             // Cause the background to be cleared and redraw.
             DrawToBuffer(grafx.Graphics, true);
             this.Refresh();
@@ -120,14 +119,16 @@ namespace ChessApp3
             }
 
             if (GameView != null)
-                GameView.DrawGame(g, PosPix);
+                GameView.DrawGame();
             else
             {
                 //Crerate a temporary Game and Gameview to get some feedback in the Designer
                 ChessGame tempGame = new ChessGame();
                 ChessGameView tempView = new ChessGameView(tempGame);
                 grafx.Graphics.FillRectangle(Brushes.White, 0, 0, this.Width, this.Height);
-                tempView.DrawGame(g, PosPix);
+                tempView.Pixel2Position = PosPix;
+                tempView.Graphix = grafx.Graphics;
+                tempView.DrawGame();
                 // then tempGame and tempView should be garbage collected
             }
         }
@@ -135,6 +136,31 @@ namespace ChessApp3
         protected override void OnPaint(PaintEventArgs e)
         {
             grafx.Render(e.Graphics);
+        }
+
+        private void OnClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void OnMouseDown(object sender, MouseEventArgs e)
+        {
+            if (Game != null)
+            {
+                int rowPixel = e.X;
+                int ColumnPix = e.Y;
+                Position SelectedSquarePosition = PosPix.GetPostionFromPoint(rowPixel, ColumnPix);
+                if (SelectedSquarePosition.IsValid)
+                {
+                    Game.OnSquareSelection(SelectedSquarePosition);
+                    //Console.WriteLine("SelectedSquare "
+                    //    + SelectedSquarePosition.Row.ToString()
+                    //    + " "
+                    //    + SelectedSquarePosition.Column.ToString());
+                }
+                else
+                    System.Diagnostics.Debug.WriteLine("Invalid Pick");
+            }
         }
     }
 }

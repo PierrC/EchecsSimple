@@ -26,6 +26,8 @@ namespace ChessApp3
         {
             Game_ = new ChessGame();
             GameView_ = new ChessGameView(Game);
+            Game.Changed += new EventHandler(GameView.GameChanged);
+            renderAreaControl1.Game = this.Game;
             renderAreaControl1.GameView = this.GameView;
 
         }

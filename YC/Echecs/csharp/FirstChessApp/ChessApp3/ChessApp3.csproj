@@ -55,6 +55,7 @@
       <DependentUpon>ChessAppMainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="PieceSet.cs" />
+    <Compile Include="PieceSteps.cs" />
     <Compile Include="PositionPixel.cs" />
     <Compile Include="RenderAreaControl.cs">
       <SubType>UserControl</SubType>

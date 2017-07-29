@@ -34,5 +34,12 @@ namespace ChessApp3
                 Dark = !Dark;
             }
         }
+
+        public Square GetSquare(Position IPos)
+        {
+            if (!IPos.IsValid)
+                return null;
+            return Squares[IPos.Row, IPos.Column];
+        }
     }
 }
