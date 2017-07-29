@@ -15,7 +15,7 @@ namespace ChessAppGDI.New_Code
         Boolean isSelecting = false;
         BoardPosition selectedPosition;
 
-        Piece convertPiece;
+        // Piece convertPiece;
 
         public ChessGame()
         {
@@ -75,7 +75,7 @@ namespace ChessAppGDI.New_Code
         {
             if (isSelecting)
             {
-                return boardView.GetChessBoard().GetBoard()[selectedPosition.X, selectedPosition.Y].ToString() + selectedPosition.ToString();
+                return boardView.GetChessBoard().GetBoard()[selectedPosition.X, selectedPosition.Y].ToString() + " " + selectedPosition.ToString();
             }
 
             return " ";
@@ -96,15 +96,13 @@ namespace ChessAppGDI.New_Code
         
         public void SetConvertPiece(Piece pPiece)
         {
-            convertPiece = pPiece;
-
+            boardView.SetReplacePiece( pPiece);
         }
-
-        public void ReplacePawn(BoardPosition bp)
+        
+        public ChessBoardView getChessBoardView()
         {
-            boardView.GetViewBoard()[bp.X, bp.Y] = new PieceView(convertPiece);
+            return boardView;
         }
-
 
     }
 

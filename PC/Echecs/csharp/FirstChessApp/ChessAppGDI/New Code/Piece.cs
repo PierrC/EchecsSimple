@@ -44,6 +44,10 @@ namespace ChessAppGDI.New_Code
             return false;
         }
 
+        public override String ToString()
+        {
+            return Type.ToString();
+        }
 
     }
 }

@@ -46,7 +46,10 @@ namespace ChessAppGDI.New_Code
             {
                 boardPositionList.AddRange(GetPawnMoves(bp, pChessBoard));
             }
-
+            for (int i = 0; i < boardPositionList.Count; i++)
+            {
+                Console.WriteLine(boardPositionList[i].ToString());
+            }
 
             return boardPositionList;
         }
@@ -301,7 +304,15 @@ namespace ChessAppGDI.New_Code
             boardPositionList.Add(bp);
             Piece p = pChessBoard.GetChessBoard().GetBoard()[bp.X, bp.Y].GetPiece();
             boardPositionList.AddRange(GetRookMoves(bp, pChessBoard));
+            for (int i = 0; i < boardPositionList.Count; i++)
+            {
+             //   Console.WriteLine("Rook moves:" + boardPositionList[i].ToString());
+            }
             boardPositionList.AddRange(GetBishopMoves(bp, pChessBoard));
+            for(int i = 0; i < boardPositionList.Count ; i++)
+            {
+              //  Console.WriteLine(boardPositionList[i].ToString());
+            }
             return boardPositionList;
         }
 
@@ -392,12 +403,63 @@ namespace ChessAppGDI.New_Code
             return boardPositionList;
         }
 
-        private static List<BoardPosition> GetRookMoves(BoardPosition bp, ChessBoardView pChessBoard)
+        private static List<BoardPosition> GetRookMoves2(BoardPosition bp, ChessBoardView pChessBoard)
         {
+            Console.WriteLine("bp is: " + bp.ToString());
             List<BoardPosition> boardPositionList = new List<BoardPosition>();
             boardPositionList.Add(bp);
             Piece p = pChessBoard.GetChessBoard().GetBoard()[bp.X, bp.Y].GetPiece();
 
+            int i = bp.X;
+            int j = bp.Y;
+
+
+
+            while (j < 7)
+            {
+                j++;
+                if (pChessBoard.GetChessBoard().GetBoard()[i, j].HasPiece())
+                {
+                    if (!p.IsSameColor(pChessBoard.GetChessBoard().GetBoard()[i, j].GetPiece()))
+                    {
+                        boardPositionList.Add(new BoardPosition(i, j));
+                    }
+                    break;
+                }
+                else
+                {
+                    boardPositionList.Add(new BoardPosition(i, j));
+                }
+            }
+            j = bp.X;
+            i = bp.Y;
+            while (j > 0)
+            {
+                j--;
+                if (pChessBoard.GetChessBoard().GetBoard()[i, j].HasPiece())
+                {
+                    if (!p.IsSameColor(pChessBoard.GetChessBoard().GetBoard()[i, j].GetPiece()))
+                    {
+                        boardPositionList.Add(new BoardPosition(i, j));
+                    }
+                    break;
+                }
+                else
+                {
+                    boardPositionList.Add(new BoardPosition(i, j));
+                }
+            }
+
+            return boardPositionList;
+        }
+
+        private static List<BoardPosition> GetRookMoves(BoardPosition bp, ChessBoardView pChessBoard)
+        {
+            Console.WriteLine("bp is: " + bp.ToString());
+            List<BoardPosition> boardPositionList = new List<BoardPosition>();
+            boardPositionList.Add(bp);
+            Piece p = pChessBoard.GetChessBoard().GetBoard()[bp.X, bp.Y].GetPiece();
+            int index = 0;
             int i = bp.X;
             int j = bp.Y;
             // Up
@@ -417,9 +479,14 @@ namespace ChessAppGDI.New_Code
                     boardPositionList.Add(new BoardPosition(i, j));
                 }
             }
-            j = bp.X;
-            i = bp.Y;
-            while( j >= 1)
+            for (int m = 0; m < boardPositionList.Count; m++)
+            {
+             //   Console.WriteLine("Rook moves 1:" + boardPositionList[m].ToString());
+                index = m;
+            }
+            i = bp.X;
+            j = bp.Y;
+            while( j > 0)
             {
                 j--;
                 if (pChessBoard.GetChessBoard().GetBoard()[i, j].HasPiece())
@@ -435,8 +502,13 @@ namespace ChessAppGDI.New_Code
                     boardPositionList.Add(new BoardPosition(i, j));
                 }
             }
-            j = bp.X;
-            i = bp.Y;
+            for (int m = index; m < boardPositionList.Count; m++)
+            {
+              //  Console.WriteLine("Rook moves 2:" + boardPositionList[m].ToString());
+                index = m;
+            }
+            i = bp.X;
+            j = bp.Y;
             while (i < 7)
             {
                 i++;
@@ -453,9 +525,14 @@ namespace ChessAppGDI.New_Code
                     boardPositionList.Add(new BoardPosition(i, j));
                 }
             }
-            j = bp.X;
-            i = bp.Y;
-            while (i >= 1)
+            for (int m = index; m < boardPositionList.Count; m++)
+            {
+              //  Console.WriteLine("Rook moves 3:" + boardPositionList[m].ToString());
+                index = m;
+            }
+            i = bp.X;
+            j = bp.Y;
+            while (i > 0)
             {
                 i--;
                 if (pChessBoard.GetChessBoard().GetBoard()[i, j].HasPiece())
@@ -613,8 +690,20 @@ namespace ChessAppGDI.New_Code
             }
             return boardPositionList;
         }
-
         
+        public static void PrintBoardView(ChessBoardView pBoard)
+        {
+            PieceView[,] view = pBoard.GetViewBoard();
+            Square[,] view2 = pBoard.GetChessBoard().GetBoard();
+            for (int i = 0; i < view2.GetLength(0); i++)
+            {
+                for(int j = 0; j < view2.GetLength(1); j++)
+                {
+                    Console.Write(view2[i, j].HasPiece() + " ");
+                }
+                Console.WriteLine();
+            }
+        }
 
     }
 }

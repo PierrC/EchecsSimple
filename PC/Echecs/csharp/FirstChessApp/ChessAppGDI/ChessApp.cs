@@ -41,7 +41,6 @@ namespace ChessAppGDI
             
         }
         
-
         private void boardPanel_Paint(object sender, PaintEventArgs e)
         {
             PositionAndPixels.boardPanel_x = boardPanel.Width;
@@ -57,9 +56,7 @@ namespace ChessAppGDI
             g.Clear(Color.White);
             chessGame.DrawBoard(g);
         }
-
-       
-
+        
 
         public static void SetDoubleBuffered(System.Windows.Forms.Control c)
         {
@@ -80,13 +77,14 @@ namespace ChessAppGDI
         private void boardPanel_MouseClick(object sender, MouseEventArgs e)
         {
 
-            /*
+            
             Point mousePoint = new Point(mouse_x, mouse_y);
             BoardPosition bp = PositionAndPixels.PixelsToBoardPosition(mousePoint);
             
             if (e.Button == MouseButtons.Right)
             {
                 chessGame.DiscardPiece();
+                ChessMechanics.PrintBoardView(chessGame.getChessBoardView());
             }
             else
             {
@@ -94,7 +92,7 @@ namespace ChessAppGDI
             }
 
             selectedPieceTextBox.Text = chessGame.PrintPiece();
-            */
+            
             Refresh();
         }
 

@@ -42,25 +42,46 @@ namespace ChessAppGDI.New_Code
             }
             viewBoard[pEnd.X, pEnd.Y] = viewBoard[pStart.X, pStart.Y];
             viewBoard[pStart.X, pStart.Y] = null;
-            Console.WriteLine(GetViewBoard()[pEnd.X, pEnd.Y].GetPiece().Type );
+
+
             if (GetViewBoard()[pEnd.X, pEnd.Y].GetPiece().Type.Equals(Piece.Types.PAWN))
             {
                 if ((pEnd.Y == 0) || (pEnd.Y == 7))
                 {
                     Console.WriteLine("Pawn has arrived.");
-                    
+                    ReplacePawn(pEnd);
                 }
             }
-
         }
-        public void ReplacePawn(BoardPosition bp, Piece pPiece)
+
+        
+        public void SetReplacePiece(Piece pPiece)
         {
-            board.GetBoard()[bp.X, bp.Y].SetPiece( pPiece);
+            aReplacementPiece = pPiece;
+        }
+
+        Piece aReplacementPiece = new Piece(Piece.Types.QUEEN, Piece.Colors.WHITE);
+        Piece aRealReplacementPiece;
+
+        private void ReplacePawn(BoardPosition bp)
+        {
+            if(bp.Y == 0)
+            {
+                aRealReplacementPiece = new Piece(aReplacementPiece.Type, Piece.Colors.WHITE);
+            }
+            else
+            {
+                aRealReplacementPiece = new Piece(aReplacementPiece.Type, Piece.Colors.BLACK);
+            }
+            board.GetBoard()[bp.X, bp.Y].SetPiece(aRealReplacementPiece);
             viewBoard[bp.X, bp.Y] = new PieceView(board.GetBoard()[bp.X, bp.Y].GetPiece());
+
+            SetViewList();
         }
 
         private void SetViewList()
         {
+            // viewBoard.Clear();
             // Boolean[,] boardBoolean = board.GetHasPiece();
             Square[,] boardPiece = board.GetBoard();
             for (int i = 0; i < 8; i++)
@@ -83,12 +104,11 @@ namespace ChessAppGDI.New_Code
         }
 
 
-        /*   Temporary Variables
-         */
+        //   Temporary Variables
+        //
         Font font = new Font("Times New Roman", 16);
         int square = 0; 
-        /*
-         */
+        
         private void DrawBoard(Graphics g)
         {
             square = PositionAndPixels.square;

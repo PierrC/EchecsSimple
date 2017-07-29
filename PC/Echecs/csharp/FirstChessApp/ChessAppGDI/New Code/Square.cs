@@ -43,7 +43,7 @@ namespace ChessAppGDI.New_Code
 
         public override string ToString()
         {
-            if (piece == null)
+            if (!(piece == null))
                 return piece.ToString();
             return "";
         }
