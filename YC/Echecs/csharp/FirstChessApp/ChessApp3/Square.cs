@@ -24,7 +24,8 @@ namespace ChessApp3
         /// </summary>
         public Position Position { get; }
 
-        public bool IsBlack { get => IsDark_; }
+        public bool IsDark { get => IsDark_; }
+        public Piece Piece { get => Piece_; set => Piece_ = value; }
 
         public Square(Colors iColor, Position iPosition)
         {
@@ -33,7 +34,7 @@ namespace ChessApp3
             Piece_ = null;
         }
 
-        Boolean HasPiece()
+        public Boolean HasPiece()
         {
             return Piece_ != null;
         }

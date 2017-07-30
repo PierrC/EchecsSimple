@@ -16,7 +16,7 @@ namespace ChessApp3
         /// There only one dimension as the Chessboard is always square
         /// </summary>
         private int PixelDimension_ = 500;
-        private int PixelMargine_ = 5;
+        private int PixelMargine_ = 10;
 
         /// <summary>
         /// Needs to be update when the window is resized
@@ -43,15 +43,19 @@ namespace ChessApp3
         /// <returns></returns>
         public Position GetPostionFromPoint(int rowPixel, int columnPixel)
         {
-            // That logic might be bogus. Needs some test
-            int IRow = (int)(8 * (float)PixelDimension_ / (float)rowPixel);
-            int IColumn = (int)(8 * (float)PixelDimension_ / (float)columnPixel);
+            double fRow = ((double)(rowPixel - PixelMargine_)) / (double)PixelSquare;
+            int IRow = (int)Math.Floor(fRow);
+            double fColumn = ((double)(columnPixel - PixelMargine_)) / (double)PixelSquare;
+            int IColumn = (int)Math.Floor(fColumn);
+            Console.WriteLine("New Postion "
+                + fRow.ToString()
+                + " "
+                + fColumn.ToString());
             return new Position(IRow, IColumn);
         }
 
         public Point GetPositionUpperCorner(Position iPosition)
         {
-            // That logic might be bogus. Needs some test
             int IRow = PixelMargine_ + PixelSquare * iPosition.Row;
             int IColumn = PixelMargine_+ PixelSquare * (7-iPosition.Column);
             return new Point(IRow, IColumn);

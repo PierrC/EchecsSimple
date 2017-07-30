@@ -30,12 +30,14 @@
         {
             this.SuspendLayout();
             // 
-            // UserControl1
+            // RenderAreaControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Name = "UserControl1";
+            this.Name = "RenderAreaControl";
             this.Size = new System.Drawing.Size(375, 425);
+            this.Click += new System.EventHandler(this.OnClick);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.OnMouseDown);
             this.ResumeLayout(false);
 
         }
