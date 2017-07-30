@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
 
+using ChessEngine;
+
 namespace ChessApp3
 {
     public class ChessGameView

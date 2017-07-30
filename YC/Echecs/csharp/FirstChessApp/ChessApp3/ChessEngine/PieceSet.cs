@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ChessApp3
+namespace ChessEngine
 {
     public class PieceSet :  List<Piece>
     {

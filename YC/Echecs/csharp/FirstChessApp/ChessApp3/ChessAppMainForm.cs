@@ -6,6 +6,8 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 
+using ChessEngine;
+
 namespace ChessApp3
 {
     public partial class ChessAppMainForm : Form
