@@ -19,15 +19,12 @@ namespace ChessAppGDI
         Pen mainPen = new Pen(Color.Black, 1);
         Graphics g = null;
         Font myFont = new Font("Times New Roman", 16);
-
-
+        
         ChessGame chessGame;
         Piece ConvertPiece = new Piece(Piece.Types.PAWN, Piece.Colors.WHITE);
-
-
+        
         int mouse_x = 0, mouse_y = 0;
         ArrayList listPiece = new ArrayList();
-        
         
 
         public ChessApp()
@@ -38,7 +35,6 @@ namespace ChessAppGDI
             SetDoubleBuffered(tableLayoutPanel1);
             SetDoubleBuffered(boardPanel);
             chessGame =  new ChessGame();
-            
         }
         
         private void boardPanel_Paint(object sender, PaintEventArgs e)
@@ -57,7 +53,6 @@ namespace ChessAppGDI
             chessGame.DrawBoard(g);
         }
         
-
         public static void SetDoubleBuffered(System.Windows.Forms.Control c)
         {
             if (System.Windows.Forms.SystemInformation.TerminalServerSession)
@@ -66,35 +61,92 @@ namespace ChessAppGDI
             aProp.SetValue(c, true, null);
         }
         
-
         private void boardPanel_MouseMove_1(object sender, MouseEventArgs e)
         {
-
             mouse_x = e.X;
             mouse_y = e.Y;
         }
 
         private void boardPanel_MouseClick(object sender, MouseEventArgs e)
         {
-
-            
             Point mousePoint = new Point(mouse_x, mouse_y);
             BoardPosition bp = PositionAndPixels.PixelsToBoardPosition(mousePoint);
-            
             if (e.Button == MouseButtons.Right)
             {
                 chessGame.DiscardPiece();
-                ChessMechanics.PrintBoardView(chessGame.getChessBoardView());
             }
             else
             {
                 chessGame.MovePiece(bp);
             }
-
             selectedPieceTextBox.Text = chessGame.PrintPiece();
-            
+            HasKings();
             Refresh();
         }
+
+
+        public void HasKings()
+        {
+            bool whiteKing = false;
+            bool blackKing = false;
+            for (int i = 0; i < 8; i++)
+            {
+                for (int j = 0; j < 8; j++)
+                {
+                    if (chessGame.getChessBoardView().GetChessBoard().GetBoard()[i, j].HasPiece())
+                    {
+                        if (chessGame.getChessBoardView().GetChessBoard().GetBoard()[i, j].GetPiece().Type == Piece.Types.KING)
+                        {
+                            if (chessGame.getChessBoardView().GetChessBoard().GetBoard()[i, j].GetPiece().Color == Piece.Colors.BLACK)
+                            {
+                                blackKing = true;
+                            }
+                            else if (chessGame.getChessBoardView().GetChessBoard().GetBoard()[i, j].GetPiece().Color == Piece.Colors.WHITE)
+                            {
+                                whiteKing = true;
+                            }
+                        }
+
+                    }
+                }
+            }
+            if(whiteKing == false)
+            {
+                chessGame = new ChessGame();
+                winnerLabel.Text = "Black Won";
+            }
+            else if(blackKing == false)
+            {
+                chessGame = new ChessGame();
+                winnerLabel.Text = "White Won";
+            }
+        }
+
+
+
+
+        Piece.Colors playerColor = Piece.Colors.WHITE;
+        private void newGameToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            chessGame = new ChessGame();
+            playerColor = Piece.Colors.WHITE;
+        }
+        private void CheckColorOfPlayer()
+        {
+
+        }
+        private void SwitchPlayerColor()
+        {
+            if(playerColor == Piece.Colors.WHITE)
+            {
+                playerColor = Piece.Colors.BLACK;
+            }
+            else
+            {
+                playerColor = Piece.Colors.WHITE;
+            }
+        }
+
 
         private void choseButton_Click(object sender, EventArgs e)
         {
@@ -129,6 +181,7 @@ namespace ChessAppGDI
             }
             
         }
+        
 
         protected override CreateParams CreateParams
         {

@@ -38,12 +38,74 @@ namespace ChessAppGDI.New_Code
                 GetViewBoard()[pStart.X, pStart.Y].GetPiece().Type.Equals(Piece.Types.ROOK) ||
                 GetViewBoard()[pStart.X, pStart.Y].GetPiece().Type.Equals(Piece.Types.KING) )
             {
+                if(GetViewBoard()[pStart.X, pStart.Y].GetPiece().Type.Equals(Piece.Types.KING) 
+                    && GetViewBoard()[pStart.X, pStart.Y].GetPiece().Color.Equals(Piece.Colors.WHITE))
+                {
+                    if(!GetViewBoard()[pStart.X, pStart.Y].GetHasMoved())
+                    {
+                        if(pEnd.X == 2 && pEnd.Y == 7)
+                        {
+                            if (GetViewBoard()[0, 7].GetPiece().Type.Equals(Piece.Types.ROOK) &&
+                                !GetViewBoard()[0, 7].GetHasMoved())
+                            {
+                                board.movePiece(new BoardPosition(0,7), new BoardPosition(3, 7));
+                                viewBoard[0, 7].HasMoved();
+                                viewBoard[3, 7] = viewBoard[0, 7];
+                                viewBoard[0, 7] = null;
+
+                            }
+                        }
+                        else if (pEnd.X == 6 && pEnd.Y == 7)
+                        {
+                            if (GetViewBoard()[7, 7].GetPiece().Type.Equals(Piece.Types.ROOK) &&
+                                !GetViewBoard()[7, 7].GetHasMoved())
+                            {
+                                board.movePiece(new BoardPosition(7, 7), new BoardPosition(5, 7));
+                                viewBoard[7, 7].HasMoved();
+                                viewBoard[5, 7] = viewBoard[7, 7];
+                                viewBoard[7, 7] = null;
+
+                            }
+                        }
+                    }
+                }
+                if (GetViewBoard()[pStart.X, pStart.Y].GetPiece().Type.Equals(Piece.Types.KING)
+                    && GetViewBoard()[pStart.X, pStart.Y].GetPiece().Color.Equals(Piece.Colors.BLACK))
+                {
+                    if (!GetViewBoard()[pStart.X, pStart.Y].GetHasMoved())
+                    {
+                        if (pEnd.X == 2 && pEnd.Y == 0)
+                        {
+                            if (GetViewBoard()[0, 0].GetPiece().Type.Equals(Piece.Types.ROOK) &&
+                                !GetViewBoard()[0, 0].GetHasMoved())
+                            {
+                                board.movePiece(new BoardPosition(0, 0), new BoardPosition(3, 0));
+                                viewBoard[0, 0].HasMoved();
+                                viewBoard[3, 0] = viewBoard[0, 0];
+                                viewBoard[0, 0] = null;
+
+                            }
+                        }
+                        else if (pEnd.X == 6 && pEnd.Y == 0)
+                        {
+                            if (GetViewBoard()[7, 0].GetPiece().Type.Equals(Piece.Types.ROOK) &&
+                                !GetViewBoard()[7, 0].GetHasMoved())
+                            {
+                                board.movePiece(new BoardPosition(7, 0), new BoardPosition(5, 0));
+                                viewBoard[7, 0].HasMoved();
+                                viewBoard[5, 0] = viewBoard[7, 0];
+                                viewBoard[7, 0] = null;
+
+                            }
+                        }
+                    }
+                }
                 viewBoard[pStart.X, pStart.Y].HasMoved();
             }
             viewBoard[pEnd.X, pEnd.Y] = viewBoard[pStart.X, pStart.Y];
             viewBoard[pStart.X, pStart.Y] = null;
 
-
+            // Switch the pawn for the selected piece
             if (GetViewBoard()[pEnd.X, pEnd.Y].GetPiece().Type.Equals(Piece.Types.PAWN))
             {
                 if ((pEnd.Y == 0) || (pEnd.Y == 7))
@@ -54,7 +116,10 @@ namespace ChessAppGDI.New_Code
             }
         }
 
-        
+        /// <summary>
+        /// /////////////////////////////////////////////////////////////////
+        /// </summary>
+        /// <param name="pPiece"></param>
         public void SetReplacePiece(Piece pPiece)
         {
             aReplacementPiece = pPiece;
@@ -79,6 +144,9 @@ namespace ChessAppGDI.New_Code
             SetViewList();
         }
 
+        /// <summary>
+        /// ////////////////////////////////////////////////////////////////////
+        /// </summary>
         private void SetViewList()
         {
             // viewBoard.Clear();

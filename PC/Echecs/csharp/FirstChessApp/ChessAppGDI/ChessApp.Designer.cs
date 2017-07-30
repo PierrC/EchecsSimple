@@ -32,16 +32,17 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.startGameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newGameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.player1WhiteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.player1BlackToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.winnerLabel = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.choseButton = new System.Windows.Forms.Button();
+            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
             this.selectedPieceTextBox = new System.Windows.Forms.TextBox();
             this.boardPanel = new System.Windows.Forms.Panel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
-            this.choseButton = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -67,24 +68,10 @@
             // 
             // newGameToolStripMenuItem
             // 
-            this.newGameToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.player1WhiteToolStripMenuItem,
-            this.player1BlackToolStripMenuItem});
             this.newGameToolStripMenuItem.Name = "newGameToolStripMenuItem";
             this.newGameToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
             this.newGameToolStripMenuItem.Text = "New Game";
-            // 
-            // player1WhiteToolStripMenuItem
-            // 
-            this.player1WhiteToolStripMenuItem.Name = "player1WhiteToolStripMenuItem";
-            this.player1WhiteToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
-            this.player1WhiteToolStripMenuItem.Text = "Player 1 : White";
-            // 
-            // player1BlackToolStripMenuItem
-            // 
-            this.player1BlackToolStripMenuItem.Name = "player1BlackToolStripMenuItem";
-            this.player1BlackToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
-            this.player1BlackToolStripMenuItem.Text = "Player 1 : Black";
+            this.newGameToolStripMenuItem.Click += new System.EventHandler(this.newGameToolStripMenuItem_Click);
             // 
             // tableLayoutPanel1
             // 
@@ -103,6 +90,9 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.label2);
+            this.panel2.Controls.Add(this.winnerLabel);
+            this.panel2.Controls.Add(this.label1);
             this.panel2.Controls.Add(this.choseButton);
             this.panel2.Controls.Add(this.checkedListBox1);
             this.panel2.Controls.Add(this.selectedPieceTextBox);
@@ -111,6 +101,59 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(118, 432);
             this.panel2.TabIndex = 1;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(4, 108);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(109, 16);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "Previous Winner:";
+            // 
+            // winnerLabel
+            // 
+            this.winnerLabel.AutoSize = true;
+            this.winnerLabel.Location = new System.Drawing.Point(5, 134);
+            this.winnerLabel.Name = "winnerLabel";
+            this.winnerLabel.Size = new System.Drawing.Size(10, 13);
+            this.winnerLabel.TabIndex = 4;
+            this.winnerLabel.Text = "-";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(4, 251);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(100, 20);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Promoted to:";
+            // 
+            // choseButton
+            // 
+            this.choseButton.Location = new System.Drawing.Point(18, 270);
+            this.choseButton.Name = "choseButton";
+            this.choseButton.Size = new System.Drawing.Size(75, 23);
+            this.choseButton.TabIndex = 2;
+            this.choseButton.Text = "Chose Piece";
+            this.choseButton.UseVisualStyleBackColor = true;
+            this.choseButton.Click += new System.EventHandler(this.choseButton_Click);
+            // 
+            // checkedListBox1
+            // 
+            this.checkedListBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkedListBox1.FormattingEnabled = true;
+            this.checkedListBox1.Items.AddRange(new object[] {
+            "Bishop",
+            "Knight",
+            "Queen",
+            "Rook"});
+            this.checkedListBox1.Location = new System.Drawing.Point(3, 299);
+            this.checkedListBox1.Name = "checkedListBox1";
+            this.checkedListBox1.Size = new System.Drawing.Size(115, 124);
+            this.checkedListBox1.TabIndex = 1;
             // 
             // selectedPieceTextBox
             // 
@@ -141,30 +184,6 @@
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
-            // checkedListBox1
-            // 
-            this.checkedListBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkedListBox1.FormattingEnabled = true;
-            this.checkedListBox1.Items.AddRange(new object[] {
-            "Bishop",
-            "Knight",
-            "Queen",
-            "Rook"});
-            this.checkedListBox1.Location = new System.Drawing.Point(3, 299);
-            this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(115, 124);
-            this.checkedListBox1.TabIndex = 1;
-            // 
-            // choseButton
-            // 
-            this.choseButton.Location = new System.Drawing.Point(18, 270);
-            this.choseButton.Name = "choseButton";
-            this.choseButton.Size = new System.Drawing.Size(75, 23);
-            this.choseButton.TabIndex = 2;
-            this.choseButton.Text = "Chose Piece";
-            this.choseButton.UseVisualStyleBackColor = true;
-            this.choseButton.Click += new System.EventHandler(this.choseButton_Click);
-            // 
             // ChessApp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -194,15 +213,16 @@
         private System.Windows.Forms.ToolStripMenuItem startGameToolStripMenuItem;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.ToolStripMenuItem newGameToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem player1WhiteToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem player1BlackToolStripMenuItem;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.TextBox selectedPieceTextBox;
         private System.Windows.Forms.Panel boardPanel;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.CheckedListBox checkedListBox1;
         private System.Windows.Forms.Button choseButton;
+        private System.Windows.Forms.ToolStripMenuItem newGameToolStripMenuItem;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label winnerLabel;
+        private System.Windows.Forms.Label label2;
     }
 }
 

@@ -131,8 +131,6 @@
   <ItemGroup>
     <None Include="Resources\whiteRook.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Old Code\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
