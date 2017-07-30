@@ -24,8 +24,6 @@ namespace ChessApp3
 
         public event EventHandler Changed;
 
-        public delegate void RenderChessGame(ChessGame game);
-
         public ChessGame()
         {
             Board_ = new Chessboard();
@@ -72,6 +70,7 @@ namespace ChessApp3
                         Console.WriteLine("You select a Piece from the side");
                         SelectedPiece = null;
                         //List<Position> Pos = null;
+                        Notifychange();
                     }
                 }
                 else

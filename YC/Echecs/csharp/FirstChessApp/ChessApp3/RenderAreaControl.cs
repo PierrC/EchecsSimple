@@ -31,7 +31,6 @@ namespace ChessApp3
                 {
                     GameView_.Graphix = grafx.Graphics;
                     this.Refresh();
-                    //DrawToBuffer(grafx.Graphics, true);
                 }
             }
         }
@@ -58,10 +57,7 @@ namespace ChessApp3
             this.Text = "User double buffering";
             this.Resize += new EventHandler(this.OnResize);
             this.SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint, true);
-            this.SetStyle(ControlStyles.OptimizedDoubleBuffer, false);
-
-
-            //bufferingMode = 2;
+            this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
 
             // Retrieves the BufferedGraphicsContext for the 
             // current application domain.
@@ -80,9 +76,6 @@ namespace ChessApp3
             // Graphics object that matches the pixel format of the form.
             grafx = context.Allocate(this.CreateGraphics(),
                  new Rectangle(0, 0, this.Width, this.Height));
-
-            // Draw the first frame to the buffer.
-//DrawToBuffer(grafx.Graphics, true);
         }
 
         private void OnResize(object sender, EventArgs e)
@@ -100,19 +93,13 @@ namespace ChessApp3
             PosPix.PixelDimension = Math.Min(this.Width, this.Height);
             if (GameView != null)
                 GameView.Graphix = grafx.Graphics;
-            // Cause the background to be cleared and redraw.
-            //DrawToBuffer(grafx.Graphics, true);
+
             this.Refresh();
         }
 
         private void DrawToBuffer(Graphics g)
         {
-            // Clear the graphics buffer every five updates.
-            //if (drawBackground)
-            //{
             grafx.Graphics.FillRectangle(Brushes.White, 0, 0, this.Width, this.Height);
-            //}
-
             if (GameView != null)
             {
                 GameView.Graphix = grafx.Graphics;
@@ -139,10 +126,8 @@ namespace ChessApp3
         }
 
         protected override void OnPaint(PaintEventArgs e)
-        {
-            
+        {    
             DrawToBuffer(grafx.Graphics);
-            //e.Graphics
             grafx.Render(e.Graphics);
         }
 

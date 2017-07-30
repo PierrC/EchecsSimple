@@ -49,19 +49,6 @@ namespace ChessApp3
         {
             if (Board == null)
                 return;
-            //Point UpperCorner = PP.GetPositionUpperCorner(selectedPiece.Position);
-            //g.FillRectangle(Brush, UpperCorner.X, UpperCorner.Y, PP.PixelSquare, PP.PixelSquare);
-
-            //SolidBrush blueBrush = new SolidBrush(Color.Blue);
-
-            //// Create location and size of rectangle.
-            //int x = 0;
-            //int y = 0;
-            //int width = 200;
-            //int height = 200;
-
-            //// Fill rectangle to screen.
-            //g.FillRectangle(blueBrush, x, y, width, height);
 
             SolidBrush DarkBrush = new SolidBrush(this.DarkColor);
             SolidBrush LightBrush = new SolidBrush(this.LightColor);
