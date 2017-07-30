@@ -49,6 +49,19 @@ namespace ChessApp3
         {
             if (Board == null)
                 return;
+            //Point UpperCorner = PP.GetPositionUpperCorner(selectedPiece.Position);
+            //g.FillRectangle(Brush, UpperCorner.X, UpperCorner.Y, PP.PixelSquare, PP.PixelSquare);
+
+            //SolidBrush blueBrush = new SolidBrush(Color.Blue);
+
+            //// Create location and size of rectangle.
+            //int x = 0;
+            //int y = 0;
+            //int width = 200;
+            //int height = 200;
+
+            //// Fill rectangle to screen.
+            //g.FillRectangle(blueBrush, x, y, width, height);
 
             SolidBrush DarkBrush = new SolidBrush(this.DarkColor);
             SolidBrush LightBrush = new SolidBrush(this.LightColor);
@@ -78,14 +91,15 @@ namespace ChessApp3
             if (selectedPiece == null)
                 return;
 
-            SolidBrush Brush = new SolidBrush(Color.Red);
-
-            //Pen HighlightPen = new Pen(Brushes.Red);
-            //HighlightPen.Width = 2;
+            SolidBrush redBrush = new SolidBrush(Color.Red);
+            int Width = 4;
+            Pen HighlightPen = new Pen(redBrush);
+            HighlightPen.Width = Width;
+            HighlightPen.LineJoin = System.Drawing.Drawing2D.LineJoin.Round;
             Point UpperCorner = PP.GetPositionUpperCorner(selectedPiece.Position);
-            g.FillRectangle(Brush, UpperCorner.X, UpperCorner.Y, PP.PixelSquare, PP.PixelSquare);
-            //g.DrawRectangle(HighlightPen, UpperCorner.X, UpperCorner.Y, PP.PixelSquare, PP.PixelSquare);
-
+            int PieceMargin = Width/2;
+            int PieceDim = PP.PixelSquare - 2 * PieceMargin;
+            g.DrawRectangle(HighlightPen, UpperCorner.X + PieceMargin, UpperCorner.Y + PieceMargin, PieceDim, PieceDim);
         }
 
     }

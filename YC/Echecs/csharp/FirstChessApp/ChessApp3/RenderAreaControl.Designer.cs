@@ -36,7 +36,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Name = "RenderAreaControl";
             this.Size = new System.Drawing.Size(375, 425);
-            this.Click += new System.EventHandler(this.OnClick);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.OnMouseDown);
             this.ResumeLayout(false);
 
