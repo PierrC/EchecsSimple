@@ -10,7 +10,17 @@ namespace ChessEngine
     {
         public Bishop(PlayerColors iColor, Position iPosition) : base(Types.BISHOP, iColor, iPosition)
         {
-
+            Steps_ = new PieceSteps();
+            Steps.Multiple = true;
+            Step step;
+            step = new Step(1, 1);
+            Steps.Steps.Add(step);
+            step = new Step(1, -1);
+            Steps.Steps.Add(step);
+            step = new Step(-1, 1);
+            Steps.Steps.Add(step);
+            step = new Step(-1, -1);
+            Steps.Steps.Add(step);
         }
     }
 }

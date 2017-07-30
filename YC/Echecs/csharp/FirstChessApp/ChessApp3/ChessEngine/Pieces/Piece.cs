@@ -12,7 +12,7 @@ namespace ChessEngine
     public class Piece
     {
         private Boolean IsBlack_;
-        private PieceSteps Steps_;
+        protected PieceSteps Steps_;
 
         public enum Types
         {
@@ -36,7 +36,7 @@ namespace ChessEngine
         
 
         public bool IsBlack { get => IsBlack_; }
-        internal PieceSteps Steps { get => Steps_; }
+        public PieceSteps Steps { get => Steps_; set => Steps_ = value; }
 
         public Image GetImage()
         {

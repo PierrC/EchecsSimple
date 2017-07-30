@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ChessEngine
 {
-    class Step
+    public class Step
     {
         public int DeltaRom, DeltaColumn;
         public bool FirstMoveOnly;
@@ -16,10 +16,12 @@ namespace ChessEngine
         {
             DeltaRom = dr;
             DeltaColumn = dc;
+            FirstMoveOnly = false;
+            CatchMoveOnly = false;
         }
     }
 
-    class PieceSteps
+    public class PieceSteps
     {
         Boolean Multiple_;
 

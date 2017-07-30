@@ -10,7 +10,17 @@ namespace ChessEngine
     {
         public Rook(PlayerColors iColor, Position iPosition) :base( Types.ROOK, iColor, iPosition)
         {
-
+            Steps_ = new PieceSteps();
+            Steps.Multiple = true;
+            Step step;
+            step = new Step(1, 0);
+            Steps.Steps.Add(step);
+            step = new Step(0, 1);
+            Steps.Steps.Add(step);
+            step = new Step(-1, 0);
+            Steps.Steps.Add(step);
+            step = new Step(0, -1);
+            Steps.Steps.Add(step);
         }
     }
 }
