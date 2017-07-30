@@ -14,6 +14,7 @@ namespace ChessAppGDI.New_Code
 
         Boolean isSelecting = false;
         BoardPosition selectedPosition;
+        Piece.Colors playerColor = Piece.Colors.WHITE;
 
         // Piece convertPiece;
 
@@ -33,10 +34,12 @@ namespace ChessAppGDI.New_Code
             {
                 if (boardView.GetChessBoard().GetBoard()[bp.X, bp.Y].HasPiece() && !isSelecting)
                 {
-                    selectedPosition = new BoardPosition(bp.X, bp.Y);
-                    isSelecting = true;
-                    boardList = ChessMechanics.AvaiableMoves(bp, boardView);
-
+                    if (boardView.GetChessBoard().GetBoard()[bp.X, bp.Y].GetPiece().Color == playerColor)
+                    {
+                        selectedPosition = new BoardPosition(bp.X, bp.Y);
+                        isSelecting = true;
+                        boardList = ChessMechanics.AvaiableMoves(bp, boardView);
+                    }
                 }
                 else if (isSelecting)
                 {
@@ -53,12 +56,20 @@ namespace ChessAppGDI.New_Code
                             boardView.movePiece(selectedPosition, bp);
                             selectedPosition = new BoardPosition(-2, -1);
                             isSelecting = false;
+                            ChangePlayerColor();
+
+                        //    Console.WriteLine(bp.ToString() + " "
+                        //        + ChessMechanics.SquareIsThreatened(getChessBoardView().GetChessBoard().GetBoard()[bp.X, bp.Y].GetPiece(), bp, getChessBoardView()));
+
                         }
                         else if (!boardView.GetChessBoard().GetBoard()[bp.X, bp.Y].HasPiece())
                         {
                             boardView.movePiece(selectedPosition, bp);
                             selectedPosition = new BoardPosition(-2, -1);
                             isSelecting = false;
+                            ChangePlayerColor();
+                        //    Console.WriteLine(bp.ToString() + " "
+                        //        + ChessMechanics.SquareIsThreatened(getChessBoardView().GetChessBoard().GetBoard()[bp.X, bp.Y].GetPiece(), bp, getChessBoardView()));
                         }
                     }
                 }
@@ -77,7 +88,6 @@ namespace ChessAppGDI.New_Code
             {
                 return boardView.GetChessBoard().GetBoard()[selectedPosition.X, selectedPosition.Y].ToString() + " " + selectedPosition.ToString();
             }
-
             return " ";
         }
         
@@ -103,6 +113,30 @@ namespace ChessAppGDI.New_Code
         {
             return boardView;
         }
+
+        
+
+        public void SetPlayerColor(Piece.Colors pColor)
+        {
+            playerColor = pColor;
+
+        }
+        public Piece.Colors GetPlayerColor()
+        {
+            return playerColor;
+        }
+        public void ChangePlayerColor()
+        {
+            if (playerColor == Piece.Colors.WHITE)
+            {
+                playerColor = Piece.Colors.BLACK;
+            }
+            else
+            {
+                playerColor = Piece.Colors.WHITE;
+            }
+        }
+
 
     }
 

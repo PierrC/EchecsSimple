@@ -29,7 +29,6 @@ namespace ChessAppGDI.New_Code
 
         public static BoardPosition PixelsToBoardPosition(Point pt)
         {
-            Console.WriteLine("pt: " + pt.X + " " + pt.Y);
             int x = (pt.X - (square / 2)) / square;
             int y = (pt.Y - (square / 2)) / square;
 
