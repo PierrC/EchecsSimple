@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace ChessEngine
 {
-    class Rook
+    class King : Piece
     {
+        public King(PlayerColors iColor, Position iPosition) : base(Types.KING, iColor, iPosition)
+        {
+
+        }
     }
 }
