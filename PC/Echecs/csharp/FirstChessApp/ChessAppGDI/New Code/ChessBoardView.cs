@@ -110,7 +110,7 @@ namespace ChessAppGDI.New_Code
             {
                 if ((pEnd.Y == 0) || (pEnd.Y == 7))
                 {
-                    Console.WriteLine("Pawn has arrived.");
+                    // Console.WriteLine("Pawn has arrived.");
                     ReplacePawn(pEnd);
                 }
             }

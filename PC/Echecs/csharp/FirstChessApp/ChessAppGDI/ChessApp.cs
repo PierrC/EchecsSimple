@@ -35,6 +35,7 @@ namespace ChessAppGDI
             SetDoubleBuffered(tableLayoutPanel1);
             SetDoubleBuffered(boardPanel);
             chessGame =  new ChessGame();
+            checkedListBox1.SetItemCheckState(2, CheckState.Checked);
         }
         
         private void boardPanel_Paint(object sender, PaintEventArgs e)
@@ -106,7 +107,6 @@ namespace ChessAppGDI
                                 whiteKing = true;
                             }
                         }
-
                     }
                 }
             }
@@ -131,10 +131,6 @@ namespace ChessAppGDI
             chessGame = new ChessGame();
             playerColor = Piece.Colors.WHITE;
         }
-        private void CheckColorOfPlayer()
-        {
-
-        }
         private void SwitchPlayerColor()
         {
             if(playerColor == Piece.Colors.WHITE)
@@ -146,8 +142,7 @@ namespace ChessAppGDI
                 playerColor = Piece.Colors.WHITE;
             }
         }
-
-
+        
         private void choseButton_Click(object sender, EventArgs e)
         {
 
@@ -181,7 +176,12 @@ namespace ChessAppGDI
             }
             
         }
-        
+
+        private void testButton_Click(object sender, EventArgs e)
+        {
+            bool test = ChessMechanics.SquareIsThreatened(new Piece(Piece.Types.KING, Piece.Colors.WHITE), new BoardPosition(2, 7), chessGame.getChessBoardView());
+            Console.WriteLine("Result is: " + test);
+        }
 
         protected override CreateParams CreateParams
         {
@@ -194,7 +194,7 @@ namespace ChessAppGDI
         }
         
 
-    }
 
+    }
 
 }
