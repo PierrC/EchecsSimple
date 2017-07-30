@@ -45,7 +45,7 @@ namespace ChessApp3
 
         public Boolean IsCurrentPlayerBlack()
         {
-            return CurrentPlayer_ == Piece.PlayerColors.WHITE;
+            return CurrentPlayer_ == Piece.PlayerColors.BLACK;
         }
 
         public void SwapCurrentPlayer()
@@ -70,7 +70,15 @@ namespace ChessApp3
                     else
                     {
                         Console.WriteLine("You select a Piece from the side");
+                        SelectedPiece = null;
+                        //List<Position> Pos = null;
                     }
+                }
+                else
+                {
+                    SelectedPiece = null;
+                    //List<Position> Pos = null;
+                    Notifychange();
                 }
             }
         }

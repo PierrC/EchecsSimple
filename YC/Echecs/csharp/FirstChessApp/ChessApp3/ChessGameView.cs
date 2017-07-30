@@ -31,16 +31,6 @@ namespace ChessApp3
                 DrawGame();
         }
 
-        //public void DrawGame(Graphics g, PositionPixel PP)
-        //{
-        //    graphix_ = g;
-        //    pixel2Position_ = PP;
-
-        //    if (Game == null)
-        //        return;
-
-        //    DrawChessboard(Game.Board, graphix_, pixel2Position_);
-        //}
 
         public void DrawGame()
         {
@@ -52,6 +42,7 @@ namespace ChessApp3
                 return;
 
             DrawChessboard(Game.Board, Graphix, Pixel2Position);
+            HighlightSelectedPiece(Game.SelectedPiece, Graphix, Pixel2Position);
         }
 
         private void DrawChessboard(Chessboard Board, Graphics g, PositionPixel PP)
@@ -81,5 +72,21 @@ namespace ChessApp3
                 }
             }
         }
+
+        private void HighlightSelectedPiece(Piece selectedPiece, Graphics g, PositionPixel PP)
+        {
+            if (selectedPiece == null)
+                return;
+
+            SolidBrush Brush = new SolidBrush(Color.Red);
+
+            //Pen HighlightPen = new Pen(Brushes.Red);
+            //HighlightPen.Width = 2;
+            Point UpperCorner = PP.GetPositionUpperCorner(selectedPiece.Position);
+            g.FillRectangle(Brush, UpperCorner.X, UpperCorner.Y, PP.PixelSquare, PP.PixelSquare);
+            //g.DrawRectangle(HighlightPen, UpperCorner.X, UpperCorner.Y, PP.PixelSquare, PP.PixelSquare);
+
+        }
+
     }
 }

@@ -46,7 +46,7 @@ namespace ChessApp3
             double fRow = ((double)(rowPixel - PixelMargine_)) / (double)PixelSquare;
             int IRow = (int)Math.Floor(fRow);
             double fColumn = ((double)(columnPixel - PixelMargine_)) / (double)PixelSquare;
-            int IColumn = (int)Math.Floor(fColumn);
+            int IColumn = 7 - (int)Math.Floor(fColumn);
             Console.WriteLine("New Postion "
                 + fRow.ToString()
                 + " "
