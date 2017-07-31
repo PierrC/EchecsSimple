@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ChessApp3
+namespace ChessEngine
 {
     public class ChessGame
     {
@@ -23,8 +23,6 @@ namespace ChessApp3
         public Piece SelectedPiece { get => SelectedPiece_; set => SelectedPiece_ = value; }
 
         public event EventHandler Changed;
-
-        public delegate void RenderChessGame(ChessGame game);
 
         public ChessGame()
         {
@@ -45,7 +43,7 @@ namespace ChessApp3
 
         public Boolean IsCurrentPlayerBlack()
         {
-            return CurrentPlayer_ == Piece.PlayerColors.WHITE;
+            return CurrentPlayer_ == Piece.PlayerColors.BLACK;
         }
 
         public void SwapCurrentPlayer()
@@ -70,7 +68,16 @@ namespace ChessApp3
                     else
                     {
                         Console.WriteLine("You select a Piece from the side");
+                        SelectedPiece = null;
+                        //List<Position> Pos = null;
+                        Notifychange();
                     }
+                }
+                else
+                {
+                    SelectedPiece = null;
+                    //List<Position> Pos = null;
+                    Notifychange();
                 }
             }
         }

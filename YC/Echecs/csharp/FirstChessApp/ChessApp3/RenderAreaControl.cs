@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using ChessEngine;
+
 namespace ChessApp3
 {
     public partial class RenderAreaControl : UserControl
@@ -28,7 +30,10 @@ namespace ChessApp3
                 if (GameView_ != null) 
                 GameView_.Pixel2Position = PosPix;
                 if (grafx != null)
-                DrawToBuffer(grafx.Graphics, true);
+                {
+                    GameView_.Graphix = grafx.Graphics;
+                    this.Refresh();
+                }
             }
         }
 
@@ -52,13 +57,9 @@ namespace ChessApp3
             // DoubleBufferedForm
             // 
             this.Text = "User double buffering";
-            this.MouseDown += new MouseEventHandler(this.MouseDownHandler);
             this.Resize += new EventHandler(this.OnResize);
             this.SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint, true);
             this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
-
-
-            //bufferingMode = 2;
 
             // Retrieves the BufferedGraphicsContext for the 
             // current application domain.
@@ -77,17 +78,6 @@ namespace ChessApp3
             // Graphics object that matches the pixel format of the form.
             grafx = context.Allocate(this.CreateGraphics(),
                  new Rectangle(0, 0, this.Width, this.Height));
-
-            // Draw the first frame to the buffer.
-            DrawToBuffer(grafx.Graphics, true);
-        }
-
-        private void MouseDownHandler(object sender, MouseEventArgs e)
-        {
-            //if (e.Button == MouseButtons.Right)
-            //{
-
-            //}
         }
 
         private void OnResize(object sender, EventArgs e)
@@ -105,21 +95,18 @@ namespace ChessApp3
             PosPix.PixelDimension = Math.Min(this.Width, this.Height);
             if (GameView != null)
                 GameView.Graphix = grafx.Graphics;
-            // Cause the background to be cleared and redraw.
-            DrawToBuffer(grafx.Graphics, true);
+
             this.Refresh();
         }
 
-        private void DrawToBuffer(Graphics g, bool drawBackground)
+        private void DrawToBuffer(Graphics g)
         {
-            // Clear the graphics buffer every five updates.
-            if (drawBackground)
-            {
-                grafx.Graphics.FillRectangle(Brushes.White, 0, 0, this.Width, this.Height);
-            }
-
+            grafx.Graphics.FillRectangle(Brushes.White, 0, 0, this.Width, this.Height);
             if (GameView != null)
+            {
+                GameView.Graphix = grafx.Graphics;
                 GameView.DrawGame();
+            }
             else
             {
                 //Crerate a temporary Game and Gameview to get some feedback in the Designer
@@ -127,20 +114,23 @@ namespace ChessApp3
                 ChessGameView tempView = new ChessGameView(tempGame);
                 grafx.Graphics.FillRectangle(Brushes.White, 0, 0, this.Width, this.Height);
                 tempView.Pixel2Position = PosPix;
-                tempView.Graphix = grafx.Graphics;
+                tempView.Graphix = g;
                 tempView.DrawGame();
                 // then tempGame and tempView should be garbage collected
             }
         }
 
-        protected override void OnPaint(PaintEventArgs e)
+        public void GameChanged(object sender, EventArgs e)
         {
-            grafx.Render(e.Graphics);
+            Console.WriteLine("Redraw Game From notification.");
+            if (sender is ChessGame)
+                this.Refresh();
         }
 
-        private void OnClick(object sender, EventArgs e)
-        {
-
+        protected override void OnPaint(PaintEventArgs e)
+        {    
+            DrawToBuffer(grafx.Graphics);
+            grafx.Render(e.Graphics);
         }
 
         private void OnMouseDown(object sender, MouseEventArgs e)

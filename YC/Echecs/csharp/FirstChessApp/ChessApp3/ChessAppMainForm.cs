@@ -6,6 +6,8 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 
+using ChessEngine;
+
 namespace ChessApp3
 {
     public partial class ChessAppMainForm : Form
@@ -26,7 +28,7 @@ namespace ChessApp3
         {
             Game_ = new ChessGame();
             GameView_ = new ChessGameView(Game);
-            Game.Changed += new EventHandler(GameView.GameChanged);
+            Game.Changed += new EventHandler(renderAreaControl1.GameChanged);
             renderAreaControl1.Game = this.Game;
             renderAreaControl1.GameView = this.GameView;
 

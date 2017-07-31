@@ -45,8 +45,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Chessboard.cs" />
-    <Compile Include="ChessGame.cs" />
+    <Compile Include="ChessEngine\Pieces\Bishop.cs" />
+    <Compile Include="ChessEngine\Chessboard.cs" />
+    <Compile Include="ChessEngine\ChessGame.cs" />
+    <Compile Include="ChessEngine\Pieces\King.cs" />
+    <Compile Include="ChessEngine\Pieces\Knight.cs" />
+    <Compile Include="ChessEngine\Pieces\Pawn.cs" />
+    <Compile Include="ChessEngine\Pieces\Queen.cs" />
+    <Compile Include="ChessEngine\Pieces\Rook.cs" />
     <Compile Include="ChessGameView.cs" />
     <Compile Include="ChessAppMainForm.cs">
       <SubType>Form</SubType>
@@ -54,8 +60,8 @@
     <Compile Include="ChessAppMainForm.Designer.cs">
       <DependentUpon>ChessAppMainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="PieceSet.cs" />
-    <Compile Include="PieceSteps.cs" />
+    <Compile Include="ChessEngine\Pieces\PieceSet.cs" />
+    <Compile Include="ChessEngine\Pieces\PieceSteps.cs" />
     <Compile Include="PositionPixel.cs" />
     <Compile Include="RenderAreaControl.cs">
       <SubType>UserControl</SubType>
@@ -63,9 +69,9 @@
     <Compile Include="RenderAreaControl.Designer.cs">
       <DependentUpon>RenderAreaControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Square.cs" />
-    <Compile Include="Piece.cs" />
-    <Compile Include="Position.cs" />
+    <Compile Include="ChessEngine\Square.cs" />
+    <Compile Include="ChessEngine\Pieces\Piece.cs" />
+    <Compile Include="ChessEngine\Position.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="ChessAppMainForm.resx">

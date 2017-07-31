@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
 
+using ChessEngine;
+
 namespace ChessApp3
 {
     public class ChessGameView
@@ -31,16 +33,6 @@ namespace ChessApp3
                 DrawGame();
         }
 
-        //public void DrawGame(Graphics g, PositionPixel PP)
-        //{
-        //    graphix_ = g;
-        //    pixel2Position_ = PP;
-
-        //    if (Game == null)
-        //        return;
-
-        //    DrawChessboard(Game.Board, graphix_, pixel2Position_);
-        //}
 
         public void DrawGame()
         {
@@ -52,6 +44,7 @@ namespace ChessApp3
                 return;
 
             DrawChessboard(Game.Board, Graphix, Pixel2Position);
+            HighlightSelectedPiece(Game.SelectedPiece, Graphix, Pixel2Position);
         }
 
         private void DrawChessboard(Chessboard Board, Graphics g, PositionPixel PP)
@@ -81,5 +74,22 @@ namespace ChessApp3
                 }
             }
         }
+
+        private void HighlightSelectedPiece(Piece selectedPiece, Graphics g, PositionPixel PP)
+        {
+            if (selectedPiece == null)
+                return;
+
+            SolidBrush redBrush = new SolidBrush(Color.Red);
+            int Width = 4;
+            Pen HighlightPen = new Pen(redBrush);
+            HighlightPen.Width = Width;
+            HighlightPen.LineJoin = System.Drawing.Drawing2D.LineJoin.Round;
+            Point UpperCorner = PP.GetPositionUpperCorner(selectedPiece.Position);
+            int PieceMargin = Width/2;
+            int PieceDim = PP.PixelSquare - 2 * PieceMargin;
+            g.DrawRectangle(HighlightPen, UpperCorner.X + PieceMargin, UpperCorner.Y + PieceMargin, PieceDim, PieceDim);
+        }
+
     }
 }

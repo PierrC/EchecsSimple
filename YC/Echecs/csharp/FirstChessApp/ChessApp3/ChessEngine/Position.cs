@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ChessApp3
+namespace ChessEngine
 {
     public class Position
     {
@@ -29,7 +29,8 @@ namespace ChessApp3
             {
                 if ((value < 0) && (value >= 8))
                     Invalid();
-                Row_ = value;
+                else
+                    Row_ = value;
             }
 
         }
@@ -40,7 +41,8 @@ namespace ChessApp3
             {
                 if ((value < 0) && (value >= 8))
                     Invalid();
-                Column_ = value;
+                else
+                    Column_ = value;
             }
         }
 
@@ -48,7 +50,7 @@ namespace ChessApp3
         {
             get
             {
-                if ((this.Row >= 0) && (this.Row < 8) && (this.Row >= 0) && (this.Row < 8))
+                if ((this.Row >= 0) && (this.Row < 8) && (this.Column_ >= 0) && (this.Column_ < 8))
                     return true;
                 return false;
             }

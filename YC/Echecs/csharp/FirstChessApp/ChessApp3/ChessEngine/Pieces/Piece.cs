@@ -5,11 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ChessApp3
+using ChessApp3;
+
+namespace ChessEngine
 {
     public class Piece
     {
         private Boolean IsBlack_;
+        protected PieceSteps Steps_;
 
         public enum Types
         {
@@ -30,8 +33,10 @@ namespace ChessApp3
         public Types Type { get; }
         public Image Image { get; }
         public Position Position { get; set; }
+        
 
         public bool IsBlack { get => IsBlack_; }
+        public PieceSteps Steps { get => Steps_; set => Steps_ = value; }
 
         public Image GetImage()
         {
@@ -45,6 +50,7 @@ namespace ChessApp3
             IsBlack_ = iColor == PlayerColors.BLACK ? true : false;
             Position = new Position(iPosition.Row, iPosition.Column);
             this.Image = SetImage();
+            Steps_ = null;
         }
 
 
@@ -54,54 +60,54 @@ namespace ChessApp3
             {
                 if (this.Type == Piece.Types.PAWN)
                 {
-                    return new Bitmap(Properties.Resources.blackPawn);
+                    return new Bitmap(ChessApp3.Properties.Resources.blackPawn);
                 }
                 else if (Type.Equals(Types.ROOK))
                 {
-                    return new Bitmap(Properties.Resources.blackRook);
+                    return new Bitmap(ChessApp3.Properties.Resources.blackRook);
                 }
                 else if (Type.Equals(Types.KNIGHT))
                 {
-                    return new Bitmap(Properties.Resources.blackKinght);
+                    return new Bitmap(ChessApp3.Properties.Resources.blackKinght);
                 }
                 else if (Type.Equals(Types.BISHOP))
                 {
-                    return new Bitmap(Properties.Resources.blackBishop);
+                    return new Bitmap(ChessApp3.Properties.Resources.blackBishop);
                 }
                 else if (Type.Equals(Types.QUEEN))
                 {
-                    return new Bitmap(Properties.Resources.blackQueen);
+                    return new Bitmap(ChessApp3.Properties.Resources.blackQueen);
                 }
                 else if (Type.Equals(Types.KING))
                 {
-                    return new Bitmap(Properties.Resources.blackKing);
+                    return new Bitmap(ChessApp3.Properties.Resources.blackKing);
                 }
             }
             else
             {
                 if (Type.Equals(Types.PAWN))
                 {
-                    return new Bitmap(Properties.Resources.whitePawn);
+                    return new Bitmap(ChessApp3.Properties.Resources.whitePawn);
                 }
                 else if (Type.Equals(Types.ROOK))
                 {
-                    return new Bitmap(Properties.Resources.whiteRook);
+                    return new Bitmap(ChessApp3.Properties.Resources.whiteRook);
                 }
                 else if (Type.Equals(Types.KNIGHT))
                 {
-                    return new Bitmap(Properties.Resources.whiteKnight);
+                    return new Bitmap(ChessApp3.Properties.Resources.whiteKnight);
                 }
                 else if (Type.Equals(Types.BISHOP))
                 {
-                    return new Bitmap(Properties.Resources.whiteBishop);
+                    return new Bitmap(ChessApp3.Properties.Resources.whiteBishop);
                 }
                 else if (Type.Equals(Types.QUEEN))
                 {
-                    return new Bitmap(Properties.Resources.whiteQueen);
+                    return new Bitmap(ChessApp3.Properties.Resources.whiteQueen);
                 }
                 else if (Type.Equals(Types.KING))
                 {
-                    return new Bitmap(Properties.Resources.whiteKing);
+                    return new Bitmap(ChessApp3.Properties.Resources.whiteKing);
                 }
             }
             return null;
