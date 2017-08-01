@@ -23,11 +23,6 @@ namespace ChessAppGDI.New_Code
             boardView = new ChessBoardView();
         }
 
-        public void DrawBoard(Graphics g)
-        {
-            boardView.DrawGame(g);
-        }
-
         public void MovePiece(BoardPosition bp)
         {
             if ((bp.X >= 0) & (bp.X < 8) & (bp.Y >= 0) & (bp.Y < 8))
@@ -104,17 +99,33 @@ namespace ChessAppGDI.New_Code
             return false;
         }
         
-        public void SetConvertPiece(Piece pPiece)
-        {
-            boardView.SetReplacePiece( pPiece);
-        }
-        
         public ChessBoardView getChessBoardView()
         {
             return boardView;
         }
-
         
+
+        public void SetConvertPiece(int i)
+        {
+            switch (i)
+            {
+                case 0:
+                    boardView.SetReplacePiece(new Piece(Piece.Types.BISHOP, Piece.Colors.WHITE));
+                    break;
+                case 1:
+                    boardView.SetReplacePiece(new Piece(Piece.Types.KNIGHT, Piece.Colors.WHITE));
+                    break;
+                case 2:
+                    boardView.SetReplacePiece(new Piece(Piece.Types.QUEEN, Piece.Colors.WHITE));
+                    break;
+                case 3:
+                    boardView.SetReplacePiece(new Piece(Piece.Types.QUEEN, Piece.Colors.WHITE));
+                    break;
+                default:
+                    boardView.SetReplacePiece(new Piece(Piece.Types.BISHOP, Piece.Colors.WHITE));
+                    break;
+            }
+        }
 
         public void SetPlayerColor(Piece.Colors pColor)
         {
@@ -125,6 +136,8 @@ namespace ChessAppGDI.New_Code
         {
             return playerColor;
         }
+
+
         public void ChangePlayerColor()
         {
             if (playerColor == Piece.Colors.WHITE)
@@ -136,6 +149,66 @@ namespace ChessAppGDI.New_Code
                 playerColor = Piece.Colors.WHITE;
             }
         }
+
+
+
+        public bool HasKing()
+        {
+            bool whiteKing = false;
+            bool blackKing = false;
+            for (int i = 0; i < 8; i++)
+            {
+                for (int j = 0; j < 8; j++)
+                {
+                    if (getChessBoardView().GetChessBoard().GetBoard()[i, j].HasPiece())
+                    {
+                        if (getChessBoardView().GetChessBoard().GetBoard()[i, j].GetPiece().Type == Piece.Types.KING)
+                        {
+                            if (getChessBoardView().GetChessBoard().GetBoard()[i, j].GetPiece().Color == Piece.Colors.BLACK)
+                            {
+                                blackKing = true;
+                            }
+                            else if (getChessBoardView().GetChessBoard().GetBoard()[i, j].GetPiece().Color == Piece.Colors.WHITE)
+                            {
+                                whiteKing = true;
+                            }
+                        }
+                    }
+                }
+            }
+            if (whiteKing == false || blackKing == false)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public Piece.Colors KingKilled()
+        {
+            bool whiteKing = false;
+            for (int i = 0; i < 8; i++)
+            {
+                for (int j = 0; j < 8; j++)
+                {
+                    if (getChessBoardView().GetChessBoard().GetBoard()[i, j].HasPiece())
+                    {
+                        if (getChessBoardView().GetChessBoard().GetBoard()[i, j].GetPiece().Type == Piece.Types.KING)
+                        {
+                            if (getChessBoardView().GetChessBoard().GetBoard()[i, j].GetPiece().Color == Piece.Colors.WHITE)
+                            {
+                                whiteKing = true;
+                            }
+                        }
+                    }
+                }
+            }
+            if (whiteKing == false)
+            {
+                return Piece.Colors.WHITE;
+            }
+            return Piece.Colors.BLACK;
+        }
+
 
 
     }

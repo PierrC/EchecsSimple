@@ -43,7 +43,6 @@
             this.boardPanel = new System.Windows.Forms.Panel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.testButton = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -91,7 +90,6 @@
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.testButton);
             this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.winnerLabel);
             this.panel2.Controls.Add(this.label1);
@@ -174,7 +172,6 @@
             this.boardPanel.TabIndex = 2;
             this.boardPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.boardPanel_Paint);
             this.boardPanel.MouseClick += new System.Windows.Forms.MouseEventHandler(this.boardPanel_MouseClick);
-            this.boardPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.boardPanel_MouseMove_1);
             // 
             // timer1
             // 
@@ -185,16 +182,6 @@
             // 
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
-            // 
-            // testButton
-            // 
-            this.testButton.Location = new System.Drawing.Point(8, 178);
-            this.testButton.Name = "testButton";
-            this.testButton.Size = new System.Drawing.Size(101, 23);
-            this.testButton.TabIndex = 6;
-            this.testButton.Text = "Test Button";
-            this.testButton.UseVisualStyleBackColor = true;
-            this.testButton.Click += new System.EventHandler(this.testButton_Click);
             // 
             // ChessApp
             // 
@@ -235,7 +222,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label winnerLabel;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button testButton;
     }
 }
 

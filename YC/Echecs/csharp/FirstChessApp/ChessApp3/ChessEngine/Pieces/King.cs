@@ -13,7 +13,7 @@ namespace ChessEngine
             Steps_ = new PieceSteps();
             Steps.Multiple = false;
             Step step;
-
+            
             step = new Step(1, 1);
             Steps.Steps.Add(step);
             step = new Step(1, -1);
@@ -31,6 +31,7 @@ namespace ChessEngine
             Steps.Steps.Add(step);
             step = new Step(0, -1);
             Steps.Steps.Add(step);
+            
         }
     }
 }

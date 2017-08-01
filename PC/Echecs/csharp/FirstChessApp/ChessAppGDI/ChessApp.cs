@@ -15,26 +15,21 @@ namespace ChessAppGDI
 {
     public partial class ChessApp : Form
     {
-        int i = PositionAndPixels.boardPanel_x ;
+
         Pen mainPen = new Pen(Color.Black, 1);
         Graphics g = null;
         Font myFont = new Font("Times New Roman", 16);
-        
-        ChessGame chessGame;
-        Piece ConvertPiece = new Piece(Piece.Types.PAWN, Piece.Colors.WHITE);
+
+        ChessGameView chessGameView;
         
         int mouse_x = 0, mouse_y = 0;
-        ArrayList listPiece = new ArrayList();
         
-
         public ChessApp()
         {
             InitializeComponent();
             this.MinimumSize = new System.Drawing.Size(700, 600);
-
-            SetDoubleBuffered(tableLayoutPanel1);
-            SetDoubleBuffered(boardPanel);
-            chessGame =  new ChessGame();
+            
+            chessGameView =  new ChessGameView();
             checkedListBox1.SetItemCheckState(2, CheckState.Checked);
         }
         
@@ -51,136 +46,62 @@ namespace ChessAppGDI
         private void UpdateBoard()
         {
             g.Clear(Color.White);
-            chessGame.DrawBoard(g);
-        }
-        
-        public static void SetDoubleBuffered(System.Windows.Forms.Control c)
-        {
-            if (System.Windows.Forms.SystemInformation.TerminalServerSession)
-                return;
-            System.Reflection.PropertyInfo aProp = typeof(System.Windows.Forms.Control).GetProperty("DoubleBuffered", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
-            aProp.SetValue(c, true, null);
-        }
-        
-        private void boardPanel_MouseMove_1(object sender, MouseEventArgs e)
-        {
-            mouse_x = e.X;
-            mouse_y = e.Y;
+            chessGameView.DrawBoard(g);
         }
 
         private void boardPanel_MouseClick(object sender, MouseEventArgs e)
         {
+            mouse_x = e.X;
+            mouse_y = e.Y;
             Point mousePoint = new Point(mouse_x, mouse_y);
             BoardPosition bp = PositionAndPixels.PixelsToBoardPosition(mousePoint);
             if (e.Button == MouseButtons.Right)
             {
-                chessGame.DiscardPiece();
+                chessGameView.GetChessGame().DiscardPiece();
             }
             else
             {
-                chessGame.MovePiece(bp);
+                chessGameView.GetChessGame().MovePiece(bp);
             }
-            selectedPieceTextBox.Text = chessGame.PrintPiece();
+            selectedPieceTextBox.Text = chessGameView.GetChessGame().PrintPiece();
             HasKings();
             Refresh();
         }
 
-
         public void HasKings()
         {
-            bool whiteKing = false;
-            bool blackKing = false;
-            for (int i = 0; i < 8; i++)
+            if (!chessGameView.GetChessGame().HasKing())
             {
-                for (int j = 0; j < 8; j++)
+                if (chessGameView.GetChessGame().KingKilled() == Piece.Colors.WHITE)
                 {
-                    if (chessGame.getChessBoardView().GetChessBoard().GetBoard()[i, j].HasPiece())
-                    {
-                        if (chessGame.getChessBoardView().GetChessBoard().GetBoard()[i, j].GetPiece().Type == Piece.Types.KING)
-                        {
-                            if (chessGame.getChessBoardView().GetChessBoard().GetBoard()[i, j].GetPiece().Color == Piece.Colors.BLACK)
-                            {
-                                blackKing = true;
-                            }
-                            else if (chessGame.getChessBoardView().GetChessBoard().GetBoard()[i, j].GetPiece().Color == Piece.Colors.WHITE)
-                            {
-                                whiteKing = true;
-                            }
-                        }
-                    }
+                    chessGameView = new ChessGameView();
+                    winnerLabel.Text = "Black Won";
                 }
-            }
-            if(whiteKing == false)
-            {
-                chessGame = new ChessGame();
-                winnerLabel.Text = "Black Won";
-            }
-            else if(blackKing == false)
-            {
-                chessGame = new ChessGame();
-                winnerLabel.Text = "White Won";
-            }
-        }
+                else
+                {
+                    chessGameView = new ChessGameView();
+                    winnerLabel.Text = "White Won";
+                }
 
-
-
-
-        Piece.Colors playerColor = Piece.Colors.WHITE;
-        private void newGameToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            chessGame = new ChessGame();
-            playerColor = Piece.Colors.WHITE;
-        }
-        private void SwitchPlayerColor()
-        {
-            if(playerColor == Piece.Colors.WHITE)
-            {
-                playerColor = Piece.Colors.BLACK;
-            }
-            else
-            {
-                playerColor = Piece.Colors.WHITE;
             }
         }
         
+        private void newGameToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            chessGameView = new ChessGameView();
+        }
+
         private void choseButton_Click(object sender, EventArgs e)
         {
 
             foreach (object itemChecked in checkedListBox1.CheckedItems)
             {
-
                 if (checkedListBox1.GetItemChecked(checkedListBox1.Items.IndexOf(itemChecked)))
                 {
-                    checkedListBox1.GetItemChecked(checkedListBox1.Items.IndexOf(itemChecked));
                     int i = checkedListBox1.Items.IndexOf(itemChecked);
-                    switch (i)
-                    {
-                        case 0:
-                            chessGame.SetConvertPiece(new Piece(Piece.Types.BISHOP, Piece.Colors.WHITE));
-                            break;
-                        case 1:
-                            chessGame.SetConvertPiece(new Piece(Piece.Types.KNIGHT, Piece.Colors.WHITE));
-                            break;
-                        case 2:
-                            chessGame.SetConvertPiece(new Piece(Piece.Types.QUEEN, Piece.Colors.WHITE));
-                            break;
-                        case 3:
-                            chessGame.SetConvertPiece(new Piece(Piece.Types.QUEEN, Piece.Colors.WHITE));
-                            break;
-                        default:
-                            chessGame.SetConvertPiece(new Piece(Piece.Types.BISHOP, Piece.Colors.WHITE));
-                            break;
-                    }
+                    chessGameView.GetChessGame().SetConvertPiece(i);
                 }
-
             }
-            
-        }
-
-        private void testButton_Click(object sender, EventArgs e)
-        {
-            bool test = ChessMechanics.SquareIsThreatened(new Piece(Piece.Types.KING, Piece.Colors.WHITE), new BoardPosition(2, 7), chessGame.getChessBoardView());
-            Console.WriteLine("Result is: " + test);
         }
 
         protected override CreateParams CreateParams
@@ -192,7 +113,6 @@ namespace ChessAppGDI
                 return cp;
             }
         }
-        
 
 
     }

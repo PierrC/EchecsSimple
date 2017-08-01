@@ -52,6 +52,7 @@
     <Compile Include="New Code\BoardPosition.cs" />
     <Compile Include="New Code\ChessBoardView.cs" />
     <Compile Include="New Code\ChessGame.cs" />
+    <Compile Include="New Code\ChessGameView.cs" />
     <Compile Include="New Code\ChessMechanics.cs" />
     <Compile Include="New Code\Piece.cs" />
     <Compile Include="New Code\PieceView.cs" />
