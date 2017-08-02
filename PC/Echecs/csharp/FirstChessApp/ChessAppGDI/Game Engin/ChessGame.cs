@@ -104,7 +104,6 @@ namespace ChessAppGDI.New_Code
             return boardView;
         }
         
-
         public void SetConvertPiece(int i)
         {
             switch (i)
@@ -132,12 +131,12 @@ namespace ChessAppGDI.New_Code
             playerColor = pColor;
 
         }
+
         public Piece.Colors GetPlayerColor()
         {
             return playerColor;
         }
-
-
+        
         public void ChangePlayerColor()
         {
             if (playerColor == Piece.Colors.WHITE)
@@ -149,9 +148,7 @@ namespace ChessAppGDI.New_Code
                 playerColor = Piece.Colors.WHITE;
             }
         }
-
-
-
+        
         public bool HasKing()
         {
             bool whiteKing = false;

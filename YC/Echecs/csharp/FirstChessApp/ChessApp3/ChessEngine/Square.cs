@@ -23,7 +23,6 @@ namespace ChessEngine
         /// Only a getter here since it's a imutable property
         /// </summary>
         public Position Position { get; }
-
         public bool IsDark { get => IsDark_; }
         public Piece Piece { get => Piece_; set => Piece_ = value; }
 

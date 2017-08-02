@@ -93,8 +93,6 @@ namespace ChessAppGDI.New_Code
                         }
                     }
                     i = bp.X;
-
-                    
                     if (i < 7)
                     {
                         i++;
