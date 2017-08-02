@@ -8,14 +8,14 @@ namespace ChessEngine
 {
     public class Step
     {
-        public int DeltaRow, DeltaColumn;
+        public int DeltaColumn, DeltaRow;
         public bool FirstMoveOnly;
         public bool CatchMoveOnly;
 
-        public Step(int dr, int dc)
+        public Step(int dc, int dr)
         {
-            DeltaRow = dr;
             DeltaColumn = dc;
+            DeltaRow = dr;
             FirstMoveOnly = false;
             CatchMoveOnly = false;
         }

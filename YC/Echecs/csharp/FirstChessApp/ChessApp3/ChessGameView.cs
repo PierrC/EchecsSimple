@@ -55,11 +55,11 @@ namespace ChessApp3
             SolidBrush DarkBrush = new SolidBrush(this.DarkColor);
             SolidBrush LightBrush = new SolidBrush(this.LightColor);
             bool Dark = false;
-            for (int i = 0; i < 8; i++)
+            for (int irow = 0; irow < 8; irow++)
             {
-                for (int j = 0; j < 8; j++)
+                for (int icol = 0; icol < 8; icol++)
                 {
-                    Square Cell = Board.Squares[i, j];
+                    Square Cell = Board.GetSquare(new Position(icol, irow));// Board.Squares[icol, irow];
                     Dark = Cell.IsDark;
                     Point UpperCorner = PP.GetPositionUpperCorner(Cell.Position);
                     g.FillRectangle(Dark ? DarkBrush : LightBrush, UpperCorner.X, UpperCorner.Y, PP.PixelSquare, PP.PixelSquare);

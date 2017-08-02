@@ -8,18 +8,31 @@ namespace ChessEngine
 {
     public class Position
     {
-        private int Row_;
         private int Column_;
+        private int Row_;
 
         public Position()
         {
             Invalid();
         }
 
-        public Position(int iRow, int iColumn)
+        public Position(int iColumn, int iRow)
         {
-            this.Row = iRow;
             this.Column = iColumn;
+            this.Row = iRow;
+        }
+
+
+        public int Column
+        {
+            get => Column_;
+            set
+            {
+                if ((value < 0) && (value >= 8))
+                    Invalid();
+                else
+                    Column_ = value;
+            }
         }
 
         public int Row
@@ -34,23 +47,12 @@ namespace ChessEngine
             }
 
         }
-        public int Column
-        {
-            get => Column_;
-            set
-            {
-                if ((value < 0) && (value >= 8))
-                    Invalid();
-                else
-                    Column_ = value;
-            }
-        }
 
         public Boolean IsValid
         {
             get
             {
-                if ((this.Row >= 0) && (this.Row < 8) && (this.Column_ >= 0) && (this.Column_ < 8))
+                if ((this.Column_ >= 0) && (this.Column_ < 8) && (this.Row >= 0) && (this.Row < 8))
                     return true;
                 return false;
             }
@@ -64,7 +66,7 @@ namespace ChessEngine
 
         Position GetNewPosition(Step step)
         {
-            return new Position(this.Row +step.DeltaRow, this.Column+step.DeltaColumn);
+            return new Position(this.Column + step.DeltaColumn, this.Row +step.DeltaRow );
         }
     }
 

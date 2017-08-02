@@ -21,14 +21,12 @@ namespace ChessEngine
         public Chessboard()
         {
             bool Dark = false;
-            for (int i = 0; i < 8; i++)
+            for (int irow = 0; irow < 8; irow++)
             {
-                for (int j = 0; j < 8; j++)
+                for (int icol = 0; icol < 8; icol++)
                 {
-                    Position iPos = new Position();
-                    iPos.Row = i;
-                    iPos.Column = j;
-                    Squares[i, j] = new Square(Dark? Square.Colors.DARK: Square.Colors.LIGHT, iPos);
+                    Position iPos = new Position(icol, irow);
+                    Squares[irow, icol] = new Square(Dark? Square.Colors.DARK: Square.Colors.LIGHT, iPos);
                     Dark = !Dark;
                 }
                 Dark = !Dark;
@@ -39,7 +37,7 @@ namespace ChessEngine
         {
             if (!IPos.IsValid)
                 return null;
-            return Squares[IPos.Row, IPos.Column];
+            return Squares[IPos.Column, IPos.Row];
         }
     }
 }
