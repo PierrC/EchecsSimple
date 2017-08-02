@@ -29,7 +29,7 @@ namespace ChessEngine
         public Square(Colors iColor, Position iPosition)
         {
             IsDark_ = iColor == Colors.DARK ? true : false;
-            Position = new Position(iPosition.Row, iPosition.Column);
+            Position = new Position(iPosition.Column, iPosition.Row);
             Piece_ = null;
         }
 
