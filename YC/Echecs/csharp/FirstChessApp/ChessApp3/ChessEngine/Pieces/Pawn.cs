@@ -14,9 +14,9 @@ namespace ChessEngine
             Steps.Multiple = false;
             Step step;
 
-            step = new Step(0, 1);
+            step = new Step(1, 0);
             Steps.Steps.Add(step);
-            step = new Step(0, 2);
+            step = new Step(2, 0);
             step.FirstMoveOnly = true;
             Steps.Steps.Add(step);
             step = new Step(1, 1);

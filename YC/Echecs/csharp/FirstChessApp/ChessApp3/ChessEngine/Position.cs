@@ -61,6 +61,11 @@ namespace ChessEngine
             this.Row = -1;
             this.Column = -1;
         }
+
+        Position GetNewPosition(Step step)
+        {
+            return new Position(this.Row +step.DeltaRow, this.Column+step.DeltaColumn);
+        }
     }
 
 }
