@@ -13,7 +13,7 @@ namespace ChessEngine
     /// </summary>
     public class Chessboard
     {
-        public Square[] Squares = new Square[8 * 8];
+        private Square[] Squares = new Square[8 * 8];
 
         /// <summary>
         /// 
