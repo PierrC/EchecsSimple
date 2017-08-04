@@ -62,7 +62,7 @@ namespace ChessEngine
                     if (SPiece.IsBlack == IsCurrentPlayerBlack())
                     {
                         SelectedPiece = SPiece;
-                        //List<Position> Pos = GetPossiblePositions(SelectedPiece, Board);
+                        //List<Position> Pos = SelectedPiece.GetPossiblePositions(Board);
                         Notifychange();
                     }
                     else

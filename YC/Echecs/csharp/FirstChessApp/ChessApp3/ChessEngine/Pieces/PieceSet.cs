@@ -15,33 +15,33 @@ namespace ChessEngine
 
             Position iPos;
 
-            int Column0 = IsWhite ? 0 : 7;
+            int Row0 = IsWhite ? 0 : 7;
 
-            iPos = IsWhite ? new Position(4, Column0) : new Position(4, Column0);
+            iPos = IsWhite ? new Position(4, Row0) : new Position(4, Row0);
             Add(new King(color, iPos));
 
-            iPos = IsWhite ? new Position(3, Column0) : new Position(3, Column0);
+            iPos = IsWhite ? new Position(3, Row0) : new Position(3, Row0);
             Add(new Queen(color, iPos));
 
-            iPos = IsWhite ? new Position(2, Column0) : new Position(2, Column0);
+            iPos = IsWhite ? new Position(2, Row0) : new Position(2, Row0);
             Add(new Bishop(color, iPos));
-            iPos = IsWhite ? new Position(5, Column0) : new Position(5, Column0);
+            iPos = IsWhite ? new Position(5, Row0) : new Position(5, Row0);
             Add(new Bishop(color, iPos));
 
-            iPos = IsWhite ? new Position(1, Column0) : new Position(1, Column0);
+            iPos = IsWhite ? new Position(1, Row0) : new Position(1, Row0);
             Add(new Knight(color, iPos));
-            iPos = IsWhite ? new Position(6, Column0) : new Position(6, Column0);
+            iPos = IsWhite ? new Position(6, Row0) : new Position(6, Row0);
             Add(new Knight(color, iPos));
 
-            iPos = IsWhite ? new Position(0, Column0) : new Position(0, Column0);
+            iPos = IsWhite ? new Position(0, Row0) : new Position(0, Row0);
             Add(new Rook(color, iPos));
-            iPos = IsWhite ? new Position(7, Column0) : new Position(7, Column0);
+            iPos = IsWhite ? new Position(7, Row0) : new Position(7, Row0);
             Add(new Rook(color, iPos));
 
-            int Column1 = IsWhite ? 1 : 6;
+            int Row1 = IsWhite ? 1 : 6;
             for (int i=0; i<8; i++)
             {
-                iPos = IsWhite ? new Position(i, Column1) : new Position(i, Column1);
+                iPos = IsWhite ? new Position(i, Row1) : new Position(i, Row1);
                 Add(new Pawn(color, iPos));
             }
         }

@@ -43,24 +43,24 @@ namespace ChessApp3
         /// <param name="rowPixel"></param>
         /// <param name="columnPixel"></param>
         /// <returns></returns>
-        public Position GetPostionFromPoint(int rowPixel, int columnPixel)
+        public Position GetPostionFromPoint(int columnPixel, int rowPixel)
         {
-            double fRow = ((double)(rowPixel - PixelMargine_)) / (double)PixelSquare;
-            int IRow = (int)Math.Floor(fRow);
             double fColumn = ((double)(columnPixel - PixelMargine_)) / (double)PixelSquare;
-            int IColumn = 7 - (int)Math.Floor(fColumn);
+            int IColumn = (int)Math.Floor(fColumn);
+            double fRow = ((double)(rowPixel - PixelMargine_)) / (double)PixelSquare;
+            int IRow = 7 - (int)Math.Floor(fRow);
             Console.WriteLine("New Postion "
-                + fRow.ToString()
+                + fColumn.ToString()
                 + " "
-                + fColumn.ToString());
-            return new Position(IRow, IColumn);
+                + fRow.ToString());
+            return new Position(IColumn, IRow);
         }
 
         public Point GetPositionUpperCorner(Position iPosition)
         {
-            int IRow = PixelMargine_ + PixelSquare * iPosition.Row;
-            int IColumn = PixelMargine_+ PixelSquare * (7-iPosition.Column);
-            return new Point(IRow, IColumn);
+            int IColumn = PixelMargine_+ PixelSquare * iPosition.Column;
+            int IRow = PixelMargine_ + PixelSquare * (7 - iPosition.Row);
+            return new Point(IColumn, IRow);
         }
     }
 }

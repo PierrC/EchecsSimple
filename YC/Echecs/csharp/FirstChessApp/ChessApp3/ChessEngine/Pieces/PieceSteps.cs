@@ -8,14 +8,14 @@ namespace ChessEngine
 {
     public class Step
     {
-        public int DeltaRom, DeltaColumn;
+        public int DeltaColumn, DeltaRow;
         public bool FirstMoveOnly;
         public bool CatchMoveOnly;
 
-        public Step(int dr, int dc)
+        public Step(int dc, int dr)
         {
-            DeltaRom = dr;
             DeltaColumn = dc;
+            DeltaRow = dr;
             FirstMoveOnly = false;
             CatchMoveOnly = false;
         }
@@ -27,5 +27,10 @@ namespace ChessEngine
 
         public bool Multiple { get => Multiple_; set => Multiple_ = value; }
         public List<Step> Steps;
+
+        public PieceSteps()
+        {
+            Steps = new List<Step>();
+        }
     }
 }

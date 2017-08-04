@@ -48,7 +48,7 @@ namespace ChessEngine
         {
             Type = iType;
             IsBlack_ = iColor == PlayerColors.BLACK ? true : false;
-            Position = new Position(iPosition.Row, iPosition.Column);
+            Position = new Position(iPosition.Column, iPosition.Row);
             this.Image = SetImage();
             Steps_ = null;
         }
