@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ChessAppGDI.Game_Engin;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -22,56 +23,56 @@ namespace ChessAppGDI.New_Code
 
         private Image SetImage()
         {
-            if (aPiece.Color == Piece.Colors.BLACK)
+            if (aPiece.color == Piece.Colors.BLACK)
             {
-                if (aPiece.Type == Piece.Types.PAWN)
+                if (aPiece.pieceType.type == PieceType.Types.PAWN)
                 {
                     return new Bitmap(Properties.Resources.blackPawn);
                 }
-                else if (aPiece.Type == Piece.Types.ROOK)
+                else if (aPiece.pieceType.type == PieceType.Types.ROOK)
                 {
                     return new Bitmap(Properties.Resources.blackRook);
                 }
-                else if (aPiece.Type == Piece.Types.KNIGHT)
+                else if (aPiece.pieceType.type == PieceType.Types.KNIGHT)
                 {
                     return new Bitmap(Properties.Resources.blackKinght);
                 }
-                else if (aPiece.Type == Piece.Types.BISHOP)
+                else if (aPiece.pieceType.type == PieceType.Types.BISHOP)
                 {
                     return new Bitmap(Properties.Resources.blackBishop);
                 }
-                else if (aPiece.Type == Piece.Types.QUEEN)
+                else if (aPiece.pieceType.type == PieceType.Types.QUEEN)
                 {
                     return new Bitmap(Properties.Resources.blackQueen);
                 }
-                else if (aPiece.Type == Piece.Types.KING)
+                else if (aPiece.pieceType.type == PieceType.Types.KING)
                 {
                     return new Bitmap(Properties.Resources.blackKing);
                 }
             }
             else
             {
-                if (aPiece.Type == Piece.Types.PAWN)
+                if (aPiece.pieceType.type == PieceType.Types.PAWN)
                 {
                     return new Bitmap(Properties.Resources.whitePawn);
                 }
-                else if (aPiece.Type == Piece.Types.ROOK)
+                else if (aPiece.pieceType.type == PieceType.Types.ROOK)
                 {
                     return new Bitmap(Properties.Resources.whiteRook);
                 }
-                else if (aPiece.Type == Piece.Types.KNIGHT)
+                else if (aPiece.pieceType.type == PieceType.Types.KNIGHT)
                 {
                     return new Bitmap(Properties.Resources.whiteKnight);
                 }
-                else if (aPiece.Type == Piece.Types.BISHOP)
+                else if (aPiece.pieceType.type == PieceType.Types.BISHOP)
                 {
                     return new Bitmap(Properties.Resources.whiteBishop);
                 }
-                else if (aPiece.Type == Piece.Types.QUEEN)
+                else if (aPiece.pieceType.type == PieceType.Types.QUEEN)
                 {
                     return new Bitmap(Properties.Resources.whiteQueen);
                 }
-                else if (aPiece.Type == Piece.Types.KING)
+                else if (aPiece.pieceType.type == PieceType.Types.KING)
                 {
                     return new Bitmap(Properties.Resources.whiteKing);
                 }

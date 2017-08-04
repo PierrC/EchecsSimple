@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ChessAppGDI.Game_Engin;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -29,7 +30,7 @@ namespace ChessAppGDI.New_Code
             {
                 if (boardView.GetChessBoard().GetBoard()[bp.X, bp.Y].HasPiece() && !isSelecting)
                 {
-                    if (boardView.GetChessBoard().GetBoard()[bp.X, bp.Y].GetPiece().Color == playerColor)
+                    if (boardView.GetChessBoard().GetBoard()[bp.X, bp.Y].GetPiece().color == playerColor)
                     {
                         selectedPosition = new BoardPosition(bp.X, bp.Y);
                         isSelecting = true;
@@ -46,7 +47,7 @@ namespace ChessAppGDI.New_Code
                             isSelecting = false;
                         }
                         else if (boardView.GetChessBoard().GetBoard()[bp.X, bp.Y].HasPiece() &&
-                            boardView.GetChessBoard().GetBoard()[bp.X, bp.Y].GetPiece().Color.Equals(ChessBoard.OtherColor(boardView.GetChessBoard().GetBoard()[selectedPosition.X, selectedPosition.Y].GetPiece().Color)))
+                            boardView.GetChessBoard().GetBoard()[bp.X, bp.Y].GetPiece().color.Equals(ChessBoard.OtherColor(boardView.GetChessBoard().GetBoard()[selectedPosition.X, selectedPosition.Y].GetPiece().color)))
                         {
                             boardView.movePiece(selectedPosition, bp);
                             selectedPosition = new BoardPosition(-2, -1);
@@ -109,19 +110,19 @@ namespace ChessAppGDI.New_Code
             switch (i)
             {
                 case 0:
-                    boardView.SetReplacePiece(new Piece(Piece.Types.BISHOP, Piece.Colors.WHITE));
+                    boardView.SetReplacePiece(new Piece(PieceType.Types.BISHOP, Piece.Colors.WHITE));
                     break;
                 case 1:
-                    boardView.SetReplacePiece(new Piece(Piece.Types.KNIGHT, Piece.Colors.WHITE));
+                    boardView.SetReplacePiece(new Piece(PieceType.Types.KNIGHT, Piece.Colors.WHITE));
                     break;
                 case 2:
-                    boardView.SetReplacePiece(new Piece(Piece.Types.QUEEN, Piece.Colors.WHITE));
+                    boardView.SetReplacePiece(new Piece(PieceType.Types.QUEEN, Piece.Colors.WHITE));
                     break;
                 case 3:
-                    boardView.SetReplacePiece(new Piece(Piece.Types.QUEEN, Piece.Colors.WHITE));
+                    boardView.SetReplacePiece(new Piece(PieceType.Types.QUEEN, Piece.Colors.WHITE));
                     break;
                 default:
-                    boardView.SetReplacePiece(new Piece(Piece.Types.BISHOP, Piece.Colors.WHITE));
+                    boardView.SetReplacePiece(new Piece(PieceType.Types.BISHOP, Piece.Colors.WHITE));
                     break;
             }
         }
@@ -159,13 +160,13 @@ namespace ChessAppGDI.New_Code
                 {
                     if (getChessBoardView().GetChessBoard().GetBoard()[i, j].HasPiece())
                     {
-                        if (getChessBoardView().GetChessBoard().GetBoard()[i, j].GetPiece().Type == Piece.Types.KING)
+                        if (getChessBoardView().GetChessBoard().GetBoard()[i, j].GetPiece().pieceType.type == PieceType.Types.KING)
                         {
-                            if (getChessBoardView().GetChessBoard().GetBoard()[i, j].GetPiece().Color == Piece.Colors.BLACK)
+                            if (getChessBoardView().GetChessBoard().GetBoard()[i, j].GetPiece().color == Piece.Colors.BLACK)
                             {
                                 blackKing = true;
                             }
-                            else if (getChessBoardView().GetChessBoard().GetBoard()[i, j].GetPiece().Color == Piece.Colors.WHITE)
+                            else if (getChessBoardView().GetChessBoard().GetBoard()[i, j].GetPiece().color == Piece.Colors.WHITE)
                             {
                                 whiteKing = true;
                             }
@@ -189,9 +190,9 @@ namespace ChessAppGDI.New_Code
                 {
                     if (getChessBoardView().GetChessBoard().GetBoard()[i, j].HasPiece())
                     {
-                        if (getChessBoardView().GetChessBoard().GetBoard()[i, j].GetPiece().Type == Piece.Types.KING)
+                        if (getChessBoardView().GetChessBoard().GetBoard()[i, j].GetPiece().pieceType.type == PieceType.Types.KING)
                         {
-                            if (getChessBoardView().GetChessBoard().GetBoard()[i, j].GetPiece().Color == Piece.Colors.WHITE)
+                            if (getChessBoardView().GetChessBoard().GetBoard()[i, j].GetPiece().color == Piece.Colors.WHITE)
                             {
                                 whiteKing = true;
                             }

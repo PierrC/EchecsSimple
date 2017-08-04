@@ -10,9 +10,7 @@ namespace ChessAppGDI.New_Code
     public class Square
     {
         private Boolean isDark;
-
         Piece piece;
-
         public bool IsDark { get => isDark; }
 
         public Square(bool isdark)

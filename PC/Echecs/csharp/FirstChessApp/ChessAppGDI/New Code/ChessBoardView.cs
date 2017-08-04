@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ChessAppGDI.Game_Engin;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -34,18 +35,18 @@ namespace ChessAppGDI.New_Code
         {
             board.movePiece(pStart, pEnd);
 
-            if(GetViewBoard()[pStart.X, pStart.Y].GetPiece().Type.Equals(Piece.Types.PAWN) ||
-                GetViewBoard()[pStart.X, pStart.Y].GetPiece().Type.Equals(Piece.Types.ROOK) ||
-                GetViewBoard()[pStart.X, pStart.Y].GetPiece().Type.Equals(Piece.Types.KING) )
+            if(GetViewBoard()[pStart.X, pStart.Y].GetPiece().pieceType.type.Equals(PieceType.Types.PAWN) ||
+                GetViewBoard()[pStart.X, pStart.Y].GetPiece().pieceType.type.Equals(PieceType.Types.ROOK) ||
+                GetViewBoard()[pStart.X, pStart.Y].GetPiece().pieceType.type.Equals(PieceType.Types.KING) )
             {
-                if(GetViewBoard()[pStart.X, pStart.Y].GetPiece().Type.Equals(Piece.Types.KING) 
-                    && GetViewBoard()[pStart.X, pStart.Y].GetPiece().Color.Equals(Piece.Colors.WHITE))
+                if(GetViewBoard()[pStart.X, pStart.Y].GetPiece().pieceType.type.Equals(PieceType.Types.KING) 
+                    && GetViewBoard()[pStart.X, pStart.Y].GetPiece().color.Equals(Piece.Colors.WHITE))
                 {
                     if(!GetViewBoard()[pStart.X, pStart.Y].GetHasMoved())
                     {
                         if(pEnd.X == 2 && pEnd.Y == 7)
                         {
-                            if (GetViewBoard()[0, 7].GetPiece().Type.Equals(Piece.Types.ROOK) &&
+                            if (GetViewBoard()[0, 7].GetPiece().pieceType.type.Equals(PieceType.Types.ROOK) &&
                                 !GetViewBoard()[0, 7].GetHasMoved())
                             {
                                 board.movePiece(new BoardPosition(0,7), new BoardPosition(3, 7));
@@ -57,7 +58,7 @@ namespace ChessAppGDI.New_Code
                         }
                         else if (pEnd.X == 6 && pEnd.Y == 7)
                         {
-                            if (GetViewBoard()[7, 7].GetPiece().Type.Equals(Piece.Types.ROOK) &&
+                            if (GetViewBoard()[7, 7].GetPiece().pieceType.type.Equals(PieceType.Types.ROOK) &&
                                 !GetViewBoard()[7, 7].GetHasMoved())
                             {
                                 board.movePiece(new BoardPosition(7, 7), new BoardPosition(5, 7));
@@ -69,14 +70,14 @@ namespace ChessAppGDI.New_Code
                         }
                     }
                 }
-                if (GetViewBoard()[pStart.X, pStart.Y].GetPiece().Type.Equals(Piece.Types.KING)
-                    && GetViewBoard()[pStart.X, pStart.Y].GetPiece().Color.Equals(Piece.Colors.BLACK))
+                if (GetViewBoard()[pStart.X, pStart.Y].GetPiece().pieceType.type.Equals(PieceType.Types.KING)
+                    && GetViewBoard()[pStart.X, pStart.Y].GetPiece().color.Equals(Piece.Colors.BLACK))
                 {
                     if (!GetViewBoard()[pStart.X, pStart.Y].GetHasMoved())
                     {
                         if (pEnd.X == 2 && pEnd.Y == 0)
                         {
-                            if (GetViewBoard()[0, 0].GetPiece().Type.Equals(Piece.Types.ROOK) &&
+                            if (GetViewBoard()[0, 0].GetPiece().pieceType.type.Equals(PieceType.Types.ROOK) &&
                                 !GetViewBoard()[0, 0].GetHasMoved())
                             {
                                 board.movePiece(new BoardPosition(0, 0), new BoardPosition(3, 0));
@@ -88,7 +89,7 @@ namespace ChessAppGDI.New_Code
                         }
                         else if (pEnd.X == 6 && pEnd.Y == 0)
                         {
-                            if (GetViewBoard()[7, 0].GetPiece().Type.Equals(Piece.Types.ROOK) &&
+                            if (GetViewBoard()[7, 0].GetPiece().pieceType.type.Equals(PieceType.Types.ROOK) &&
                                 !GetViewBoard()[7, 0].GetHasMoved())
                             {
                                 board.movePiece(new BoardPosition(7, 0), new BoardPosition(5, 0));
@@ -106,7 +107,7 @@ namespace ChessAppGDI.New_Code
             viewBoard[pStart.X, pStart.Y] = null;
 
             // Switch the pawn for the selected piece
-            if (GetViewBoard()[pEnd.X, pEnd.Y].GetPiece().Type.Equals(Piece.Types.PAWN))
+            if (GetViewBoard()[pEnd.X, pEnd.Y].GetPiece().pieceType.type.Equals(PieceType.Types.PAWN))
             {
                 if ((pEnd.Y == 0) || (pEnd.Y == 7))
                 {
@@ -124,18 +125,18 @@ namespace ChessAppGDI.New_Code
             aReplacementPiece = pPiece;
         }
 
-        Piece aReplacementPiece = new Piece(Piece.Types.QUEEN, Piece.Colors.WHITE);
+        Piece aReplacementPiece = new Piece(PieceType.Types.QUEEN, Piece.Colors.WHITE);
         Piece aRealReplacementPiece;
 
         private void ReplacePawn(BoardPosition bp)
         {
             if(bp.Y == 0)
             {
-                aRealReplacementPiece = new Piece(aReplacementPiece.Type, Piece.Colors.WHITE);
+                aRealReplacementPiece = new Piece(aReplacementPiece.pieceType.type, Piece.Colors.WHITE);
             }
             else
             {
-                aRealReplacementPiece = new Piece(aReplacementPiece.Type, Piece.Colors.BLACK);
+                aRealReplacementPiece = new Piece(aReplacementPiece.pieceType.type, Piece.Colors.BLACK);
             }
             board.GetBoard()[bp.X, bp.Y].SetPiece(aRealReplacementPiece);
             viewBoard[bp.X, bp.Y] = new PieceView(board.GetBoard()[bp.X, bp.Y].GetPiece());

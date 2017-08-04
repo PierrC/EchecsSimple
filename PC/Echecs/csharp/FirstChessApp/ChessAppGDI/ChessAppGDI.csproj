@@ -50,6 +50,9 @@
     </Compile>
     <Compile Include="Game Engin\ChessBoard.cs" />
     <Compile Include="Game Engin\BoardPosition.cs" />
+    <Compile Include="Game Engin\Move.cs" />
+    <Compile Include="Game Engin\MoveSet.cs" />
+    <Compile Include="Game Engin\PieceType.cs" />
     <Compile Include="New Code\ChessBoardView.cs" />
     <Compile Include="Game Engin\ChessGame.cs" />
     <Compile Include="New Code\ChessGameView.cs" />

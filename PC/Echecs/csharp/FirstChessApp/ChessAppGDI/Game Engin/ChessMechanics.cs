@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ChessAppGDI.Game_Engin;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,27 +23,27 @@ namespace ChessAppGDI.New_Code
                 return boardPositionList;
             }
 
-            if( aPiece.Type == Piece.Types.ROOK)
+            if( aPiece.pieceType.type == PieceType.Types.ROOK)
             {
                 boardPositionList.AddRange(GetRookMoves(bp, pChessBoard));
             }
-            else if(aPiece.Type == Piece.Types.KNIGHT)
+            else if(aPiece.pieceType.type == PieceType.Types.KNIGHT)
             {
                 boardPositionList.AddRange(GetKnightMoves(bp, pChessBoard));
             }
-            else if (aPiece.Type == Piece.Types.BISHOP)
+            else if (aPiece.pieceType.type == PieceType.Types.BISHOP)
             {
                 boardPositionList.AddRange(GetBishopMoves(bp, pChessBoard));
             }
-            else if (aPiece.Type == Piece.Types.KING)
+            else if (aPiece.pieceType.type == PieceType.Types.KING)
             {
                 boardPositionList.AddRange(GetKingMoves(bp, pChessBoard));
             }
-            else if (aPiece.Type == Piece.Types.QUEEN)
+            else if (aPiece.pieceType.type == PieceType.Types.QUEEN)
             {
                 boardPositionList.AddRange(GetQueenMoves(bp, pChessBoard));
             }
-            else if (aPiece.Type == Piece.Types.PAWN)
+            else if (aPiece.pieceType.type == PieceType.Types.PAWN)
             {
                 boardPositionList.AddRange(GetPawnMoves(bp, pChessBoard));
             }
@@ -63,7 +64,7 @@ namespace ChessAppGDI.New_Code
             // TODO: find a way to make sure the color is not the factor
             // TODO: add the ability to double jump at the begining and the ability 
             // to change pawn into other piece when it reaches the other side of the board
-            if ( p.Color == Piece.Colors.WHITE)
+            if ( p.color == Piece.Colors.WHITE)
             {
                 if(j > 0)
                 {
@@ -667,13 +668,13 @@ namespace ChessAppGDI.New_Code
 
             int i = bp.X;
             int j = bp.Y;
-            if (p.Color == Piece.Colors.WHITE)
+            if (p.color == Piece.Colors.WHITE)
             {
                 if (!pv.GetHasMoved())
                 {
                     if (pChessBoard.GetChessBoard().GetBoard()[0, 7].GetPiece() != null)
                     {
-                        if (pChessBoard.GetChessBoard().GetBoard()[0, 7].GetPiece().Type == Piece.Types.ROOK)
+                        if (pChessBoard.GetChessBoard().GetBoard()[0, 7].GetPiece().pieceType.type == PieceType.Types.ROOK)
                         {
                             if (!pChessBoard.GetViewBoard()[0, 7].GetHasMoved())
                             {
@@ -696,7 +697,7 @@ namespace ChessAppGDI.New_Code
                     }
                     if (pChessBoard.GetChessBoard().GetBoard()[7, 7].GetPiece() != null)
                     {
-                        if (pChessBoard.GetChessBoard().GetBoard()[7, 7].GetPiece().Type == Piece.Types.ROOK)
+                        if (pChessBoard.GetChessBoard().GetBoard()[7, 7].GetPiece().pieceType.type == PieceType.Types.ROOK)
                         {
                             if (!pChessBoard.GetViewBoard()[7, 7].GetHasMoved())
                             {
@@ -717,13 +718,13 @@ namespace ChessAppGDI.New_Code
                 }
 
             }
-            else if (p.Color == Piece.Colors.BLACK)
+            else if (p.color == Piece.Colors.BLACK)
             {
                 if (!pv.GetHasMoved())
                 {
                     if (pChessBoard.GetChessBoard().GetBoard()[0, 0].GetPiece() != null)
                     {
-                        if (pChessBoard.GetChessBoard().GetBoard()[0, 0].GetPiece().Type == Piece.Types.ROOK)
+                        if (pChessBoard.GetChessBoard().GetBoard()[0, 0].GetPiece().pieceType.type == PieceType.Types.ROOK)
                         {
                             if (!pChessBoard.GetViewBoard()[0, 0].GetHasMoved())
                             {
@@ -744,7 +745,7 @@ namespace ChessAppGDI.New_Code
                     }
                     if (pChessBoard.GetChessBoard().GetBoard()[7, 0].GetPiece() != null)
                     {
-                        if (pChessBoard.GetChessBoard().GetBoard()[7, 0].GetPiece().Type == Piece.Types.ROOK)
+                        if (pChessBoard.GetChessBoard().GetBoard()[7, 0].GetPiece().pieceType.type == PieceType.Types.ROOK)
                         {
                             if (!pChessBoard.GetViewBoard()[7, 0].GetHasMoved())
                             {
@@ -769,7 +770,7 @@ namespace ChessAppGDI.New_Code
 
         public static bool SquareIsThreatened(Piece pPiece, BoardPosition bp, ChessBoardView pChessBoard)
         {
-            Piece.Colors pieceColor = pPiece.Color;
+            Piece.Colors pieceColor = pPiece.color;
             List<BoardPosition> moveList;
             for (int i = 0; i < 8; i++)
             {
@@ -779,7 +780,7 @@ namespace ChessAppGDI.New_Code
                     {
                         if(!(pPiece.IsSameColor(pChessBoard.GetChessBoard().GetBoard()[i, j].GetPiece())))
                         {
-                            if(pChessBoard.GetChessBoard().GetBoard()[i,j].GetPiece().Type == Piece.Types.QUEEN)
+                            if(pChessBoard.GetChessBoard().GetBoard()[i,j].GetPiece().pieceType.type == PieceType.Types.QUEEN)
                             {
                             moveList = AvaiableMoves(new BoardPosition(i, j), pChessBoard);
                             Console.WriteLine("Position: " + i + "," + j);

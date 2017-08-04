@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ChessAppGDI.Game_Engin;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,15 +9,6 @@ namespace ChessAppGDI.New_Code
 {
     public class Piece
     {
-        public enum Types
-        {
-            PAWN,
-            ROOK,
-            KNIGHT,
-            BISHOP,
-            QUEEN,
-            KING
-        }
 
         public enum Colors
         {
@@ -24,20 +16,20 @@ namespace ChessAppGDI.New_Code
             WHITE,
         }
 
-        private Types type;
-        Colors color;
-        public Types Type { get => type; }
-        public Colors Color { get => color; }
+        
+        public PieceType pieceType { get => pieceType; set { this.pieceType = value; } }
+        public Colors color { get => color; set { this.color = value; } }
+        
 
-        public Piece(Types pType, Colors pColor)
+        public Piece(PieceType.Types pType, Piece.Colors pColor)
         {
-            type = pType;
+            pieceType = new PieceType(pType);
             color = pColor;
         }
 
         public bool IsSameColor(Piece pPiece)
         {
-            if (this.Color == pPiece.Color)
+            if (this.color == pPiece.color)
             {
                 return true;
             }
@@ -46,7 +38,7 @@ namespace ChessAppGDI.New_Code
 
         public override String ToString()
         {
-            return Type.ToString();
+            return pieceType.ToString();
         }
 
     }
