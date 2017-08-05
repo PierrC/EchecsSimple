@@ -16,15 +16,16 @@ namespace ChessAppGDI.New_Code
             WHITE,
         }
 
-        
-        public PieceType pieceType { get => pieceType; set { this.pieceType = value; } }
-        public Colors color { get => color; set { this.color = value; } }
-        
+
+        public PieceType pieceType; // { get => pieceType; set { this.pieceType = value; } }
+        public Colors color; // { get => color; set { this.color = value; } }
+        public Boolean hasMoved;
 
         public Piece(PieceType.Types pType, Piece.Colors pColor)
         {
             pieceType = new PieceType(pType);
             color = pColor;
+            hasMoved = false;
         }
 
         public bool IsSameColor(Piece pPiece)
@@ -40,6 +41,12 @@ namespace ChessAppGDI.New_Code
         {
             return pieceType.ToString();
         }
+
+        public bool GetHasMoved()
+        {
+            return hasMoved;
+        }
+
 
     }
 }

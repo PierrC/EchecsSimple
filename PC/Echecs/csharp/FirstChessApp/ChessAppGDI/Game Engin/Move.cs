@@ -8,8 +8,8 @@ namespace ChessAppGDI.Game_Engin
 {
     public class Move
     {
-        public int DeltaRow { get => DeltaRow; set { this.DeltaRow = value; } }
-        public int DeltaColumn { get => DeltaRow; set { this.DeltaRow = value; } }
+        public int DeltaRow; // { get => DeltaRow; set { this.DeltaRow = value; } }
+        public int DeltaColumn; // { get => DeltaRow; set { this.DeltaRow = value; } }
         public bool FirstMoveOnly;
         public bool CatchMoveOnly;
 
@@ -29,6 +29,7 @@ namespace ChessAppGDI.Game_Engin
             CatchMoveOnly = catchMove;
         }
 
+        
 
     }
 }

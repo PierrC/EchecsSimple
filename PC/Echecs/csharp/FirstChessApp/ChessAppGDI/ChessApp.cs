@@ -104,6 +104,34 @@ namespace ChessAppGDI
             }
         }
 
+
+        private void testButton_Click(object sender, EventArgs e)
+        {
+            int i = 1;
+        //    ChessBoard list = chessGameView.GetChessGame().getChessBoardView().GetChessBoard();
+            List <BoardPosition> test = chessGameView.GetChessGame().getChessBoardView().GetChessBoard().GetAvaibleMoves(new BoardPosition(input_x, input_y));
+            
+            
+            foreach(BoardPosition b in test)
+            {
+                Console.WriteLine(i + " " + b.ToString());
+                i++;
+            }
+            Console.WriteLine();
+        }
+
+        int input_x = 0;
+        int input_y = 0;
+        private void textBox1_Click(object sender, EventArgs e)
+        {
+            input_x = Convert.ToInt32(textBox1.Text);
+        }
+
+        private void textBox2_Click(object sender, EventArgs e)
+        {
+            input_y = Convert.ToInt32(textBox2.Text);
+        }
+
         protected override CreateParams CreateParams
         {
             get

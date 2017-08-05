@@ -11,6 +11,9 @@ namespace ChessAppGDI.New_Code
     {
         Square[,] board;
 
+       // private BoardPosition[,] boardPositionArray = 
+
+
         public ChessBoard()
         {
             board = new Square[8, 8];
@@ -88,6 +91,10 @@ namespace ChessAppGDI.New_Code
             if (board[pStart.X, pStart.Y].HasPiece())
             {
                 Piece transferPiece = board[pStart.X, pStart.Y].GetPiece();
+                if (!transferPiece.GetHasMoved())
+                {
+                    transferPiece.hasMoved = true;
+                }
                 board[pEnd.X, pEnd.Y].SetPiece(transferPiece);
                 board[pStart.X, pStart.Y].RemovePiece();
             }
@@ -97,45 +104,82 @@ namespace ChessAppGDI.New_Code
 
 
 
-        private List<BoardPosition> GetAvaibleMoves(BoardPosition bp)
+        public List<BoardPosition> GetAvaibleMoves(BoardPosition bp)
         {
             List<BoardPosition> moves = new List<BoardPosition>();
             MoveSet moveSets = board[bp.X, bp.Y].GetPiece().pieceType.GetMoveSet();
 
-            List<BoardPosition> positionList = new List<BoardPosition>();
-            positionList.Add(bp);
+            BoardPosition positionList = new BoardPosition();
+            positionList = bp;
             BoardPosition currentPosition;
-            while (positionList.Count() != 0)
+
+            moves.Add(bp);
+            currentPosition = positionList;
+            foreach (Move m in moveSets.getMoves())
             {
-                currentPosition = positionList.First();
-                foreach (Move m in moveSets.getMoves())
+                currentPosition = positionList;
+                if (IsInParameters(currentPosition, m))
                 {
-                    if(IsInParameters(bp, m.DeltaRow, m.DeltaColumn))
+                    currentPosition = new BoardPosition(currentPosition.X + m.DeltaRow, currentPosition.Y + m.DeltaColumn);
+                    moves.Add(currentPosition);
+                    if (moveSets.IsMultiple())
                     {
-                        moves.Add(new BoardPosition(bp.X + m.DeltaRow, bp.Y + m.DeltaColumn));
-                        if (moveSets.IsMultiple())
+                        while (IsInParameters(currentPosition, m))
                         {
-                            positionList.Add(new BoardPosition(bp.X + m.DeltaRow, bp.Y + m.DeltaColumn));
+                            currentPosition = new BoardPosition(currentPosition.X + m.DeltaRow, currentPosition.Y + m.DeltaColumn);
+                            moves.Add(currentPosition);
                         }
                     }
                 }
-                positionList.Remove(currentPosition);
             }
             return moves;
         }
-
-
-
-
-        private bool IsInParameters(BoardPosition bp, int row, int column)
+        
+        private bool IsInParameters(BoardPosition bp, Move m)
         {
-            if(bp.X + row > 7 || bp.X + row < 0)
+            Piece p = board[bp.X, bp.Y].GetPiece();
+            int row = m.DeltaRow;
+            int column = m.DeltaColumn;
+            if(p.color == Piece.Colors.WHITE)
+            {
+                row = 0 - row;
+                column = 0 - column;
+            }
+            if (bp.X + row > 7 || bp.X + row < 0)
             {
                 return false;
             }
             if (bp.Y + column > 7 || bp.Y + column < 0)
             {
                 return false;
+            }
+            if(board[bp.X + row, bp.Y + column].HasPiece())
+            {
+                if (p.pieceType.type == PieceType.Types.PAWN)
+                {
+                    if (bp.X == 0)
+                    {
+                        return false;
+                    }
+                }
+                if(p.IsSameColor(board[bp.X + row, bp.Y + column].GetPiece()))
+                {
+                    return false;
+                }
+            }
+            if(m.FirstMoveOnly && p.hasMoved)
+            {
+                return false;
+            }
+            if (p.pieceType.type == PieceType.Types.PAWN)
+            {
+                if (m.DeltaColumn == 1 && (m.DeltaRow == 1 || m.DeltaRow == -1))
+                {
+                    if(!board[bp.X + row, bp.Y + column].HasPiece())
+                    {
+                        return false;
+                    }
+                }
             }
             return true;
         }
