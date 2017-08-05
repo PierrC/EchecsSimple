@@ -99,7 +99,7 @@ namespace ChessApp3
 
             SolidBrush greenBrush = new SolidBrush(Color.LightGreen);
             SolidBrush semiTransGreenBrush = new SolidBrush(Color.FromArgb(128, 20, 255, 20));
-            SolidBrush semiTransRedBrush = new SolidBrush(Color.FromArgb(128, 20, 255, 20));
+            SolidBrush semiTransRedBrush = new SolidBrush(Color.FromArgb(128, 255, 20, 20));
             int Width = 4;
             Pen HighlightPen = new Pen(greenBrush);
             HighlightPen.Width = Width;
