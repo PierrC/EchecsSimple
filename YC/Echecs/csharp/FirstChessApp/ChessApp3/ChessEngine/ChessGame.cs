@@ -21,6 +21,7 @@ namespace ChessEngine
         public PieceSet BlackPieces { get => BlackPieces_; }
         public PieceSet WhitePieces { get => WhitePieces_; }
         public Piece SelectedPiece { get => SelectedPiece_; set => SelectedPiece_ = value; }
+        public List<Position> PossibleNewPositions { get => PossibleNewPositions_; }
 
         public event EventHandler Changed;
 
@@ -58,35 +59,105 @@ namespace ChessEngine
             {
                 Piece SPiece = SelectedSquare.Piece;
                 if (SPiece != null)
-                 {
+                {
                     if (SPiece.IsBlack == IsCurrentPlayerBlack())
                     {
                         SelectedPiece = SPiece;
-                        //List<Position> Pos = SelectedPiece.GetPossiblePositions(Board);
+                        PossibleNewPositions_ = GetPossiblePositions(Board, SelectedPiece);
                         Notifychange();
                     }
                     else
                     {
                         Console.WriteLine("You select a Piece from the side");
                         SelectedPiece = null;
-                        //List<Position> Pos = null;
+                        PossibleNewPositions_ = null;
                         Notifychange();
                     }
                 }
                 else
                 {
+                    if ((SelectedPiece != null) && (PossibleNewPositions != null))
+                    {
+                        foreach (Position P in PossibleNewPositions)
+                        {
+                            if (P.Equals(SelectedSquarePosition))
+                            {
+                                // move if valid
+                                movePiece(Board, SelectedPiece, SelectedSquarePosition);
+                                SwapCurrentPlayer();
+                            }
+                        }
+                    }
                     SelectedPiece = null;
-                    //List<Position> Pos = null;
+                    PossibleNewPositions_ = null;
                     Notifychange();
                 }
             }
         }
 
-        private void SetUpBoard(Chessboard IBoard, PieceSet IPieces)
+        private void movePiece(Chessboard iBoard, Piece iPiece, Position newPosition)
         {
-            foreach (Piece P in IPieces)
+            if (!newPosition.IsValid)
+                return;
+
+            if ((iPiece != null) && (iPiece.Position.IsValid))
+                iBoard.GetSquare(iPiece.Position).RemovePiece();
+
+            //TODO instanciate a move and add in in the move history
+
+            iBoard.GetSquare(newPosition).PutPiece(iPiece);
+            iPiece.Position = newPosition;
+        }
+
+        private List<Position> GetPossiblePositions(Chessboard iBoard, Piece iPiece)
+        {
+            List<Position> PosPos = new List<Position>();
+            Position currentPos = iPiece.Position;
+            int maxNumSteps = iPiece.Steps.Multiple ? 7 : 1;
+            foreach (Step step in iPiece.Steps.Steps)
             {
-                Square square = Board.GetSquare(P.Position);
+                Boolean blocked = false;
+                for (int i=0; i<maxNumSteps && !blocked; i++)
+                {
+                    Position stepPosition = currentPos.GetPositionAfterStep(i + 1, step);
+                    if (stepPosition.IsValid)
+                    {
+                        Square stepSquare = iBoard.GetSquare(stepPosition);
+                        if (stepSquare != null)
+                        {
+                            Piece stepPiece = stepSquare.Piece;
+                            if (stepPiece != null)
+                            {
+                                if (stepPiece.IsBlack == iPiece.IsBlack)
+                                {
+                                    // Same Color it block the Piece to move any further with that step
+                                    // We need to exit the loop
+                                    blocked = true;
+                                }
+                                else
+                                {
+                                    // Yummy it's one of the other player Piece :)
+                                    PosPos.Add(stepPosition);
+                                    blocked = true;
+                                }
+                            }
+                            else
+                            {
+                                // No Piece on the new Position Good!
+                                PosPos.Add(stepPosition);
+                            }
+                        }
+                    }
+                }
+            }
+            return PosPos;
+        }
+
+        private void SetUpBoard(Chessboard iBoard, PieceSet iPieces)
+        {
+            foreach (Piece P in iPieces)
+            {
+                Square square = iBoard.GetSquare(P.Position);
                 square.Piece = P;
             }
         }

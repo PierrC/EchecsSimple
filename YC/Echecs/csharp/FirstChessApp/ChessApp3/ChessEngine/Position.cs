@@ -64,9 +64,20 @@ namespace ChessEngine
             this.Column = -1;
         }
 
-        Position GetNewPosition(Step step)
+        public bool Equals(Position pos)
         {
-            return new Position(this.Column + step.DeltaColumn, this.Row +step.DeltaRow );
+            // If parameter is null return false.
+            if (pos == null)
+            {
+                return false;
+            }
+            // Return true if the fields match:
+            return (Row == pos.Row) && (Column == pos.Column);
+        }
+
+        public Position GetPositionAfterStep(int numStep, Step step)
+        {
+            return new Position(this.Column + numStep * step.DeltaColumn, this.Row + numStep * step.DeltaRow);
         }
     }
 

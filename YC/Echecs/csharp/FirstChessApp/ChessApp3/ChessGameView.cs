@@ -45,11 +45,12 @@ namespace ChessApp3
 
             DrawChessboard(Game.Board, Graphix, Pixel2Position);
             HighlightSelectedPiece(Game.SelectedPiece, Graphix, Pixel2Position);
+            HighlightPossiblePositions(Game.PossibleNewPositions, Game.Board, Graphix, Pixel2Position);
         }
 
-        private void DrawChessboard(Chessboard Board, Graphics g, PositionPixel PP)
+        private void DrawChessboard(Chessboard iBoard, Graphics g, PositionPixel PP)
         {
-            if (Board == null)
+            if (iBoard == null)
                 return;
 
             SolidBrush DarkBrush = new SolidBrush(this.DarkColor);
@@ -59,7 +60,7 @@ namespace ChessApp3
             {
                 for (int icol = 0; icol < 8; icol++)
                 {
-                    Square Cell = Board.GetSquare(new Position(icol, irow));// Board.Squares[icol, irow];
+                    Square Cell = iBoard.GetSquare(new Position(icol, irow));// Board.Squares[icol, irow];
                     Dark = Cell.IsDark;
                     Point UpperCorner = PP.GetPositionUpperCorner(Cell.Position);
                     g.FillRectangle(Dark ? DarkBrush : LightBrush, UpperCorner.X, UpperCorner.Y, PP.PixelSquare, PP.PixelSquare);
@@ -91,5 +92,30 @@ namespace ChessApp3
             g.DrawRectangle(HighlightPen, UpperCorner.X + PieceMargin, UpperCorner.Y + PieceMargin, PieceDim, PieceDim);
         }
 
+        private void HighlightPossiblePositions(List<Position> PosPos, Chessboard iBoard, Graphics g, PositionPixel PP)
+        {
+            if (PosPos == null)
+                return;
+
+            SolidBrush greenBrush = new SolidBrush(Color.LightGreen);
+            SolidBrush semiTransGreenBrush = new SolidBrush(Color.FromArgb(128, 20, 255, 20));
+            SolidBrush semiTransRedBrush = new SolidBrush(Color.FromArgb(128, 20, 255, 20));
+            int Width = 4;
+            Pen HighlightPen = new Pen(greenBrush);
+            HighlightPen.Width = Width;
+            HighlightPen.LineJoin = System.Drawing.Drawing2D.LineJoin.Round;
+
+            foreach ( Position P in PosPos)
+            {
+                Point UpperCorner = PP.GetPositionUpperCorner(P);
+                Brush brush = iBoard.GetSquare(P).HasPiece() ? semiTransRedBrush : semiTransGreenBrush;
+
+                //int PieceMargin = Width / 2;
+                //int PieceDim = PP.PixelSquare - 2 * PieceMargin;
+                //g.FillRectangle(semiTransgreenBrush, UpperCorner.X + PieceMargin, UpperCorner.Y + PieceMargin, PieceDim, PieceDim);
+                g.FillRectangle(brush, UpperCorner.X, UpperCorner.Y, PP.PixelSquare, PP.PixelSquare);
+
+            }
+        }
     }
 }

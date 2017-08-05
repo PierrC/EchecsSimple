@@ -14,15 +14,16 @@ namespace ChessEngine
             Steps.Multiple = false;
             Step step;
 
-            step = new Step(0, 1);
+            int direction = IsBlack ? -1 : 1;
+            step = new Step(0, 1 * direction);
             Steps.Steps.Add(step);
-            step = new Step(0, 2);
+            step = new Step(0, 2 * direction);
             step.FirstMoveOnly = true;
             Steps.Steps.Add(step);
-            step = new Step(1, 1);
+            step = new Step(1, 1 * direction);
             step.CatchMoveOnly = true;
             Steps.Steps.Add(step);
-            step = new Step(-1, 1);
+            step = new Step(-1, 1 * direction);
             step.CatchMoveOnly = true;
             Steps.Steps.Add(step);
         }

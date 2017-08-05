@@ -43,7 +43,7 @@ namespace ChessEngine
             Piece_ = iPiece;
         }
 
-        public void PemovePiece()
+        public void RemovePiece()
         {
             Piece_ = null;
         }

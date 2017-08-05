@@ -13,7 +13,7 @@ namespace ChessEngine
     /// </summary>
     public class Chessboard
     {
-        private Square[] Squares = new Square[8 * 8];
+        private Square[,] Squares = new Square[8, 8];
 
         /// <summary>
         /// 
@@ -26,7 +26,7 @@ namespace ChessEngine
                 for (int icol = 0; icol < 8; icol++)
                 {
                     Position iPos = new Position(icol, irow);
-                    Squares[irow * 8 + icol] = new Square(Dark? Square.Colors.DARK: Square.Colors.LIGHT, iPos);
+                    Squares[icol, irow] = new Square(Dark? Square.Colors.DARK: Square.Colors.LIGHT, iPos);
                     Dark = !Dark;
                 }
                 Dark = !Dark;
@@ -37,7 +37,7 @@ namespace ChessEngine
         {
             if (!IPos.IsValid)
                 return null;
-            return Squares[IPos.Row * 8 + IPos.Column];
+            return Squares[IPos.Column, IPos.Row];
         }
     }
 }
