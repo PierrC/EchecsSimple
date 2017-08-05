@@ -12,6 +12,7 @@ namespace ChessEngine
     public class Piece
     {
         private Boolean IsBlack_;
+        private Boolean HasMoved_;
         protected PieceSteps Steps_;
 
         public enum Types
@@ -37,6 +38,7 @@ namespace ChessEngine
 
         public bool IsBlack { get => IsBlack_; }
         public PieceSteps Steps { get => Steps_; set => Steps_ = value; }
+        public bool HasMoved { get => HasMoved_; set => HasMoved_ = value; }
 
         public Image GetImage()
         {
@@ -48,6 +50,7 @@ namespace ChessEngine
         {
             Type = iType;
             IsBlack_ = iColor == PlayerColors.BLACK ? true : false;
+            HasMoved_ = false;
             Position = new Position(iPosition.Column, iPosition.Row);
             this.Image = SetImage();
             Steps_ = null;

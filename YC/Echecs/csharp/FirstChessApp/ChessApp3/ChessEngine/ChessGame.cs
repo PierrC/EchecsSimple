@@ -57,6 +57,25 @@ namespace ChessEngine
             Square SelectedSquare = Board.GetSquare(SelectedSquarePosition);
             if (SelectedSquare != null)
             {
+                if ((SelectedPiece != null) && (PossibleNewPositions != null))
+                {
+                    foreach (Position P in PossibleNewPositions)
+                    {
+                        if (P.Equals(SelectedSquarePosition))
+                        {
+                            // move if valid
+                            movePiece(Board, SelectedPiece, SelectedSquarePosition);
+                            SwapCurrentPlayer();
+
+                            SelectedPiece = null;
+                            PossibleNewPositions_ = null;
+                            Notifychange();
+                            return;
+                        }
+                    }
+                }
+
+
                 Piece SPiece = SelectedSquare.Piece;
                 if (SPiece != null)
                 {
@@ -74,24 +93,6 @@ namespace ChessEngine
                         Notifychange();
                     }
                 }
-                else
-                {
-                    if ((SelectedPiece != null) && (PossibleNewPositions != null))
-                    {
-                        foreach (Position P in PossibleNewPositions)
-                        {
-                            if (P.Equals(SelectedSquarePosition))
-                            {
-                                // move if valid
-                                movePiece(Board, SelectedPiece, SelectedSquarePosition);
-                                SwapCurrentPlayer();
-                            }
-                        }
-                    }
-                    SelectedPiece = null;
-                    PossibleNewPositions_ = null;
-                    Notifychange();
-                }
             }
         }
 
@@ -101,12 +102,20 @@ namespace ChessEngine
                 return;
 
             if ((iPiece != null) && (iPiece.Position.IsValid))
+            {
                 iBoard.GetSquare(iPiece.Position).RemovePiece();
+            }
 
             //TODO instanciate a move and add in in the move history
-
+            if (iBoard.GetSquare(newPosition).HasPiece())
+            {
+                // Kill first .... 
+                iBoard.GetSquare(newPosition).Piece.Position.Column = -1;
+            }
+            // ....Then move
             iBoard.GetSquare(newPosition).PutPiece(iPiece);
             iPiece.Position = newPosition;
+            iPiece.HasMoved = true;
         }
 
         private List<Position> GetPossiblePositions(Chessboard iBoard, Piece iPiece)
@@ -119,6 +128,8 @@ namespace ChessEngine
                 Boolean blocked = false;
                 for (int i=0; i<maxNumSteps && !blocked; i++)
                 {
+                    if (step.FirstMoveOnly && iPiece.HasMoved)
+                        break;
                     Position stepPosition = currentPos.GetPositionAfterStep(i + 1, step);
                     if (stepPosition.IsValid)
                     {
@@ -143,8 +154,9 @@ namespace ChessEngine
                             }
                             else
                             {
-                                // No Piece on the new Position Good!
-                                PosPos.Add(stepPosition);
+                                // No Piece on the new Position Good... except if it's a cath move only
+                                if (!step.CatchMoveOnly)
+                                    PosPos.Add(stepPosition);
                             }
                         }
                     }
