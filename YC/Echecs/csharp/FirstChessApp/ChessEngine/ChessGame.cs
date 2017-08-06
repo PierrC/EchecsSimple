@@ -32,6 +32,8 @@ namespace ChessEngine
             SetUpBoard(Board, BlackPieces);
             CurrentPlayer_ = Piece.PlayerColors.WHITE;
             SelectedPiece = null;
+            BlackPieces.UpdatePossiblePositions(Board);
+            WhitePieces.UpdatePossiblePositions(Board);
         }
 
         protected virtual void Notifychange()
@@ -64,6 +66,8 @@ namespace ChessEngine
                             // move if valid
                             movePiece(Board, SelectedPiece, SelectedSquarePosition);
                             SwapCurrentPlayer();
+                            BlackPieces.UpdatePossiblePositions(Board);
+                            WhitePieces.UpdatePossiblePositions(Board);
 
                             SelectedPiece = null;
                             Notifychange();
@@ -79,7 +83,7 @@ namespace ChessEngine
                     if (SPiece.IsBlack == IsCurrentPlayerBlack())
                     {
                         SelectedPiece = SPiece;
-                        SelectedPiece.UpdatePossiblePositions(Board);
+                        //SelectedPiece.UpdatePossiblePositions(Board);
                         Notifychange();
                     }
                     else

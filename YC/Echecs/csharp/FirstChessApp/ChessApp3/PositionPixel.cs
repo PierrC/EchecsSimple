@@ -62,5 +62,12 @@ namespace ChessApp3
             int IRow = PixelMargine_ + PixelSquare * (7 - iPosition.Row);
             return new Point(IColumn, IRow);
         }
+
+        public Point GetPositionCenter(Position iPosition)
+        {
+            int IColumn = PixelMargine_ + PixelSquare * iPosition.Column;
+            int IRow = PixelMargine_ + PixelSquare * (7 - iPosition.Row);
+            return new Point(IColumn + PixelSquare / 2, IRow + PixelSquare / 2);
+        }
     }
 }

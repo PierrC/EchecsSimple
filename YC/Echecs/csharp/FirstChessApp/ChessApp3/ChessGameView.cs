@@ -14,12 +14,14 @@ namespace ChessApp3
         Graphics graphix_ = null;
         PositionPixel Pixel2Position_ = null;
         private ChessGame Game_;
+        private Boolean DrawPlayerHelp_ = false;
         public Color DarkColor = Color.DarkBlue;
         public Color LightColor = Color.LightGoldenrodYellow;
 
         public ChessGame Game { get => Game_;}
         public Graphics Graphix { get => graphix_; set => graphix_ = value; }
         public PositionPixel Pixel2Position { get => Pixel2Position_; set => Pixel2Position_ = value; }
+        public bool DrawPlayerHelp { get => DrawPlayerHelp_; set => DrawPlayerHelp_ = value; }
 
         public ChessGameView(ChessGame IGame)
         {
@@ -44,8 +46,25 @@ namespace ChessApp3
                 return;
 
             DrawChessboard(Game.Board, Graphix, Pixel2Position);
-            HighlightSelectedPiece(Game.SelectedPiece, Graphix, Pixel2Position);
-            HighlightPossiblePositions(Game.SelectedPiece, Game.Board, Graphix, Pixel2Position);
+            HightlightSelectedPiece(Game.SelectedPiece, Graphix, Pixel2Position);
+            HightlightPossiblePositions(Game.SelectedPiece, Game.Board, Graphix, Pixel2Position);
+            if (DrawPlayerHelp)
+            {
+                DrawOpponentPossiblePositions();
+            }
+        }
+
+        private void DrawOpponentPossiblePositions()
+        {
+            if (Game_ == null)
+                return;
+            if (Graphix == null)
+                return;
+            if (Pixel2Position == null)
+                return;
+
+            PieceSet OpponentPieces = Game.IsCurrentPlayerBlack() ? Game.WhitePieces : Game.BlackPieces;
+            HightlightPieceSetPossiblePositions(OpponentPieces, Game.Board, Graphix, Pixel2Position);
         }
 
         private void DrawChessboard(Chessboard iBoard, Graphics g, PositionPixel PP)
@@ -76,7 +95,7 @@ namespace ChessApp3
             }
         }
 
-        private void HighlightSelectedPiece(Piece selectedPiece, Graphics g, PositionPixel PP)
+        private void HightlightSelectedPiece(Piece selectedPiece, Graphics g, PositionPixel PP)
         {
             if (selectedPiece == null)
                 return;
@@ -92,30 +111,55 @@ namespace ChessApp3
             g.DrawRectangle(HighlightPen, UpperCorner.X + PieceMargin, UpperCorner.Y + PieceMargin, PieceDim, PieceDim);
         }
 
-        private void HighlightPossiblePositions(Piece piece, Chessboard iBoard, Graphics g, PositionPixel PP)
+        private void HightlightPieceSetPossiblePositions(PieceSet set, Chessboard iBoard, Graphics g, PositionPixel PP)
+        {
+            foreach( Piece piece in set)
+            {
+                HightlightPossiblePositions(piece, iBoard, g, PP);
+            }
+        }
+
+
+        private void HightlightPossiblePositions(Piece piece, Chessboard iBoard, Graphics g, PositionPixel PP)
         {
             if ((piece == null) || (piece.PossibleNewPositions == null))
                 return;
 
-            SolidBrush greenBrush = new SolidBrush(Color.LightGreen);
             SolidBrush semiTransGreenBrush = new SolidBrush(Color.FromArgb(128, 20, 255, 20));
             SolidBrush semiTransRedBrush = new SolidBrush(Color.FromArgb(128, 255, 20, 20));
-            int Width = 4;
-            Pen HighlightPen = new Pen(greenBrush);
-            HighlightPen.Width = Width;
-            HighlightPen.LineJoin = System.Drawing.Drawing2D.LineJoin.Round;
 
             foreach ( Position P in piece.PossibleNewPositions)
             {
                 Point UpperCorner = PP.GetPositionUpperCorner(P);
                 Brush brush = iBoard.GetSquare(P).HasPiece() ? semiTransRedBrush : semiTransGreenBrush;
-
-                //int PieceMargin = Width / 2;
-                //int PieceDim = PP.PixelSquare - 2 * PieceMargin;
-                //g.FillRectangle(semiTransgreenBrush, UpperCorner.X + PieceMargin, UpperCorner.Y + PieceMargin, PieceDim, PieceDim);
                 g.FillRectangle(brush, UpperCorner.X, UpperCorner.Y, PP.PixelSquare, PP.PixelSquare);
-
             }
+
+            SolidBrush yellowBrush = new SolidBrush(Color.Yellow);
+
+            Point current = PP.GetPositionCenter(piece.Position);
+            FillCircle(g, yellowBrush, current, PP.PixelSquare / 10);
+
+            int Width = 2;
+            Pen HighlightPen = new Pen(yellowBrush);
+            HighlightPen.Width = Width;
+            //HighlightPen.LineJoin = System.Drawing.Drawing2D.LineJoin.Round;
+
+            foreach (Position P in piece.PossibleNewPositions)
+            {
+                Point center = PP.GetPositionCenter(P);
+
+                FillCircle(g, yellowBrush, center, PP.PixelSquare / 10);
+
+                g.DrawLine(HighlightPen, current, center);
+            }
+        }
+
+        void FillCircle(Graphics g, Brush brush,
+                              Point center, int radius)
+        {
+            g.FillEllipse(brush, center.X - radius, center.Y - radius,
+                          radius + radius, radius + radius);
         }
     }
 }

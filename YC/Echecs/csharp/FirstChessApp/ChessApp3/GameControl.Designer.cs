@@ -32,6 +32,7 @@
             this.PlayerTextBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.PieceTextBox = new System.Windows.Forms.TextBox();
+            this.OpponentButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -72,10 +73,24 @@
             this.PieceTextBox.Size = new System.Drawing.Size(129, 20);
             this.PieceTextBox.TabIndex = 3;
             // 
+            // OpponentButton
+            // 
+            this.OpponentButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.OpponentButton.Location = new System.Drawing.Point(22, 127);
+            this.OpponentButton.Name = "OpponentButton";
+            this.OpponentButton.Size = new System.Drawing.Size(186, 25);
+            this.OpponentButton.TabIndex = 4;
+            this.OpponentButton.Text = "Display Opponent Moves";
+            this.OpponentButton.UseVisualStyleBackColor = true;
+            this.OpponentButton.MouseDown += new System.Windows.Forms.MouseEventHandler(this.OnDisplayBegins);
+            this.OpponentButton.MouseUp += new System.Windows.Forms.MouseEventHandler(this.OnDisaplyEnds);
+            // 
             // GameControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.OpponentButton);
             this.Controls.Add(this.PieceTextBox);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.PlayerTextBox);
@@ -93,5 +108,6 @@
         private System.Windows.Forms.TextBox PlayerTextBox;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox PieceTextBox;
+        private System.Windows.Forms.Button OpponentButton;
     }
 }

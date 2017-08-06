@@ -129,6 +129,25 @@ namespace ChessApp3
                 this.Refresh();
         }
 
+        public void DisplayBegins(object sender, EventArgs e)
+        {
+            Console.WriteLine("Overpost the possible moves of the opponent pieces");
+            if (GameView != null)
+            {
+                GameView.DrawPlayerHelp = true;
+            }
+            this.Refresh();
+        }
+
+        public void DisplayEnds(object sender, EventArgs e)
+        {
+            if (GameView != null)
+            {
+                GameView.DrawPlayerHelp = false;
+            }
+            this.Refresh();
+        }
+
         protected override void OnPaint(PaintEventArgs e)
         {    
             DrawToBuffer(grafx.Graphics);

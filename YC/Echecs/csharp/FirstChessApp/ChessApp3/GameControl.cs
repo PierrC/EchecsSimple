@@ -16,6 +16,9 @@ namespace ChessApp3
     {
         private ChessGame Game_;
 
+        public event EventHandler DisplayBegins;
+        public event EventHandler DisplayEnds;
+
         public GameControl()
         {
             InitializeComponent();
@@ -40,6 +43,23 @@ namespace ChessApp3
                     Game.SelectedPiece.Position.ToString();
             else
                 this.PieceTextBox.Text = "";
+        }
+
+        private void OnDisplayBegins(object sender, MouseEventArgs e)
+        {
+            Console.WriteLine("Display begins");
+            if (DisplayBegins != null)
+                DisplayBegins(this, new EventArgs());
+
+        }
+
+        private void OnDisaplyEnds(object sender, MouseEventArgs e)
+        {
+            Console.WriteLine("Display ends");
+            Console.WriteLine("Display begins");
+            if (DisplayEnds != null)
+                DisplayEnds(this, new EventArgs());
+
         }
     }
 }

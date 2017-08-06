@@ -45,5 +45,17 @@ namespace ChessEngine
                 Add(new Pawn(color, iPos));
             }
         }
+
+
+        public void UpdatePossiblePositions(Chessboard iBoard)
+        {
+            foreach( Piece P in this)
+            {
+                if (P.Position.IsValid)
+                {
+                    P.UpdatePossiblePositions(iBoard);
+                }
+            }
+        }
     }
 }
