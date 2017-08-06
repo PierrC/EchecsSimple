@@ -34,7 +34,14 @@ namespace ChessAppGDI.New_Code
                     {
                         selectedPosition = new BoardPosition(bp.X, bp.Y);
                         isSelecting = true;
-                        boardList = ChessMechanics.AvaiableMoves(bp, boardView);
+                        boardView.SetIsSelecting(isSelecting);
+                           boardList = ChessMechanics.AvaiableMoves(bp, boardView);
+                       // boardList = boardView.GetChessBoard().GetAvaibleMoves(bp);
+                        boardView.SetAvaiablemoves(boardList);
+                        foreach (BoardPosition b in boardList)
+                        {
+                            Console.WriteLine(b);
+                        }
                     }
                 }
                 else if (isSelecting)
@@ -45,6 +52,7 @@ namespace ChessAppGDI.New_Code
                         {
                             selectedPosition = new BoardPosition(-2, -1);
                             isSelecting = false;
+                            boardView.SetIsSelecting(isSelecting);
                         }
                         else if (boardView.GetChessBoard().GetBoard()[bp.X, bp.Y].HasPiece() &&
                             boardView.GetChessBoard().GetBoard()[bp.X, bp.Y].GetPiece().color.Equals(ChessBoard.OtherColor(boardView.GetChessBoard().GetBoard()[selectedPosition.X, selectedPosition.Y].GetPiece().color)))
@@ -52,6 +60,7 @@ namespace ChessAppGDI.New_Code
                             boardView.movePiece(selectedPosition, bp);
                             selectedPosition = new BoardPosition(-2, -1);
                             isSelecting = false;
+                            boardView.SetIsSelecting(isSelecting);
                             ChangePlayerColor();
 
                         //    Console.WriteLine(bp.ToString() + " "

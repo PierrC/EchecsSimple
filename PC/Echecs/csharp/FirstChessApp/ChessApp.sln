@@ -3,11 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26430.15
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChessApp", "ChessApp\ChessApp.csproj", "{D00AFF48-BDB4-427D-A7D7-8124F8EC47DE}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tiesObjects", "tiesObjects\tiesObjects.csproj", "{3A9BD574-0E08-48EB-9092-97761011EBD6}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChessAppGDI", "ChessAppGDI\ChessAppGDI.csproj", "{5D7F6D68-8B50-447A-BE55-A7627C18AAB8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChessApp", "ChessApp\ChessApp.csproj", "{2DABD802-F032-4EA6-AF13-1D9DB7A8BE7D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,19 +13,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{D00AFF48-BDB4-427D-A7D7-8124F8EC47DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D00AFF48-BDB4-427D-A7D7-8124F8EC47DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D00AFF48-BDB4-427D-A7D7-8124F8EC47DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D00AFF48-BDB4-427D-A7D7-8124F8EC47DE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3A9BD574-0E08-48EB-9092-97761011EBD6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3A9BD574-0E08-48EB-9092-97761011EBD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3A9BD574-0E08-48EB-9092-97761011EBD6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3A9BD574-0E08-48EB-9092-97761011EBD6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5D7F6D68-8B50-447A-BE55-A7627C18AAB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5D7F6D68-8B50-447A-BE55-A7627C18AAB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5D7F6D68-8B50-447A-BE55-A7627C18AAB8}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
 		{5D7F6D68-8B50-447A-BE55-A7627C18AAB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5D7F6D68-8B50-447A-BE55-A7627C18AAB8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2DABD802-F032-4EA6-AF13-1D9DB7A8BE7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2DABD802-F032-4EA6-AF13-1D9DB7A8BE7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2DABD802-F032-4EA6-AF13-1D9DB7A8BE7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2DABD802-F032-4EA6-AF13-1D9DB7A8BE7D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

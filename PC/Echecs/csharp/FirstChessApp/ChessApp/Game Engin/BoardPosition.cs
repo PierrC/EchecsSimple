@@ -49,15 +49,15 @@ namespace ChessAppGDI
         {
             switch (X)
             {
-                case 0: return "[A," + (8 - Y) + "]";
-                case 1: return "[B," + (8 - Y) + "]";
-                case 2: return "[C," + (8 - Y) + "]";
-                case 3: return "[D," + (8 - Y) + "]";
-                case 4: return "[E," + (8 - Y) + "]";
-                case 5: return "[F," + (8 - Y) + "]";
-                case 6: return "[G," + (8 - Y) + "]";
-                case 7: return "[H," + (8 - Y) + "]";
-                default: return "0";
+                case 0: return "[A," + Y + "]";
+                case 1: return "[B," + Y + "]";
+                case 2: return "[C," + Y + "]";
+                case 3: return "[D," + Y + "]";
+                case 4: return "[E," + Y + "]";
+                case 5: return "[F," + Y + "]";
+                case 6: return "[G," + Y + "]";
+                case 7: return "[H," + Y + "]";
+                default: return "Board Position is Invalid";
             }
         }
 

@@ -103,8 +103,7 @@ namespace ChessAppGDI
                 }
             }
         }
-
-
+        
         private void testButton_Click(object sender, EventArgs e)
         {
             int i = 1;

@@ -17,8 +17,8 @@ namespace ChessAppGDI.New_Code
         }
 
 
-        public PieceType pieceType; // { get => pieceType; set { this.pieceType = value; } }
-        public Colors color; // { get => color; set { this.color = value; } }
+        public PieceType pieceType;
+        public Colors color;
         public Boolean hasMoved;
 
         public Piece(PieceType.Types pType, Piece.Colors pColor)
