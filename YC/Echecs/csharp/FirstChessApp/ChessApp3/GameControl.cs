@@ -38,6 +38,8 @@ namespace ChessApp3
                     Game.SelectedPiece.ToString() +
                     " " +
                     Game.SelectedPiece.Position.ToString();
+            else
+                this.PieceTextBox.Text = "";
         }
     }
 }

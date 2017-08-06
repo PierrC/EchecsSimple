@@ -45,7 +45,7 @@ namespace ChessApp3
 
             DrawChessboard(Game.Board, Graphix, Pixel2Position);
             HighlightSelectedPiece(Game.SelectedPiece, Graphix, Pixel2Position);
-            HighlightPossiblePositions(Game.PossibleNewPositions, Game.Board, Graphix, Pixel2Position);
+            HighlightPossiblePositions(Game.SelectedPiece, Game.Board, Graphix, Pixel2Position);
         }
 
         private void DrawChessboard(Chessboard iBoard, Graphics g, PositionPixel PP)
@@ -92,9 +92,9 @@ namespace ChessApp3
             g.DrawRectangle(HighlightPen, UpperCorner.X + PieceMargin, UpperCorner.Y + PieceMargin, PieceDim, PieceDim);
         }
 
-        private void HighlightPossiblePositions(List<Position> PosPos, Chessboard iBoard, Graphics g, PositionPixel PP)
+        private void HighlightPossiblePositions(Piece piece, Chessboard iBoard, Graphics g, PositionPixel PP)
         {
-            if (PosPos == null)
+            if ((piece == null) || (piece.PossibleNewPositions == null))
                 return;
 
             SolidBrush greenBrush = new SolidBrush(Color.LightGreen);
@@ -105,7 +105,7 @@ namespace ChessApp3
             HighlightPen.Width = Width;
             HighlightPen.LineJoin = System.Drawing.Drawing2D.LineJoin.Round;
 
-            foreach ( Position P in PosPos)
+            foreach ( Position P in piece.PossibleNewPositions)
             {
                 Point UpperCorner = PP.GetPositionUpperCorner(P);
                 Brush brush = iBoard.GetSquare(P).HasPiece() ? semiTransRedBrush : semiTransGreenBrush;

@@ -14,14 +14,12 @@ namespace ChessEngine
 
         private Piece.PlayerColors CurrentPlayer_;
         private Piece SelectedPiece_;
-        private List<Position> PossibleNewPositions_;
 
 
         public Chessboard Board { get => Board_; }
         public PieceSet BlackPieces { get => BlackPieces_; }
         public PieceSet WhitePieces { get => WhitePieces_; }
         public Piece SelectedPiece { get => SelectedPiece_; set => SelectedPiece_ = value; }
-        public List<Position> PossibleNewPositions { get => PossibleNewPositions_; }
 
         public event EventHandler Changed;
 
@@ -57,9 +55,9 @@ namespace ChessEngine
             Square SelectedSquare = Board.GetSquare(SelectedSquarePosition);
             if (SelectedSquare != null)
             {
-                if ((SelectedPiece != null) && (PossibleNewPositions != null))
+                if ((SelectedPiece != null) && (SelectedPiece.PossibleNewPositions != null))
                 {
-                    foreach (Position P in PossibleNewPositions)
+                    foreach (Position P in SelectedPiece.PossibleNewPositions)
                     {
                         if (P.Equals(SelectedSquarePosition))
                         {
@@ -68,7 +66,6 @@ namespace ChessEngine
                             SwapCurrentPlayer();
 
                             SelectedPiece = null;
-                            PossibleNewPositions_ = null;
                             Notifychange();
                             return;
                         }
@@ -82,14 +79,13 @@ namespace ChessEngine
                     if (SPiece.IsBlack == IsCurrentPlayerBlack())
                     {
                         SelectedPiece = SPiece;
-                        PossibleNewPositions_ = GetPossiblePositions(Board, SelectedPiece);
+                        SelectedPiece.UpdatePossiblePositions(Board);
                         Notifychange();
                     }
                     else
                     {
                         Console.WriteLine("You select a Piece from the side");
                         SelectedPiece = null;
-                        PossibleNewPositions_ = null;
                         Notifychange();
                     }
                 }
