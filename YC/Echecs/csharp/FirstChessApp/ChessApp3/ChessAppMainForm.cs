@@ -29,13 +29,12 @@ namespace ChessApp3
             Game_ = new ChessGame();
             GameView_ = new ChessGameView(Game);
             Game.Changed += new EventHandler(renderAreaControl.GameChanged);
+            GameView.Redraw += new EventHandler(renderAreaControl.GameChanged);
             Game.Changed += new EventHandler(gameControl.GameChanged);
             renderAreaControl.Game = this.Game;
             renderAreaControl.GameView = this.GameView;
             gameControl.Game = this.Game;
-            gameControl.DisplayBegins += new EventHandler(renderAreaControl.DisplayBegins);
-            gameControl.DisplayEnds += new EventHandler(renderAreaControl.DisplayEnds);
-
+            gameControl.GameView = this.GameView;
         }
     }
 }

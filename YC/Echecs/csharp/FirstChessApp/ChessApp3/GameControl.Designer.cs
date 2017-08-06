@@ -32,7 +32,8 @@
             this.PlayerTextBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.PieceTextBox = new System.Windows.Forms.TextBox();
-            this.OpponentButton = new System.Windows.Forms.Button();
+            this.WhiteMovesButton = new System.Windows.Forms.Button();
+            this.BlackMovesButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -73,24 +74,38 @@
             this.PieceTextBox.Size = new System.Drawing.Size(129, 20);
             this.PieceTextBox.TabIndex = 3;
             // 
-            // OpponentButton
+            // WhiteMovesButton
             // 
-            this.OpponentButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.WhiteMovesButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.OpponentButton.Location = new System.Drawing.Point(22, 127);
-            this.OpponentButton.Name = "OpponentButton";
-            this.OpponentButton.Size = new System.Drawing.Size(186, 25);
-            this.OpponentButton.TabIndex = 4;
-            this.OpponentButton.Text = "Display Opponent Moves";
-            this.OpponentButton.UseVisualStyleBackColor = true;
-            this.OpponentButton.MouseDown += new System.Windows.Forms.MouseEventHandler(this.OnDisplayBegins);
-            this.OpponentButton.MouseUp += new System.Windows.Forms.MouseEventHandler(this.OnDisaplyEnds);
+            this.WhiteMovesButton.Location = new System.Drawing.Point(22, 127);
+            this.WhiteMovesButton.Name = "WhiteMovesButton";
+            this.WhiteMovesButton.Size = new System.Drawing.Size(186, 25);
+            this.WhiteMovesButton.TabIndex = 4;
+            this.WhiteMovesButton.Text = "Display White Moves";
+            this.WhiteMovesButton.UseVisualStyleBackColor = true;
+            this.WhiteMovesButton.MouseDown += new System.Windows.Forms.MouseEventHandler(this.OnToggleDisplayMove);
+            this.WhiteMovesButton.MouseUp += new System.Windows.Forms.MouseEventHandler(this.OnToggleDisplayMove);
+            // 
+            // BlackMovesButton
+            // 
+            this.BlackMovesButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.BlackMovesButton.Location = new System.Drawing.Point(22, 158);
+            this.BlackMovesButton.Name = "BlackMovesButton";
+            this.BlackMovesButton.Size = new System.Drawing.Size(186, 25);
+            this.BlackMovesButton.TabIndex = 5;
+            this.BlackMovesButton.Text = "Display Black Moves";
+            this.BlackMovesButton.UseVisualStyleBackColor = true;
+            this.BlackMovesButton.MouseDown += new System.Windows.Forms.MouseEventHandler(this.OnToggleDisplayMove);
+            this.BlackMovesButton.MouseUp += new System.Windows.Forms.MouseEventHandler(this.OnToggleDisplayMove);
             // 
             // GameControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.OpponentButton);
+            this.Controls.Add(this.BlackMovesButton);
+            this.Controls.Add(this.WhiteMovesButton);
             this.Controls.Add(this.PieceTextBox);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.PlayerTextBox);
@@ -108,6 +123,7 @@
         private System.Windows.Forms.TextBox PlayerTextBox;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox PieceTextBox;
-        private System.Windows.Forms.Button OpponentButton;
+        private System.Windows.Forms.Button WhiteMovesButton;
+        private System.Windows.Forms.Button BlackMovesButton;
     }
 }

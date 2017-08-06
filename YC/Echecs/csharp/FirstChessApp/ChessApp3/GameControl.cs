@@ -15,9 +15,7 @@ namespace ChessApp3
     public partial class GameControl : UserControl
     {
         private ChessGame Game_;
-
-        public event EventHandler DisplayBegins;
-        public event EventHandler DisplayEnds;
+        private ChessGameView GameView_;
 
         public GameControl()
         {
@@ -25,6 +23,7 @@ namespace ChessApp3
         }
 
         public ChessGame Game { get => Game_; set => Game_ = value; }
+        public ChessGameView GameView { get => GameView_; set => GameView_ = value; }
 
         public void GameChanged(object sender, EventArgs e)
         {
@@ -45,20 +44,16 @@ namespace ChessApp3
                 this.PieceTextBox.Text = "";
         }
 
-        private void OnDisplayBegins(object sender, MouseEventArgs e)
+        private void OnToggleDisplayMove(object sender, MouseEventArgs e)
         {
             Console.WriteLine("Display begins");
-            if (DisplayBegins != null)
-                DisplayBegins(this, new EventArgs());
-
-        }
-
-        private void OnDisaplyEnds(object sender, MouseEventArgs e)
-        {
-            Console.WriteLine("Display ends");
-            Console.WriteLine("Display begins");
-            if (DisplayEnds != null)
-                DisplayEnds(this, new EventArgs());
+            if (GameView != null)
+            {
+                if (sender == this.BlackMovesButton)
+                    GameView.DrawBlackMoves = !GameView.DrawBlackMoves;
+                else
+                    GameView.DrawWhiteMoves = !GameView.DrawWhiteMoves;
+            }
 
         }
     }

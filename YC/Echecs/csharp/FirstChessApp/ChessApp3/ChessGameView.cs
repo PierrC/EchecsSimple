@@ -14,18 +14,46 @@ namespace ChessApp3
         Graphics graphix_ = null;
         PositionPixel Pixel2Position_ = null;
         private ChessGame Game_;
-        private Boolean DrawPlayerHelp_ = false;
+        private Boolean DrawBlackMoves_ = false;
+        private Boolean DrawWhiteMoves_ = false;
         public Color DarkColor = Color.DarkBlue;
         public Color LightColor = Color.LightGoldenrodYellow;
 
         public ChessGame Game { get => Game_;}
         public Graphics Graphix { get => graphix_; set => graphix_ = value; }
         public PositionPixel Pixel2Position { get => Pixel2Position_; set => Pixel2Position_ = value; }
-        public bool DrawPlayerHelp { get => DrawPlayerHelp_; set => DrawPlayerHelp_ = value; }
+        public bool DrawBlackMoves
+        {
+            get => DrawBlackMoves_;
+            set
+            {
+                DrawBlackMoves_ = value;
+                NeedsRedraw();
+            }
+        }
+
+        public bool DrawWhiteMoves
+        {
+            get => DrawWhiteMoves_;
+            set
+            {
+                DrawWhiteMoves_ = value;
+                NeedsRedraw();
+            }
+        }
+
+        public event EventHandler Redraw;
+
 
         public ChessGameView(ChessGame IGame)
         {
             Game_ = IGame;
+        }
+
+        protected virtual void NeedsRedraw()
+        {
+            if (Redraw != null)
+                Redraw(this, new EventArgs());
         }
 
         public void GameChanged(object sender, EventArgs e)
@@ -48,23 +76,14 @@ namespace ChessApp3
             DrawChessboard(Game.Board, Graphix, Pixel2Position);
             HightlightSelectedPiece(Game.SelectedPiece, Graphix, Pixel2Position);
             HightlightPossiblePositions(Game.SelectedPiece, Game.Board, Graphix, Pixel2Position);
-            if (DrawPlayerHelp)
+            if (DrawBlackMoves)
             {
-                DrawOpponentPossiblePositions();
+                HightlightPieceSetPossiblePositions(Game.BlackPieces, Game.Board, Graphix, Pixel2Position);
             }
-        }
-
-        private void DrawOpponentPossiblePositions()
-        {
-            if (Game_ == null)
-                return;
-            if (Graphix == null)
-                return;
-            if (Pixel2Position == null)
-                return;
-
-            PieceSet OpponentPieces = Game.IsCurrentPlayerBlack() ? Game.WhitePieces : Game.BlackPieces;
-            HightlightPieceSetPossiblePositions(OpponentPieces, Game.Board, Graphix, Pixel2Position);
+            if (DrawWhiteMoves)
+            {
+                HightlightPieceSetPossiblePositions(Game.WhitePieces, Game.Board, Graphix, Pixel2Position);
+            }
         }
 
         private void DrawChessboard(Chessboard iBoard, Graphics g, PositionPixel PP)
@@ -136,13 +155,17 @@ namespace ChessApp3
             }
 
             SolidBrush yellowBrush = new SolidBrush(Color.Yellow);
+            SolidBrush redBrush = new SolidBrush(Color.Red);
 
             Point current = PP.GetPositionCenter(piece.Position);
-            FillCircle(g, yellowBrush, current, PP.PixelSquare / 10);
+            if ((piece.PossibleNewPositions == null) || (piece.PossibleNewPositions.Count == 0))
+                FillCircle(g, redBrush, current, PP.PixelSquare / 10);
+            else
+                FillCircle(g, yellowBrush, current, PP.PixelSquare / 10);
 
             int Width = 2;
-            Pen HighlightPen = new Pen(yellowBrush);
-            HighlightPen.Width = Width;
+            Pen yellowPen = new Pen(yellowBrush);
+            yellowPen.Width = Width;
             //HighlightPen.LineJoin = System.Drawing.Drawing2D.LineJoin.Round;
 
             foreach (Position P in piece.PossibleNewPositions)
@@ -151,7 +174,7 @@ namespace ChessApp3
 
                 FillCircle(g, yellowBrush, center, PP.PixelSquare / 10);
 
-                g.DrawLine(HighlightPen, current, center);
+                g.DrawLine(yellowPen, current, center);
             }
         }
 

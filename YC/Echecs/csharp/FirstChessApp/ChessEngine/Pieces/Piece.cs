@@ -60,6 +60,8 @@ namespace ChessEngine
         public void UpdatePossiblePositions(Chessboard iBoard)
         {
             PossibleNewPositions_ = null;
+            if (!this.Position.IsValid)
+                return;
 
             List<Position> PosPos = new List<Position>();
             Position currentPos = this.Position;

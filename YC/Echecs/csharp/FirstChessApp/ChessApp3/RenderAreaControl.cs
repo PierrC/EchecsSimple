@@ -125,26 +125,6 @@ namespace ChessApp3
         public void GameChanged(object sender, EventArgs e)
         {
             Console.WriteLine("Redraw Game From notification.");
-            if (sender is ChessGame)
-                this.Refresh();
-        }
-
-        public void DisplayBegins(object sender, EventArgs e)
-        {
-            Console.WriteLine("Overpost the possible moves of the opponent pieces");
-            if (GameView != null)
-            {
-                GameView.DrawPlayerHelp = true;
-            }
-            this.Refresh();
-        }
-
-        public void DisplayEnds(object sender, EventArgs e)
-        {
-            if (GameView != null)
-            {
-                GameView.DrawPlayerHelp = false;
-            }
             this.Refresh();
         }
 

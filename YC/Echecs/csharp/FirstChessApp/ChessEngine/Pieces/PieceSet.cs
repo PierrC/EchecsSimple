@@ -51,10 +51,7 @@ namespace ChessEngine
         {
             foreach( Piece P in this)
             {
-                if (P.Position.IsValid)
-                {
-                    P.UpdatePossiblePositions(iBoard);
-                }
+                P.UpdatePossiblePositions(iBoard);
             }
         }
     }
