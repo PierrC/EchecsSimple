@@ -22,5 +22,10 @@ namespace ChessEngine
             step = new Step(0, -1);
             Steps.Steps.Add(step);
         }
+
+        public override String ToString()
+        {
+            return "Rook";
+        }
     }
 }

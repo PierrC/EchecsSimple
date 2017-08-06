@@ -33,5 +33,10 @@ namespace ChessEngine
             Steps.Steps.Add(step);
             
         }
+
+        public override String ToString()
+        {
+            return "King";
+        }
     }
 }

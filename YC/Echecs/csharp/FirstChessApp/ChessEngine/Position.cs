@@ -75,6 +75,14 @@ namespace ChessEngine
             return (Row == pos.Row) && (Column == pos.Column);
         }
 
+        public override String ToString()
+        {
+            char scol = 'A';
+            scol += Convert.ToChar(Column);
+            int row1 = Row + 1;
+            return "[" + scol.ToString() + ", " + row1.ToString() + "]";
+        }
+
         public Position GetPositionAfterStep(int numStep, Step step)
         {
             return new Position(this.Column + numStep * step.DeltaColumn, this.Row + numStep * step.DeltaRow);

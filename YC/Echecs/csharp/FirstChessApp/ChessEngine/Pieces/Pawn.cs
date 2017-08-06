@@ -27,5 +27,10 @@ namespace ChessEngine
             step.CatchMoveOnly = true;
             Steps.Steps.Add(step);
         }
+
+        public override String ToString()
+        {
+            return "Pawn";
+        }
     }
 }

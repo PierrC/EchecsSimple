@@ -58,7 +58,7 @@ namespace ChessEngine
 
         private Image SetImage()
         {
-            if (this.IsBlack)/// PlayerColor.Equals(PlayerColors.BLACK))
+            if (this.IsBlack)
             {
                 if (this.Type == Piece.Types.PAWN)
                 {

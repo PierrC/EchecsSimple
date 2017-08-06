@@ -22,5 +22,10 @@ namespace ChessEngine
             step = new Step(-1, -1);
             Steps.Steps.Add(step);
         }
+
+        public override String ToString()
+        {
+            return "Bishop";
+        }
     }
 }
