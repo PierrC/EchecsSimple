@@ -45,14 +45,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ChessEngine\Pieces\Bishop.cs" />
-    <Compile Include="ChessEngine\Chessboard.cs" />
-    <Compile Include="ChessEngine\ChessGame.cs" />
-    <Compile Include="ChessEngine\Pieces\King.cs" />
-    <Compile Include="ChessEngine\Pieces\Knight.cs" />
-    <Compile Include="ChessEngine\Pieces\Pawn.cs" />
-    <Compile Include="ChessEngine\Pieces\Queen.cs" />
-    <Compile Include="ChessEngine\Pieces\Rook.cs" />
     <Compile Include="ChessGameView.cs" />
     <Compile Include="ChessAppMainForm.cs">
       <SubType>Form</SubType>
@@ -60,8 +52,6 @@
     <Compile Include="ChessAppMainForm.Designer.cs">
       <DependentUpon>ChessAppMainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ChessEngine\Pieces\PieceSet.cs" />
-    <Compile Include="ChessEngine\Pieces\PieceSteps.cs" />
     <Compile Include="PositionPixel.cs" />
     <Compile Include="RenderAreaControl.cs">
       <SubType>UserControl</SubType>
@@ -69,24 +59,11 @@
     <Compile Include="RenderAreaControl.Designer.cs">
       <DependentUpon>RenderAreaControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="ChessEngine\Square.cs" />
-    <Compile Include="ChessEngine\Pieces\Piece.cs" />
-    <Compile Include="ChessEngine\Position.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="ChessAppMainForm.resx">
       <DependentUpon>ChessAppMainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <EmbeddedResource Include="RenderAreaControl.resx">
       <DependentUpon>RenderAreaControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -104,18 +81,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\whiteQueen.gif" />
-    <None Include="Resources\whitePawn.gif" />
-    <None Include="Resources\whiteKnight.gif" />
-    <None Include="Resources\whiteKing.gif" />
-    <None Include="Resources\whiteBishop.gif" />
-    <None Include="Resources\whiteRook.gif" />
-    <None Include="Resources\blackBishop.gif" />
-    <None Include="Resources\blackRook.gif" />
-    <None Include="Resources\blackQueen.gif" />
-    <None Include="Resources\blackPawn.gif" />
-    <None Include="Resources\blackKinght.gif" />
-    <None Include="Resources\blackKing.gif" />
+    <ProjectReference Include="..\ChessEngine\ChessEngine.csproj">
+      <Project>{301c51d7-1c1e-4e21-b1ac-a56162799838}</Project>
+      <Name>ChessEngine</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

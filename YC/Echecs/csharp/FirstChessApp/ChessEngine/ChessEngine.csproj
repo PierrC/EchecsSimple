@@ -43,7 +43,6 @@
   <ItemGroup>
     <Compile Include="Chessboard.cs" />
     <Compile Include="ChessGame.cs" />
-    <Compile Include="Class1.cs" />
     <Compile Include="Pieces\Bishop.cs" />
     <Compile Include="Pieces\King.cs" />
     <Compile Include="Pieces\Knight.cs" />
