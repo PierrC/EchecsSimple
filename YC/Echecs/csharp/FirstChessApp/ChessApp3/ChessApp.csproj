@@ -52,6 +52,12 @@
     <Compile Include="ChessAppMainForm.Designer.cs">
       <DependentUpon>ChessAppMainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="GameControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GameControl.Designer.cs">
+      <DependentUpon>GameControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="PositionPixel.cs" />
     <Compile Include="RenderAreaControl.cs">
       <SubType>UserControl</SubType>
@@ -63,6 +69,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="ChessAppMainForm.resx">
       <DependentUpon>ChessAppMainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GameControl.resx">
+      <DependentUpon>GameControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RenderAreaControl.resx">
       <DependentUpon>RenderAreaControl.cs</DependentUpon>

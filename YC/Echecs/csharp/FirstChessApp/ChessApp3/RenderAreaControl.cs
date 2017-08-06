@@ -27,12 +27,14 @@ namespace ChessApp3
             set
             {
                 GameView_ = value;
-                if (GameView_ != null) 
-                GameView_.Pixel2Position = PosPix;
-                if (grafx != null)
+                if (GameView_ != null)
                 {
-                    GameView_.Graphix = grafx.Graphics;
-                    this.Refresh();
+                    GameView_.Pixel2Position = PosPix;
+                    if (grafx != null)
+                    {
+                        GameView_.Graphix = grafx.Graphics;
+                        this.Refresh();
+                    }
                 }
             }
         }

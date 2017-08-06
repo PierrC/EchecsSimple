@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26430.15
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChessApp3", "ChessApp3\ChessApp3.csproj", "{E4538F74-B28A-4FBC-BAAA-2FD556F3C3C6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChessApp", "ChessApp3\ChessApp.csproj", "{E4538F74-B28A-4FBC-BAAA-2FD556F3C3C6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChessEngine", "ChessEngine\ChessEngine.csproj", "{301C51D7-1C1E-4E21-B1AC-A56162799838}"
 EndProject
