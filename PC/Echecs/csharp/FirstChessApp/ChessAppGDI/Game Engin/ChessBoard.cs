@@ -99,11 +99,7 @@ namespace ChessAppGDI.New_Code
                 board[pStart.X, pStart.Y].RemovePiece();
             }
         }
-
-
-
-
-
+        
         public List<BoardPosition> GetAvaibleMoves(BoardPosition bp)
         {
             List<BoardPosition> moves = new List<BoardPosition>();

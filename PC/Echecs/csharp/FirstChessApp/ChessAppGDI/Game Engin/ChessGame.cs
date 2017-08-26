@@ -35,7 +35,7 @@ namespace ChessAppGDI.New_Code
                         selectedPosition = new BoardPosition(bp.X, bp.Y);
                         isSelecting = true;
                         boardView.SetIsSelecting(isSelecting);
-                           boardList = ChessMechanics.AvaiableMoves(bp, boardView);
+                        boardList = ChessMechanics.AvaiableMoves(bp, boardView);
                        // boardList = boardView.GetChessBoard().GetAvaibleMoves(bp);
                         boardView.SetAvaiablemoves(boardList);
                         foreach (BoardPosition b in boardList)
@@ -128,10 +128,10 @@ namespace ChessAppGDI.New_Code
                     boardView.SetReplacePiece(new Piece(PieceType.Types.QUEEN, Piece.Colors.WHITE));
                     break;
                 case 3:
-                    boardView.SetReplacePiece(new Piece(PieceType.Types.QUEEN, Piece.Colors.WHITE));
+                    boardView.SetReplacePiece(new Piece(PieceType.Types.ROOK, Piece.Colors.WHITE));
                     break;
                 default:
-                    boardView.SetReplacePiece(new Piece(PieceType.Types.BISHOP, Piece.Colors.WHITE));
+                    boardView.SetReplacePiece(new Piece(PieceType.Types.QUEEN, Piece.Colors.WHITE));
                     break;
             }
         }

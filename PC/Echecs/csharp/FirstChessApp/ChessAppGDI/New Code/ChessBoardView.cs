@@ -116,11 +116,7 @@ namespace ChessAppGDI.New_Code
                 }
             }
         }
-
-        /// <summary>
-        /// /////////////////////////////////////////////////////////////////
-        /// </summary>
-        /// <param name="pPiece"></param>
+        
         public void SetReplacePiece(Piece pPiece)
         {
             aReplacementPiece = pPiece;
@@ -145,9 +141,6 @@ namespace ChessAppGDI.New_Code
             SetViewList();
         }
 
-        /// <summary>
-        /// ////////////////////////////////////////////////////////////////////
-        /// </summary>
         private void SetViewList()
         {
             Square[,] boardPiece = board.GetBoard();
@@ -158,21 +151,21 @@ namespace ChessAppGDI.New_Code
                     if (board.GetBoard()[i, j].HasPiece())
                     {
                         viewBoard[i, j] = new PieceView(board.GetBoard()[i, j].GetPiece());
-
                     }
                 }
             }
         }
 
 
+        List<BoardPosition> possibleMoves;
+        Font font = new Font("Times New Roman", 16);
+        int square = 0;
+
         public void DrawGame(Graphics g)
         {
             DrawBoard(g);
             DrawPieces(g);
         }
-
-        Font font = new Font("Times New Roman", 16);
-        int square = 0;
 
         private void DrawBoard(Graphics g)
         {
@@ -219,7 +212,6 @@ namespace ChessAppGDI.New_Code
 
         }
 
-        List<BoardPosition> possibleMoves;
         private void DrawSelectedSquares(Graphics g)
         {
             foreach(BoardPosition b in possibleMoves)
@@ -228,6 +220,10 @@ namespace ChessAppGDI.New_Code
                 Point p = PositionAndPixels.BoardPositionToPixels(b);
                 g.FillRectangle(Brushes.Red, p.X, p.Y, square, square);
             }
+        }
+        public void SetAvaiablemoves(List<BoardPosition> list)
+        {
+            possibleMoves = list;
         }
 
         private void DrawPieces(Graphics g)
@@ -257,9 +253,5 @@ namespace ChessAppGDI.New_Code
             isSelecting = selected;
         }
 
-        public void SetAvaiablemoves(List<BoardPosition> list)
-        {
-            possibleMoves = list;
-        }
     }
 }

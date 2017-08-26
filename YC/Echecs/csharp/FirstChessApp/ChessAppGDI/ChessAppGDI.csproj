@@ -45,30 +45,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BoardPanel.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Game Engin\ChessBoard.cs" />
-    <Compile Include="Game Engin\PositionBoard.cs" />
-    <Compile Include="Game Engin\Move.cs" />
-    <Compile Include="Game Engin\MoveSet.cs" />
-    <Compile Include="Game Engin\PieceType.cs" />
-    <Compile Include="New Code\ChessBoardView.cs" />
-    <Compile Include="Game Engin\ChessGame.cs" />
-    <Compile Include="New Code\ChessGameView.cs" />
-    <Compile Include="Game Engin\ChessMechanics.cs" />
-    <Compile Include="Game Engin\Piece.cs" />
-    <Compile Include="New Code\PieceView.cs" />
-    <Compile Include="ChessApp.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="BoardPanel.cs" />
+    <Compile Include="ChessApp.cs" />
     <Compile Include="ChessApp.Designer.cs">
       <DependentUpon>ChessApp.cs</DependentUpon>
     </Compile>
-    <Compile Include="New Code\PieceViewMoved.cs" />
-    <Compile Include="Mechanisms\PositionAndPixels.cs" />
-    <Compile Include="New Code\Program.cs" />
-    <Compile Include="Game Engin\Square.cs" />
+    <Compile Include="Piece.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="ChessApp.resx">
       <DependentUpon>ChessApp.cs</DependentUpon>
@@ -135,6 +118,5 @@
   <ItemGroup>
     <None Include="Resources\whiteRook.png" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

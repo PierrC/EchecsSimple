@@ -1,6 +1,6 @@
 ﻿namespace ChessApp
 {
-    partial class Form1
+    partial class ChessApplication
     {
         /// <summary>
         /// Required designer variable.
@@ -207,15 +207,17 @@
             this.boardPanel.Name = "boardPanel";
             this.boardPanel.Size = new System.Drawing.Size(463, 438);
             this.boardPanel.TabIndex = 2;
+            this.boardPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.boardPanel_Paint);
+            this.boardPanel.MouseClick += new System.Windows.Forms.MouseEventHandler(this.boardPanel_MouseClick);
             // 
-            // Form1
+            // ChessApplication
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(623, 468);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.menuStrip1);
-            this.Name = "Form1";
+            this.Name = "ChessApplication";
             this.Text = "ChessApp";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();

@@ -6,10 +6,52 @@ using System.Threading.Tasks;
 
 namespace ChessApp.Game_Engin
 {
-    class Square
+    public class Square
     {
         Piece aPiece;
-        Boolean IsDark;
+        Boolean isDark;
+
+        public Square(bool b)
+        {
+            aPiece = null;
+            isDark = b;
+        }
+
+        public Boolean HasPiece()
+        {
+            if (aPiece == null)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public Piece GetPiece()
+        {
+            return aPiece;
+        }
+
+        public void SetPiece(Piece pPiece)
+        {
+            aPiece = pPiece;
+        }
+
+        public void RemovePiece()
+        {
+            aPiece = null;
+        }
+
+        public Boolean SquareIsDark()
+        {
+            return isDark;
+        }
+
+        public override string ToString()
+        {
+            if (!(aPiece == null))
+                return aPiece.ToString();
+            return "";
+        }
 
 
     }

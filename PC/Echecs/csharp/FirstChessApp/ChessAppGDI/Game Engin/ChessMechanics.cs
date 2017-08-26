@@ -407,105 +407,6 @@ namespace ChessAppGDI.New_Code
             return boardPositionList;
         }
         
-        private static List<BoardPosition> GetRookMoves(BoardPosition bp, ChessBoardView pChessBoard)
-        {
-
-            List<BoardPosition> boardPositionList = new List<BoardPosition>();
-            boardPositionList.Add(bp);
-            Piece p = pChessBoard.GetChessBoard().GetBoard()[bp.X, bp.Y].GetPiece();
-            int index = 0;
-            int i = bp.X;
-            int j = bp.Y;
-            // Up
-            while (j < 7 )
-            {
-                j++;
-                if(pChessBoard.GetChessBoard().GetBoard()[i, j].HasPiece() )
-                {
-                    if(!p.IsSameColor(pChessBoard.GetChessBoard().GetBoard()[i, j].GetPiece()))
-                    {
-                        boardPositionList.Add(new BoardPosition(i, j));
-                    }
-                    break;
-                }
-                else
-                {
-                    boardPositionList.Add(new BoardPosition(i, j));
-                }
-            }
-            for (int m = 0; m < boardPositionList.Count; m++)
-            {
-             //   Console.WriteLine("Rook moves 1:" + boardPositionList[m].ToString());
-                index = m;
-            }
-            i = bp.X;
-            j = bp.Y;
-            while( j > 0)
-            {
-                j--;
-                if (pChessBoard.GetChessBoard().GetBoard()[i, j].HasPiece())
-                {
-                    if (!p.IsSameColor(pChessBoard.GetChessBoard().GetBoard()[i, j].GetPiece()))
-                    {
-                        boardPositionList.Add(new BoardPosition(i, j));
-                    }
-                    break;
-                }
-                else
-                {
-                    boardPositionList.Add(new BoardPosition(i, j));
-                }
-            }
-            for (int m = index; m < boardPositionList.Count; m++)
-            {
-              //  Console.WriteLine("Rook moves 2:" + boardPositionList[m].ToString());
-                index = m;
-            }
-            i = bp.X;
-            j = bp.Y;
-            while (i < 7)
-            {
-                i++;
-                if (pChessBoard.GetChessBoard().GetBoard()[i, j].HasPiece())
-                {
-                    if (!p.IsSameColor(pChessBoard.GetChessBoard().GetBoard()[i, j].GetPiece()))
-                    {
-                        boardPositionList.Add(new BoardPosition(i, j));
-                    }
-                    break;
-                }
-                else
-                {
-                    boardPositionList.Add(new BoardPosition(i, j));
-                }
-            }
-            for (int m = index; m < boardPositionList.Count; m++)
-            {
-              //  Console.WriteLine("Rook moves 3:" + boardPositionList[m].ToString());
-                index = m;
-            }
-            i = bp.X;
-            j = bp.Y;
-            while (i > 0)
-            {
-                i--;
-                if (pChessBoard.GetChessBoard().GetBoard()[i, j].HasPiece())
-                {
-                    if (!p.IsSameColor(pChessBoard.GetChessBoard().GetBoard()[i, j].GetPiece()))
-                    {
-                        boardPositionList.Add(new BoardPosition(i, j));
-                    }
-                    break;
-                }
-                else
-                {
-                    boardPositionList.Add(new BoardPosition(i, j));
-                }
-            }
-            
-            return boardPositionList;
-        }
-
         private static List<BoardPosition> GetKnightMoves(BoardPosition bp, ChessBoardView pChessBoard)
         {
             List<BoardPosition> boardPositionList = new List<BoardPosition>();
@@ -645,6 +546,108 @@ namespace ChessAppGDI.New_Code
             return boardPositionList;
         }
         
+        private static List<BoardPosition> GetRookMoves(BoardPosition bp, ChessBoardView pChessBoard)
+        {
+
+            List<BoardPosition> boardPositionList = new List<BoardPosition>();
+            boardPositionList.Add(bp);
+            Piece p = pChessBoard.GetChessBoard().GetBoard()[bp.X, bp.Y].GetPiece();
+            int index = 0;
+            int i = bp.X;
+            int j = bp.Y;
+            // Up
+            while (j < 7 )
+            {
+                j++;
+                if(pChessBoard.GetChessBoard().GetBoard()[i, j].HasPiece() )
+                {
+                    if(!p.IsSameColor(pChessBoard.GetChessBoard().GetBoard()[i, j].GetPiece()))
+                    {
+                        boardPositionList.Add(new BoardPosition(i, j));
+                    }
+                    break;
+                }
+                else
+                {
+                    boardPositionList.Add(new BoardPosition(i, j));
+                }
+            }
+            for (int m = 0; m < boardPositionList.Count; m++)
+            {
+             //   Console.WriteLine("Rook moves 1:" + boardPositionList[m].ToString());
+                index = m;
+            }
+            i = bp.X;
+            j = bp.Y;
+            while( j > 0)
+            {
+                j--;
+                if (pChessBoard.GetChessBoard().GetBoard()[i, j].HasPiece())
+                {
+                    if (!p.IsSameColor(pChessBoard.GetChessBoard().GetBoard()[i, j].GetPiece()))
+                    {
+                        boardPositionList.Add(new BoardPosition(i, j));
+                    }
+                    break;
+                }
+                else
+                {
+                    boardPositionList.Add(new BoardPosition(i, j));
+                }
+            }
+            for (int m = index; m < boardPositionList.Count; m++)
+            {
+              //  Console.WriteLine("Rook moves 2:" + boardPositionList[m].ToString());
+                index = m;
+            }
+            i = bp.X;
+            j = bp.Y;
+            while (i < 7)
+            {
+                i++;
+                if (pChessBoard.GetChessBoard().GetBoard()[i, j].HasPiece())
+                {
+                    if (!p.IsSameColor(pChessBoard.GetChessBoard().GetBoard()[i, j].GetPiece()))
+                    {
+                        boardPositionList.Add(new BoardPosition(i, j));
+                    }
+                    break;
+                }
+                else
+                {
+                    boardPositionList.Add(new BoardPosition(i, j));
+                }
+            }
+            for (int m = index; m < boardPositionList.Count; m++)
+            {
+              //  Console.WriteLine("Rook moves 3:" + boardPositionList[m].ToString());
+                index = m;
+            }
+            i = bp.X;
+            j = bp.Y;
+            while (i > 0)
+            {
+                i--;
+                if (pChessBoard.GetChessBoard().GetBoard()[i, j].HasPiece())
+                {
+                    if (!p.IsSameColor(pChessBoard.GetChessBoard().GetBoard()[i, j].GetPiece()))
+                    {
+                        boardPositionList.Add(new BoardPosition(i, j));
+                    }
+                    break;
+                }
+                else
+                {
+                    boardPositionList.Add(new BoardPosition(i, j));
+                }
+            }
+            
+            return boardPositionList;
+        }
+
+
+
+        
         public static void PrintBoardView(ChessBoardView pBoard)
         {
             PieceView[,] view = pBoard.GetViewBoard();
@@ -770,6 +773,7 @@ namespace ChessAppGDI.New_Code
 
         public static bool SquareIsThreatened(Piece pPiece, BoardPosition bp, ChessBoardView pChessBoard)
         {
+
             Piece.Colors pieceColor = pPiece.color;
             List<BoardPosition> moveList;
             for (int i = 0; i < 8; i++)

@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace ChessAppGDI
+namespace ChessApp.Game_Engin
 {
     public class BoardPosition
     {
+
         public BoardPosition()
         {
             Invalid();
@@ -21,7 +18,7 @@ namespace ChessAppGDI
 
         public int X;
         public int Y;
-        
+
 
         public Boolean IsValid()
         {
@@ -35,16 +32,16 @@ namespace ChessAppGDI
             this.X = -2;
             this.Y = -2;
         }
-        
+
         public bool IsSamePosition(BoardPosition pBp)
         {
-            if(pBp.X == this.X && pBp.Y == this.Y)
+            if (pBp.X == this.X && pBp.Y == this.Y)
             {
                 return true;
             }
             return false;
         }
-        
+
         public override String ToString()
         {
             switch (X)
@@ -60,7 +57,6 @@ namespace ChessAppGDI
                 default: return "Board Position is Invalid";
             }
         }
-
 
     }
 }

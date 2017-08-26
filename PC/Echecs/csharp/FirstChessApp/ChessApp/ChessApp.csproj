@@ -45,28 +45,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="ChessApplication.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="ChessApplication.Designer.cs">
+      <DependentUpon>ChessApplication.cs</DependentUpon>
     </Compile>
     <Compile Include="Game Engin\BoardPosition.cs" />
     <Compile Include="Game Engin\ChessBoard.cs" />
-    <Compile Include="Game Engin\MoveInterface\BishopMoves.cs" />
-    <Compile Include="Game Engin\MoveInterface\KingMoves.cs" />
-    <Compile Include="Game Engin\MoveInterface\KnightMoves.cs" />
-    <Compile Include="Game Engin\MoveInterface\MoveBehavior.cs" />
-    <Compile Include="Game Engin\MoveInterface\PawnMoves.cs" />
-    <Compile Include="Game Engin\MoveInterface\QueenMoves.cs" />
-    <Compile Include="Game Engin\MoveInterface\RookMoves.cs" />
+    <Compile Include="ChessGame.cs" />
+    <Compile Include="Game Engin\PieceManipulator.cs" />
+    <Compile Include="Game Engin\MoveMechanic.cs" />
     <Compile Include="Game Engin\Piece.cs" />
-    <Compile Include="Game Engin\PieceType.cs" />
+    <Compile Include="Game Engin\PositionAndPixels.cs" />
     <Compile Include="Game Engin\Square.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="View Engin\ChessBoardView.cs" />
+    <Compile Include="View Engin\SquareView.cs" />
+    <EmbeddedResource Include="ChessApplication.resx">
+      <DependentUpon>ChessApplication.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -76,6 +74,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -90,6 +89,44 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\blackBishop.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blackKing.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blackKinght.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blackPawn.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blackQueen.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blackRook.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\whiteBishop.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\whiteKing.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\whiteKnight.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\whitePawn.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\whiteQueen.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\whiteRook.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\whiteRook.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
