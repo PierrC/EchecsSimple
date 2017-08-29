@@ -19,29 +19,33 @@ namespace ChessApp.Game_Engin
         {
             aChessBoard = new ChessBoard();
             aPieceManipulator = new PieceManipulator();
-            aChessBoardView = new ChessBoardView(aChessBoard, Brushes.White, Brushes.Black);
+            aChessBoardView = new ChessBoardView(aChessBoard, aPieceManipulator, Brushes.White, Brushes.Black);
 
             NewGame();
         }
         
+        private void NewGame()
+        {
+            aChessBoard.SetPieces();
+            aPieceManipulator.SetCurrentColor(Piece.Color.WHITE);
+        }
+
         public void SetConvertPiece(int i)
         {
-            aPieceManipulator.SetConvertPiece(i);
+            aPieceManipulator.SetPromotingPiece(i);
         }
 
         public void ManipulatePiece(BoardPosition bp)
         {
-            aPieceManipulator.ManipulatingPiece(bp, aChessBoard);
+            if ((bp.X >= 0) & (bp.X < 8) & (bp.Y >= 0) & (bp.Y < 8))
+            {
+                aPieceManipulator.ManipulatingPiece(bp, aChessBoard);
+            }
         }
 
         public void DiscardPiece()
         {
             aPieceManipulator.Deselelect();
-        }
-
-        private void NewGame()
-        {
-            aChessBoard.SetPieces();
         }
 
         public void DrawGame(Graphics g)

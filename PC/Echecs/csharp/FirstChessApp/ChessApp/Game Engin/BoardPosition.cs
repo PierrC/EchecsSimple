@@ -35,7 +35,7 @@ namespace ChessApp.Game_Engin
 
         public bool IsSamePosition(BoardPosition pBp)
         {
-            if (pBp.X == this.X && pBp.Y == this.Y)
+             if (pBp.X == this.X && pBp.Y == this.Y)
             {
                 return true;
             }
@@ -46,14 +46,14 @@ namespace ChessApp.Game_Engin
         {
             switch (X)
             {
-                case 0: return "[A," + Y + "]";
-                case 1: return "[B," + Y + "]";
-                case 2: return "[C," + Y + "]";
-                case 3: return "[D," + Y + "]";
-                case 4: return "[E," + Y + "]";
-                case 5: return "[F," + Y + "]";
-                case 6: return "[G," + Y + "]";
-                case 7: return "[H," + Y + "]";
+                case 0: return "[A," + (Y + 1) + "]";
+                case 1: return "[B," + (Y + 1) + "]";
+                case 2: return "[C," + (Y + 1) + "]";
+                case 3: return "[D," + (Y + 1) + "]";
+                case 4: return "[E," + (Y + 1) + "]";
+                case 5: return "[F," + (Y + 1) + "]";
+                case 6: return "[G," + (Y + 1) + "]";
+                case 7: return "[H," + (Y + 1) + "]";
                 default: return "Board Position is Invalid";
             }
         }

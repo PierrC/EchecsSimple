@@ -58,10 +58,12 @@
     <Compile Include="Game Engin\MoveMechanic.cs" />
     <Compile Include="Game Engin\Piece.cs" />
     <Compile Include="Game Engin\PositionAndPixels.cs" />
+    <Compile Include="Game Engin\PromotionManipulator.cs" />
     <Compile Include="Game Engin\Square.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="View Engin\ChessBoardView.cs" />
+    <Compile Include="View Engin\PieceManipulatorView.cs" />
     <Compile Include="View Engin\SquareView.cs" />
     <EmbeddedResource Include="ChessApplication.resx">
       <DependentUpon>ChessApplication.cs</DependentUpon>

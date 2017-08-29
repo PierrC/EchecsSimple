@@ -12,11 +12,12 @@ namespace ChessApp.View_Engin
     {
         SquareView[,] aSquaresView;
         ChessBoard aBoard;
+        PieceManipulatorView aPieceManipulatorView;
 
         Brush aWhiteSquareBrushes, aBlackSquareBrushes;
         Font font = new Font("Times New Roman", 16);
 
-        public ChessBoardView(ChessBoard pBoard, Brush pWhiteSquareBrushes, Brush pBlackSquareBrushes)
+        public ChessBoardView(ChessBoard pBoard, PieceManipulator pPieceManipulator, Brush pWhiteSquareBrushes, Brush pBlackSquareBrushes)
         {
             aBoard = pBoard;
             aSquaresView = new SquareView[8, 8];
@@ -27,6 +28,7 @@ namespace ChessApp.View_Engin
                     aSquaresView[i, j] = new SquareView(aBoard.GetBoard()[i, j]);
                 }
             }
+            aPieceManipulatorView = new PieceManipulatorView(pPieceManipulator);
             aWhiteSquareBrushes = pWhiteSquareBrushes;
             aBlackSquareBrushes = pBlackSquareBrushes;
         }
@@ -45,6 +47,7 @@ namespace ChessApp.View_Engin
         {
             DrawBoard(g);
             DrawPieces(g);
+            DrawPossibleMoves(g);
         }
 
         private void DrawBoard(Graphics g)
@@ -91,8 +94,7 @@ namespace ChessApp.View_Engin
             }
             */
         }
-
-
+        
         private void DrawPieces(Graphics g)
         {
             for (int i = 0; i < 8; i++)
@@ -108,7 +110,10 @@ namespace ChessApp.View_Engin
             }
         }
 
-
+        private void DrawPossibleMoves(Graphics g)
+        {
+            aPieceManipulatorView.DrawPossibleMoves(g);
+        }
 
 
     }

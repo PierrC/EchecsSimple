@@ -42,8 +42,6 @@ namespace ChessApp
             {
                 aChessGame.ManipulatePiece(bp);
             }
-            // selectedPieceTextBox.Text = aChessGame.SelectedPieceString();
-            
             Refresh();
         }
 

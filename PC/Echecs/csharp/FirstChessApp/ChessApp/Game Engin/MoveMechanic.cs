@@ -164,7 +164,7 @@ namespace ChessApp.Game_Engin
             // TODO: find a way to make sure the color is not the factor
             // TODO: add the ability to double jump at the begining and the ability 
             // to change pawn into other piece when it reaches the other side of the board
-            if (p.GetColor() == Piece.Color.WHITE)
+            if (p.GetColor() == Piece.Color.BLACK)
             {
                 if (j > 0)
                 {

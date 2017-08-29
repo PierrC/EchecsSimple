@@ -6,20 +6,24 @@ using System.Threading.Tasks;
 
 namespace ChessApp.Game_Engin
 {
-    class PieceManipulator
-    {
 
+    public class PieceManipulator
+    {
         Boolean isSelectingPiece;
         BoardPosition selectedBoardPosition;
+        PromotionManipulator aPromotionManipulator;
+        List<BoardPosition> listOfMoves;
 
-
+        Piece.Color aCurrentColor;
 
         public PieceManipulator()
         {
+            aPromotionManipulator = new PromotionManipulator();
             isSelectingPiece = false;
             selectedBoardPosition = new BoardPosition();
+            aCurrentColor = Piece.Color.WHITE;
             selectedBoardPosition.Invalid();
-            ReplacePieceType = Piece.PieceType.QUEEN;
+            listOfMoves = null;
         }
 
         private void MovePiece(BoardPosition bp, ChessBoard aBoard)
@@ -30,28 +34,53 @@ namespace ChessApp.Game_Engin
             {
                 if ((bp.Y == 0) || (bp.Y == 7))
                 {
-                    ReplacePawn(bp, aBoard);
+                    aPromotionManipulator.ReplacePawn(bp, aBoard);
                 }
             }
         }
         
         public void ManipulatingPiece(BoardPosition bp, ChessBoard aBoard)
         {
-            if (!isSelectingPiece)
+            if (!isSelectingPiece && aBoard.GetBoard()[bp.X, bp.Y].HasPiece())
             {
-                if (aBoard.GetBoard()[bp.X, bp.Y].HasPiece())
+                if (aBoard.GetBoard()[bp.X, bp.Y].GetPiece().GetColor().Equals(aCurrentColor))
                 {
                     SelectPiece(bp, aBoard);
-                    Console.WriteLine("Piece " + aBoard.GetBoard()[bp.X, bp.Y].GetPiece().ToString() + " is selected");
+                    listOfMoves = MoveMechanic.GetAvaiableMoves(bp, aBoard);
 
+                    Console.WriteLine("Piece " + aBoard.GetBoard()[bp.X, bp.Y].GetPiece().ToString() + " is selected");
+                    Console.WriteLine("Selected Position " + bp.ToString());
+                    foreach (BoardPosition position in listOfMoves)
+                    {
+                        Console.WriteLine(position.ToString());
+                    }
+                    // insert list of possible moves
                 }
             }
-            else if (!(bp.IsSamePosition(selectedBoardPosition)))
+            else if (isSelectingPiece && !(bp.IsSamePosition(selectedBoardPosition)))
             {
-                MovePiece(bp, aBoard);
-                Deselelect();
+                Console.WriteLine("Placing Piece");
+                // compare with list of BoardPosition here
+                if (IsInList(bp))
+                {
+                    if (aBoard.GetBoard()[bp.X, bp.Y].HasPiece() &&
+                        !aBoard.GetBoard()[bp.X, bp.Y].GetPiece().GetColor().Equals(aCurrentColor))
+                    {
+                        MovePiece(bp, aBoard);
+                        Deselelect();
+
+                        ChangeCurrentColor();
+                    }
+                    else if(!aBoard.GetBoard()[bp.X, bp.Y].HasPiece())
+                    {
+                        MovePiece(bp, aBoard);
+                        Deselelect();
+                        ChangeCurrentColor();
+                    }
+                }
             }
         }
+
         private void SelectPiece(BoardPosition bp, ChessBoard aBoard)
         {
             if (aBoard.GetBoard()[bp.X, bp.Y].HasPiece())
@@ -65,6 +94,7 @@ namespace ChessApp.Game_Engin
         {
             isSelectingPiece = false;
             selectedBoardPosition = null;
+            listOfMoves = null;
         }
 
         public String SelectedPieceToString(ChessBoard aBoard)
@@ -76,47 +106,44 @@ namespace ChessApp.Game_Engin
             return " ";
         }
 
-
-
-
-        Piece.PieceType ReplacePieceType;
-        private void ReplacePawn(BoardPosition bp, ChessBoard aBoard)
+        public void SetPromotingPiece(int i)
         {
-            Piece replacement;
-            if (bp.Y == 0)
+            aPromotionManipulator.SetPromotionPiece(i);
+        }
+
+        public void SetCurrentColor(Piece.Color pColor)
+        {
+            aCurrentColor = pColor;
+        }
+
+        public void ChangeCurrentColor()
+        {
+            if (aCurrentColor == Piece.Color.WHITE)
             {
-                replacement = new Piece(ReplacePieceType, Piece.Color.WHITE);
+                aCurrentColor = Piece.Color.BLACK;
             }
             else
             {
-                replacement = new Piece(ReplacePieceType, Piece.Color.BLACK);
+                aCurrentColor = Piece.Color.WHITE;
             }
-            aBoard.GetBoard()[bp.X, bp.Y].SetPiece(replacement);
-            
         }
 
-        public void SetConvertPiece(int i)
+        private bool IsInList(BoardPosition bp)
         {
-            switch (i)
+            for (int i = 0; i < listOfMoves.Count(); i++)
             {
-                case 0:
-                    ReplacePieceType = Piece.PieceType.BISHOP;
-                    break;
-                case 1:
-                    ReplacePieceType = Piece.PieceType.KNIGHT;
-                    break;
-                case 2:
-                    ReplacePieceType = Piece.PieceType.QUEEN;
-                    break;
-                case 3:
-                    ReplacePieceType = Piece.PieceType.ROOK;
-                    break;
-                default:
-                    ReplacePieceType = Piece.PieceType.QUEEN;
-                    break;
+                if (bp.IsSamePosition(listOfMoves[i]))
+                {
+                    return true;
+                }
             }
+            return false;
         }
 
+        public List<BoardPosition> GetListOfMoves()
+        {
+            return listOfMoves;
+        }
 
 
     }
