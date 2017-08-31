@@ -17,7 +17,7 @@ namespace ChessApp.View_Engin
         public PieceManipulatorView(PieceManipulator pPieceManipulator)
         {
             aPieceManipulator = pPieceManipulator;
-            aPen = new Pen(Brushes.Red);
+            aPen = new Pen(Brushes.Red, 3);
         }
 
         public void DrawPossibleMoves(Graphics g)

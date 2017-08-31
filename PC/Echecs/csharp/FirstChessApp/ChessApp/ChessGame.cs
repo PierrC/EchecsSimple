@@ -58,6 +58,43 @@ namespace ChessApp.Game_Engin
             return aPieceManipulator.SelectedPieceToString(aChessBoard);
         }
 
+        public Boolean CheckWhiteKing()
+        {
+            Piece whiteKing = new Piece(Piece.PieceType.KING, Piece.Color.WHITE);
+            for(int i = 0; i < aChessBoard.GetBoard().Length; i++)
+            {
+                for (int j = 0; j < aChessBoard.GetBoard().Length; j++)
+                {
+                    if (aChessBoard.GetBoard()[i, j].HasPiece())
+                    {
+                        if (aChessBoard.GetBoard()[i, j].GetPiece().GetPieceType().Equals(whiteKing))
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+            return false;
+        }
+
+        public Boolean CheckBlackKing()
+        {
+            Piece blackKing = new Piece(Piece.PieceType.KING, Piece.Color.BLACK);
+            for (int i = 0; i < aChessBoard.GetBoard().Length; i++)
+            {
+                for (int j = 0; j < aChessBoard.GetBoard().Length; j++)
+                {
+                    if (aChessBoard.GetBoard()[i, j].HasPiece())
+                    {
+                        if (aChessBoard.GetBoard()[i, j].GetPiece().GetPieceType().Equals(blackKing))
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+            return false;
+        }
 
     }
 }

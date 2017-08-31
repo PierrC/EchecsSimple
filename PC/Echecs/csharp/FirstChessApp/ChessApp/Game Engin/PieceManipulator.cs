@@ -29,12 +29,12 @@ namespace ChessApp.Game_Engin
         private void MovePiece(BoardPosition bp, ChessBoard aBoard)
         {
             aBoard.MovesPiece(selectedBoardPosition, bp);
-
+            aBoard.GetBoard()[bp.X, bp.Y].GetPiece().IsMoved();
             if (aBoard.GetBoard()[bp.X, bp.Y].GetPiece().GetPieceType().Equals(Piece.PieceType.PAWN))
             {
                 if ((bp.Y == 0) || (bp.Y == 7))
                 {
-                    aPromotionManipulator.ReplacePawn(bp, aBoard);
+                    aPromotionManipulator.PromotePawn(bp, aBoard);
                 }
             }
         }

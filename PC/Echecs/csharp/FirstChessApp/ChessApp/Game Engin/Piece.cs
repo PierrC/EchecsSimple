@@ -73,5 +73,14 @@ namespace ChessApp.Game_Engin
             return aColor.ToString() + " " + aType.ToString();
         }
 
+
+        public override Boolean Equals(Object obj)
+        {
+            if (obj.GetType().Equals(this.GetType()))
+            {
+                Piece p = (Piece)obj;
+            }
+            return false;
+        }
     }
 }
