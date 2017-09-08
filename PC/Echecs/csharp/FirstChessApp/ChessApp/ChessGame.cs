@@ -24,7 +24,7 @@ namespace ChessApp.Game_Engin
             NewGame();
         }
         
-        private void NewGame()
+        public void NewGame()
         {
             aChessBoard.SetPieces();
             aPieceManipulator.SetCurrentColor(Piece.Color.WHITE);
@@ -58,42 +58,14 @@ namespace ChessApp.Game_Engin
             return aPieceManipulator.SelectedPieceToString(aChessBoard);
         }
 
-        public Boolean CheckWhiteKing()
+        public Boolean checkWhiteKing()
         {
-            Piece whiteKing = new Piece(Piece.PieceType.KING, Piece.Color.WHITE);
-            for(int i = 0; i < aChessBoard.GetBoard().Length; i++)
-            {
-                for (int j = 0; j < aChessBoard.GetBoard().Length; j++)
-                {
-                    if (aChessBoard.GetBoard()[i, j].HasPiece())
-                    {
-                        if (aChessBoard.GetBoard()[i, j].GetPiece().GetPieceType().Equals(whiteKing))
-                        {
-                            return true;
-                        }
-                    }
-                }
-            }
-            return false;
+            return aChessBoard.CheckWhiteKing();
         }
 
-        public Boolean CheckBlackKing()
+        public Boolean checkBlackKing()
         {
-            Piece blackKing = new Piece(Piece.PieceType.KING, Piece.Color.BLACK);
-            for (int i = 0; i < aChessBoard.GetBoard().Length; i++)
-            {
-                for (int j = 0; j < aChessBoard.GetBoard().Length; j++)
-                {
-                    if (aChessBoard.GetBoard()[i, j].HasPiece())
-                    {
-                        if (aChessBoard.GetBoard()[i, j].GetPiece().GetPieceType().Equals(blackKing))
-                        {
-                            return true;
-                        }
-                    }
-                }
-            }
-            return false;
+            return aChessBoard.CheckBlackKing();
         }
 
     }

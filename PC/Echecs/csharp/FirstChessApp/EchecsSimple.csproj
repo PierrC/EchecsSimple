@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProjectGuid>{AEAD51D0-73CC-4E77-8758-99E59FD6A0F2}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <NoStandardLibraries>false</NoStandardLibraries>
+    <AssemblyName>ConsoleApplication</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RootNamespace>EchecsSimple</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ChessAppGDI\App.config" />
+    <None Include="ChessAppGDI\Properties\Settings.settings" />
+    <None Include="ChessApp\App.config" />
+    <None Include="ChessApp\Properties\Settings.settings" />
+    <None Include="PopUpTesting\App.config" />
+    <None Include="PopUpTesting\Properties\Settings.settings" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ChessAppGDI\ChessAppGDI.csproj" />
+    <Content Include="ChessAppGDI\Resources\blackBishop.gif" />
+    <Content Include="ChessAppGDI\Resources\blackKing.gif" />
+    <Content Include="ChessAppGDI\Resources\blackKinght.gif" />
+    <Content Include="ChessAppGDI\Resources\blackPawn.gif" />
+    <Content Include="ChessAppGDI\Resources\blackQueen.gif" />
+    <Content Include="ChessAppGDI\Resources\blackRook.gif" />
+    <Content Include="ChessAppGDI\Resources\whiteBishop.gif" />
+    <Content Include="ChessAppGDI\Resources\whiteKing.gif" />
+    <Content Include="ChessAppGDI\Resources\whiteKnight.gif" />
+    <Content Include="ChessAppGDI\Resources\whitePawn.gif" />
+    <Content Include="ChessAppGDI\Resources\whiteQueen.gif" />
+    <Content Include="ChessAppGDI\Resources\whiteRook.gif" />
+    <Content Include="ChessAppGDI\Resources\whiteRook.png" />
+    <Content Include="ChessApp\ChessApp.csproj" />
+    <Content Include="ChessApp\Resources\blackBishop.gif" />
+    <Content Include="ChessApp\Resources\blackKing.gif" />
+    <Content Include="ChessApp\Resources\blackKinght.gif" />
+    <Content Include="ChessApp\Resources\blackPawn.gif" />
+    <Content Include="ChessApp\Resources\blackQueen.gif" />
+    <Content Include="ChessApp\Resources\blackRook.gif" />
+    <Content Include="ChessApp\Resources\whiteBishop.gif" />
+    <Content Include="ChessApp\Resources\whiteKing.gif" />
+    <Content Include="ChessApp\Resources\whiteKnight.gif" />
+    <Content Include="ChessApp\Resources\whitePawn.gif" />
+    <Content Include="ChessApp\Resources\whiteQueen.gif" />
+    <Content Include="ChessApp\Resources\whiteRook.gif" />
+    <Content Include="ChessApp\Resources\whiteRook.png" />
+    <Content Include="PopUpTesting\PopUpTesting.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ChessAppGDI\BoardPanel.cs" />
+    <Compile Include="ChessAppGDI\ChessApp.cs" />
+    <Compile Include="ChessAppGDI\ChessApp.Designer.cs">
+      <DependentUpon>ChessApp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChessAppGDI\Classes\BoardPosition.cs" />
+    <Compile Include="ChessAppGDI\Classes\ChessBoard.cs" />
+    <Compile Include="ChessAppGDI\Classes\ChessBoardView.cs" />
+    <Compile Include="ChessAppGDI\Classes\ChessGame.cs" />
+    <Compile Include="ChessAppGDI\Classes\Piece.cs" />
+    <Compile Include="ChessAppGDI\Classes\PieceView.cs" />
+    <Compile Include="ChessAppGDI\Classes\PositionAndPixels.cs" />
+    <Compile Include="ChessAppGDI\Classes\Program.cs" />
+    <Compile Include="ChessAppGDI\Game Engin\ChessBoard.cs" />
+    <Compile Include="ChessAppGDI\Game Engin\ChessGame.cs" />
+    <Compile Include="ChessAppGDI\Game Engin\ChessMechanics.cs" />
+    <Compile Include="ChessAppGDI\Game Engin\Move.cs" />
+    <Compile Include="ChessAppGDI\Game Engin\MoveSet.cs" />
+    <Compile Include="ChessAppGDI\Game Engin\Piece.cs" />
+    <Compile Include="ChessAppGDI\Game Engin\PieceType.cs" />
+    <Compile Include="ChessAppGDI\Game Engin\PositionBoard.cs" />
+    <Compile Include="ChessAppGDI\Game Engin\Square.cs" />
+    <Compile Include="ChessAppGDI\Mechanisms\PositionAndPixels.cs" />
+    <Compile Include="ChessAppGDI\New Code\ChessBoardView.cs" />
+    <Compile Include="ChessAppGDI\New Code\ChessGameView.cs" />
+    <Compile Include="ChessAppGDI\New Code\PieceView.cs" />
+    <Compile Include="ChessAppGDI\New Code\PieceViewMoved.cs" />
+    <Compile Include="ChessAppGDI\New Code\Program.cs" />
+    <Compile Include="ChessAppGDI\Properties\AssemblyInfo.cs" />
+    <Compile Include="ChessAppGDI\Properties\Resources.Designer.cs" />
+    <Compile Include="ChessAppGDI\Properties\Settings.Designer.cs" />
+    <Compile Include="ChessApp\ChessApplication.cs" />
+    <Compile Include="ChessApp\ChessApplication.Designer.cs">
+      <DependentUpon>ChessApplication.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChessApp\ChessGame.cs" />
+    <Compile Include="ChessApp\Game Engin\BoardPosition.cs" />
+    <Compile Include="ChessApp\Game Engin\ChessBoard.cs" />
+    <Compile Include="ChessApp\Game Engin\MoveMechanic.cs" />
+    <Compile Include="ChessApp\Game Engin\Piece.cs" />
+    <Compile Include="ChessApp\Game Engin\PieceManipulator.cs" />
+    <Compile Include="ChessApp\Game Engin\PositionAndPixels.cs" />
+    <Compile Include="ChessApp\Game Engin\PromotionManipulator.cs" />
+    <Compile Include="ChessApp\Game Engin\Square.cs" />
+    <Compile Include="ChessApp\Program.cs" />
+    <Compile Include="ChessApp\Properties\AssemblyInfo.cs" />
+    <Compile Include="ChessApp\Properties\Resources.Designer.cs" />
+    <Compile Include="ChessApp\Properties\Settings.Designer.cs" />
+    <Compile Include="ChessApp\View Engin\ChessBoardView.cs" />
+    <Compile Include="ChessApp\View Engin\PieceManipulatorView.cs" />
+    <Compile Include="ChessApp\View Engin\SquareView.cs" />
+    <Compile Include="PopUpTesting\Form1.cs" />
+    <Compile Include="PopUpTesting\Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PopUpTesting\Program.cs" />
+    <Compile Include="PopUpTesting\Properties\AssemblyInfo.cs" />
+    <Compile Include="PopUpTesting\Properties\Resources.Designer.cs" />
+    <Compile Include="PopUpTesting\Properties\Settings.Designer.cs" />
+    <Compile Include="PopUpTesting\SupriseEvent.cs" />
+    <Compile Include="PopUpTesting\TestingObject.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ChessAppGDI\ChessApp.resx">
+      <DependentUpon>ChessApp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChessAppGDI\Properties\Resources.resx" />
+    <EmbeddedResource Include="ChessApp\ChessApplication.resx">
+      <DependentUpon>ChessApplication.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChessApp\Properties\Resources.resx" />
+    <EmbeddedResource Include="PopUpTesting\Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PopUpTesting\Properties\Resources.resx" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSHARP.Targets" />
+  <ProjectExtensions>
+    <VisualStudio AllowExistingFolder="true" />
+  </ProjectExtensions>
+</Project>

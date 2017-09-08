@@ -61,9 +61,68 @@ namespace ChessApp
             g.Clear(Color.White);
             aChessGame.DrawGame(g);
         }
+        
+        private void CheckGameStatus()
+        {
+
+            if (!aChessGame.checkWhiteKing())
+            {
+                // event Black has won
+                Boolean game = EndGame("Black Wins!");
+                if (game)
+                {
+                    aChessGame.NewGame();
+                }
+                else
+                {
+                    this.Close();
+                }
+            }
+            if (!aChessGame.checkBlackKing())
+            {
+                // event White has won
+                Boolean game = EndGame("White Wins!");
+                if (game)
+                {
+                    aChessGame.NewGame();
+                }
+                else
+                {
+                    this.Close();
+                }
+            }
+        }
+        
+
+        private static Boolean EndGame(String pVistoryString)
+        {
+            Boolean value = false;
+            Form prompt = new Form();
+            prompt.Width = 200;
+            prompt.Height = 200;
+
+            FlowLayoutPanel panel = new FlowLayoutPanel();
+
+            TextBox Text = new TextBox() { Text = pVistoryString };
+            Button EndApp = new Button() { Text = "Close App" };
+            Button Restart = new Button() { Text = "Restart Game" };
+
+            EndApp.Click += (sender, e) => { value = false; prompt.Close(); };
+            Restart.Click += (sender, e) => { value = true; prompt.Close(); };
+
+            panel.Controls.Add(Text);
+            panel.Controls.Add(EndApp);
+            panel.Controls.Add(Restart);
+            prompt.Controls.Add(panel);
+            prompt.ShowDialog();
+
+            return value;
+        }
 
 
 
+
+        
         protected override CreateParams CreateParams
         {
             get

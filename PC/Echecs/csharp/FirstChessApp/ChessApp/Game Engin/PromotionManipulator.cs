@@ -64,8 +64,8 @@ namespace ChessApp.Game_Engin
         {
             int value = 3;
             Form prompt = new Form();
-            prompt.Width = 300;
-            prompt.Height = 300;
+            prompt.Width = 200;
+            prompt.Height = 200;
 
             FlowLayoutPanel panel = new FlowLayoutPanel();
 
