@@ -168,6 +168,7 @@ namespace ChessApp.Game_Engin
             {
                 if (j > 0)
                 {
+                    // Double square
                     if (j > 1)
                     {
                         if (!(aBoard.GetBoard()[i, j].GetPiece().GetHasMoved())
@@ -177,6 +178,7 @@ namespace ChessApp.Game_Engin
                             boardPositionList.Add(new BoardPosition(i, j - 2));
                         }
                     }
+                    // front square
                     j--;
                     if (!aBoard.GetBoard()[i, j].HasPiece())
                     {
@@ -211,7 +213,7 @@ namespace ChessApp.Game_Engin
             {
                 if (j < 7)
                 {
-                    if (j < 7)
+                    if (j < 6)
                     {
                         if (!(aBoard.GetBoard()[i, j].GetPiece().GetHasMoved())
                             && !aBoard.GetBoard()[i, j + 2].HasPiece())
@@ -226,7 +228,7 @@ namespace ChessApp.Game_Engin
                         boardPositionList.Add(new BoardPosition(i, j));
                     }
                     i--;
-                    if (i > 0)
+                    if (i >= 0)
                     {
                         if (aBoard.GetBoard()[i, j].HasPiece())
                         {
@@ -287,20 +289,8 @@ namespace ChessApp.Game_Engin
                 {
                     boardPositionList.Add(new BoardPosition(i - 1, j));
                 }
-                else
-                {
-                    if (j < 7)
-                    {
-                        if (!p.IsSameColor(aBoard.GetBoard()[i - 1, j + 1].GetPiece()))
-                        {
-                            boardPositionList.Add(new BoardPosition(i - 1, j + 1));
-                        }
 
-                    }
-
-                }
-
-                if (j <= 6)
+                if (j < 7)
                 {
                     if (!aBoard.GetBoard()[i - 1, j + 1].HasPiece())
                     {
@@ -346,9 +336,9 @@ namespace ChessApp.Game_Engin
 
                 }
             }
-            if (i <= 6)
+            if (i < 7)
             {
-                if (j >= 1)
+                if (j > 0)
                 {
                     if (!aBoard.GetBoard()[i + 1, j - 1].HasPiece())
                     {
@@ -368,9 +358,14 @@ namespace ChessApp.Game_Engin
                 {
                     boardPositionList.Add(new BoardPosition(i + 1, j));
                 }
-                else
+
+                if (j < 7)
                 {
-                    if (j < 7)
+                    if (!aBoard.GetBoard()[i + 1, j + 1].HasPiece())
+                    {
+                        boardPositionList.Add(new BoardPosition(i + 1, j + 1));
+                    }
+                    else
                     {
                         if (!p.IsSameColor(aBoard.GetBoard()[i + 1, j + 1].GetPiece()))
                         {
@@ -381,7 +376,7 @@ namespace ChessApp.Game_Engin
 
                 }
 
-                if (j <= 6)
+                if (j < 7)
                 {
                     if (!aBoard.GetBoard()[i + 1, j + 1].HasPiece())
                     {

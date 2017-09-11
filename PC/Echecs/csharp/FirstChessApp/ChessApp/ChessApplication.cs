@@ -64,7 +64,6 @@ namespace ChessApp
         
         private void CheckGameStatus()
         {
-
             if (!aChessGame.checkWhiteKing())
             {
                 // event Black has won
@@ -93,7 +92,6 @@ namespace ChessApp
             }
         }
         
-
         private static Boolean EndGame(String pVistoryString)
         {
             Boolean value = false;
@@ -118,10 +116,6 @@ namespace ChessApp
 
             return value;
         }
-
-
-
-
         
         protected override CreateParams CreateParams
         {

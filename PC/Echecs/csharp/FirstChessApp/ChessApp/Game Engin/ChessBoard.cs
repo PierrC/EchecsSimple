@@ -11,7 +11,6 @@ namespace ChessApp.Game_Engin
     {
         Square[,] board;
         
-
         public ChessBoard()
         {
             board = new Square[8,8];

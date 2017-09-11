@@ -48,6 +48,7 @@ namespace ChessApp.Game_Engin
                     SelectPiece(bp, aBoard);
                     listOfMoves = MoveMechanic.GetAvaiableMoves(bp, aBoard);
 
+                    /*
                     Console.WriteLine("Piece " + aBoard.GetBoard()[bp.X, bp.Y].GetPiece().ToString() + " is selected");
                     Console.WriteLine("Selected Position " + bp.ToString());
                     foreach (BoardPosition position in listOfMoves)
@@ -55,6 +56,7 @@ namespace ChessApp.Game_Engin
                         Console.WriteLine(position.ToString());
                     }
                     // insert list of possible moves
+                    */
                 }
             }
             else if (isSelectingPiece && !(bp.IsSamePosition(selectedBoardPosition)))
