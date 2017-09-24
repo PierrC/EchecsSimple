@@ -79,6 +79,11 @@ namespace ChessApp.Game_Engin
             if (obj.GetType().Equals(this.GetType()))
             {
                 Piece p = (Piece)obj;
+                if(this.aType == p.aType && this.aColor == p.aColor)
+                {
+                    return true;
+                }
+                    
             }
             return false;
         }

@@ -56,6 +56,20 @@ namespace ChessApp.Game_Engin
             board[4, 7].SetPiece(new Piece(PieceType.KING, Piece.Color.BLACK));
         }
         
+        public void CleanBoard()
+        {
+            for(int i = 0; i < 8; i++)
+            {
+                for (int j = 0; j < 8; j++)
+                {
+                    if (GetBoard()[i, j].HasPiece())
+                    {
+                        GetBoard()[i, j].RemovePiece();
+                    }
+                }
+            }
+        }
+
         public void MovesPiece(BoardPosition pStart, BoardPosition pEnd)
         {
             if(board[pStart.X, pStart.Y].HasPiece())
@@ -73,13 +87,13 @@ namespace ChessApp.Game_Engin
         public Boolean CheckWhiteKing()
         {
             Piece whiteKing = new Piece(Piece.PieceType.KING, Piece.Color.WHITE);
-            for (int i = 0; i < GetBoard().Length; i++)
+            for (int i = 0; i < 8; i++)
             {
-                for (int j = 0; j < GetBoard().Length; j++)
+                for (int j = 0; j < 8; j++)
                 {
                     if (GetBoard()[i, j].HasPiece())
                     {
-                        if (GetBoard()[i, j].GetPiece().GetPieceType().Equals(whiteKing))
+                        if (GetBoard()[i, j].GetPiece().Equals(whiteKing))
                         {
                             return true;
                         }
@@ -92,13 +106,13 @@ namespace ChessApp.Game_Engin
         public Boolean CheckBlackKing()
         {
             Piece blackKing = new Piece(Piece.PieceType.KING, Piece.Color.BLACK);
-            for (int i = 0; i < GetBoard().Length; i++)
+            for (int i = 0; i < 8; i++)
             {
-                for (int j = 0; j < GetBoard().Length; j++)
+                for (int j = 0; j < 8; j++)
                 {
                     if (GetBoard()[i, j].HasPiece())
                     {
-                        if (GetBoard()[i, j].GetPiece().GetPieceType().Equals(blackKing))
+                        if (GetBoard()[i, j].GetPiece().Equals(blackKing))
                         {
                             return true;
                         }

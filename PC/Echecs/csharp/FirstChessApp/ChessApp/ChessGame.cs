@@ -26,6 +26,7 @@ namespace ChessApp.Game_Engin
         
         public void NewGame()
         {
+            aChessBoard.CleanBoard();
             aChessBoard.SetPieces();
             aPieceManipulator.SetCurrentColor(Piece.Color.WHITE);
         }
@@ -58,12 +59,25 @@ namespace ChessApp.Game_Engin
             return aPieceManipulator.SelectedPieceToString(aChessBoard);
         }
 
-        public Boolean checkWhiteKing()
+        public Boolean CheckKings()
+        {
+            if (CheckBlackKing())
+            {
+                return true;
+            }
+            if (CheckWhiteKing())
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public Boolean CheckWhiteKing()
         {
             return aChessBoard.CheckWhiteKing();
         }
 
-        public Boolean checkBlackKing()
+        public Boolean CheckBlackKing()
         {
             return aChessBoard.CheckBlackKing();
         }

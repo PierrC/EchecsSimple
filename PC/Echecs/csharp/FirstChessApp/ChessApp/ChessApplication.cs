@@ -21,7 +21,7 @@ namespace ChessApp
         {
             InitializeComponent();
             this.MinimumSize = new System.Drawing.Size(700, 600);
-            checkedListBox1.SetItemCheckState(2, CheckState.Checked);
+            // checkedListBox1.SetItemCheckState(2, CheckState.Checked);
             
             aChessGame = new ChessGame();
         }
@@ -42,6 +42,12 @@ namespace ChessApp
             {
                 aChessGame.ManipulatePiece(bp);
             }
+
+            // Console.WriteLine("Check");
+            
+            CheckGameStatus();
+            
+
             Refresh();
         }
 
@@ -64,12 +70,13 @@ namespace ChessApp
         
         private void CheckGameStatus()
         {
-            if (!aChessGame.checkWhiteKing())
+            if (!aChessGame.CheckWhiteKing())
             {
                 // event Black has won
                 Boolean game = EndGame("Black Wins!");
                 if (game)
                 {
+                    winnerLabel.Text = "Black Won";
                     aChessGame.NewGame();
                 }
                 else
@@ -77,12 +84,13 @@ namespace ChessApp
                     this.Close();
                 }
             }
-            if (!aChessGame.checkBlackKing())
+            if (!aChessGame.CheckBlackKing())
             {
                 // event White has won
                 Boolean game = EndGame("White Wins!");
                 if (game)
                 {
+                    winnerLabel.Text = "White Won";
                     aChessGame.NewGame();
                 }
                 else
@@ -101,7 +109,7 @@ namespace ChessApp
 
             FlowLayoutPanel panel = new FlowLayoutPanel();
 
-            TextBox Text = new TextBox() { Text = pVistoryString };
+            Label Text = new Label() { Text = pVistoryString };
             Button EndApp = new Button() { Text = "Close App" };
             Button Restart = new Button() { Text = "Restart Game" };
 
@@ -109,8 +117,8 @@ namespace ChessApp
             Restart.Click += (sender, e) => { value = true; prompt.Close(); };
 
             panel.Controls.Add(Text);
-            panel.Controls.Add(EndApp);
             panel.Controls.Add(Restart);
+            panel.Controls.Add(EndApp);
             prompt.Controls.Add(panel);
             prompt.ShowDialog();
 

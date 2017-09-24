@@ -33,16 +33,8 @@
             this.newGameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.testButton = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.winnerLabel = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.choseButton = new System.Windows.Forms.Button();
-            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
-            this.selectedPieceTextBox = new System.Windows.Forms.TextBox();
             this.boardPanel = new System.Windows.Forms.Panel();
             this.menuStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -90,61 +82,19 @@
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.label3);
-            this.panel2.Controls.Add(this.textBox2);
-            this.panel2.Controls.Add(this.textBox1);
-            this.panel2.Controls.Add(this.testButton);
             this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.winnerLabel);
-            this.panel2.Controls.Add(this.label1);
-            this.panel2.Controls.Add(this.choseButton);
-            this.panel2.Controls.Add(this.checkedListBox1);
-            this.panel2.Controls.Add(this.selectedPieceTextBox);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(472, 3);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(148, 438);
             this.panel2.TabIndex = 1;
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(3, 153);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(130, 13);
-            this.label3.TabIndex = 9;
-            this.label3.Text = "Test for new move search";
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(3, 226);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 8;
-            this.textBox2.Text = "0";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(3, 199);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 7;
-            this.textBox1.Text = "0";
-            // 
-            // testButton
-            // 
-            this.testButton.Location = new System.Drawing.Point(18, 169);
-            this.testButton.Name = "testButton";
-            this.testButton.Size = new System.Drawing.Size(75, 23);
-            this.testButton.TabIndex = 6;
-            this.testButton.Text = "Test Button";
-            this.testButton.UseVisualStyleBackColor = true;
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(4, 66);
+            this.label2.Location = new System.Drawing.Point(4, 12);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(109, 16);
             this.label2.TabIndex = 5;
@@ -153,51 +103,11 @@
             // winnerLabel
             // 
             this.winnerLabel.AutoSize = true;
-            this.winnerLabel.Location = new System.Drawing.Point(4, 82);
+            this.winnerLabel.Location = new System.Drawing.Point(4, 28);
             this.winnerLabel.Name = "winnerLabel";
             this.winnerLabel.Size = new System.Drawing.Size(10, 13);
             this.winnerLabel.TabIndex = 4;
             this.winnerLabel.Text = "-";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(3, 253);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(100, 20);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Promoted to:";
-            // 
-            // choseButton
-            // 
-            this.choseButton.Location = new System.Drawing.Point(18, 276);
-            this.choseButton.Name = "choseButton";
-            this.choseButton.Size = new System.Drawing.Size(75, 23);
-            this.choseButton.TabIndex = 2;
-            this.choseButton.Text = "Chose Piece";
-            this.choseButton.UseVisualStyleBackColor = true;
-            // 
-            // checkedListBox1
-            // 
-            this.checkedListBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkedListBox1.FormattingEnabled = true;
-            this.checkedListBox1.Items.AddRange(new object[] {
-            "Bishop",
-            "Knight",
-            "Queen",
-            "Rook"});
-            this.checkedListBox1.Location = new System.Drawing.Point(3, 305);
-            this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(124, 124);
-            this.checkedListBox1.TabIndex = 1;
-            // 
-            // selectedPieceTextBox
-            // 
-            this.selectedPieceTextBox.Location = new System.Drawing.Point(3, 3);
-            this.selectedPieceTextBox.Name = "selectedPieceTextBox";
-            this.selectedPieceTextBox.Size = new System.Drawing.Size(112, 20);
-            this.selectedPieceTextBox.TabIndex = 0;
             // 
             // boardPanel
             // 
@@ -236,16 +146,8 @@
         private System.Windows.Forms.ToolStripMenuItem newGameToolStripMenuItem;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button testButton;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label winnerLabel;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button choseButton;
-        private System.Windows.Forms.CheckedListBox checkedListBox1;
-        private System.Windows.Forms.TextBox selectedPieceTextBox;
         private System.Windows.Forms.Panel boardPanel;
     }
 }

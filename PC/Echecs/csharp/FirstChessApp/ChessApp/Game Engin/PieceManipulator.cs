@@ -61,7 +61,7 @@ namespace ChessApp.Game_Engin
             }
             else if (isSelectingPiece && !(bp.IsSamePosition(selectedBoardPosition)))
             {
-                Console.WriteLine("Placing Piece");
+
                 // compare with list of BoardPosition here
                 if (IsInList(bp))
                 {
