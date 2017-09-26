@@ -10,10 +10,10 @@ namespace ChessApp.Game_Engin
 {
     public class ChessGame
     {
-        ChessBoard aChessBoard;
-        ChessBoardView aChessBoardView;
-        PieceManipulator aPieceManipulator;
-        
+        private ChessBoard aChessBoard;
+        private ChessBoardView aChessBoardView;
+        private PieceManipulator aPieceManipulator;
+
 
         public ChessGame()
         {
@@ -23,7 +23,7 @@ namespace ChessApp.Game_Engin
 
             NewGame();
         }
-        
+
         public void NewGame()
         {
             aChessBoard.CleanBoard();
@@ -81,6 +81,18 @@ namespace ChessApp.Game_Engin
         {
             return aChessBoard.CheckBlackKing();
         }
+
+        public void SetWhiteBrush(Brush pBrush)
+        {
+            aChessBoardView.SetWhiteBrush(pBrush);
+        }
+
+        public void SetBlackBrush(Brush pBrush)
+        {
+            aChessBoardView.SetBlackBrush(pBrush);
+        }
+
+
 
     }
 }

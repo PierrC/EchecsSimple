@@ -45,10 +45,10 @@ namespace ChessApp
 
             // Console.WriteLine("Check");
             
+            Refresh();
             CheckGameStatus();
             
 
-            Refresh();
         }
 
         private void boardPanel_Paint(object sender, PaintEventArgs e)
@@ -78,6 +78,7 @@ namespace ChessApp
                 {
                     winnerLabel.Text = "Black Won";
                     aChessGame.NewGame();
+                    Refresh();
                 }
                 else
                 {
@@ -92,12 +93,14 @@ namespace ChessApp
                 {
                     winnerLabel.Text = "White Won";
                     aChessGame.NewGame();
+                    Refresh();
                 }
                 else
                 {
                     this.Close();
                 }
             }
+            
         }
         
         private static Boolean EndGame(String pVistoryString)
@@ -121,10 +124,32 @@ namespace ChessApp
             panel.Controls.Add(EndApp);
             prompt.Controls.Add(panel);
             prompt.ShowDialog();
-
+            
             return value;
+
         }
-        
+
+        private void blackAndWhiteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            aChessGame.SetBlackBrush(Brushes.Black);
+            aChessGame.SetWhiteBrush(Brushes.White);
+            Refresh();
+        }
+
+        private void greenAndBeigeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            aChessGame.SetBlackBrush(Brushes.DarkSeaGreen);
+            aChessGame.SetWhiteBrush(Brushes.Beige);
+            Refresh();
+        }
+
+        private void brownAndBeigeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            aChessGame.SetBlackBrush(Brushes.SaddleBrown);
+            aChessGame.SetWhiteBrush(Brushes.Beige);
+            Refresh();
+        }
+
         protected override CreateParams CreateParams
         {
             get

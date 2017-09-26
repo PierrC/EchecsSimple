@@ -36,6 +36,10 @@
             this.label2 = new System.Windows.Forms.Label();
             this.winnerLabel = new System.Windows.Forms.Label();
             this.boardPanel = new System.Windows.Forms.Panel();
+            this.colorsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.blackAndWhiteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.greenAndBeigeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.brownAndBeigeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -44,7 +48,8 @@
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.startGameToolStripMenuItem});
+            this.startGameToolStripMenuItem,
+            this.colorsToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(623, 24);
@@ -120,6 +125,37 @@
             this.boardPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.boardPanel_Paint);
             this.boardPanel.MouseClick += new System.Windows.Forms.MouseEventHandler(this.boardPanel_MouseClick);
             // 
+            // colorsToolStripMenuItem
+            // 
+            this.colorsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.blackAndWhiteToolStripMenuItem,
+            this.greenAndBeigeToolStripMenuItem,
+            this.brownAndBeigeToolStripMenuItem});
+            this.colorsToolStripMenuItem.Name = "colorsToolStripMenuItem";
+            this.colorsToolStripMenuItem.Size = new System.Drawing.Size(82, 20);
+            this.colorsToolStripMenuItem.Text = "Board Color";
+            // 
+            // blackAndWhiteToolStripMenuItem
+            // 
+            this.blackAndWhiteToolStripMenuItem.Name = "blackAndWhiteToolStripMenuItem";
+            this.blackAndWhiteToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.blackAndWhiteToolStripMenuItem.Text = "Black and White";
+            this.blackAndWhiteToolStripMenuItem.Click += new System.EventHandler(this.blackAndWhiteToolStripMenuItem_Click);
+            // 
+            // greenAndBeigeToolStripMenuItem
+            // 
+            this.greenAndBeigeToolStripMenuItem.Name = "greenAndBeigeToolStripMenuItem";
+            this.greenAndBeigeToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.greenAndBeigeToolStripMenuItem.Text = "Green and Beige";
+            this.greenAndBeigeToolStripMenuItem.Click += new System.EventHandler(this.greenAndBeigeToolStripMenuItem_Click);
+            // 
+            // brownAndBeigeToolStripMenuItem
+            // 
+            this.brownAndBeigeToolStripMenuItem.Name = "brownAndBeigeToolStripMenuItem";
+            this.brownAndBeigeToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.brownAndBeigeToolStripMenuItem.Text = "Brown and Beige";
+            this.brownAndBeigeToolStripMenuItem.Click += new System.EventHandler(this.brownAndBeigeToolStripMenuItem_Click);
+            // 
             // ChessApplication
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -149,6 +185,10 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label winnerLabel;
         private System.Windows.Forms.Panel boardPanel;
+        private System.Windows.Forms.ToolStripMenuItem colorsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem blackAndWhiteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem greenAndBeigeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem brownAndBeigeToolStripMenuItem;
     }
 }
 

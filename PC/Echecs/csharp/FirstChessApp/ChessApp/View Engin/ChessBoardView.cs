@@ -13,6 +13,7 @@ namespace ChessApp.View_Engin
         SquareView[,] aSquaresView;
         ChessBoard aBoard;
         PieceManipulatorView aPieceManipulatorView;
+        Pen Lines;
 
         Brush aWhiteSquareBrushes, aBlackSquareBrushes;
         Font font = new Font("Times New Roman", 16);
@@ -31,6 +32,7 @@ namespace ChessApp.View_Engin
             aPieceManipulatorView = new PieceManipulatorView(pPieceManipulator);
             aWhiteSquareBrushes = pWhiteSquareBrushes;
             aBlackSquareBrushes = pBlackSquareBrushes;
+            Lines = Pens.Black;
         }
 
         public void SetWhiteBrush(Brush pBrush)
