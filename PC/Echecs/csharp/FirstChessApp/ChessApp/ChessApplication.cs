@@ -150,6 +150,12 @@ namespace ChessApp
             Refresh();
         }
 
+        private void newGameToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            aChessGame.NewGame();
+        }
+
         protected override CreateParams CreateParams
         {
             get
