@@ -154,6 +154,7 @@ namespace ChessApp
         {
 
             aChessGame.NewGame();
+            Refresh();
         }
 
         protected override CreateParams CreateParams
