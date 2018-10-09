@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -13,6 +13,8 @@ namespace ChessApp.Game_Engin
         public static int boardPanel_y;
         public static int square;
         static int square_x, square_y;
+
+        static Piece.Color firstPlayerColor;
 
         public static void Set(int width, int height)
         {
@@ -34,11 +36,26 @@ namespace ChessApp.Game_Engin
 
             return new BoardPosition(x, y);
         }
+        public static BoardPosition PixelsToBoardPositionInverse(Point pt)
+        {
+            int x = 7 - ((pt.X - (square / 2)) / square);
+            int y = 7 - ((pt.Y - (square / 2)) / square);
+
+            return new BoardPosition(x, y);
+        }
 
         public static Point BoardPositionToPixels(BoardPosition m)
         {
             int x = square * m.X + (square / 2);
             int y = square * m.Y + (square / 2);
+
+            return new Point(x, y);
+        }
+        
+        public static Point BoardPositionToPixelsInverse(BoardPosition m)
+        {
+            int x = square * (7-m.X) + (square / 2);
+            int y = square * (7-m.Y) + (square / 2);
 
             return new Point(x, y);
         }

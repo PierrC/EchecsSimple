@@ -1,4 +1,4 @@
-﻿namespace ChessApp
+namespace ChessApp
 {
     partial class ChessApplication
     {
@@ -31,6 +31,8 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.startGameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newGameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.whiteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.blackToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.colorsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.blackAndWhiteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.greenAndBeigeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -66,10 +68,26 @@
             // 
             // newGameToolStripMenuItem
             // 
+            this.newGameToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.whiteToolStripMenuItem,
+            this.blackToolStripMenuItem});
             this.newGameToolStripMenuItem.Name = "newGameToolStripMenuItem";
-            this.newGameToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.newGameToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.newGameToolStripMenuItem.Text = "New Game";
-            this.newGameToolStripMenuItem.Click += new System.EventHandler(this.newGameToolStripMenuItem_Click);
+            // 
+            // whiteToolStripMenuItem
+            // 
+            this.whiteToolStripMenuItem.Name = "whiteToolStripMenuItem";
+            this.whiteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.whiteToolStripMenuItem.Text = "White";
+            this.whiteToolStripMenuItem.Click += new System.EventHandler(this.whiteToolStripMenuItem_Item);
+            // 
+            // blackToolStripMenuItem
+            // 
+            this.blackToolStripMenuItem.Name = "blackToolStripMenuItem";
+            this.blackToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.blackToolStripMenuItem.Text = "Black";
+            this.blackToolStripMenuItem.Click += new System.EventHandler(this.blackToolStripMenuItem_Item);
             // 
             // colorsToolStripMenuItem
             // 
@@ -190,6 +208,8 @@
         private System.Windows.Forms.ToolStripMenuItem blackAndWhiteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem greenAndBeigeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem brownAndBeigeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem whiteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem blackToolStripMenuItem;
     }
 }
 

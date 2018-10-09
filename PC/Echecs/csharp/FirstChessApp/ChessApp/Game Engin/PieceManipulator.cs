@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -36,49 +36,65 @@ namespace ChessApp.Game_Engin
                 {
                     aPromotionManipulator.PromotePawn(bp, aBoard);
                 }
+                else if (bp.Y == 2 && aBoard.GetBoard()[bp.X, bp.Y].GetPiece().GetColor().Equals(Piece.Color.BLACK))
+                {
+                    if(aBoard.GetBoard()[bp.X, bp.Y + 1].HasPiece() && aBoard.GetBoard()[bp.X, bp.Y + 1].GetPiece().GetJumpedLastTurn())
+                    {
+                        aBoard.GetBoard()[bp.X, bp.Y + 1].RemovePiece();
+                    }
+                }
+                else if (bp.Y == 5 && aBoard.GetBoard()[bp.X, bp.Y].GetPiece().GetColor().Equals(Piece.Color.WHITE))
+                {
+                    if (aBoard.GetBoard()[bp.X, bp.Y - 1].HasPiece() && aBoard.GetBoard()[bp.X, bp.Y - 1].GetPiece().GetJumpedLastTurn())
+                    {
+                        aBoard.GetBoard()[bp.X, bp.Y - 1].RemovePiece();
+                    }
+                }
             }
         }
         
         public void ManipulatingPiece(BoardPosition bp, ChessBoard aBoard)
         {
+        //    
             if (!isSelectingPiece && aBoard.GetBoard()[bp.X, bp.Y].HasPiece())
             {
                 if (aBoard.GetBoard()[bp.X, bp.Y].GetPiece().GetColor().Equals(aCurrentColor))
                 {
                     SelectPiece(bp, aBoard);
                     listOfMoves = MoveMechanic.GetAvaiableMoves(bp, aBoard);
-
-                    /*
-                    Console.WriteLine("Piece " + aBoard.GetBoard()[bp.X, bp.Y].GetPiece().ToString() + " is selected");
-                    Console.WriteLine("Selected Position " + bp.ToString());
-                    foreach (BoardPosition position in listOfMoves)
-                    {
-                        Console.WriteLine(position.ToString());
-                    }
-                    // insert list of possible moves
-                    */
+                    
                 }
             }
             else if (isSelectingPiece && !(bp.IsSamePosition(selectedBoardPosition)))
             {
-
-                // compare with list of BoardPosition here
+                aBoard.GetBoard()[selectedBoardPosition.X, selectedBoardPosition.Y].GetPiece().SetJumpedLastTurn(false);
                 if (IsInList(bp))
                 {
-                    if (aBoard.GetBoard()[bp.X, bp.Y].HasPiece() &&
+                        if (selectedBoardPosition.Y == 1 || selectedBoardPosition.Y == 6)
+                        {
+                            if (aBoard.GetBoard()[selectedBoardPosition.X, selectedBoardPosition.Y].GetPiece().GetPieceType()
+                                .Equals(Piece.PieceType.PAWN) && !aBoard.GetBoard()[selectedBoardPosition.X, selectedBoardPosition.Y].GetPiece().GetHasMoved())
+                            {
+                                if (Math.Abs(bp.Y - selectedBoardPosition.Y) == 2)
+                                {
+                                    aBoard.GetBoard()[selectedBoardPosition.X, selectedBoardPosition.Y].GetPiece().SetJumpedLastTurn(true);
+                                }
+                            }
+                        }
+                        if (aBoard.GetBoard()[bp.X, bp.Y].HasPiece() &&
                         !aBoard.GetBoard()[bp.X, bp.Y].GetPiece().GetColor().Equals(aCurrentColor))
-                    {
-                        MovePiece(bp, aBoard);
-                        Deselelect();
-
-                        ChangeCurrentColor();
-                    }
-                    else if(!aBoard.GetBoard()[bp.X, bp.Y].HasPiece())
-                    {
-                        MovePiece(bp, aBoard);
-                        Deselelect();
-                        ChangeCurrentColor();
-                    }
+                        {
+                            MovePiece(bp, aBoard);
+                            Deselelect();
+                            ChangeCurrentColor();
+                        }
+                        else if(!aBoard.GetBoard()[bp.X, bp.Y].HasPiece())
+                        {
+                            MovePiece(bp, aBoard);
+                            Deselelect();
+                            ChangeCurrentColor();
+                        }
+                    
                 }
             }
         }
@@ -89,6 +105,10 @@ namespace ChessApp.Game_Engin
             {
                 selectedBoardPosition = bp;
                 isSelectingPiece = true;
+                if(aBoard.GetBoard()[bp.X, bp.Y].GetPiece().GetPieceType().Equals(Piece.PieceType.PAWN))
+                {
+                    Console.WriteLine("Pawn has Jumped:" + aBoard.GetBoard()[bp.X, bp.Y].GetPiece().GetJumpedLastTurn());
+                }
             }
         }
         
@@ -147,6 +167,22 @@ namespace ChessApp.Game_Engin
             return listOfMoves;
         }
 
-
+        public void RemoveJumpedLastTurn(ChessBoard chessBoard, Piece.Color color)
+        {
+            for(int i = 0; i < chessBoard.GetBoard().Length; i++)
+            {
+                for(int j = 0; j < chessBoard.GetBoard().Length; j++)
+                {
+                    if(chessBoard.GetBoard()[i, j].HasPiece() && chessBoard.GetBoard()[i, j].GetPiece().GetColor() == color)
+                    {
+                        if(chessBoard.GetBoard()[i, j].GetPiece().GetJumpedLastTurn())
+                        {
+                            chessBoard.GetBoard()[i, j].GetPiece().SetJumpedLastTurn(false);
+                        }
+                    }
+                }
+            }
+        }
+        
     }
 }

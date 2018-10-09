@@ -60,7 +60,7 @@
     <Compile Include="Game Engin\MoveMechanic.cs" />
     <Compile Include="Game Engin\Piece.cs" />
     <Compile Include="Game Engin\PieceManipulator.cs" />
-    <Compile Include="Game Engin\PositionAndPixels.cs" />
+    <Compile Include="View Engin\PositionAndPixels.cs" />
     <Compile Include="Game Engin\PromotionManipulator.cs" />
     <Compile Include="Game Engin\Square.cs" />
     <Compile Include="Program.cs" />

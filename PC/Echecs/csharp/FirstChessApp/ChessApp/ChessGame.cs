@@ -1,4 +1,4 @@
-﻿using ChessApp.View_Engin;
+using ChessApp.View_Engin;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -14,12 +14,14 @@ namespace ChessApp.Game_Engin
         private ChessBoardView aChessBoardView;
         private PieceManipulator aPieceManipulator;
 
+        Piece.Color aFirstPlayer;
 
         public ChessGame()
         {
             aChessBoard = new ChessBoard();
             aPieceManipulator = new PieceManipulator();
-            aChessBoardView = new ChessBoardView(aChessBoard, aPieceManipulator, Brushes.White, Brushes.Black);
+            aChessBoardView = new ChessBoardView(
+                aChessBoard, aPieceManipulator, Brushes.White, Brushes.Black);
 
             NewGame();
         }
@@ -29,6 +31,17 @@ namespace ChessApp.Game_Engin
             aChessBoard.CleanBoard();
             aChessBoard.SetPieces();
             aPieceManipulator.SetCurrentColor(Piece.Color.WHITE);
+            aFirstPlayer = Piece.Color.WHITE;
+            aChessBoardView.SetFirstPlayer(Piece.Color.WHITE);
+        }
+
+        public void NewGame(Piece.Color playerColor)
+        {
+            aChessBoard.CleanBoard();
+            aChessBoard.SetPieces();
+            aPieceManipulator.SetCurrentColor(Piece.Color.WHITE);
+            aFirstPlayer = playerColor;
+            aChessBoardView.SetFirstPlayer(playerColor);
         }
 
         public void SetConvertPiece(int i)
@@ -92,7 +105,15 @@ namespace ChessApp.Game_Engin
             aChessBoardView.SetBlackBrush(pBrush);
         }
 
+        public void SetFirstPlayer(Piece.Color color)
+        {
+            aFirstPlayer = color;
+        }
 
+        public Piece.Color GetFirstPlayerColor()
+        {
+            return aFirstPlayer;
+        }
 
     }
 }

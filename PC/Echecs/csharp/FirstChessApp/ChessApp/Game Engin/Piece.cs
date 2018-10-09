@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,13 +26,24 @@ namespace ChessApp.Game_Engin
         PieceType aType;
         Color aColor;
         Boolean hasMoved;
-
+        Boolean jumpedLastTurn;
 
         public Piece(PieceType pType, Color pColor)
         {
             aType = pType;
             aColor = pColor;
             hasMoved = false;
+            jumpedLastTurn = false;
+        }
+
+        public Boolean GetJumpedLastTurn()
+        {
+            return jumpedLastTurn;
+        }
+
+        public void SetJumpedLastTurn(bool b)
+        {
+            jumpedLastTurn = b;
         }
 
         public PieceType GetPieceType()
@@ -72,8 +83,7 @@ namespace ChessApp.Game_Engin
         {
             return aColor.ToString() + " " + aType.ToString();
         }
-
-
+        
         public override Boolean Equals(Object obj)
         {
             if (obj.GetType().Equals(this.GetType()))
@@ -86,6 +96,11 @@ namespace ChessApp.Game_Engin
                     
             }
             return false;
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
         }
     }
 }

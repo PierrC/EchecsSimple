@@ -1,4 +1,4 @@
-﻿using ChessApp.Game_Engin;
+using ChessApp.Game_Engin;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -18,8 +18,11 @@ namespace ChessApp.View_Engin
         Brush aWhiteSquareBrushes, aBlackSquareBrushes;
         Font font = new Font("Times New Roman", 16);
 
+        Piece.Color aFirstPlayer;
+
         public ChessBoardView(ChessBoard pBoard, PieceManipulator pPieceManipulator, Brush pWhiteSquareBrushes, Brush pBlackSquareBrushes)
         {
+            aFirstPlayer = Piece.Color.WHITE;
             aBoard = pBoard;
             aSquaresView = new SquareView[8, 8];
             for(int i = 0; i < 8; i++)
@@ -83,18 +86,23 @@ namespace ChessApp.View_Engin
                     }
                 }
             }
-            
-            for (int i = 1; i < 9; i++)
+            if (aFirstPlayer.Equals(Piece.Color.BLACK))
             {
-                g.DrawString((i).ToString(), font, aBlackSquareBrushes, square / 16, square * i - (square / 4));
-                g.DrawString(Char.ConvertFromUtf32(65 + i - 1), font, aBlackSquareBrushes, square * i - (square / 4), square / 16);
+                for (int i = 1; i < 9; i++)
+                {
+                    g.DrawString((i).ToString(), font, aBlackSquareBrushes, square / 16, square * i - (square / 4));
+                    g.DrawString(Char.ConvertFromUtf32(65 + i - 1), font, aBlackSquareBrushes, square * i - (square / 4), square / 16);
+                }
             }
-            /*
-            if (isSelecting)
+            else
             {
-                DrawSelectedSquares(g);
+                for (int i = 1; i < 9; i++)
+                {
+                    g.DrawString(((9 - i)).ToString(), font, aBlackSquareBrushes, square / 16, square * i - (square / 4));
+                    g.DrawString(Char.ConvertFromUtf32(65 + (9 - i) - 1), font, aBlackSquareBrushes, square * i - (square / 4), square / 16);
+                }
             }
-            */
+
         }
         
         private void DrawPieces(Graphics g)
@@ -105,7 +113,15 @@ namespace ChessApp.View_Engin
                 {
                     if (aBoard.GetBoard()[i, j].HasPiece())
                     {
-                        Point point = PositionAndPixels.BoardPositionToPixels(new BoardPosition(i, j));
+                        Point point = new Point();
+                        if (aFirstPlayer.Equals(Piece.Color.BLACK))
+                        {
+                            point = PositionAndPixels.BoardPositionToPixels(new BoardPosition(i, j));
+                        }
+                        else
+                        {
+                            point = PositionAndPixels.BoardPositionToPixelsInverse(new BoardPosition(i, j));
+                        }
                         aSquaresView[i, j].drawPiece(g, point);
                     }
                 }
@@ -114,9 +130,26 @@ namespace ChessApp.View_Engin
 
         private void DrawPossibleMoves(Graphics g)
         {
-            aPieceManipulatorView.DrawPossibleMoves(g);
+            if (aFirstPlayer.Equals(Piece.Color.BLACK))
+            {
+                aPieceManipulatorView.DrawPossibleMoves(g);
+            }
+            else
+            {
+                aPieceManipulatorView.DrawPossibleMovesInverse(g);
+            }
+            
         }
 
+        public void SetFirstPlayer(Piece.Color color)
+        {
+            aFirstPlayer = color;
+        }
+
+        public Piece.Color GetFirstColor()
+        {
+            return aFirstPlayer;
+        }
 
     }
 }

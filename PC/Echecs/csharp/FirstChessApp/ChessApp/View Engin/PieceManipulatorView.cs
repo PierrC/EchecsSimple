@@ -1,4 +1,4 @@
-﻿using ChessApp.Game_Engin;
+using ChessApp.Game_Engin;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -34,6 +34,18 @@ namespace ChessApp.View_Engin
             }
         }
 
-
+        public void DrawPossibleMovesInverse(Graphics g)
+        {
+            int square = PositionAndPixels.square;
+            List<BoardPosition> listOfMoves = aPieceManipulator.GetListOfMoves();
+            if (listOfMoves != null)
+            {
+                foreach (BoardPosition bp in listOfMoves)
+                {
+                    Point point = PositionAndPixels.BoardPositionToPixelsInverse(bp);
+                    g.DrawRectangle(aPen, point.X, point.Y, square, square);
+                }
+            }
+        }
     }
 }

@@ -1,4 +1,4 @@
-﻿using ChessApp.Game_Engin;
+using ChessApp.Game_Engin;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -32,7 +32,16 @@ namespace ChessApp
             mouse_y = e.Y;
 
             Point mousePoint = new Point(mouse_x, mouse_y);
-            BoardPosition bp = PositionAndPixels.PixelsToBoardPosition(mousePoint);
+            BoardPosition bp = new BoardPosition();
+            if (aChessGame.GetFirstPlayerColor().Equals(Piece.Color.BLACK))
+            {
+                bp = PositionAndPixels.PixelsToBoardPosition(mousePoint);
+            }
+            else
+            {
+                bp = PositionAndPixels.PixelsToBoardPositionInverse(mousePoint);
+
+            }
 
             if (e.Button == MouseButtons.Right)
             {
@@ -42,13 +51,10 @@ namespace ChessApp
             {
                 aChessGame.ManipulatePiece(bp);
             }
-
-            // Console.WriteLine("Check");
             
             Refresh();
             CheckGameStatus();
             
-
         }
 
         private void boardPanel_Paint(object sender, PaintEventArgs e)
@@ -150,10 +156,21 @@ namespace ChessApp
             Refresh();
         }
 
-        private void newGameToolStripMenuItem_Click(object sender, EventArgs e)
-        {
+        //private void newGameToolStripMenuItem_Click(object sender, EventArgs e)
+        //{
+        //    aChessGame.NewGame();
+        //    Refresh();
+        //}
 
-            aChessGame.NewGame();
+        private void whiteToolStripMenuItem_Item(object sender, EventArgs e)
+        {
+            aChessGame.NewGame(Piece.Color.WHITE);
+            Refresh();
+        }
+
+        private void blackToolStripMenuItem_Item(object sender, EventArgs e)
+        {
+            aChessGame.NewGame(Piece.Color.BLACK);
             Refresh();
         }
 

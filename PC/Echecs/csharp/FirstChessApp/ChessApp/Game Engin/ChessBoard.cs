@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -39,8 +39,8 @@ namespace ChessApp.Game_Engin
             board[6, 0].SetPiece(new Piece(PieceType.KNIGHT, Piece.Color.WHITE));
             board[2, 0].SetPiece(new Piece(PieceType.BISHOP, Piece.Color.WHITE));
             board[5, 0].SetPiece(new Piece(PieceType.BISHOP, Piece.Color.WHITE));
-            board[3, 0].SetPiece(new Piece(PieceType.QUEEN, Piece.Color.WHITE));
-            board[4, 0].SetPiece(new Piece(PieceType.KING, Piece.Color.WHITE));
+            board[4, 0].SetPiece(new Piece(PieceType.QUEEN, Piece.Color.WHITE));
+            board[3, 0].SetPiece(new Piece(PieceType.KING, Piece.Color.WHITE));
             // Player 2 is at the top
             for (int i = 0; i < 8; i++)
             {
@@ -52,8 +52,8 @@ namespace ChessApp.Game_Engin
             board[6, 7].SetPiece(new Piece(PieceType.KNIGHT, Piece.Color.BLACK));
             board[2, 7].SetPiece(new Piece(PieceType.BISHOP, Piece.Color.BLACK));
             board[5, 7].SetPiece(new Piece(PieceType.BISHOP, Piece.Color.BLACK));
-            board[3, 7].SetPiece(new Piece(PieceType.QUEEN, Piece.Color.BLACK));
-            board[4, 7].SetPiece(new Piece(PieceType.KING, Piece.Color.BLACK));
+            board[4, 7].SetPiece(new Piece(PieceType.QUEEN, Piece.Color.BLACK));
+            board[3, 7].SetPiece(new Piece(PieceType.KING, Piece.Color.BLACK));
         }
         
         public void CleanBoard()

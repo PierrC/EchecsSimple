@@ -1,4 +1,4 @@
-﻿using ChessApp;
+using ChessApp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +11,7 @@ namespace ChessApp.Game_Engin
     {
         public static List<BoardPosition> GetAvaiableMoves(BoardPosition bp, ChessBoard aBoard)
         {
-            if(!aBoard.GetBoard()[bp.X, bp.Y].HasPiece())
+            if (!aBoard.GetBoard()[bp.X, bp.Y].HasPiece())
             {
                 return null;
             }
@@ -157,13 +157,11 @@ namespace ChessApp.Game_Engin
             boardPositionList.Add(bp);
             Piece p = aBoard.GetBoard()[bp.X, bp.Y].GetPiece();
 
-
             int i = bp.X;
             int j = bp.Y;
             // Right now white is assumed to be at the bottom of the board 
             // TODO: find a way to make sure the color is not the factor
-            // TODO: add the ability to double jump at the begining and the ability 
-            // to change pawn into other piece when it reaches the other side of the board
+            // TODO Take Piece when it double jumps
             if (p.GetColor() == Piece.Color.BLACK)
             {
                 if (j > 0)
@@ -204,6 +202,31 @@ namespace ChessApp.Game_Engin
                             if (!p.IsSameColor(aBoard.GetBoard()[i, j].GetPiece()))
                             {
                                 boardPositionList.Add(new BoardPosition(i, j));
+                            }
+                        }
+                    }
+                }
+                i = bp.X;
+                j = bp.Y;
+                if (j == 3)
+                {
+                    if (i > 0)
+                    {
+                        if (aBoard.GetBoard()[i - 1, j].HasPiece())
+                        {
+                            if (aBoard.GetBoard()[i - 1, j].GetPiece().GetJumpedLastTurn())
+                            {
+                                boardPositionList.Add(new BoardPosition(i - 1, j - 1));
+                            }
+                        }
+                    }
+                    if (i < 7)
+                    {
+                        if (aBoard.GetBoard()[i + 1, j].HasPiece())
+                        {
+                            if (aBoard.GetBoard()[i + 1, j].GetPiece().GetJumpedLastTurn())
+                            {
+                                boardPositionList.Add(new BoardPosition(i + 1, j - 1));
                             }
                         }
                     }
@@ -251,8 +274,32 @@ namespace ChessApp.Game_Engin
                         }
                     }
                 }
+                i = bp.X;
+                j = bp.Y;
+                if (j == 4)
+                {
+                    if (i > 0)
+                    {
+                        if (aBoard.GetBoard()[i - 1, j].HasPiece())
+                        {
+                            if (aBoard.GetBoard()[i - 1, j].GetPiece().GetJumpedLastTurn())
+                            {
+                                boardPositionList.Add(new BoardPosition(i - 1, j + 1));
+                            }
+                        }
+                    }
+                    if (i < 7)
+                    {
+                        if (aBoard.GetBoard()[i + 1, j].HasPiece())
+                        {
+                            if (aBoard.GetBoard()[i + 1, j].GetPiece().GetJumpedLastTurn())
+                            {
+                                boardPositionList.Add(new BoardPosition(i + 1, j + 1));
+                            }
+                        }
+                    }
+                }
             }
-
             return boardPositionList;
         }
 
@@ -638,7 +685,7 @@ namespace ChessApp.Game_Engin
             }
             return boardPositionList;
         }
-        
+
         private static List<BoardPosition> CheckCastling(BoardPosition bp, ChessBoard aBoard)
         {
             List<BoardPosition> boardPositionList = new List<BoardPosition>();
@@ -747,7 +794,7 @@ namespace ChessApp.Game_Engin
 
             return boardPositionList;
         }
-        
+
         public static bool SquareIsThreatened(Piece pPiece, BoardPosition bp, ChessBoard aBoard)
         {
             Piece.Color pieceColor = pPiece.GetColor();
