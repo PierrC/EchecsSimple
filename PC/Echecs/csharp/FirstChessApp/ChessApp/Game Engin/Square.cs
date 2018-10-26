@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,11 +19,7 @@ namespace ChessApp.Game_Engin
 
         public Boolean HasPiece()
         {
-            if (aPiece == null)
-            {
-                return false;
-            }
-            return true;
+            return aPiece == null ? false : true;
         }
 
         public Piece GetPiece()
@@ -48,9 +44,7 @@ namespace ChessApp.Game_Engin
 
         public override string ToString()
         {
-            if (!(aPiece == null))
-                return aPiece.ToString();
-            return "";
+            return aPiece != null ? aPiece.ToString() : "";
         }
 
 

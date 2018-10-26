@@ -19,134 +19,27 @@ namespace ChessApp.Game_Engin
 
             switch (p.GetPieceType())
             {
-                case (Piece.PieceType.PAWN):
-                    {
-                        return GetPawnMoves(bp, aBoard);
-
-                    }
-                case (Piece.PieceType.ROOK):
-                    {
-                        return GetRookMoves(bp, aBoard);
-                    }
-                case (Piece.PieceType.KNIGHT):
-                    {
-                        return GetKnightMoves(bp, aBoard);
-                    }
-                case (Piece.PieceType.BISHOP):
-                    {
-                        return GetBishopMoves(bp, aBoard);
-                    }
-                case (Piece.PieceType.QUEEN):
-                    {
-                        return GetQueenMoves(bp, aBoard);
-                    }
-                case (Piece.PieceType.KING):
-                    {
-                        return GetKingMoves(bp, aBoard);
-                    }
-                default:
-                    {
-                        return null;
-                    }
+                case (Piece.PieceType.PAWN): return GetPawnMoves(bp, aBoard);
+                case (Piece.PieceType.ROOK): return GetRookMoves(bp, aBoard);
+                case (Piece.PieceType.KNIGHT): return GetKnightMoves(bp, aBoard);
+                case (Piece.PieceType.BISHOP): return GetBishopMoves(bp, aBoard);
+                case (Piece.PieceType.QUEEN): return GetQueenMoves(bp, aBoard);
+                case (Piece.PieceType.KING): return GetKingMoves(bp, aBoard);
+                default: return null;
             }
 
         }
 
         private static List<BoardPosition> GetRookMoves(BoardPosition bp, ChessBoard aBoard)
         {
-
             List<BoardPosition> boardPositionList = new List<BoardPosition>();
             boardPositionList.Add(bp);
             Piece p = aBoard.GetBoard()[bp.X, bp.Y].GetPiece();
-            int index = 0;
-            int i = bp.X;
-            int j = bp.Y;
-            // Up
-            while (j < 7)
-            {
-                j++;
-                if (aBoard.GetBoard()[i, j].HasPiece())
-                {
-                    if (!p.IsSameColor(aBoard.GetBoard()[i, j].GetPiece()))
-                    {
-                        boardPositionList.Add(new BoardPosition(i, j));
-                    }
-                    break;
-                }
-                else
-                {
-                    boardPositionList.Add(new BoardPosition(i, j));
-                }
-            }
-            for (int m = 0; m < boardPositionList.Count; m++)
-            {
-                //   Console.WriteLine("Rook moves 1:" + boardPositionList[m].ToString());
-                index = m;
-            }
-            i = bp.X;
-            j = bp.Y;
-            while (j > 0)
-            {
-                j--;
-                if (aBoard.GetBoard()[i, j].HasPiece())
-                {
-                    if (!p.IsSameColor(aBoard.GetBoard()[i, j].GetPiece()))
-                    {
-                        boardPositionList.Add(new BoardPosition(i, j));
-                    }
-                    break;
-                }
-                else
-                {
-                    boardPositionList.Add(new BoardPosition(i, j));
-                }
-            }
-            for (int m = index; m < boardPositionList.Count; m++)
-            {
-                //  Console.WriteLine("Rook moves 2:" + boardPositionList[m].ToString());
-                index = m;
-            }
-            i = bp.X;
-            j = bp.Y;
-            while (i < 7)
-            {
-                i++;
-                if (aBoard.GetBoard()[i, j].HasPiece())
-                {
-                    if (!p.IsSameColor(aBoard.GetBoard()[i, j].GetPiece()))
-                    {
-                        boardPositionList.Add(new BoardPosition(i, j));
-                    }
-                    break;
-                }
-                else
-                {
-                    boardPositionList.Add(new BoardPosition(i, j));
-                }
-            }
-            for (int m = index; m < boardPositionList.Count; m++)
-            {
-                //  Console.WriteLine("Rook moves 3:" + boardPositionList[m].ToString());
-                index = m;
-            }
-            i = bp.X;
-            j = bp.Y;
-            while (i > 0)
-            {
-                i--;
-                if (aBoard.GetBoard()[i, j].HasPiece())
-                {
-                    if (!p.IsSameColor(aBoard.GetBoard()[i, j].GetPiece()))
-                    {
-                        boardPositionList.Add(new BoardPosition(i, j));
-                    }
-                    break;
-                }
-                else
-                {
-                    boardPositionList.Add(new BoardPosition(i, j));
-                }
-            }
+
+            boardPositionList.AddRange(CheckBoardPosition(bp.X, bp.Y, 0, 1, p, aBoard));
+            boardPositionList.AddRange(CheckBoardPosition(bp.X, bp.Y, 0, -1, p, aBoard));
+            boardPositionList.AddRange(CheckBoardPosition(bp.X, bp.Y, 1, 0, p, aBoard));
+            boardPositionList.AddRange(CheckBoardPosition(bp.X, bp.Y, -1, 0, p, aBoard));
 
             return boardPositionList;
         }
@@ -161,7 +54,6 @@ namespace ChessApp.Game_Engin
             int j = bp.Y;
             // Right now white is assumed to be at the bottom of the board 
             // TODO: find a way to make sure the color is not the factor
-            // TODO Take Piece when it double jumps
             if (p.GetColor() == Piece.Color.BLACK)
             {
                 if (j > 0)
@@ -391,13 +283,10 @@ namespace ChessApp.Game_Engin
                     {
                         boardPositionList.Add(new BoardPosition(i + 1, j - 1));
                     }
-                    else
+                    else if (!p.IsSameColor(aBoard.GetBoard()[i + 1, j - 1].GetPiece()))
                     {
-                        if (!p.IsSameColor(aBoard.GetBoard()[i + 1, j - 1].GetPiece()))
-                        {
-                            boardPositionList.Add(new BoardPosition(i + 1, j - 1));
-                        }
-
+                        boardPositionList.Add(new BoardPosition(i + 1, j - 1));
+                     
                     }
                 }
 
@@ -448,15 +337,7 @@ namespace ChessApp.Game_Engin
             boardPositionList.Add(bp);
             Piece p = aBoard.GetBoard()[bp.X, bp.Y].GetPiece();
             boardPositionList.AddRange(GetRookMoves(bp, aBoard));
-            for (int i = 0; i < boardPositionList.Count; i++)
-            {
-                //   Console.WriteLine("Rook moves:" + boardPositionList[i].ToString());
-            }
             boardPositionList.AddRange(GetBishopMoves(bp, aBoard));
-            for (int i = 0; i < boardPositionList.Count; i++)
-            {
-                //  Console.WriteLine(boardPositionList[i].ToString());
-            }
             return boardPositionList;
         }
 
@@ -464,85 +345,11 @@ namespace ChessApp.Game_Engin
         {
             List<BoardPosition> boardPositionList = new List<BoardPosition>();
             boardPositionList.Add(bp);
-            Piece p = aBoard.GetBoard()[bp.X, bp.Y].GetPiece();
-
-            int i = bp.X;
-            int j = bp.Y;
-            while (i > 0 && j > 0)
-            {
-                i--;
-                j--;
-                if (aBoard.GetBoard()[i, j].HasPiece())
-                {
-                    if (!p.IsSameColor(aBoard.GetBoard()[i, j].GetPiece()))
-                    {
-                        boardPositionList.Add(new BoardPosition(i, j));
-                    }
-                    break;
-                }
-                else
-                {
-                    boardPositionList.Add(new BoardPosition(i, j));
-                }
-
-            }
-            i = bp.X;
-            j = bp.Y;
-            while (i < 7 && j > 0)
-            {
-                i++;
-                j--;
-                if (aBoard.GetBoard()[i, j].HasPiece())
-                {
-                    if (!p.IsSameColor(aBoard.GetBoard()[i, j].GetPiece()))
-                    {
-                        boardPositionList.Add(new BoardPosition(i, j));
-                    }
-                    break;
-                }
-                else
-                {
-                    boardPositionList.Add(new BoardPosition(i, j));
-                }
-            }
-            i = bp.X;
-            j = bp.Y;
-            while (i > 0 && j < 7)
-            {
-                i--;
-                j++;
-                if (aBoard.GetBoard()[i, j].HasPiece())
-                {
-                    if (!p.IsSameColor(aBoard.GetBoard()[i, j].GetPiece()))
-                    {
-                        boardPositionList.Add(new BoardPosition(i, j));
-                    }
-                    break;
-                }
-                else
-                {
-                    boardPositionList.Add(new BoardPosition(i, j));
-                }
-            }
-            i = bp.X;
-            j = bp.Y;
-            while (i < 7 && j < 7)
-            {
-                i++;
-                j++;
-                if (aBoard.GetBoard()[i, j].HasPiece())
-                {
-                    if (!p.IsSameColor(aBoard.GetBoard()[i, j].GetPiece()))
-                    {
-                        boardPositionList.Add(new BoardPosition(i, j));
-                    }
-                    break;
-                }
-                else
-                {
-                    boardPositionList.Add(new BoardPosition(i, j));
-                }
-            }
+            
+            boardPositionList.AddRange(CheckBoardPosition(bp.X, bp.Y, -1, -1, p, aBoard));
+            boardPositionList.AddRange(CheckBoardPosition(bp.X, bp.Y, 1, -1, p, aBoard));
+            boardPositionList.AddRange(CheckBoardPosition(bp.X, bp.Y, -1, 1, p, aBoard));
+            boardPositionList.AddRange(CheckBoardPosition(bp.X, bp.Y, 1, 1, p, aBoard));
 
             return boardPositionList;
         }
@@ -830,7 +637,34 @@ namespace ChessApp.Game_Engin
 
             return false;
         }
+        
+        private static List<BoardPosition> CheckBoardPosition(int i, int j, int iChange, int jChange, Piece pPiece, ChessBoard aBoard)
+        {
+            i += iChange; j += jChange;
+            List<BoardPosition> boardPositions = new List<BoardPosition>();
+            while (i <= 7 && i >= 0 && j <= 7 && j >= 0)
+            {
+                Console.WriteLine("i:" + i + " j:" + j);
+                if (aBoard.GetBoard()[i, j].HasPiece())
+                {
+                    if (!pPiece.IsSameColor(aBoard.GetBoard()[i, j].GetPiece()))
+                    {
+                        boardPositions.Add(new BoardPosition(i, j));
+                    }
+                    break;
+                }
+                else
+                {
+                    boardPositions.Add(new BoardPosition(i, j));
+                }
+                i += iChange; j += jChange;
+            }
+            for(int m = 0; m < boardPositions.Count; m++)
+            {
+            Console.Write(boardPositions[m] + ", ");
 
-
+            }
+            return boardPositions;
+        }
     }
 }
